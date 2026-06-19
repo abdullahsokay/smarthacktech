@@ -1,0 +1,67 @@
+/* ============================================================
+   HackTech — 3D spatial scroll-zoom experience
+   Technique: scroll-driven 3D zoom popularized by Adam Argyle.
+   Original HackTech build, JS-driven so it runs in every browser.
+   ============================================================ */
+
+body[data-page="tech"] { min-block-size: 460vh; overflow-x: clip; }
+
+.stuck-grid {
+  block-size: 100svh;
+  perspective: 1100px;
+  transform-style: preserve-3d;
+  display: grid;
+  grid: repeat(4, 25dvh) / repeat(4, 25dvw);
+  place-items: center;
+  position: sticky;
+  top: 0;
+  overflow: clip;
+}
+.stuck-grid .grid-item {
+  transform-style: preserve-3d;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 5vmin;
+  letter-spacing: .5px;
+  text-wrap: nowrap;
+  color: var(--ink);
+}
+.stuck-grid .grid-item:not(.special) {
+  opacity: 0;
+  will-change: transform, opacity, filter;
+}
+
+/* category colour + glow (glow fades with the JS-driven opacity) */
+.stuck-grid .cat-prod { color:#E9C46A; font-weight:500; text-shadow:0 0 36px rgba(52,179,169,.6) }
+.stuck-grid .cat-ai   { color:#7ad9c0; text-shadow:0 0 34px rgba(95,208,163,.5) }
+.stuck-grid .cat-conn { color:#34b3a9; text-shadow:0 0 30px rgba(52,179,169,.5) }
+.stuck-grid .cat-tele { color:#5bc9b9; text-shadow:0 0 30px rgba(46,140,134,.5) }
+.stuck-grid .cat-ops  { color:#eaf1f0; text-shadow:0 0 26px rgba(52,179,169,.32) }
+
+/* centre brand tile */
+.stuck-grid .grid-item.special.special {
+  grid-row: 2 / span 2;
+  grid-column: 2 / span 2;
+  z-index: 2;
+}
+.stuck-grid .grid-item.special b {
+  display: inline-flex; align-items: center; gap: .22em;
+  font-size: 13vmin; font-weight: 700; letter-spacing: -2px;
+  background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 10px 40px rgba(52,179,169,.4));
+}
+
+/* fixed overlays */
+.tech-enter { position: fixed; left: 50%; bottom: 34px; transform: translateX(-50%); z-index: 40; }
+.tech-hint {
+  position: fixed; top: 92px; left: 50%; transform: translateX(-50%); z-index: 40;
+  color: var(--muted); font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  transition: opacity .2s linear;
+}
+
+/* reduced-motion: no 3D zoom — show a clean static brand screen */
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="tech"] { min-block-size: 100svh; }
+  .stuck-grid .grid-item:not(.special) { display: none; }
+  .tech-hint { display: none; }
+}

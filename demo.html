@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Demo — HackTech FleetPulse Dashboard</title>
+<meta name="description" content="A live, simulated look at HackTech's FleetPulse operations dashboard — real-time vehicle tracking, AI alerts and fuel analytics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<meta name="theme-color" content="#0C1417">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%230C1417'%2F%3E%3Cpath%20d%3D'M16%206.5l8%204.6v9.2l-8%204.6-8-4.6v-9.2z'%20fill%3D'none'%20stroke%3D'%23E9C46A'%20stroke-width%3D'2.2'%20stroke-linejoin%3D'round'%2F%3E%3C%2Fsvg%3E">
+<link rel="canonical" href="https://hacktech.pk/demo.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HackTech">
+<meta property="og:title" content="Live Demo — HackTech FleetPulse Dashboard">
+<meta property="og:description" content="A live, simulated look at HackTech's FleetPulse operations dashboard — real-time vehicle tracking, AI alerts and fuel analytics.">
+<meta property="og:url" content="https://hacktech.pk/demo.html">
+<meta property="og:image" content="https://hacktech.pk/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Live Demo — HackTech FleetPulse Dashboard">
+<meta name="twitter:description" content="A live, simulated look at HackTech's FleetPulse operations dashboard — real-time vehicle tracking, AI alerts and fuel analytics.">
+<meta name="twitter:image" content="https://hacktech.pk/og-image.svg">
+</head>
+<body data-page="demo">
+<div class="backdrop"></div>
+
+<div data-include="header"></div>
+
+<main class="main" id="main">
+<section class="section" style="padding-top:18vh">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="pill"><span class="dot-live"></span> Live simulation · updates every second</span>
+      <h1 class="display" style="font-size:clamp(2.2rem,6vw,4rem);margin-top:18px">FleetPulse, <span class="accent">live</span></h1>
+      <p class="lead">This is a simulated peek at the HackTech operations dashboard — the same single glass pane your team would watch all day. Vehicles, AI alerts, speed and fuel metrics update in real time.</p>
+    </div>
+
+    <div class="dash reveal">
+      <div class="dash__bar">
+        <span class="d"></span><span class="d"></span><span class="d"></span>
+        <b>FleetPulse — Live Operations</b>
+        <span class="pill"><span class="dot-live"></span> Live</span>
+      </div>
+
+      <div class="dash__grid">
+        <div class="kpis">
+          <div class="kpi"><span class="kpi__label">Active vehicles</span><span class="kpi__num ok" id="kpiActive">—</span></div>
+          <div class="kpi"><span class="kpi__label">Avg. speed</span><span class="kpi__num" id="kpiSpeed">—</span></div>
+          <div class="kpi"><span class="kpi__label">Open alerts</span><span class="kpi__num warn" id="kpiAlerts">—</span></div>
+          <div class="kpi"><span class="kpi__label">Fuel saved (mo)</span><span class="kpi__num ok" id="kpiFuel">—</span></div>
+        </div>
+
+        <div class="feed">
+          <p class="feed__label">Live AI alerts</p>
+          <div id="alertFeed" style="display:flex;flex-direction:column;gap:10px"></div>
+        </div>
+
+        <div class="map" id="fleetMap" role="img" aria-label="Live map of tracked vehicles across Pakistan">
+          <div class="map__route" style="left:8%;top:28%;width:46%"></div>
+          <div class="map__route" style="left:40%;top:55%;width:48%"></div>
+          <div class="map__route" style="left:20%;top:74%;width:38%"></div>
+        </div>
+
+        <div class="chart" id="liveChart" aria-hidden="true">
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section--sm">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow">What you're seeing</p>
+      <h2 class="h2">Every signal, in <span class="accent">one place</span></h2>
+    </div>
+    <div class="grid--4">
+      <div class="card reveal">
+        <div class="card__icon" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5-6-10a6 6 0 0 1 12 0c0 5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></div>
+        <h3 class="card__title">Live tracking</h3>
+        <p class="card__text">Each glowing dot is a vehicle reporting position, speed and status straight from its SentinelEdge device.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:.08s">
+        <div class="card__icon" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+        <h3 class="card__title">AI alerts</h3>
+        <p class="card__text">DriveGuard AI flags fatigue, harsh braking and distraction the moment they happen — no human watching needed.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:.16s">
+        <div class="card__icon" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></div>
+        <h3 class="card__title">Fuel & route</h3>
+        <p class="card__text">EcoRoute continuously tunes routes and driving behaviour, turning waste into measurable monthly savings.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:.24s">
+        <div class="card__icon" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="21" x2="21" y2="21"/><rect x="5" y="11" width="3" height="8"/><rect x="11" y="6" width="3" height="13"/><rect x="17" y="14" width="3" height="5"/></svg></div>
+        <h3 class="card__title">Live analytics</h3>
+        <p class="card__text">The activity chart streams throughput across your fleet so dispatchers spot trends as they form.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta reveal">
+      <h2 class="h2">Like what you see? <span class="accent">Let's wire up your fleet.</span></h2>
+      <p class="lead" style="margin-inline:auto">This demo runs on sample data. Book a walkthrough on your real vehicles and watch your own fleet light up.</p>
+      <div class="actions" style="justify-content:center">
+        <a class="btn btn--primary" href="contact.html">Get a Quote</a>
+        <a class="btn btn--ghost" href="solutions.html">Explore Solutions</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div data-include="footer"></div>
+
+<script src="components.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
