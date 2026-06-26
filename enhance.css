@@ -382,3 +382,38 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
   color:var(--ink);line-height:1.25}
 .pf-card__text{font-size:.92rem;color:var(--muted);flex:1}
 .pf-card__body .chip-row{margin-top:6px}
+
+/* ===== Portfolio — fullpage slide mode (desktop) ===== */
+html.pf-snap{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body[data-page="portfolio"] .pf-slide{min-height:100vh;display:flex;align-items:center;
+  scroll-snap-align:start;padding-top:96px;padding-bottom:64px}
+body[data-page="portfolio"] .footer{scroll-snap-align:start}
+/* project showcase — big split, not a small card */
+.pf-show{display:grid;grid-template-columns:1.05fr 1fr;gap:52px;align-items:center;width:100%}
+.pf-show--rev .pf-show__media{order:2}
+.pf-show__media{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line-2);
+  aspect-ratio:16/11;box-shadow:0 40px 90px -42px rgba(0,0,0,.85),0 0 50px -18px rgba(212,175,55,.4)}
+.pf-show__media img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.pf-show:hover .pf-show__media img{transform:scale(1.04)}
+.pf-show__info .pf-card__cat{font-size:.8rem}
+.pf-show__info .h2{margin:12px 0 16px}
+.pf-show__info .lead{margin-bottom:20px}
+@media(max-width:860px){.pf-show{grid-template-columns:1fr;gap:26px}.pf-show--rev .pf-show__media{order:0}}
+
+/* right-side slide indicator (ticks) */
+.pf-dots{position:fixed;top:50%;right:22px;transform:translateY(-50%);z-index:40;
+  display:flex;flex-direction:column;gap:9px;align-items:flex-end}
+.pf-dots button{width:20px;height:3px;border:0;border-radius:2px;cursor:pointer;padding:0;
+  background:rgba(212,175,55,.3);transition:width .3s ease,background .3s ease,box-shadow .3s ease}
+.pf-dots button:hover{width:30px;background:var(--c5)}
+.pf-dots button.active{width:36px;height:4px;background:var(--c5);box-shadow:0 0 12px var(--c5)}
+html[data-theme="light"] .pf-dots button{background:rgba(109,74,255,.3)}
+html[data-theme="light"] .pf-dots button:hover,
+html[data-theme="light"] .pf-dots button.active{background:var(--c5);box-shadow:0 0 12px rgba(109,74,255,.6)}
+
+/* turn fullpage OFF on phones / short screens → normal scroll, no trap */
+@media(max-width:760px),(max-height:720px){
+  html.pf-snap{scroll-snap-type:none}
+  body[data-page="portfolio"] .pf-slide{min-height:auto;display:block;padding-top:64px;padding-bottom:48px}
+  .pf-dots{display:none}
+}

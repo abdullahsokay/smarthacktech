@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ht-theme')||'dark')}catch(e){}</script>
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ht-theme')||'dark')}catch(e){}try{document.documentElement.classList.add('pf-snap')}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="enhance.css">
 <meta name="theme-color" content="#0A0A0A">
@@ -28,49 +28,34 @@
 
 <main class="main" id="main">
 
-<!-- PAGE HEADER -->
-<section class="section">
+<!-- SLIDE 1 — INTRO -->
+<section class="section pf-slide" data-label="Intro">
   <div class="container">
-    <div class="section-head center reveal">
+    <div class="section-head center reveal" style="margin-inline:auto">
       <span class="eyebrow center">Portfolio</span>
       <h1 class="h2">The team &mdash; and the <span class="accent">work we&rsquo;ve shipped</span></h1>
-      <p class="lead">Four engineers who started HackTech together, building software, hardware, AI and security end to end. Here&rsquo;s who we are &mdash; and what we&rsquo;ve built.</p>
+      <p class="lead">Four engineers who started HackTech together, building software, hardware, AI and security end to end. Scroll through to meet us &mdash; and see what we&rsquo;ve built.</p>
+      <div class="chip-row chip-row--center">
+        <span class="chip">Software</span><span class="chip">IoT &amp; Hardware</span><span class="chip">AI</span><span class="chip">Security</span><span class="chip">Made in Pakistan</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TEAM + SKILLS -->
-<section class="section section--light" id="team">
+<!-- SLIDE 2 — TEAM + SKILLS -->
+<section class="section section--light pf-slide" data-label="The Team" id="team">
   <div class="container">
     <div class="pf-team">
-
       <div class="pf-people reveal">
-        <article class="pf-person">
-          <span class="pf-avatar">AI</span>
-          <span class="pf-person__name">Abdullah Iqbal</span>
-          <span class="pf-person__role">Team Lead &amp; Full-Stack</span>
-        </article>
-        <article class="pf-person">
-          <span class="pf-avatar">NB</span>
-          <span class="pf-person__name">Naba Batool</span>
-          <span class="pf-person__role">Designer &amp; Frontend</span>
-        </article>
-        <article class="pf-person">
-          <span class="pf-avatar">AS</span>
-          <span class="pf-person__name">Aleeza Shabbir</span>
-          <span class="pf-person__role">AI &amp; Backend</span>
-        </article>
-        <article class="pf-person">
-          <span class="pf-avatar">AR</span>
-          <span class="pf-person__name">Atif Riaz</span>
-          <span class="pf-person__role">IoT &amp; Hardware</span>
-        </article>
+        <article class="pf-person"><span class="pf-avatar">AI</span><span class="pf-person__name">Abdullah Iqbal</span><span class="pf-person__role">Team Lead &amp; Full-Stack</span></article>
+        <article class="pf-person"><span class="pf-avatar">NB</span><span class="pf-person__name">Naba Batool</span><span class="pf-person__role">Designer &amp; Frontend</span></article>
+        <article class="pf-person"><span class="pf-avatar">AS</span><span class="pf-person__name">Aleeza Shabbir</span><span class="pf-person__role">AI &amp; Backend</span></article>
+        <article class="pf-person"><span class="pf-avatar">AR</span><span class="pf-person__name">Atif Riaz</span><span class="pf-person__role">IoT &amp; Hardware</span></article>
       </div>
-
       <div class="pf-skills reveal">
         <p class="eyebrow">The Team</p>
         <h2 class="h2"><span class="accent">Four</span> engineers, one mission</h2>
-        <p class="lead">We&rsquo;re a tight crew of four software engineers who started HackTech together &mdash; covering software, AI, hardware and security so that everything we build actually works as one system.</p>
+        <p class="lead">A tight crew of four software engineers who started HackTech together &mdash; covering software, AI, hardware and security so everything we build works as one system.</p>
         <div class="pf-bars">
           <div class="pf-bar"><div class="pf-bar__top"><span>Full-Stack Software</span><span>95%</span></div><div class="pf-bar__track"><div class="pf-bar__fill" data-val="95%"></div></div></div>
           <div class="pf-bar"><div class="pf-bar__top"><span>AI &amp; Machine Learning</span><span>88%</span></div><div class="pf-bar__track"><div class="pf-bar__fill" data-val="88%"></div></div></div>
@@ -80,117 +65,94 @@
           <div class="pf-bar"><div class="pf-bar__top"><span>Cloud &amp; DevOps</span><span>82%</span></div><div class="pf-bar__track"><div class="pf-bar__fill" data-val="82%"></div></div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="section">
-  <div class="container">
-    <div class="section-head center reveal">
-      <p class="eyebrow center">Our Projects</p>
-      <h2 class="h2">A collection of <span class="accent">what we&rsquo;ve built</span></h2>
-      <p class="lead">Real systems we&rsquo;ve designed, engineered and shipped &mdash; across logistics, AI, hardware, security, automation and more.</p>
-    </div>
-    <div class="pf-grid">
-
-      <article class="pf-card reveal">
-        <div class="pf-card__shot"><img src="images/fleet.jpg" alt="SOTMS fleet command dashboard" loading="lazy"><span class="pf-badge">Flagship</span></div>
-        <div class="pf-card__body">
-          <span class="pf-card__cat">Logistics &amp; Fleet</span>
-          <h3 class="pf-card__title">SOTMS &mdash; Smart Transport Management</h3>
-          <p class="pf-card__text">Our flagship platform &mdash; a complete fleet command centre with live GPS tracking, vehicle diagnostics and fuel &amp; driver analytics in one dashboard.</p>
-          <div class="chip-row"><span class="chip">GPS Telematics</span><span class="chip">Diagnostics</span><span class="chip">Analytics</span></div>
-        </div>
-      </article>
-
-      <article class="pf-card reveal">
-        <div class="pf-card__shot"><img src="images/ai.jpg" alt="DriveGuard AI driver behaviour" loading="lazy"><span class="pf-badge">Shipped</span></div>
-        <div class="pf-card__body">
-          <span class="pf-card__cat">AI &amp; Safety</span>
-          <h3 class="pf-card__title">DriveGuard AI &mdash; Driver Behaviour</h3>
-          <p class="pf-card__text">On-device AI that flags harsh braking, over-speeding and fatigue in real time, then scores every driver so fleets can coach and reward.</p>
-          <div class="chip-row"><span class="chip">Edge AI</span><span class="chip">Computer Vision</span><span class="chip">Driver Scoring</span></div>
-        </div>
-      </article>
-
-      <article class="pf-card reveal">
-        <div class="pf-card__shot"><img src="images/circuit.jpg" alt="GuardianOBD diagnostics hardware" loading="lazy"><span class="pf-badge">In-house</span></div>
-        <div class="pf-card__body">
-          <span class="pf-card__cat">IoT Hardware</span>
-          <h3 class="pf-card__title">GuardianOBD &mdash; Vehicle Diagnostics</h3>
-          <p class="pf-card__text">Custom OBD-II hardware, designed and assembled locally, that streams live engine health, location and trip data straight to the cloud.</p>
-          <div class="chip-row"><span class="chip">Custom PCB</span><span class="chip">OBD-II</span><span class="chip">Cellular IoT</span></div>
-        </div>
-      </article>
-
-      <article class="pf-card reveal">
-        <div class="pf-card__shot"><img src="images/security.jpg" alt="SentinelEdge security platform" loading="lazy"><span class="pf-badge">Shipped</span></div>
-        <div class="pf-card__body">
-          <span class="pf-card__cat">Security</span>
-          <h3 class="pf-card__title">SentinelEdge &mdash; Security &amp; Surveillance</h3>
-          <p class="pf-card__text">Edge-based monitoring and access control with encrypted, locally-hosted data &mdash; surveillance that never ships your footage to a foreign black box.</p>
-          <div class="chip-row"><span class="chip">Edge Compute</span><span class="chip">Access Control</span><span class="chip">Encryption</span></div>
-        </div>
-      </article>
-
-      <article class="pf-card reveal">
-        <div class="pf-card__shot"><img src="images/smart-home.jpg" alt="Smart home automation" loading="lazy"><span class="pf-badge">Live</span></div>
-        <div class="pf-card__body">
-          <span class="pf-card__cat">IoT &amp; Automation</span>
-          <h3 class="pf-card__title">Smart Home Automation</h3>
-          <p class="pf-card__text">App- and voice-controlled lighting, climate, security and energy &mdash; designed for Pakistani homes and real power conditions, not a Western showroom.</p>
-          <div class="chip-row"><span class="chip">Home IoT</span><span class="chip">Voice Control</span><span class="chip">Energy</span></div>
-        </div>
-      </article>
-
-      <article class="pf-card reveal">
-        <div class="pf-card__shot"><img src="images/software.jpg" alt="Custom software and dashboards" loading="lazy"><span class="pf-badge">Shipped</span></div>
-        <div class="pf-card__body">
-          <span class="pf-card__cat">Software</span>
-          <h3 class="pf-card__title">Custom Software &amp; Dashboards</h3>
-          <p class="pf-card__text">Web and mobile platforms &mdash; customer portals, admin dashboards and internal tools &mdash; engineered with clean code and built to scale.</p>
-          <div class="chip-row"><span class="chip">Web Apps</span><span class="chip">Mobile</span><span class="chip">SaaS</span></div>
-        </div>
-      </article>
-
-      <article class="pf-card reveal">
-        <div class="pf-card__shot"><img src="images/engineering.jpg" alt="FleetPulse fleet analytics" loading="lazy"><span class="pf-badge">Shipped</span></div>
-        <div class="pf-card__body">
-          <span class="pf-card__cat">Data &amp; Dashboards</span>
-          <h3 class="pf-card__title">FleetPulse &mdash; Fleet Analytics</h3>
-          <p class="pf-card__text">The analytics brain behind SOTMS &mdash; turning raw telematics into clear reports on utilisation, cost-per-km, idle time and route efficiency.</p>
-          <div class="chip-row"><span class="chip">Data Pipeline</span><span class="chip">Reporting</span><span class="chip">KPIs</span></div>
-        </div>
-      </article>
-
-      <article class="pf-card reveal">
-        <div class="pf-card__shot"><img src="images/components.jpg" alt="Embedded hardware prototyping" loading="lazy"><span class="pf-badge">In-house</span></div>
-        <div class="pf-card__body">
-          <span class="pf-card__cat">Hardware</span>
-          <h3 class="pf-card__title">Embedded &amp; Hardware Prototyping</h3>
-          <p class="pf-card__text">From schematic to a working board &mdash; we prototype, test and assemble custom electronics in-house, so your idea becomes real hardware.</p>
-          <div class="chip-row"><span class="chip">PCB Design</span><span class="chip">Firmware</span><span class="chip">Sensors</span></div>
-        </div>
-      </article>
-
-      <article class="pf-card reveal">
-        <div class="pf-card__shot"><img src="images/training.jpg" alt="Technical training and workshops" loading="lazy"><span class="pf-badge">Program</span></div>
-        <div class="pf-card__body">
-          <span class="pf-card__cat">Training</span>
-          <h3 class="pf-card__title">Technical Training &amp; Workshops</h3>
-          <p class="pf-card__text">Hands-on training for teams and students &mdash; software, IoT, AI and security &mdash; taught by the same engineers who build production systems.</p>
-          <div class="chip-row"><span class="chip">Software</span><span class="chip">IoT</span><span class="chip">AI</span><span class="chip">Security</span></div>
-        </div>
-      </article>
-
-    </div>
-  </div>
+<!-- PROJECT SLIDES -->
+<section class="section pf-slide" data-label="SOTMS">
+  <div class="container"><div class="pf-show reveal">
+    <div class="pf-show__media"><img src="images/fleet.jpg" alt="SOTMS fleet command dashboard" loading="lazy"><span class="pf-badge">Flagship</span></div>
+    <div class="pf-show__info"><span class="pf-card__cat">Logistics &amp; Fleet</span><h2 class="h2">SOTMS &mdash; Smart Transport Management</h2>
+      <p class="lead">Our flagship platform &mdash; a complete fleet command centre. Live GPS tracking, vehicle diagnostics and fuel &amp; driver analytics in one dashboard, built for Pakistani roads and conditions.</p>
+      <div class="chip-row"><span class="chip">GPS Telematics</span><span class="chip">Diagnostics</span><span class="chip">Analytics</span></div></div>
+  </div></div>
 </section>
 
-<!-- CTA -->
-<section class="section">
+<section class="section section--light pf-slide" data-label="DriveGuard AI">
+  <div class="container"><div class="pf-show pf-show--rev reveal">
+    <div class="pf-show__media"><img src="images/ai.jpg" alt="DriveGuard AI driver behaviour" loading="lazy"><span class="pf-badge">Shipped</span></div>
+    <div class="pf-show__info"><span class="pf-card__cat">AI &amp; Safety</span><h2 class="h2">DriveGuard AI &mdash; Driver Behaviour</h2>
+      <p class="lead">On-device AI that flags harsh braking, over-speeding and fatigue in real time, then scores every driver so fleets can coach and reward the right behaviour.</p>
+      <div class="chip-row"><span class="chip">Edge AI</span><span class="chip">Computer Vision</span><span class="chip">Driver Scoring</span></div></div>
+  </div></div>
+</section>
+
+<section class="section pf-slide" data-label="GuardianOBD">
+  <div class="container"><div class="pf-show reveal">
+    <div class="pf-show__media"><img src="images/circuit.jpg" alt="GuardianOBD diagnostics hardware" loading="lazy"><span class="pf-badge">In-house</span></div>
+    <div class="pf-show__info"><span class="pf-card__cat">IoT Hardware</span><h2 class="h2">GuardianOBD &mdash; Vehicle Diagnostics</h2>
+      <p class="lead">Custom OBD-II hardware, designed and assembled locally, that plugs into any vehicle and streams live engine health, location and trip data straight to the cloud.</p>
+      <div class="chip-row"><span class="chip">Custom PCB</span><span class="chip">OBD-II</span><span class="chip">Cellular IoT</span></div></div>
+  </div></div>
+</section>
+
+<section class="section section--light pf-slide" data-label="SentinelEdge">
+  <div class="container"><div class="pf-show pf-show--rev reveal">
+    <div class="pf-show__media"><img src="images/security.jpg" alt="SentinelEdge security platform" loading="lazy"><span class="pf-badge">Shipped</span></div>
+    <div class="pf-show__info"><span class="pf-card__cat">Security</span><h2 class="h2">SentinelEdge &mdash; Security &amp; Surveillance</h2>
+      <p class="lead">Edge-based monitoring and access control with encrypted, locally-hosted data &mdash; surveillance that never ships your footage off to a foreign black box.</p>
+      <div class="chip-row"><span class="chip">Edge Compute</span><span class="chip">Access Control</span><span class="chip">Encryption</span></div></div>
+  </div></div>
+</section>
+
+<section class="section pf-slide" data-label="Smart Home">
+  <div class="container"><div class="pf-show reveal">
+    <div class="pf-show__media"><img src="images/smart-home.jpg" alt="Smart home automation" loading="lazy"><span class="pf-badge">Live</span></div>
+    <div class="pf-show__info"><span class="pf-card__cat">IoT &amp; Automation</span><h2 class="h2">Smart Home Automation</h2>
+      <p class="lead">App- and voice-controlled lighting, climate, security and energy &mdash; designed for Pakistani homes and real power conditions, not a Western showroom.</p>
+      <div class="chip-row"><span class="chip">Home IoT</span><span class="chip">Voice Control</span><span class="chip">Energy</span></div></div>
+  </div></div>
+</section>
+
+<section class="section section--light pf-slide" data-label="Custom Software">
+  <div class="container"><div class="pf-show pf-show--rev reveal">
+    <div class="pf-show__media"><img src="images/software.jpg" alt="Custom software and dashboards" loading="lazy"><span class="pf-badge">Shipped</span></div>
+    <div class="pf-show__info"><span class="pf-card__cat">Software</span><h2 class="h2">Custom Software &amp; Dashboards</h2>
+      <p class="lead">Web and mobile platforms &mdash; customer portals, admin dashboards and internal tools &mdash; engineered with clean code and built to scale with your business.</p>
+      <div class="chip-row"><span class="chip">Web Apps</span><span class="chip">Mobile</span><span class="chip">SaaS</span></div></div>
+  </div></div>
+</section>
+
+<section class="section pf-slide" data-label="FleetPulse">
+  <div class="container"><div class="pf-show reveal">
+    <div class="pf-show__media"><img src="images/engineering.jpg" alt="FleetPulse fleet analytics" loading="lazy"><span class="pf-badge">Shipped</span></div>
+    <div class="pf-show__info"><span class="pf-card__cat">Data &amp; Dashboards</span><h2 class="h2">FleetPulse &mdash; Fleet Analytics</h2>
+      <p class="lead">The analytics brain behind SOTMS &mdash; turning raw telematics into clear reports on utilisation, cost-per-km, idle time and route efficiency that managers actually use.</p>
+      <div class="chip-row"><span class="chip">Data Pipeline</span><span class="chip">Reporting</span><span class="chip">KPIs</span></div></div>
+  </div></div>
+</section>
+
+<section class="section section--light pf-slide" data-label="Hardware">
+  <div class="container"><div class="pf-show pf-show--rev reveal">
+    <div class="pf-show__media"><img src="images/components.jpg" alt="Embedded hardware prototyping" loading="lazy"><span class="pf-badge">In-house</span></div>
+    <div class="pf-show__info"><span class="pf-card__cat">Hardware</span><h2 class="h2">Embedded &amp; Hardware Prototyping</h2>
+      <p class="lead">From schematic to a working board &mdash; we prototype, test and assemble custom electronics in-house, so your idea becomes real hardware without importing a black box.</p>
+      <div class="chip-row"><span class="chip">PCB Design</span><span class="chip">Firmware</span><span class="chip">Sensors</span></div></div>
+  </div></div>
+</section>
+
+<section class="section pf-slide" data-label="Training">
+  <div class="container"><div class="pf-show reveal">
+    <div class="pf-show__media"><img src="images/training.jpg" alt="Technical training and workshops" loading="lazy"><span class="pf-badge">Program</span></div>
+    <div class="pf-show__info"><span class="pf-card__cat">Training</span><h2 class="h2">Technical Training &amp; Workshops</h2>
+      <p class="lead">Hands-on training for teams and students &mdash; software, IoT, AI and security &mdash; taught by the same engineers who build production systems, not slideware.</p>
+      <div class="chip-row"><span class="chip">Software</span><span class="chip">IoT</span><span class="chip">AI</span><span class="chip">Security</span></div></div>
+  </div></div>
+</section>
+
+<!-- SLIDE — CTA -->
+<section class="section pf-slide" data-label="Contact">
   <div class="container">
     <div class="cta reveal">
       <h2 class="h2">Have a project <span class="accent">in mind</span>?</h2>
@@ -212,17 +174,45 @@
 <script src="enhance.js"></script>
 <script>
 (function () {
-  var bars = document.querySelectorAll('.pf-bar__fill');
-  if (!bars.length || !('IntersectionObserver' in window)) {
-    bars.forEach(function (b) { b.style.width = b.getAttribute('data-val'); });
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.style.width = e.target.getAttribute('data-val'); io.unobserve(e.target); }
+  if (document.body.getAttribute('data-page') !== 'portfolio') return;
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.pf-slide'));
+
+  // build the right-side slide indicator
+  if (slides.length && window.matchMedia('(min-width:761px)').matches) {
+    var nav = document.createElement('div');
+    nav.className = 'pf-dots';
+    slides.forEach(function (s) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', s.getAttribute('data-label') || 'Section');
+      b.addEventListener('click', function () { s.scrollIntoView({ behavior: 'smooth' }); });
+      nav.appendChild(b);
     });
-  }, { threshold: 0.35 });
-  bars.forEach(function (b) { io.observe(b); });
+    document.body.appendChild(nav);
+    var btns = nav.querySelectorAll('button');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var idx = slides.indexOf(e.target);
+          for (var i = 0; i < btns.length; i++) btns[i].classList.toggle('active', i === idx);
+        }
+      });
+    }, { threshold: 0.5 });
+    slides.forEach(function (s) { io.observe(s); });
+  }
+
+  // animate skill bars when their slide comes into view
+  var bars = document.querySelectorAll('.pf-bar__fill');
+  if (bars.length && 'IntersectionObserver' in window) {
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.style.width = e.target.getAttribute('data-val'); io2.unobserve(e.target); }
+      });
+    }, { threshold: 0.35 });
+    bars.forEach(function (b) { io2.observe(b); });
+  } else {
+    for (var i = 0; i < bars.length; i++) bars[i].style.width = bars[i].getAttribute('data-val');
+  }
 })();
 </script>
 
