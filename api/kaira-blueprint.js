@@ -34,6 +34,9 @@ Use this exact shape:
 
 Rules: make senior-level, realistic assumptions where the user was vague. Recommend a modern, pragmatic stack suited to the project. budgetRange must be a range and reflect the complexity (never a single exact number). Tie it to what HackTech (Pakistan) can build. Output ONLY the JSON object.`;
 
+const sb = require("./_supabase");
+const rl = require("./_ratelimit");
+
 function sanitize(messages) {
   return (Array.isArray(messages) ? messages : [])
     .filter((m) => m && typeof m.content === "string" && (m.role === "user" || m.role === "assistant"))
@@ -46,6 +49,9 @@ module.exports = async function handler(req, res) {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: "Method not allowed" });
   }
+  if (rl.limited("blueprint", req, 8, 60000)) {
+    return res.status(429).json({ error: "Too many requests — please slow down." });
+  }
   const key = process.env.OPENAI_API_KEY;
   if (!key) return res.status(503).json({ error: "KAIRA isn't configured yet." });
 
@@ -57,6 +63,8 @@ module.exports = async function handler(req, res) {
   if (!messages.length) {
     return res.status(400).json({ error: "Tell KAIRA a little about your project first." });
   }
+
+  sb.insert("events", { type: "blueprint" });
 
   const base = (process.env.OPENAI_BASE_URL || "https://api.groq.com/openai/v1").replace(/\/$/, "");
   const model = process.env.OPENAI_MODEL || "llama-3.3-70b-versatile";

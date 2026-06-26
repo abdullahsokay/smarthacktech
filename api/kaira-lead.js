@@ -4,6 +4,9 @@
    is set) emails the lead to HackTech. Returns { ok, tier }.
    ============================================================ */
 
+const sb = require("./_supabase");
+const rl = require("./_ratelimit");
+
 function classify(b) {
   let score = 0;
   const budget = (b.budget || "").toLowerCase();
@@ -35,9 +38,16 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  if (rl.limited("lead", req, 5, 60000)) {
+    return res.status(429).json({ error: "Too many requests — please slow down." });
+  }
+
   let b = req.body;
   if (typeof b === "string") { try { b = JSON.parse(b); } catch { b = {}; } }
   b = b || {};
+
+  // honeypot — bots fill hidden fields; real users never see it
+  if (b._hp) return res.status(200).json({ ok: true, tier: "Cold" });
 
   const name = (b.name || "").trim();
   const email = (b.email || "").trim();
@@ -77,6 +87,21 @@ module.exports = async function handler(req, res) {
       /* non-fatal — still acknowledge */
     }
   }
+
+  // store in the CRM (Supabase) — awaited so it completes before the response
+  await Promise.allSettled([
+    sb.insert("leads", {
+      name,
+      email,
+      company: b.company || null,
+      industry: b.industry || null,
+      budget: b.budget || null,
+      timeline: b.timeline || null,
+      tier,
+      context: (b.context || "").slice(0, 4000),
+    }),
+    sb.insert("events", { type: "lead", label: tier }),
+  ]);
 
   return res.status(200).json({ ok: true, tier });
 };

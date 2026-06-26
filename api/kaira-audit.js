@@ -12,12 +12,19 @@ const AUDIT_PROMPT = `You are KAIRA, HackTech's AI Solutions Architect, deliveri
 }
 Be concrete and practical (not generic). Output ONLY the JSON object.`;
 
+const sb = require("./_supabase");
+const rl = require("./_ratelimit");
+
 function pct(s) { return s == null ? null : Math.round(s * 100); }
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  if (rl.limited("audit", req, 5, 60000)) {
+    return res.status(429).json({ error: "Too many requests — please slow down." });
   }
 
   let data = req.body;
@@ -31,6 +38,8 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: "That doesn't look like a valid URL." });
   }
 
+  sb.insert("events", { type: "audit" });
+
   const psiKey = process.env.PAGESPEED_API_KEY;
   const psiUrl =
     "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=" +
@@ -42,14 +51,10 @@ module.exports = async function handler(req, res) {
   try {
     const r = await fetch(psiUrl);
     if (!r.ok) {
-      let detail = "";
-      try { const ej = await r.json(); detail = (ej.error && ej.error.message) || ""; } catch {}
       return res.status(502).json({
         error: psiKey
           ? "Couldn't analyze that URL — check it's public and try again."
           : "Website Analyzer needs a PageSpeed API key. Ask HackTech to configure it.",
-        psiStatus: r.status,
-        detail: String(detail).slice(0, 200),
       });
     }
     psi = await r.json();

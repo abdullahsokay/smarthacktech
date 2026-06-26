@@ -80,6 +80,7 @@
   var streaming = false;
   var started = false;
   var generating = false;
+  var tracked = false;
 
   STARTERS.forEach(function (s) {
     var b = document.createElement("button");
@@ -114,6 +115,17 @@
 
   function open() {
     root.classList.add("is-open");
+    if (!tracked) {
+      tracked = true;
+      try {
+        fetch("/api/kaira-event", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ type: "open" }),
+          keepalive: true,
+        }).catch(function () {});
+      } catch (e) {}
+    }
     setTimeout(function () { ta.focus(); }, 120);
   }
   function close() { root.classList.remove("is-open"); }
@@ -324,6 +336,7 @@
       '<div class="vy-lead__t">Let&rsquo;s make it real</div>' +
       '<p class="vy-lead__s">Share your details — KAIRA will brief a HackTech specialist on your project.</p></div>' +
       '<form class="vy-lead__form">' +
+        '<input name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">' +
         '<div class="vy-lf-row"><input name="name" placeholder="Full name" required><input name="email" type="email" placeholder="Email" required></div>' +
         '<div class="vy-lf-row"><input name="company" placeholder="Company (optional)"><input name="industry" placeholder="Industry (optional)"></div>' +
         '<div class="vy-lf-row">' +

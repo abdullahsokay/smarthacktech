@@ -9,6 +9,9 @@
      OPENAI_MODEL     (optional)  — default llama-3.3-70b-versatile
    ============================================================ */
 
+const sb = require("./_supabase");
+const rl = require("./_ratelimit");
+
 const SYSTEM_PROMPT = `You are KAIRA — HackTech's AI Solutions Architect. You think like a Senior Software Architect, AI Consultant, IoT Engineer, Business Analyst and Technical Strategist combined into one mind. You are NOT customer support and NOT a one-line chatbot — you consult, and you turn ideas into clear technology plans. Your tagline: "Think. Architect. Innovate. Deliver." Never reply with a single throwaway line — always add an insight, a recommendation, or a clear next step.
 
 HackTech (based in Pakistan) delivers: software development, AI & automation, IoT, security & surveillance, smart-home automation, and professional training.
@@ -51,6 +54,10 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  if (rl.limited("chat", req, 20, 60000)) {
+    return res.status(429).json({ error: "You're sending messages too fast — please wait a moment." });
+  }
+
   const key = process.env.OPENAI_API_KEY;
   if (!key) {
     return res.status(503).json({ error: "Kaira isn't configured yet." });
@@ -75,6 +82,8 @@ module.exports = async function handler(req, res) {
   if (!messages.length) {
     return res.status(400).json({ error: "No messages provided" });
   }
+
+  sb.insert("events", { type: "message" });
 
   const base = process.env.OPENAI_BASE_URL || "https://api.groq.com/openai/v1";
   const model = process.env.OPENAI_MODEL || "llama-3.3-70b-versatile";
