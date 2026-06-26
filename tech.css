@@ -1,0 +1,74 @@
+/* ============================================================
+   HackTech — 3D spatial scroll-zoom experience
+   Technique: scroll-driven 3D zoom popularized by Adam Argyle.
+   Original HackTech build, JS-driven so it runs in every browser.
+   ============================================================ */
+
+body[data-page="tech"] { min-block-size: 460vh; overflow-x: clip; }
+
+.stuck-grid {
+  block-size: 100svh;
+  perspective: 1100px;
+  transform-style: preserve-3d;
+  display: grid;
+  grid: repeat(4, 25dvh) / repeat(4, 25dvw);
+  place-items: center;
+  position: sticky;
+  top: 0;
+  overflow: clip;
+}
+.stuck-grid .grid-item {
+  transform-style: preserve-3d;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 5vmin;
+  letter-spacing: .5px;
+  text-wrap: nowrap;
+  color: var(--ink);
+}
+.stuck-grid .grid-item:not(.special) {
+  opacity: 0;
+  will-change: transform, opacity, filter;
+}
+
+/* category colour + glow (glow fades with the JS-driven opacity) */
+.stuck-grid .cat-prod { color:#EAD9A0; font-weight:500; text-shadow:0 0 36px rgba(212,175,55,.6) }
+.stuck-grid .cat-ai   { color:#E8CF7A; text-shadow:0 0 34px rgba(234,217,160,.5) }
+.stuck-grid .cat-conn { color:#D4AF37; text-shadow:0 0 30px rgba(212,175,55,.5) }
+.stuck-grid .cat-tele { color:#C9A94A; text-shadow:0 0 30px rgba(201,169,74,.5) }
+.stuck-grid .cat-ops  { color:#EDE6D6; text-shadow:0 0 26px rgba(212,175,55,.32) }
+
+/* light theme: pale-gold words are invisible on a light bg — darken them */
+html[data-theme="light"] .stuck-grid .cat-prod { color:#6d28d9; text-shadow:0 0 26px rgba(124,58,237,.30) }
+html[data-theme="light"] .stuck-grid .cat-ai   { color:#5a3fe0; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-conn { color:#4f7cff; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-tele { color:#7c3aed; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-ops  { color:#2a2a3a; text-shadow:none }
+
+/* centre brand tile */
+.stuck-grid .grid-item.special.special {
+  grid-row: 2 / span 2;
+  grid-column: 2 / span 2;
+  z-index: 2;
+}
+.stuck-grid .grid-item.special b {
+  display: inline-flex; align-items: center; gap: .22em;
+  font-size: 13vmin; font-weight: 700; letter-spacing: -2px;
+  background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 10px 40px rgba(212,175,55,.4));
+}
+
+/* fixed overlays */
+.tech-enter { position: fixed; left: 50%; bottom: 34px; transform: translateX(-50%); z-index: 40; }
+.tech-hint {
+  position: fixed; top: 92px; left: 50%; transform: translateX(-50%); z-index: 40;
+  color: var(--muted); font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  transition: opacity .2s linear;
+}
+
+/* reduced-motion: no 3D zoom — show a clean static brand screen */
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="tech"] { min-block-size: 100svh; }
+  .stuck-grid .grid-item:not(.special) { display: none; }
+  .tech-hint { display: none; }
+}

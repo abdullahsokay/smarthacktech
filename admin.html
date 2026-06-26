@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>KAIRA — HackTech CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#06060a; --card:rgba(255,255,255,.04); --line:rgba(255,255,255,.1); --line2:rgba(255,255,255,.16);
+    --ink:#efeef6; --muted:#a7a6bd; --faint:#6f6d86;
+    --violet:#7c5cff; --cyan:#2fe0e0; --blue:#3c8cff; --gold:#d4af37;
+    --ok:#4fd0a0; --warn:#f0a93e; --bad:#ef6f8a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:
+      radial-gradient(60% 50% at 80% 0%,rgba(124,92,255,.16),transparent 60%),
+      radial-gradient(50% 40% at 10% 10%,rgba(47,224,224,.1),transparent 60%),var(--bg);
+    color:var(--ink);font-family:"Inter",system-ui,sans-serif;min-height:100vh}
+  h1,h2,h3,b{font-family:"Space Grotesk",sans-serif}
+  .wrap{max-width:1000px;margin:0 auto;padding:28px 20px 60px}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .brand .orb{width:34px;height:34px;border-radius:50%;flex:none;
+    background:radial-gradient(40% 40% at 36% 30%,#fff,transparent 60%),radial-gradient(80% 80% at 50% 50%,var(--violet),#160f38 72%);
+    box-shadow:0 0 16px rgba(124,92,255,.55)}
+  .brand b{letter-spacing:2px;font-size:18px}
+  .brand span{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint)}
+  /* login */
+  .login{max-width:380px;margin:14vh auto 0;background:var(--card);border:1px solid var(--line2);
+    border-radius:20px;padding:26px;backdrop-filter:blur(14px);box-shadow:0 30px 70px -24px rgba(0,0,0,.7)}
+  .login h2{font-size:18px;margin:14px 0 4px}
+  .login p{color:var(--muted);font-size:13px;margin:0 0 16px}
+  input{width:100%;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.05);
+    border:1px solid var(--line2);color:var(--ink);font:inherit;font-size:14px;outline:none}
+  input:focus{border-color:var(--violet)}
+  .btn{margin-top:12px;width:100%;padding:12px;border:0;border-radius:12px;cursor:pointer;color:#0a0a12;
+    font-family:"Space Grotesk";font-weight:600;font-size:14px;
+    background:linear-gradient(120deg,var(--cyan),var(--blue) 50%,var(--violet));box-shadow:0 10px 24px -10px rgba(124,92,255,.6)}
+  .btn:disabled{opacity:.6;cursor:not-allowed}
+  .err{color:var(--bad);font-size:13px;margin-top:10px;min-height:16px}
+  /* dashboard */
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 22px}
+  .top .actions{display:flex;gap:8px}
+  .ghost{padding:9px 15px;border-radius:999px;border:1px solid var(--line2);background:var(--card);
+    color:var(--ink);font-family:"Space Grotesk";font-weight:600;font-size:12.5px;cursor:pointer}
+  .ghost:hover{border-color:var(--violet)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:14px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .stat b{display:block;font-size:1.9rem;background:linear-gradient(120deg,var(--cyan),var(--violet));
+    -webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+  .stat span{display:block;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);margin-top:6px}
+  .row2{display:grid;grid-template-columns:1.3fr 1fr;gap:12px;margin-bottom:14px}
+  @media(max-width:720px){.row2{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+  .panel h3{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+  .tiers{display:flex;gap:10px;flex-wrap:wrap}
+  .tier{flex:1;min-width:90px;text-align:center;border-radius:12px;padding:13px}
+  .tier b{display:block;font-size:1.6rem;line-height:1}
+  .tier span{font-size:11px;letter-spacing:.5px;text-transform:uppercase}
+  .tier--Hot{background:rgba(239,111,138,.14);color:#ffb3c4;border:1px solid rgba(239,111,138,.35)}
+  .tier--Warm{background:rgba(240,169,62,.14);color:#ffd79a;border:1px solid rgba(240,169,62,.35)}
+  .tier--Cold{background:rgba(47,224,224,.12);color:#a5f0f0;border:1px solid rgba(47,224,224,.3)}
+  .bars{display:flex;align-items:flex-end;gap:8px;height:90px}
+  .bars .b{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:flex-end}
+  .bars .bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(var(--violet),var(--cyan));min-height:3px;transition:height .5s}
+  .bars small{font-size:9.5px;color:var(--faint)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;font-family:"Space Grotesk";font-size:10.5px;letter-spacing:1px;text-transform:uppercase;
+    color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line)}
+  td{padding:10px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
+  tr:hover td{background:rgba(255,255,255,.02)}
+  .pill{display:inline-block;padding:3px 9px;border-radius:999px;font-size:11px;font-family:"Space Grotesk";font-weight:600}
+  .pill--Hot{background:rgba(239,111,138,.16);color:#ffb3c4}
+  .pill--Warm{background:rgba(240,169,62,.16);color:#ffd79a}
+  .pill--Cold{background:rgba(47,224,224,.14);color:#a5f0f0}
+  .tablewrap{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px 6px;overflow-x:auto}
+  .muted{color:var(--muted)}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><span class="orb"></span><div><b>KAIRA</b><span>HackTech CRM &amp; Analytics</span></div></div>
+
+  <!-- LOGIN -->
+  <div id="login" class="login">
+    <h2>Team sign in</h2>
+    <p>Enter the admin password to view leads &amp; analytics.</p>
+    <form id="loginForm">
+      <input id="pw" type="password" placeholder="Admin password" autocomplete="current-password" required>
+      <button class="btn" id="loginBtn" type="submit">Sign in</button>
+      <div class="err" id="loginErr"></div>
+    </form>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dash" class="hidden">
+    <div class="top">
+      <h2 style="margin:0;font-size:18px">Dashboard</h2>
+      <div class="actions">
+        <button class="ghost" id="refresh">↻ Refresh</button>
+        <button class="ghost" id="logout">Logout</button>
+      </div>
+    </div>
+    <div class="cards" id="cards"></div>
+    <div class="row2">
+      <div class="panel"><h3>Lead Quality</h3><div class="tiers" id="tiers"></div></div>
+      <div class="panel"><h3>Leads · last 7 days</h3><div class="bars" id="bars"></div></div>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Company</th><th>Tier</th><th>Budget</th><th>Timeline</th><th>When</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pw = "";
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(s){ return String(s==null?"":s).replace(/[<>&"]/g,function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"}[c];}); }
+
+  async function load(){
+    var res = await fetch("/api/admin",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:pw})});
+    var data = await res.json();
+    if(!res.ok) throw new Error(data.error||"Failed");
+    render(data);
+  }
+
+  function render(d){
+    var s = d.stats||{};
+    var cards = [
+      ["Conversations", s.opens||0],["Messages", s.messages||0],["Blueprints", s.blueprints||0],
+      ["Audits", s.audits||0],["Leads", s.leads||0],["Conversion", (s.conversion||0)+"%"]
+    ];
+    $("cards").innerHTML = cards.map(function(c){ return '<div class="stat"><b>'+esc(c[1])+'</b><span>'+esc(c[0])+'</span></div>'; }).join("");
+
+    $("tiers").innerHTML = ["Hot","Warm","Cold"].map(function(t){
+      return '<div class="tier tier--'+t+'"><b>'+(s[t]||0)+'</b><span>'+t+'</span></div>';
+    }).join("");
+
+    var tr = d.trend||[]; var max = Math.max(1, Math.max.apply(null, tr.map(function(x){return x.count;})));
+    $("bars").innerHTML = tr.map(function(x){
+      return '<div class="b"><div class="bar" style="height:'+Math.round(x.count/max*72)+'px"></div><small>'+esc(x.day)+'</small></div>';
+    }).join("");
+
+    var leads = d.leads||[];
+    $("rows").innerHTML = leads.length ? leads.map(function(l){
+      var when = l.created_at ? new Date(l.created_at).toLocaleString([], {month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}) : "";
+      return "<tr><td>"+esc(l.name)+"</td><td class='muted'>"+esc(l.email)+"</td><td>"+esc(l.company||"—")+
+        "</td><td><span class='pill pill--"+esc(l.tier||"Cold")+"'>"+esc(l.tier||"—")+"</span></td><td class='muted'>"+esc(l.budget||"—")+
+        "</td><td class='muted'>"+esc(l.timeline||"—")+"</td><td class='muted'>"+esc(when)+"</td></tr>";
+    }).join("") : "<tr><td colspan='7' class='muted' style='text-align:center;padding:24px'>No leads yet.</td></tr>";
+
+    $("login").classList.add("hidden");
+    $("dash").classList.remove("hidden");
+  }
+
+  $("loginForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var btn = $("loginBtn"); var err = $("loginErr");
+    pw = $("pw").value;
+    btn.disabled = true; btn.textContent = "Signing in…"; err.textContent = "";
+    try { await load(); }
+    catch(ex){ err.textContent = ex.message || "Sign in failed."; pw=""; }
+    finally { btn.disabled = false; btn.textContent = "Sign in"; }
+  });
+  $("refresh").addEventListener("click", function(){ load().catch(function(e){ alert(e.message); }); });
+  $("logout").addEventListener("click", function(){ pw=""; $("pw").value=""; $("dash").classList.add("hidden"); $("login").classList.remove("hidden"); });
+})();
+</script>
+</body>
+</html>
