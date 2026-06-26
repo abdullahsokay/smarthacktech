@@ -10,7 +10,7 @@
   var LINKS = [
     ["home", "index.html", "Home"],
     ["solutions", "solutions.html", "Services"],
-    ["work", "index.html#work", "Work"],
+    ["work", "work.html", "Work"],
     ["demo", "demo.html", "Live Demo"],
     ["about", "about.html", "About"],
     ["tech", "tech.html", "Experience"]
