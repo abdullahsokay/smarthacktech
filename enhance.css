@@ -315,3 +315,16 @@ html[data-theme="light"] .media-photo .media-tag{ color:#f4f2fb }
 html[data-theme="light"] .tcard__name{ color:#f5f3fc }
 html[data-theme="light"] .tcard__bio{ color:#dcd9ec }
 html[data-theme="light"] .tcard__role{ color:#c4b3ff }
+
+/* ===== Portfolio / Our Work ===== */
+.work-card{display:flex;flex-direction:column}
+.work-card .card__text{flex:1}
+.work-tag{position:absolute;top:12px;left:12px;z-index:2;font-family:var(--font-display);
+  font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border-radius:999px;
+  background:rgba(10,10,10,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--line-2);color:var(--c6)}
+.work-result{display:flex;align-items:center;gap:9px;margin-top:16px;padding-top:15px;
+  border-top:1px solid var(--line);font-size:.9rem;color:var(--ink);font-weight:500}
+.work-result::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;
+  background:var(--c5);box-shadow:0 0 10px var(--c5)}
+html[data-theme="light"] .work-tag{background:rgba(255,255,255,.82);color:var(--c6)}
