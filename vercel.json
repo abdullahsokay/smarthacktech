@@ -1,6 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/work", "destination": "/portfolio", "permanent": true }
+  ],
   "functions": {
     "api/kaira-audit.js": { "maxDuration": 60 }
   },
