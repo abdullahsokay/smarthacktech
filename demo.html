@@ -8,9 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ht-theme')||'dark')}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
-<meta name="theme-color" content="#0C1417">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%230C1417'%2F%3E%3Cpath%20d%3D'M16%206.5l8%204.6v9.2l-8%204.6-8-4.6v-9.2z'%20fill%3D'none'%20stroke%3D'%23E9C46A'%20stroke-width%3D'2.2'%20stroke-linejoin%3D'round'%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="enhance.css">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%230A0A0A'%2F%3E%3Cpath%20d%3D'M16%206.5l8%204.6v9.2l-8%204.6-8-4.6v-9.2z'%20fill%3D'none'%20stroke%3D'%23D4AF37'%20stroke-width%3D'2.2'%20stroke-linejoin%3D'round'%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://hacktech.pk/demo.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HackTech">
@@ -34,43 +36,20 @@
 <section class="section" style="padding-top:18vh">
   <div class="container">
     <div class="section-head center reveal">
-      <span class="pill"><span class="dot-live"></span> Live simulation · updates every second</span>
-      <h1 class="display" style="font-size:clamp(2.2rem,6vw,4rem);margin-top:18px">FleetPulse, <span class="accent">live</span></h1>
-      <p class="lead">This is a simulated peek at the HackTech operations dashboard — the same single glass pane your team would watch all day. Vehicles, AI alerts, speed and fuel metrics update in real time.</p>
+      <span class="pill"><span class="dot-live"></span> Live demo</span>
+      <h1 class="display" style="font-size:clamp(2.2rem,6vw,4rem);margin-top:18px">SOTMS, <span class="accent">live</span></h1>
+      <p class="lead">Watch SOTMS in action &mdash; real-time fleet tracking, fuel security and complete control, engineered in Pakistan.</p>
     </div>
 
-    <div class="dash reveal">
-      <div class="dash__bar">
-        <span class="d"></span><span class="d"></span><span class="d"></span>
-        <b>FleetPulse — Live Operations</b>
-        <span class="pill"><span class="dot-live"></span> Live</span>
-      </div>
-
-      <div class="dash__grid">
-        <div class="kpis">
-          <div class="kpi"><span class="kpi__label">Active vehicles</span><span class="kpi__num ok" id="kpiActive">—</span></div>
-          <div class="kpi"><span class="kpi__label">Avg. speed</span><span class="kpi__num" id="kpiSpeed">—</span></div>
-          <div class="kpi"><span class="kpi__label">Open alerts</span><span class="kpi__num warn" id="kpiAlerts">—</span></div>
-          <div class="kpi"><span class="kpi__label">Fuel saved (mo)</span><span class="kpi__num ok" id="kpiFuel">—</span></div>
-        </div>
-
-        <div class="feed">
-          <p class="feed__label">Live AI alerts</p>
-          <div id="alertFeed" style="display:flex;flex-direction:column;gap:10px"></div>
-        </div>
-
-        <div class="map" id="fleetMap" role="img" aria-label="Live map of tracked vehicles across Pakistan">
-          <div class="map__route" style="left:8%;top:28%;width:46%"></div>
-          <div class="map__route" style="left:40%;top:55%;width:48%"></div>
-          <div class="map__route" style="left:20%;top:74%;width:38%"></div>
-        </div>
-
-        <div class="chart" id="liveChart" aria-hidden="true">
-          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        </div>
-      </div>
+    <div class="demo-video reveal">
+      <video class="demo-video__vid" autoplay muted loop playsinline preload="metadata" poster="images/sotms-poster.jpg" disablepictureinpicture disableremoteplayback aria-label="SOTMS live demo">
+        <source src="images/sotms.mp4" type="video/mp4">
+        Your browser doesn&rsquo;t support video playback.
+      </video>
+      <button class="demo-mute" id="demoMute" type="button" aria-label="Unmute video" aria-pressed="false">
+        <svg class="ico-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>
+        <svg class="ico-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -124,5 +103,6 @@
 
 <script src="components.js"></script>
 <script src="app.js"></script>
+<script src="enhance.js"></script>
 </body>
 </html>

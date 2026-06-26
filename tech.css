@@ -32,11 +32,18 @@ body[data-page="tech"] { min-block-size: 460vh; overflow-x: clip; }
 }
 
 /* category colour + glow (glow fades with the JS-driven opacity) */
-.stuck-grid .cat-prod { color:#E9C46A; font-weight:500; text-shadow:0 0 36px rgba(52,179,169,.6) }
-.stuck-grid .cat-ai   { color:#7ad9c0; text-shadow:0 0 34px rgba(95,208,163,.5) }
-.stuck-grid .cat-conn { color:#34b3a9; text-shadow:0 0 30px rgba(52,179,169,.5) }
-.stuck-grid .cat-tele { color:#5bc9b9; text-shadow:0 0 30px rgba(46,140,134,.5) }
-.stuck-grid .cat-ops  { color:#eaf1f0; text-shadow:0 0 26px rgba(52,179,169,.32) }
+.stuck-grid .cat-prod { color:#EAD9A0; font-weight:500; text-shadow:0 0 36px rgba(212,175,55,.6) }
+.stuck-grid .cat-ai   { color:#E8CF7A; text-shadow:0 0 34px rgba(234,217,160,.5) }
+.stuck-grid .cat-conn { color:#D4AF37; text-shadow:0 0 30px rgba(212,175,55,.5) }
+.stuck-grid .cat-tele { color:#C9A94A; text-shadow:0 0 30px rgba(201,169,74,.5) }
+.stuck-grid .cat-ops  { color:#EDE6D6; text-shadow:0 0 26px rgba(212,175,55,.32) }
+
+/* light theme: pale-gold words are invisible on a light bg — darken them */
+html[data-theme="light"] .stuck-grid .cat-prod { color:#6d28d9; text-shadow:0 0 26px rgba(124,58,237,.30) }
+html[data-theme="light"] .stuck-grid .cat-ai   { color:#5a3fe0; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-conn { color:#4f7cff; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-tele { color:#7c3aed; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-ops  { color:#2a2a3a; text-shadow:none }
 
 /* centre brand tile */
 .stuck-grid .grid-item.special.special {
@@ -48,7 +55,7 @@ body[data-page="tech"] { min-block-size: 460vh; overflow-x: clip; }
   display: inline-flex; align-items: center; gap: .22em;
   font-size: 13vmin; font-weight: 700; letter-spacing: -2px;
   background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(0 10px 40px rgba(52,179,169,.4));
+  filter: drop-shadow(0 10px 40px rgba(212,175,55,.4));
 }
 
 /* fixed overlays */

@@ -123,25 +123,7 @@
     tr.innerHTML += tr.innerHTML;
   });
 
-  /* ---- 11. fleet savings calculator ---- */
-  (function () {
-    var size = $("#fleetSize"), spend = $("#fuelSpend");
-    if (!size || !spend) return;
-    var SAVE = 0.18; // ~18% average fuel + route savings
-    function rupees(n) { return "₨ " + Math.round(n).toLocaleString("en-US"); }
-    function update() {
-      var n = +size.value, s = +spend.value;
-      var monthly = n * s * SAVE;
-      var sv = $("#fleetSizeVal"), fv = $("#fuelSpendVal");
-      if (sv) sv.textContent = n + (n >= 500 ? "+" : "") + " vehicles";
-      if (fv) fv.textContent = "₨ " + (+s).toLocaleString("en-US") + "/mo";
-      var m = $("#calcMonthly"), a = $("#calcAnnual"), co = $("#calcCo2");
-      if (m) m.textContent = rupees(monthly);
-      if (a) a.textContent = rupees(monthly * 12);
-      if (co) co.textContent = Math.round(n * 1.9) + " t/yr";
-    }
-    size.addEventListener("input", update); spend.addEventListener("input", update); update();
-  })();
+  /* ---- 11. (ROI calculator removed) ---- */
 
   /* ---- 12. animated IoT network hero canvas ---- */
   (function () {
@@ -166,11 +148,11 @@
         for (var b = a + 1; b < pts.length; b++) {
           var q = pts[b], dx = p.x - q.x, dy = p.y - q.y, d = Math.sqrt(dx * dx + dy * dy);
           if (d < 130) {
-            ctx.strokeStyle = "rgba(52,179,169," + (0.18 * (1 - d / 130)) + ")";
+            ctx.strokeStyle = "rgba(212,175,55," + (0.18 * (1 - d / 130)) + ")";
             ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
           }
         }
-        ctx.fillStyle = "rgba(52,179,169,.8)";
+        ctx.fillStyle = "rgba(212,175,55,.8)";
         ctx.beginPath(); ctx.arc(p.x, p.y, 1.8, 0, 7); ctx.fill();
       }
       if (running) raf = requestAnimationFrame(draw);
@@ -188,73 +170,9 @@
     }
   })();
 
-  /* ---- 13. live fleet dashboard (demo page) ---- */
-  (function () {
-    var map = $("#fleetMap");
-    if (!map) return;
-    var N = 9, vehicles = [];
-    for (var k = 0; k < N; k++) {
-      var v = document.createElement("div"); v.className = "veh";
-      v.style.left = Math.random() * 90 + "%"; v.style.top = Math.random() * 85 + "%";
-      map.appendChild(v); vehicles.push(v);
-    }
-    var cities = ["Karachi", "Lahore", "Islamabad", "Faisalabad", "Multan", "Hyderabad", "Peshawar", "Quetta"];
-    var events = [
-      ["✓", "ok", "On-time delivery", "completed route"],
-      ["⚡", "warn", "Harsh braking detected", "speed normalised"],
-      ["⛽", "ok", "Fuel optimised", "route re-planned"],
-      ["😴", "bad", "Driver fatigue alert", "rest reminder sent"],
-      ["📍", "ok", "Geo-fence entered", "depot zone"],
-      ["🌡", "warn", "Engine temp high", "diagnostics running"]
-    ];
-    function rnd(a) { return a[Math.floor(Math.random() * a.length)]; }
-    function tickMap() {
-      vehicles.forEach(function (v) {
-        if (Math.random() < 0.55) {
-          v.style.left = Math.max(2, Math.min(94, parseFloat(v.style.left) + (Math.random() - 0.5) * 24)) + "%";
-          v.style.top = Math.max(2, Math.min(88, parseFloat(v.style.top) + (Math.random() - 0.5) * 22)) + "%";
-        }
-        v.className = "veh" + (Math.random() < 0.12 ? " warn" : Math.random() < 0.05 ? " bad" : "");
-      });
-    }
-    function set(id, val) { var el = $(id); if (el) el.textContent = val; }
-    function tickKpi() {
-      set("#kpiActive", 230 + Math.floor(Math.random() * 24));
-      set("#kpiSpeed", (58 + Math.floor(Math.random() * 16)) + " km/h");
-      set("#kpiAlerts", Math.floor(Math.random() * 6));
-      set("#kpiFuel", (12 + Math.floor(Math.random() * 7)) + "%");
-    }
-    var feed = $("#alertFeed");
-    function tickFeed() {
-      if (!feed) return;
-      var e = rnd(events), c = rnd(cities);
-      var el = document.createElement("div"); el.className = "alert";
-      var ic = document.createElement("span"); ic.className = "ic"; ic.textContent = e[0];
-      var wrap = document.createElement("span");
-      var title = document.createElement("b"); title.textContent = e[2];
-      var sub = document.createElement("small"); sub.textContent = c + " — " + e[3];
-      wrap.appendChild(title); wrap.appendChild(sub);
-      el.appendChild(ic); el.appendChild(wrap);
-      feed.insertBefore(el, feed.firstChild);
-      while (feed.children.length > 6) feed.removeChild(feed.lastChild);
-    }
-    var chart = $("#liveChart");
-    function tickChart() {
-      if (!chart) return;
-      $$(".bar", chart).forEach(function (b) { b.style.height = (20 + Math.random() * 80) + "%"; });
-    }
-    tickKpi(); tickMap(); tickChart();
-    for (var j = 0; j < 4; j++) tickFeed();
-    if (!reduce) {
-      var timers = [];
-      function startDemo() { if (timers.length) return; timers = [setInterval(tickMap, 1500), setInterval(tickKpi, 2200), setInterval(tickFeed, 2600), setInterval(tickChart, 1800)]; }
-      function stopDemo() { timers.forEach(clearInterval); timers = []; }
-      startDemo();
-      document.addEventListener("visibilitychange", function () { document.hidden ? stopDemo() : startDemo(); });
-    }
-  })();
+  /* ---- 13. (live fleet dashboard removed — the demo page is a video now) ---- */
 
-  /* ---- 14. contact / quote form ---- */
+  /* ---- 14. contact / quote form (posts JSON to /api/contact; mailto fallback) ---- */
   var form = $("#contactForm");
   if (form) {
     var msg = $("#formMsg");
@@ -262,31 +180,41 @@
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
       var btn = form.querySelector("[type=submit]");
-      var name = (form.querySelector("[name=name]") || {}).value || "";
+      var fd = new FormData(form);
+      var name = (fd.get("name") || "").toString();
       var first = name ? ", " + name.split(" ")[0] : "";
       var action = form.getAttribute("action") || "";
-      var configured = /^https?:/.test(action) && action.indexOf("YOUR_FORM_ID") === -1;
+      // a usable endpoint = a real URL or a same-origin path (e.g. /api/contact),
+      // and not the old Formspree placeholder.
+      var isEndpoint = action && action.indexOf("YOUR_FORM_ID") === -1 &&
+        (/^https?:/.test(action) || action.charAt(0) === "/");
+
       function ok() {
         if (msg) { msg.textContent = "Shukriya" + first + "! Aapki request mil gayi — hamari team 24 ghante mein rabta karegi."; msg.style.color = "var(--c6)"; }
         form.reset();
       }
-      function fail() {
-        if (msg) { msg.textContent = "Maaf kijiye — message abhi nahi bheja ja saka. Baraye meharbani hello@hacktech.pk par email karein."; msg.style.color = "#ff8d8d"; }
-      }
-      // No backend wired yet → open the user's email client so the lead is never lost.
-      if (!configured) {
-        var fd0 = new FormData(form), lines = [];
-        fd0.forEach(function (v, k) { lines.push(k + ": " + v); });
+      // never lose a lead: hand off to the visitor's email client
+      function mailtoFallback() {
+        var lines = [];
+        fd.forEach(function (v, k) { if (k.charAt(0) !== "_") lines.push(k + ": " + v); });
         window.location.href = "mailto:hello@hacktech.pk?subject=" +
-          encodeURIComponent("New enquiry — " + (fd0.get("service") || "HackTech")) +
+          encodeURIComponent("New enquiry — " + (fd.get("service") || "HackTech")) +
           "&body=" + encodeURIComponent(lines.join("\n"));
         ok();
-        return;
       }
+
+      if (!isEndpoint) { mailtoFallback(); return; }
+
+      var payload = {};
+      fd.forEach(function (v, k) { payload[k] = v; });
       if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = "Sending…"; }
-      fetch(action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
-        .then(function (r) { r.ok ? ok() : fail(); })
-        .catch(fail)
+      fetch(action, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json", Accept: "application/json" }
+      })
+        .then(function (r) { if (r.ok) ok(); else mailtoFallback(); })  // backend not ready → fall back
+        .catch(mailtoFallback)
         .finally(function () { if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Get my quote"; } });
     });
   }
@@ -367,103 +295,11 @@
     });
   })();
 
-  /* ---- 17. robot mascot: eyes follow cursor, idle life, talk bubbles, click -> contact ---- */
-  (function () {
-    var m = $("#mascot");
-    if (!m) return;
-    m.addEventListener("click", function () { window.location.href = "contact.html"; });
-    if (reduce || !finePointer) return;
-    var eyes = $(".mascot__eyes", m), svg = $(".mascot__svg", m), bubble = $("#mascotBubble", m);
-    function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
-    window.addEventListener("mousemove", function (e) {
-      var r = m.getBoundingClientRect();
-      var dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height * 0.34);
-      if (eyes) eyes.style.transform = "translate(" + clamp(dx / 50, -5, 5).toFixed(1) + "px," + clamp(dy / 50, -4, 4).toFixed(1) + "px)";
-      if (svg) svg.style.setProperty("--tilt", clamp(dx / 42, -8, 8).toFixed(1) + "deg");
-    }, { passive: true });
-    // idle "life": occasional wave
-    setInterval(function () {
-      m.classList.add("is-waving");
-      setTimeout(function () { m.classList.remove("is-waving"); }, 1500);
-    }, 9000);
-    // cycling speech bubbles
-    var msgs = ["Hi! 👋", "Need a quote?", "Try the live demo →", "Made in Pakistan 🇵🇰", "Ask me anything"];
-    var i = 0;
-    function talk() {
-      if (bubble) bubble.textContent = msgs[i++ % msgs.length];
-      m.classList.add("is-talking");
-      setTimeout(function () { m.classList.remove("is-talking"); }, 3400);
-    }
-    setTimeout(talk, 2600);
-    setInterval(talk, 9000);
-  })();
+  /* ---- 17. (robot mascot removed) ---- */
 
-  /* ---- 18. home robot scene: flyer banks & descends with scroll, lifter heaves the page ---- */
-  (function () {
-    var scene = $(".robo-scene");
-    if (!scene || reduce) return;
-    var fly = $(".robo-fly", scene), lift = $(".robo-lift", scene);
-    var armL = $(".lift-armL", scene), armR = $(".lift-armR", scene);
-    var lastY = window.scrollY, vel = 0, ticking = false;
-    function frame() {
-      ticking = false;
-      var y = window.scrollY;
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      var p = max > 0 ? y / max : 0;
-      vel += ((y - lastY) - vel) * 0.25; lastY = y;
-      var av = vel < 0 ? -vel : vel;
-      if (fly) {
-        var fx = Math.sin(p * 6.5) * 34;
-        var fy = p * Math.max(0, window.innerHeight - 230);
-        var bank = Math.max(-26, Math.min(26, vel * 1.4));
-        fly.style.transform = "translate(" + fx.toFixed(1) + "px," + fy.toFixed(1) + "px) rotateY(" + bank.toFixed(1) + "deg) rotateZ(" + (bank * 0.35).toFixed(1) + "deg)";
-      }
-      if (lift) {
-        lift.style.transform = "translateY(" + (-p * 10 - Math.min(av * 0.5, 8)).toFixed(1) + "px) scaleX(" + (1 + Math.min(av * 0.004, 0.06)).toFixed(3) + ")";
-        var raise = p * 52 + Math.min(av * 0.8, 12);
-        if (armL) armL.style.transform = "rotate(" + (-raise).toFixed(1) + "deg)";
-        if (armR) armR.style.transform = "rotate(" + raise.toFixed(1) + "deg)";
-      }
-      if (av > 0.15) { ticking = true; requestAnimationFrame(frame); }
-    }
-    function request() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
-    window.addEventListener("scroll", request, { passive: true });
-    window.addEventListener("resize", request, { passive: true });
-    frame();
-  })();
+  /* ---- 18. (home robot scene removed) ---- */
 
-  /* ---- 19. cinematic scroll reveal: panel scales to full-screen + caption reveals ---- */
-  (function () {
-    var cine = $(".cine");
-    if (!cine || reduce) return;
-    var panel = $(".cine__panel", cine), overlay = $(".cine__overlay", cine), content = $(".cine__content", cine);
-    function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
-    function lerp(a, b, t) { return a + (b - a) * t; }
-    var ticking = false;
-    function render() {
-      ticking = false;
-      var vh = window.innerHeight, r = cine.getBoundingClientRect(), total = cine.offsetHeight - vh;
-      var p = total > 0 ? clamp(-r.top / total, 0, 1) : 0;
-      var s = clamp(p / 0.55, 0, 1);
-      var maxW = Math.min(window.innerWidth * 0.92, 1180);
-      if (panel) {
-        panel.style.width = lerp(300, maxW, s).toFixed(0) + "px";
-        panel.style.height = lerp(300, vh * 0.82, s).toFixed(0) + "px";
-        panel.style.borderRadius = lerp(26, 10, s).toFixed(0) + "px";
-      }
-      var o = clamp((p - 0.5) / 0.38, 0, 1);
-      if (overlay) overlay.style.clipPath = "inset(" + ((1 - o) * 100).toFixed(1) + "% 0 0 0)";
-      if (content) {
-        content.style.opacity = o.toFixed(3);
-        content.style.filter = "blur(" + lerp(10, 0, o).toFixed(1) + "px)";
-        content.style.transform = "scale(" + lerp(1.08, 1, o).toFixed(3) + ")";
-      }
-    }
-    function req() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
-    window.addEventListener("scroll", req, { passive: true });
-    window.addEventListener("resize", req, { passive: true });
-    render();
-  })();
+  /* ---- 19. (cinematic scroll reveal removed) ---- */
 
   /* ---- 20. graceful card images: hide broken <img> so the gradient placeholder shows ---- */
   $$(".card__media img").forEach(function (im) {
