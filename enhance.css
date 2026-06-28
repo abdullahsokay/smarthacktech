@@ -224,8 +224,19 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
   #services .ws-half{ width:100%; min-height:0 }
 }
 
-/* ---------- 12. decorative videos: never look clickable (no play icon) ---------- */
-.hero-portal__vid, .sh-demo{ pointer-events:none }
+/* ---------- 12. decorative videos: never look clickable (no play/skip icon) ----------
+   pointer-events:none kills the browser's hover media toolbar (the ▶▶| / PiP
+   overlay Edge & Chrome float over a playing video), and the pseudo-element
+   rules below strip any native control chrome that would otherwise paint. */
+.hero-portal__vid, .sh-demo, .demo-video__vid{ pointer-events:none }
+video::-webkit-media-controls,
+video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-overlay-play-button,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-overlay-enclosure{
+  display:none !important; -webkit-appearance:none; appearance:none; opacity:0 !important;
+}
 
 /* ---------- 13. SOTMS demo video (demo.html) ---------- */
 .demo-video{ position:relative; max-width:980px; margin:0 auto; border-radius:var(--r-lg); overflow:hidden;

@@ -185,6 +185,7 @@
   /* ---- 7. rotating edge-light: a bright line orbiting every card/box ---- */
   (function () {
     var TARGETS = ".card,.step,.kpi,.stat,.tcard,.cta,.pf-show__media,.media-photo";
+    var orbs = [];
     $$(TARGETS).forEach(function (el) {
       if (el.querySelector(":scope > .ht-orbit")) return;            // already done
       el.classList.add("has-orbit");
@@ -192,7 +193,18 @@
       o.className = "ht-orbit";
       o.setAttribute("aria-hidden", "true");
       el.appendChild(o);
+      orbs.push(o);
     });
+    // perf: only animate the lines that are actually on screen — keeps scroll
+    // smooth no matter how many cards are on the page.
+    if (!reduce && orbs.length && "IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          e.target.style.animationPlayState = e.isIntersecting ? "running" : "paused";
+        });
+      }, { rootMargin: "150px" });
+      orbs.forEach(function (o) { o.style.animationPlayState = "paused"; io.observe(o); });
+    }
   })();
 
   /* ---- 8. focus-on-hover: hovered grid card zooms forward, the rest blur ----
