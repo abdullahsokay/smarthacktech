@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="'Space Grotesk','Segoe UI',system-ui,sans-serif">
+  <defs>
+    <linearGradient id="sw-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0c0e10"/><stop offset="1" stop-color="#0a0c0e"/></linearGradient>
+    <linearGradient id="sw-gold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E8C766"/><stop offset="1" stop-color="#D4AF37"/></linearGradient>
+    <linearGradient id="sw-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22d3ee" stop-opacity=".5"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="#050607"/>
+  <g transform="translate(70,70)">
+    <rect width="1060" height="610" rx="20" fill="url(#sw-bg)" stroke="#ffffff" stroke-opacity=".08"/>
+    <path d="M0 20a20 20 0 0 1 20-20h1020a20 20 0 0 1 20 20v36H0z" fill="#16181a"/>
+    <circle cx="34" cy="28" r="6" fill="#ff5f57"/><circle cx="58" cy="28" r="6" fill="#febc2e"/><circle cx="82" cy="28" r="6" fill="#28c840"/>
+    <rect x="150" y="14" width="640" height="26" rx="13" fill="#0b0d0e"/>
+    <text x="178" y="32" fill="#8a8a93" font-size="15">🔒 app.sotms.pk/dashboard</text>
+    <!-- sidebar -->
+    <rect x="0" y="56" width="190" height="554" fill="#0c0f11"/>
+    <text x="28" y="100" fill="#f5f3ee" font-size="20" font-weight="700">SOTMS</text><text x="108" y="100" fill="#22d3ee" font-size="20" font-weight="700">web</text>
+    <g font-size="16">
+      <rect x="16" y="124" width="158" height="40" rx="10" fill="#22d3ee" fill-opacity=".14"/><text x="36" y="150" fill="#22d3ee">Live map</text>
+      <text x="36" y="200" fill="#9a9aa3">Vehicles</text><text x="36" y="244" fill="#9a9aa3">Drivers</text><text x="36" y="288" fill="#9a9aa3">Fuel</text><text x="36" y="332" fill="#9a9aa3">Reports</text>
+    </g>
+    <!-- KPI tiles -->
+    <g transform="translate(214,80)">
+      <rect width="250" height="110" rx="16" fill="#101315"/><text x="24" y="40" fill="#9a9aa3" font-size="15">Vehicles online</text><text x="24" y="84" fill="#22d3ee" font-size="40" font-weight="700">142</text>
+      <rect x="282" width="250" height="110" rx="16" fill="#101315"/><text x="306" y="40" fill="#9a9aa3" font-size="15">Distance today</text><text x="306" y="84" fill="#f5f3ee" font-size="40" font-weight="700">8,420<tspan font-size="16" fill="#9a9aa3"> km</tspan></text>
+      <rect x="564" width="250" height="110" rx="16" fill="#101315"/><text x="588" y="40" fill="#9a9aa3" font-size="15">Fuel saved</text><text x="588" y="84" fill="url(#sw-gold)" font-size="40" font-weight="700">9.4%</text>
+    </g>
+    <!-- chart -->
+    <g transform="translate(214,210)">
+      <rect width="532" height="316" rx="16" fill="#101315"/>
+      <text x="24" y="42" fill="#cfcfd6" font-size="18" font-weight="600">Fleet utilisation</text>
+      <path d="M30 250 L110 220 L190 234 L270 180 L350 198 L430 140 L502 120 L502 270 L30 270 Z" fill="url(#sw-area)"/>
+      <path d="M30 250 L110 220 L190 234 L270 180 L350 198 L430 140 L502 120" fill="none" stroke="#22d3ee" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- mini map -->
+    <g transform="translate(762,210)">
+      <rect width="282" height="316" rx="16" fill="#0e1416"/>
+      <g stroke="#22d3ee" stroke-opacity=".12" stroke-width="4" fill="none"><path d="M0 110 H282"/><path d="M0 210 H282"/><path d="M100 0 V316"/><path d="M200 0 V316"/></g>
+      <g fill="#22d3ee"><circle cx="70" cy="90" r="7"/><circle cx="180" cy="160" r="7"/><circle cx="230" cy="250" r="7"/><circle cx="110" cy="240" r="7"/></g>
+      <circle cx="150" cy="140" r="9" fill="#D4AF37"/>
+    </g>
+  </g>
+</svg>

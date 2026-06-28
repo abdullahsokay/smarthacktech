@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="'Space Grotesk','Segoe UI',system-ui,sans-serif">
+  <defs>
+    <linearGradient id="bp-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c0c0f"/><stop offset="1" stop-color="#141319"/>
+    </linearGradient>
+    <linearGradient id="bp-area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34d399" stop-opacity=".55"/><stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="bp-gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E8C766"/><stop offset="1" stop-color="#D4AF37"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bp-bg)"/>
+  <g stroke="#ffffff" stroke-opacity=".04">
+    <path d="M0 150H1200M0 300H1200M0 450H1200M0 600H1200"/>
+    <path d="M200 0V750M400 0V750M600 0V750M800 0V750M1000 0V750"/>
+  </g>
+  <!-- top bar -->
+  <g transform="translate(70,64)">
+    <circle cx="22" cy="22" r="22" fill="#D4AF37" fill-opacity=".15"/>
+    <path d="M22 8l3.4 8.6L34 20l-8.6 3.4L22 32l-3.4-8.6L10 20l8.6-3.4z" fill="url(#bp-gold)"/>
+    <text x="60" y="20" fill="#f5f3ee" font-size="30" font-weight="700">BidPilot</text>
+    <text x="196" y="20" fill="#34d399" font-size="30" font-weight="700">AI</text>
+    <rect x="252" y="-2" width="92" height="34" rx="17" fill="#34d399" fill-opacity=".14"/>
+    <circle cx="272" cy="15" r="5" fill="#34d399"/>
+    <text x="286" y="20" fill="#7fe9c0" font-size="17" font-weight="600">Live</text>
+  </g>
+  <!-- chart card -->
+  <g transform="translate(70,150)">
+    <rect width="660" height="430" rx="22" fill="#17171d" stroke="#ffffff" stroke-opacity=".06"/>
+    <text x="34" y="56" fill="#9a9aa3" font-size="20">Bid win-rate trend</text>
+    <text x="34" y="100" fill="#f5f3ee" font-size="46" font-weight="700">86%</text>
+    <text x="150" y="100" fill="#34d399" font-size="22" font-weight="600">▲ 12%</text>
+    <path d="M40 340 L130 300 L220 312 L310 250 L400 268 L490 196 L580 150 L620 132 L620 360 L40 360 Z" fill="url(#bp-area)"/>
+    <path d="M40 340 L130 300 L220 312 L310 250 L400 268 L490 196 L580 150 L620 132" fill="none" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="620" cy="132" r="7" fill="#34d399" stroke="#0c0c0f" stroke-width="3"/>
+  </g>
+  <!-- suggested bid cards -->
+  <g transform="translate(760,150)">
+    <rect width="370" height="200" rx="20" fill="#17171d" stroke="#D4AF37" stroke-opacity=".25"/>
+    <text x="28" y="50" fill="#9a9aa3" font-size="19">Suggested bid</text>
+    <text x="28" y="108" fill="url(#bp-gold)" font-size="48" font-weight="700">$ 42,500</text>
+    <text x="28" y="146" fill="#9a9aa3" font-size="17">Confidence</text>
+    <rect x="28" y="158" width="314" height="12" rx="6" fill="#ffffff" fill-opacity=".08"/>
+    <rect x="28" y="158" width="270" height="12" rx="6" fill="url(#bp-gold)"/>
+  </g>
+  <g transform="translate(760,372)">
+    <rect width="370" height="208" rx="20" fill="#17171d" stroke="#ffffff" stroke-opacity=".06"/>
+    <text x="28" y="48" fill="#9a9aa3" font-size="19">Active tenders</text>
+    <g fill="#f5f3ee" font-size="19">
+      <rect x="28" y="66" width="314" height="40" rx="10" fill="#ffffff" fill-opacity=".04"/>
+      <text x="44" y="92">Govt IT supply</text><text x="300" y="92" fill="#34d399" text-anchor="end">won</text>
+      <rect x="28" y="116" width="314" height="40" rx="10" fill="#ffffff" fill-opacity=".04"/>
+      <text x="44" y="142">Fleet GPS rollout</text><text x="300" y="142" fill="#D4AF37" text-anchor="end">bid</text>
+    </g>
+  </g>
+</svg>

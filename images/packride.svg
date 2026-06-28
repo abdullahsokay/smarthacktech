@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="'Space Grotesk','Segoe UI',system-ui,sans-serif">
+  <defs>
+    <linearGradient id="pr-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0c0d12"/><stop offset="1" stop-color="#10121a"/></linearGradient>
+    <linearGradient id="pr-gold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E8C766"/><stop offset="1" stop-color="#D4AF37"/></linearGradient>
+    <linearGradient id="pr-map" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#15171f"/><stop offset="1" stop-color="#0d0f15"/></linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#pr-bg)"/>
+  <text x="80" y="120" fill="#f5f3ee" font-size="52" font-weight="700">PackRide</text>
+  <text x="82" y="162" fill="#5b8cff" font-size="22" font-weight="600">Ride-hailing, the Pakistani way</text>
+  <g fill="#9a9aa3" font-size="20">
+    <circle cx="92" cy="232" r="6" fill="#5b8cff"/><text x="112" y="239">Book a ride in seconds</text>
+    <circle cx="92" cy="282" r="6" fill="#5b8cff"/><text x="112" y="289">Live driver tracking</text>
+    <circle cx="92" cy="332" r="6" fill="#5b8cff"/><text x="112" y="339">Upfront, fair fares</text>
+  </g>
+  <!-- phone -->
+  <g transform="translate(720,70)">
+    <rect x="0" y="0" width="340" height="610" rx="46" fill="#1b1b22" stroke="#ffffff" stroke-opacity=".08"/>
+    <rect x="14" y="14" width="312" height="582" rx="34" fill="url(#pr-map)"/>
+    <rect x="120" y="26" width="100" height="20" rx="10" fill="#0a0a0a"/>
+    <!-- map roads -->
+    <g stroke="#ffffff" stroke-opacity=".06" stroke-width="6" fill="none">
+      <path d="M14 180 H326"/><path d="M14 320 H326"/><path d="M110 60 V596"/><path d="M240 60 V596"/>
+    </g>
+    <!-- route -->
+    <path d="M70 470 C 120 360, 220 360, 240 240 S 230 140, 270 110" fill="none" stroke="#5b8cff" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="70" cy="470" r="11" fill="#5b8cff" stroke="#0d0f15" stroke-width="4"/>
+    <path d="M270 110 l-12 22 24 0z" fill="#D4AF37"/>
+    <circle cx="270" cy="100" r="13" fill="#D4AF37"/>
+    <!-- car -->
+    <g transform="translate(196,318)"><rect x="-18" y="-10" width="36" height="20" rx="6" fill="#5b8cff"/><circle cx="-10" cy="12" r="4" fill="#0d0f15"/><circle cx="10" cy="12" r="4" fill="#0d0f15"/></g>
+    <!-- bottom card -->
+    <rect x="14" y="430" width="312" height="166" rx="30" fill="#17171d"/>
+    <circle cx="62" cy="486" r="26" fill="#5b8cff" fill-opacity=".2"/><text x="62" y="494" fill="#5b8cff" font-size="22" font-weight="700" text-anchor="middle">A</text>
+    <text x="102" y="478" fill="#f5f3ee" font-size="20" font-weight="600">Driver arriving</text>
+    <text x="102" y="504" fill="#9a9aa3" font-size="16">Suzuki · 3 min away</text>
+    <rect x="40" y="534" width="260" height="44" rx="22" fill="url(#pr-gold)"/>
+    <text x="170" y="562" fill="#0a0a0a" font-size="17" font-weight="700" text-anchor="middle">Confirm pickup</text>
+  </g>
+</svg>

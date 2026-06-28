@@ -104,6 +104,22 @@
       ],
       ctaP: "Join a cohort or book a workshop — let's build skills that stick."
     },
+    design: {
+      eyebrow: "Service · Graphic Design",
+      title: 'Design that <span class="accent">ships</span>',
+      lead: "Sharp, consistent visuals for every product and campaign — brand kits, social creatives, posters and UI mockups, designed in Figma and Canva.",
+      img: "images/graphic-design.svg", tag: "Figma · Canva · Brand",
+      chips: ["Brand Identity", "Social Media", "Posters & Print", "UI Mockups", "Logo Design", "Figma & Canva"],
+      features: [
+        ["Brand identity", "Logos, colour and type systems that make you instantly recognisable."],
+        ["Social media", "Scroll-stopping posts, stories and ad creatives, on-brand every time."],
+        ["Posters & print", "Flyers, banners and print-ready artwork for any campaign."],
+        ["UI mockups", "Clean app and web mockups in Figma before a line of code."],
+        ["Marketing kits", "Pitch decks, brochures and collateral with one consistent look."],
+        ["Fast turnarounds", "Designed in Figma and Canva, delivered ready to publish."]
+      ],
+      ctaP: "Tell us what you're launching — we'll design it to look the part."
+    },
     sotms: {
       eyebrow: "Flagship · SOTMS",
       title: 'SOTMS — <span class="accent">smart fleet, one screen</span>',

@@ -20,13 +20,14 @@
     return key === page ? ' class="active" aria-current="page"' : "";
   }
 
-  // Services dropdown — the six service lines (mirrors service.js keys)
+  // Services dropdown — the service lines (mirrors service.js keys)
   var SERVICE_MENU = [
     ["software", "Software Development"],
     ["ai", "AI &amp; Automation"],
     ["iot", "IoT Solutions"],
     ["security", "Security &amp; Surveillance"],
     ["smarthome", "Smart Home &amp; Automation"],
+    ["design", "Graphic Design"],
     ["training", "Training &amp; Education"]
   ];
   // About dropdown — quick links into the About page sections (title + subtitle)
