@@ -7,30 +7,7 @@
    Palette reused from styles.css: --c5 teal, --c6 gold.
    ============================================================ */
 
-/* ---------- 1. custom cursor (desktop, motion-ok only) ---------- */
-.fx-cursor-dot,
-.fx-cursor-ring{
-  position:fixed; top:0; left:0; z-index:9999; pointer-events:none;
-  border-radius:50%; mix-blend-mode:screen;
-  transform:translate(-50%,-50%); will-change:transform;
-}
-.fx-cursor-dot{ width:7px; height:7px; background:var(--c6);
-  box-shadow:0 0 10px var(--c6); transition:opacity .25s, width .18s, height .18s }
-.fx-cursor-ring{ width:38px; height:38px; border:1.5px solid var(--c5);
-  box-shadow:0 0 16px rgba(139,174,102,.45) inset, 0 0 12px rgba(139,174,102,.25);
-  transition:opacity .25s, width .25s, height .25s, border-color .25s, background .25s }
-/* grow + fill when hovering something interactive */
-.fx-cursor-ring.is-hot{ width:62px; height:62px; border-color:var(--c6);
-  background:rgba(139,174,102,.10) }
-.fx-cursor-dot.is-hot{ width:4px; height:4px }
-/* pressed feedback */
-.fx-cursor-ring.is-down{ width:30px; height:30px }
-/* hide the system cursor only once our own is live */
-html.fx-cursor, html.fx-cursor *{ cursor:none !important }
-/* …but keep a real text cursor in form fields so typing stays clear */
-html.fx-cursor input, html.fx-cursor textarea, html.fx-cursor select,
-html.fx-cursor [contenteditable]{ cursor:auto !important }
-@media (hover:none),(pointer:coarse){ .fx-cursor-dot,.fx-cursor-ring{ display:none !important } }
+/* custom cursor removed — the site uses the normal system cursor */
 
 /* ---------- 2. holographic sheen on glass surfaces ---------- */
 /* enhance.js tags existing cards/panels with .fx-sheen and feeds
@@ -313,13 +290,6 @@ video::-webkit-media-controls-overlay-enclosure{
 }
 
 /* ---------- 15. light-theme patches for the enhancement layer ---------- */
-/* custom cursor used screen-blend + gold → invisible on light. Make it a
-   solid forest cursor in light mode (native cursor is hidden, so this matters) */
-html[data-theme="light"] .fx-cursor-dot,
-html[data-theme="light"] .fx-cursor-ring{ mix-blend-mode:normal }
-html[data-theme="light"] .fx-cursor-dot{ background:var(--c5); box-shadow:0 0 8px rgba(79,123,62,.6) }
-html[data-theme="light"] .fx-cursor-ring{ border-color:var(--c5); box-shadow:0 0 10px rgba(79,123,62,.22) }
-html[data-theme="light"] .fx-cursor-ring.is-hot{ border-color:var(--c4); background:rgba(79,123,62,.10) }
 /* the media-tag pill keeps a dark frosted bg on the photo → force light text */
 html[data-theme="light"] .media-photo .media-tag{ color:#f3f7ec }
 /* team accordion cards sit on dark photos → keep their text light in light mode */

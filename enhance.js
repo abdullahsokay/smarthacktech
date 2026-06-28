@@ -13,41 +13,7 @@
 
   if (!reduce) root.classList.add("fx-on");   // unlocks the scroll-parallax CSS
 
-  /* ---- 1. custom cursor: a lerped ring + a snappy dot ---- */
-  (function () {
-    if (reduce || !finePointer) return;
-    var ring = document.createElement("div"); ring.className = "fx-cursor-ring";
-    var dot = document.createElement("div"); dot.className = "fx-cursor-dot";
-    document.body.appendChild(ring); document.body.appendChild(dot);
-    root.classList.add("fx-cursor");
-
-    var mx = window.innerWidth / 2, my = window.innerHeight / 2;
-    var rx = mx, ry = my, raf = null;
-    function loop() {
-      rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
-      ring.style.transform = "translate(" + rx.toFixed(1) + "px," + ry.toFixed(1) + "px) translate(-50%,-50%)";
-      if (Math.abs(mx - rx) > 0.1 || Math.abs(my - ry) > 0.1) raf = requestAnimationFrame(loop);
-      else raf = null;
-    }
-    window.addEventListener("mousemove", function (e) {
-      mx = e.clientX; my = e.clientY;
-      dot.style.transform = "translate(" + mx + "px," + my + "px) translate(-50%,-50%)";
-      if (!raf) raf = requestAnimationFrame(loop);
-    }, { passive: true });
-
-    var HOT = "a,button,.btn,input,select,textarea,label,summary,[role=button],.tilt,.card,.swiper,.tcard";
-    document.addEventListener("mouseover", function (e) {
-      if (e.target.closest && e.target.closest(HOT)) { ring.classList.add("is-hot"); dot.classList.add("is-hot"); }
-    });
-    document.addEventListener("mouseout", function (e) {
-      if (e.target.closest && e.target.closest(HOT)) { ring.classList.remove("is-hot"); dot.classList.remove("is-hot"); }
-    });
-    document.addEventListener("mousedown", function () { ring.classList.add("is-down"); });
-    document.addEventListener("mouseup", function () { ring.classList.remove("is-down"); });
-    // hide when the pointer leaves the window
-    document.addEventListener("mouseleave", function () { ring.style.opacity = dot.style.opacity = "0"; });
-    document.addEventListener("mouseenter", function () { ring.style.opacity = dot.style.opacity = "1"; });
-  })();
+  /* ---- custom cursor removed — the site uses the normal system cursor ---- */
 
   /* ---- 2. holographic sheen: light that follows the cursor across glass ---- */
   (function () {
