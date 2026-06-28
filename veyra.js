@@ -36,7 +36,12 @@
     '<section class="vy-panel" role="dialog" aria-label="Kaira — HackTech AI assistant" aria-modal="false">' +
       '<div class="vy-top">' +
         '<span class="vy-top__brand"><i></i> KAIRA</span>' +
-        '<button class="vy-x" type="button" aria-label="Close chat">✕</button>' +
+        '<div class="vy-top__tools">' +
+          '<button class="vy-refresh" type="button" aria-label="New chat" title="New chat">' +
+            '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>' +
+          "</button>" +
+          '<button class="vy-x" type="button" aria-label="Close chat">✕</button>' +
+        "</div>" +
       "</div>" +
       '<div class="vy-main">' +
         '<div class="vy-welcome">' +
@@ -75,12 +80,14 @@
   var ta = root.querySelector(".vy-row input");
   var sendBtn = root.querySelector(".vy-send");
   var bpBtn = root.querySelector("#vyBp");
+  var refreshBtn = root.querySelector(".vy-refresh");
 
   var messages = [];
   var streaming = false;
   var started = false;
   var generating = false;
   var tracked = false;
+  var session = 0;   // bumped on reset → invalidates any in-flight reply
 
   STARTERS.forEach(function (s) {
     var b = document.createElement("button");
@@ -129,7 +136,22 @@
     setTimeout(function () { ta.focus(); }, 120);
   }
   function close() { root.classList.remove("is-open"); }
-  window.KairaChat = { open: open, close: close };
+
+  // Reset to a fresh conversation (the refresh button). Invalidates any reply
+  // still streaming so it can't repopulate the cleared thread.
+  function resetChat() {
+    session++;
+    messages.length = 0;
+    thread.innerHTML = "";
+    started = false; streaming = false; generating = false;
+    panel.classList.remove("is-chatting");
+    ta.value = "";
+    autosize();
+    sendBtn.disabled = false;
+    bpBtn.disabled = false;
+    ta.focus();
+  }
+  window.KairaChat = { open: open, close: close, reset: resetChat };
 
   function autosize() {
     row.classList.toggle("has-text", !!ta.value.trim());
@@ -139,6 +161,7 @@
     text = (text || "").trim();
     if (!text || streaming) return;
     if (!started) { started = true; panel.classList.add("is-chatting"); }
+    var sid = session;
 
     messages.push({ role: "user", content: text });
     bubble("user", text);
@@ -169,12 +192,14 @@
       for (;;) {
         var r = await reader.read();
         if (r.done) break;
+        if (sid !== session) { try { reader.cancel(); } catch (e) {} return; }
         acc += dec.decode(r.value, { stream: true });
         body.textContent = acc;
         scrollDown();
       }
-      messages.push({ role: "assistant", content: acc || "…" });
+      if (sid === session) messages.push({ role: "assistant", content: acc || "…" });
     } catch (err) {
+      if (sid !== session) return;
       if (body.parentNode) body.parentNode.remove();
       var er = document.createElement("div");
       er.className = "vy-err";
@@ -182,9 +207,11 @@
       thread.appendChild(er);
       scrollDown();
     } finally {
-      streaming = false;
-      sendBtn.disabled = false;
-      ta.focus();
+      if (sid === session) {
+        streaming = false;
+        sendBtn.disabled = false;
+        ta.focus();
+      }
     }
   }
 
@@ -207,6 +234,7 @@
     if (!started) { started = true; panel.classList.add("is-chatting"); }
     generating = true;
     bpBtn.disabled = true;
+    var sid = session;
     var loading = bubble("kaira", "");
     loading.innerHTML = 'Designing your blueprint — architecture, stack, estimate &amp; proposal… <span class="vy-dots"><i></i><i></i><i></i></span>';
     scrollDown();
@@ -217,14 +245,18 @@
         body: JSON.stringify({ messages: messages.slice(-24) }),
       });
       var bp = await res.json();
+      if (sid !== session) return;
       if (!res.ok) throw new Error(bp.error || "Couldn't generate the blueprint.");
       if (loading.parentNode) loading.parentNode.remove();
       renderBlueprint(bp);
     } catch (err) {
+      if (sid !== session) return;
       loading.textContent = (err && err.message) || "Blueprint failed. Please try again.";
     } finally {
-      generating = false;
-      bpBtn.disabled = false;
+      if (sid === session) {
+        generating = false;
+        bpBtn.disabled = false;
+      }
     }
   }
 
@@ -450,6 +482,7 @@
   var expertLink = root.querySelector(".vy-expert");
   if (expertLink) expertLink.addEventListener("click", function (e) { e.preventDefault(); openLeadForm(); });
   closeBtn.addEventListener("click", close);
+  if (refreshBtn) refreshBtn.addEventListener("click", resetChat);
   sendBtn.addEventListener("click", function () { send(ta.value); });
   ta.addEventListener("input", autosize);
   ta.addEventListener("keydown", function (e) {

@@ -17,11 +17,11 @@
 .fx-cursor-dot{ width:7px; height:7px; background:var(--c6);
   box-shadow:0 0 10px var(--c6); transition:opacity .25s, width .18s, height .18s }
 .fx-cursor-ring{ width:38px; height:38px; border:1.5px solid var(--c5);
-  box-shadow:0 0 16px rgba(212,175,55,.45) inset, 0 0 12px rgba(212,175,55,.25);
+  box-shadow:0 0 16px rgba(139,174,102,.45) inset, 0 0 12px rgba(139,174,102,.25);
   transition:opacity .25s, width .25s, height .25s, border-color .25s, background .25s }
 /* grow + fill when hovering something interactive */
 .fx-cursor-ring.is-hot{ width:62px; height:62px; border-color:var(--c6);
-  background:rgba(212,175,55,.10) }
+  background:rgba(139,174,102,.10) }
 .fx-cursor-dot.is-hot{ width:4px; height:4px }
 /* pressed feedback */
 .fx-cursor-ring.is-down{ width:30px; height:30px }
@@ -40,7 +40,7 @@ html.fx-cursor [contenteditable]{ cursor:auto !important }
   content:""; position:absolute; inset:0; border-radius:inherit; z-index:1;
   pointer-events:none; opacity:0; transition:opacity .35s ease;
   background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),
-    rgba(212,175,55,.16), transparent 42%);
+    rgba(139,174,102,.16), transparent 42%);
   mix-blend-mode:screen;
 }
 .fx-sheen.is-live::after{ opacity:1 }
@@ -49,7 +49,7 @@ html.fx-cursor [contenteditable]{ cursor:auto !important }
   content:""; position:absolute; inset:0; border-radius:inherit; z-index:1;
   pointer-events:none; opacity:0; transition:opacity .35s ease; padding:1px;
   background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),
-    rgba(212,175,55,.55), rgba(212,175,55,.30) 40%, transparent 60%);
+    rgba(139,174,102,.55), rgba(139,174,102,.30) 40%, transparent 60%);
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor; mask-composite:exclude;
 }
@@ -81,7 +81,7 @@ html.fx-cursor [contenteditable]{ cursor:auto !important }
   content:""; position:absolute; inset:0; pointer-events:none;
   background:
     linear-gradient(180deg, rgba(10,20,23,.10), rgba(10,20,23,.55)),
-    linear-gradient(120deg, rgba(212,175,55,.20), transparent 55%);
+    linear-gradient(120deg, rgba(139,174,102,.20), transparent 55%);
   mix-blend-mode:multiply;
 }
 /* subtle scanline texture for the "engineered" feel — very low contrast */
@@ -123,7 +123,7 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
 .ws-right.ws-shot{
   background-image:
     linear-gradient(150deg, rgba(10,10,10,.74), rgba(10,16,19,.84)),
-    linear-gradient(120deg, rgba(160,126,34,.28), transparent 60%),
+    linear-gradient(120deg, rgba(98,129,65,.28), transparent 60%),
     var(--shot);
   background-size:cover; background-position:center; background-repeat:no-repeat;
 }
@@ -154,11 +154,11 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
   background:
     linear-gradient(90deg, rgba(7,11,15,.94) 0%, rgba(7,11,15,.74) 36%, rgba(7,11,15,.34) 66%, rgba(7,11,15,.10) 100%),
     linear-gradient(0deg, rgba(10,10,10,1) 1%, rgba(7,11,15,.22) 26%, transparent 50%),
-    linear-gradient(155deg, rgba(212,175,55,.16), transparent 42%) }
+    linear-gradient(155deg, rgba(139,174,102,.16), transparent 42%) }
 .hero-portal__grid{ position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.35;
-  background:repeating-linear-gradient(0deg, rgba(234,217,160,.04) 0 1px, transparent 1px 5px) }
+  background:repeating-linear-gradient(0deg, rgba(235,213,171,.04) 0 1px, transparent 1px 5px) }
 .hero-portal__scan{ position:absolute; left:0; right:0; height:20%; z-index:1; pointer-events:none;
-  background:linear-gradient(180deg, transparent, rgba(234,217,160,.10), transparent);
+  background:linear-gradient(180deg, transparent, rgba(235,213,171,.10), transparent);
   animation:hp-scan 6.5s linear infinite }
 .hero-portal__corner, .hero-portal__tag{ display:none }   /* drop framed-portal chrome in full-bleed */
 #heroCanvas{ display:none }                               /* the video is the background now */
@@ -170,7 +170,7 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
   .hero-portal__vid{ object-position:center 22% }
   .hero-portal::after{ background:
     linear-gradient(0deg, rgba(10,10,10,1) 2%, rgba(7,11,15,.55) 34%, rgba(7,11,15,.5) 100%),
-    linear-gradient(155deg, rgba(212,175,55,.16), transparent 42%) }
+    linear-gradient(155deg, rgba(139,174,102,.16), transparent 42%) }
 }
 /* reduced motion / no autoplay: show the still poster, no video, no scan */
 @media (prefers-reduced-motion:reduce){
@@ -251,10 +251,10 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
   will-change:transform, flex-grow;
   transition:flex-grow .6s cubic-bezier(.4,0,.2,1), transform .25s ease,
              box-shadow .45s ease, border-color .45s ease }
-.tcard.is-active{ flex-grow:5.4; border-color:rgba(212,175,55,.55);
-  box-shadow:0 26px 60px -22px rgba(0,0,0,.7), 0 0 0 1px rgba(212,175,55,.18),
-             0 0 42px -12px rgba(212,175,55,.32) }
-.tcard:focus-visible{ border-color:var(--c5); box-shadow:0 0 0 3px rgba(212,175,55,.35) }
+.tcard.is-active{ flex-grow:5.4; border-color:rgba(139,174,102,.55);
+  box-shadow:0 26px 60px -22px rgba(0,0,0,.7), 0 0 0 1px rgba(139,174,102,.18),
+             0 0 42px -12px rgba(139,174,102,.32) }
+.tcard:focus-visible{ border-color:var(--c5); box-shadow:0 0 0 3px rgba(139,174,102,.35) }
 /* no-JS / pure-hover fallback so the cards still expand without enhance.js */
 @media (hover:hover){
   .team-accordion:hover .tcard.is-active:not(:hover){ flex-grow:1;
@@ -272,7 +272,7 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
 .tcard:not(.is-active) .tcard__content{ padding:18px 14px }
 .tcard__head{ display:flex; align-items:center; gap:13px; white-space:nowrap }
 .tcard__badge{ flex:none; width:46px; height:46px; border-radius:14px; display:grid; place-items:center;
-  background:rgba(10,10,10,.55); border:1px solid rgba(212,175,55,.45); backdrop-filter:blur(8px);
+  background:rgba(10,10,10,.55); border:1px solid rgba(139,174,102,.45); backdrop-filter:blur(8px);
   color:var(--c6); box-shadow:0 6px 18px rgba(0,0,0,.4); transition:background .4s, color .4s, border-color .4s }
 .tcard__badge svg{ width:22px; height:22px }
 .tcard.is-active .tcard__badge{ background:linear-gradient(140deg,var(--c5),var(--c4)); color:#0A0A0A;
@@ -303,18 +303,18 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
 
 /* ---------- 15. light-theme patches for the enhancement layer ---------- */
 /* custom cursor used screen-blend + gold → invisible on light. Make it a
-   solid indigo cursor in light mode (native cursor is hidden, so this matters) */
+   solid forest cursor in light mode (native cursor is hidden, so this matters) */
 html[data-theme="light"] .fx-cursor-dot,
 html[data-theme="light"] .fx-cursor-ring{ mix-blend-mode:normal }
-html[data-theme="light"] .fx-cursor-dot{ background:var(--c5); box-shadow:0 0 8px rgba(109,74,255,.6) }
-html[data-theme="light"] .fx-cursor-ring{ border-color:var(--c5); box-shadow:0 0 10px rgba(109,74,255,.22) }
-html[data-theme="light"] .fx-cursor-ring.is-hot{ border-color:var(--c4); background:rgba(109,74,255,.10) }
+html[data-theme="light"] .fx-cursor-dot{ background:var(--c5); box-shadow:0 0 8px rgba(79,123,62,.6) }
+html[data-theme="light"] .fx-cursor-ring{ border-color:var(--c5); box-shadow:0 0 10px rgba(79,123,62,.22) }
+html[data-theme="light"] .fx-cursor-ring.is-hot{ border-color:var(--c4); background:rgba(79,123,62,.10) }
 /* the media-tag pill keeps a dark frosted bg on the photo → force light text */
-html[data-theme="light"] .media-photo .media-tag{ color:#f4f2fb }
+html[data-theme="light"] .media-photo .media-tag{ color:#f3f7ec }
 /* team accordion cards sit on dark photos → keep their text light in light mode */
-html[data-theme="light"] .tcard__name{ color:#f5f3fc }
-html[data-theme="light"] .tcard__bio{ color:#dcd9ec }
-html[data-theme="light"] .tcard__role{ color:#c4b3ff }
+html[data-theme="light"] .tcard__name{ color:#f3f7ec }
+html[data-theme="light"] .tcard__bio{ color:#d9e6cf }
+html[data-theme="light"] .tcard__role{ color:#CDE6A8 }
 
 /* ===== Portfolio / Our Work ===== */
 .work-card{display:flex;flex-direction:column}
@@ -337,11 +337,11 @@ html[data-theme="light"] .work-tag{background:rgba(255,255,255,.82);color:var(--
   padding:26px 16px;border-radius:18px;background:var(--card);border:1px solid var(--line);
   transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
 .pf-person:hover{transform:translateY(-5px);border-color:var(--line-2);
-  box-shadow:0 18px 40px -20px rgba(0,0,0,.6),0 0 26px -10px rgba(212,175,55,.45)}
+  box-shadow:0 18px 40px -20px rgba(0,0,0,.6),0 0 26px -10px rgba(139,174,102,.45)}
 .pf-avatar{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;
   font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:#0A0A0A;letter-spacing:.5px;
   background:linear-gradient(135deg,var(--c6),var(--c4));
-  box-shadow:0 0 22px -4px rgba(212,175,55,.6),inset 0 0 0 1px rgba(255,255,255,.4)}
+  box-shadow:0 0 22px -4px rgba(139,174,102,.6),inset 0 0 0 1px rgba(255,255,255,.4)}
 .pf-person__name{font-family:var(--font-display);font-weight:600;font-size:1rem;color:var(--ink)}
 .pf-person__role{font-size:.82rem;color:var(--muted)}
 .pf-skills .eyebrow{margin-bottom:14px}
@@ -355,7 +355,7 @@ html[data-theme="light"] .work-tag{background:rgba(255,255,255,.82);color:var(--
   overflow:hidden;border:1px solid var(--line)}
 .pf-bar__fill{height:100%;width:0;border-radius:999px;
   background:linear-gradient(90deg,var(--c4),var(--c5),var(--c6));
-  box-shadow:0 0 14px -2px rgba(212,175,55,.6);transition:width 1.4s cubic-bezier(.22,1,.36,1)}
+  box-shadow:0 0 14px -2px rgba(139,174,102,.6);transition:width 1.4s cubic-bezier(.22,1,.36,1)}
 html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
 
 /* ===== Portfolio page — project cards (reference style) ===== */
@@ -364,7 +364,7 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
   background:var(--card);border:1px solid var(--line);
   transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
 .pf-card:hover{transform:translateY(-6px);border-color:var(--line-2);
-  box-shadow:0 26px 56px -26px rgba(0,0,0,.7),0 0 30px -12px rgba(212,175,55,.45)}
+  box-shadow:0 26px 56px -26px rgba(0,0,0,.7),0 0 30px -12px rgba(139,174,102,.45)}
 .pf-card__shot{position:relative;aspect-ratio:16/10;overflow:hidden}
 .pf-card__shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .pf-card:hover .pf-card__shot img{transform:scale(1.06)}
@@ -374,7 +374,7 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
   font-family:var(--font-display);font-size:.72rem;font-weight:600;letter-spacing:.03em;
   padding:5px 11px;border-radius:999px;color:#0A0A0A;
   background:linear-gradient(135deg,var(--c5),var(--c4));
-  box-shadow:0 4px 14px -2px rgba(212,175,55,.6),inset 0 0 0 1px rgba(255,255,255,.4)}
+  box-shadow:0 4px 14px -2px rgba(139,174,102,.6),inset 0 0 0 1px rgba(255,255,255,.4)}
 .pf-card__body{display:flex;flex-direction:column;gap:9px;padding:20px}
 .pf-card__cat{font-family:var(--font-display);font-size:.74rem;letter-spacing:.06em;
   text-transform:uppercase;color:var(--c6)}
@@ -392,7 +392,7 @@ body[data-page="portfolio"] .footer{scroll-snap-align:start}
 .pf-show{display:grid;grid-template-columns:1.05fr 1fr;gap:52px;align-items:center;width:100%}
 .pf-show--rev .pf-show__media{order:2}
 .pf-show__media{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line-2);
-  aspect-ratio:16/11;box-shadow:0 40px 90px -42px rgba(0,0,0,.85),0 0 50px -18px rgba(212,175,55,.4)}
+  aspect-ratio:16/11;box-shadow:0 40px 90px -42px rgba(0,0,0,.85),0 0 50px -18px rgba(139,174,102,.4)}
 .pf-show__media img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
 .pf-show:hover .pf-show__media img{transform:scale(1.04)}
 .pf-show__info .pf-card__cat{font-size:.8rem}
@@ -404,16 +404,75 @@ body[data-page="portfolio"] .footer{scroll-snap-align:start}
 .pf-dots{position:fixed;top:50%;right:22px;transform:translateY(-50%);z-index:40;
   display:flex;flex-direction:column;gap:9px;align-items:flex-end}
 .pf-dots button{width:20px;height:3px;border:0;border-radius:2px;cursor:pointer;padding:0;
-  background:rgba(212,175,55,.3);transition:width .3s ease,background .3s ease,box-shadow .3s ease}
+  background:rgba(139,174,102,.3);transition:width .3s ease,background .3s ease,box-shadow .3s ease}
 .pf-dots button:hover{width:30px;background:var(--c5)}
 .pf-dots button.active{width:36px;height:4px;background:var(--c5);box-shadow:0 0 12px var(--c5)}
-html[data-theme="light"] .pf-dots button{background:rgba(109,74,255,.3)}
+html[data-theme="light"] .pf-dots button{background:rgba(79,123,62,.3)}
 html[data-theme="light"] .pf-dots button:hover,
-html[data-theme="light"] .pf-dots button.active{background:var(--c5);box-shadow:0 0 12px rgba(109,74,255,.6)}
+html[data-theme="light"] .pf-dots button.active{background:var(--c5);box-shadow:0 0 12px rgba(79,123,62,.6)}
 
 /* turn fullpage OFF on phones / short screens → normal scroll, no trap */
 @media(max-width:760px),(max-height:720px){
   html.pf-snap{scroll-snap-type:none}
   body[data-page="portfolio"] .pf-slide{min-height:auto;display:block;padding-top:64px;padding-bottom:48px}
   .pf-dots{display:none}
+}
+
+/* ============================================================
+   Rotating edge-light — a bright line that travels around the
+   rounded border of every card/box. enhance.js appends an
+   <i class="ht-orbit"> into each target; the conic gradient is
+   masked to a 1.4px ring and its angle is animated. Falls back
+   to a static accent arc where @property is unsupported, and is
+   stilled under prefers-reduced-motion.
+   ============================================================ */
+@property --ht-a { syntax:"<angle>"; inherits:false; initial-value:0deg }
+@keyframes ht-orbit-spin { to { --ht-a:360deg } }
+.has-orbit { position:relative }
+.ht-orbit{
+  position:absolute; inset:0; border-radius:inherit; pointer-events:none; z-index:4;
+  padding:1.6px; opacity:.82; transition:opacity .45s ease;
+  background:conic-gradient(from var(--ht-a),
+    transparent 0 72%, var(--c5) 82%, var(--c6) 88%, var(--c5) 93%, transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  animation:ht-orbit-spin 5.2s linear infinite;
+  will-change:--ht-a;
+}
+.has-orbit:hover > .ht-orbit{ opacity:1 }
+@media (prefers-reduced-motion:reduce){
+  .ht-orbit{ animation:none; opacity:.35 }
+}
+
+/* ============================================================
+   Focus-on-hover for project cards — the hovered card zooms up
+   and comes forward while its grid-mates blur and fall back.
+   Pointer devices only; :has() gates the blur so siblings dim
+   ONLY when a card is genuinely hovered (not over the gaps).
+   Without :has() support the hovered card still lifts.
+   ============================================================ */
+@media (hover:hover){
+  .grid--2 > .card,
+  .grid--3 > .card,
+  .grid--4 > .card{
+    transition:transform .45s cubic-bezier(.22,1,.36,1),
+               filter .4s ease, opacity .4s ease,
+               box-shadow .4s ease, border-color .3s ease, background .3s ease;
+  }
+  /* dim + blur the grid-mates while a card is focused (classes set by enhance.js) */
+  .grid--2.ht-focus > .card:not(.ht-up),
+  .grid--3.ht-focus > .card:not(.ht-up),
+  .grid--4.ht-focus > .card:not(.ht-up){
+    filter:blur(3px) saturate(.9);
+    opacity:.5;
+    transform:scale(.95);
+  }
+  /* the hovered card zooms up + comes forward */
+  .grid--2 > .card.ht-up,
+  .grid--3 > .card.ht-up,
+  .grid--4 > .card.ht-up{
+    transform:scale(1.06) translateY(-10px);
+    z-index:6;
+  }
 }

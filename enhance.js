@@ -182,4 +182,38 @@
     });
   })();
 
+  /* ---- 7. rotating edge-light: a bright line orbiting every card/box ---- */
+  (function () {
+    var TARGETS = ".card,.step,.kpi,.stat,.tcard,.cta,.pf-show__media,.media-photo";
+    $$(TARGETS).forEach(function (el) {
+      if (el.querySelector(":scope > .ht-orbit")) return;            // already done
+      el.classList.add("has-orbit");
+      var o = document.createElement("i");
+      o.className = "ht-orbit";
+      o.setAttribute("aria-hidden", "true");
+      el.appendChild(o);
+    });
+  })();
+
+  /* ---- 8. focus-on-hover: hovered grid card zooms forward, the rest blur ----
+     Driven by JS classes (not :has()) so it works in every browser. Gated on
+     (hover:hover) so it covers mice/trackpads incl. 2-in-1s, off on touch. */
+  (function () {
+    if (!window.matchMedia("(hover:hover)").matches) return;
+    $$(".grid--2,.grid--3,.grid--4").forEach(function (grid) {
+      var cards = $$(":scope > .card", grid);
+      if (cards.length < 2) return;                 // nothing to blur against
+      cards.forEach(function (card) {
+        card.addEventListener("pointerenter", function () {
+          card.classList.add("ht-up");
+          grid.classList.add("ht-focus");
+        });
+        card.addEventListener("pointerleave", function () {
+          card.classList.remove("ht-up");
+          grid.classList.remove("ht-focus");
+        });
+      });
+    });
+  })();
+
 })();

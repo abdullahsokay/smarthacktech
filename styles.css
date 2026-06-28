@@ -1,24 +1,24 @@
 /* ============================================================
    HACKTECH — IoT & Embedded AI for smarter fleets
    Design system (Aurora glass theme, polished)
-   Palette: #0A0A0A #15140F #3A310F #A07E22 #D4AF37 #EAD9A0
+   Palette (old-money): #1B211A #232B21 #33402A #628141 #8BAE66 #EBD5AB
    ============================================================ */
 :root{
-  --c1:#0A0A0A; --c2:#15140F; --c3:#3A310F;
-  --c4:#A07E22; --c5:#D4AF37; --c6:#EAD9A0;
-  --ink:#EDE6D6; --muted:#9E978A; --faint:#6F6A5E;
-  --line:rgba(212,175,55,.16); --line-2:rgba(212,175,55,.28);
-  --glass:rgba(255,255,255,.045); --glass-2:rgba(255,255,255,.075);
-  --card:rgba(22,20,14,.55);
-  --ok:#4fd0a0; --warn:#f0a93e; --bad:#e8718a;
+  --c1:#1B211A; --c2:#232B21; --c3:#33402A;
+  --c4:#628141; --c5:#8BAE66; --c6:#EBD5AB;
+  --ink:#ECE3CE; --muted:#A7AE93; --faint:#6E7A62;
+  --line:rgba(139,174,102,.18); --line-2:rgba(139,174,102,.30);
+  --glass:rgba(235,213,171,.05); --glass-2:rgba(235,213,171,.085);
+  --card:rgba(35,43,33,.55);
+  --ok:#7fc99a; --warn:#d9b46a; --bad:#d98a86;
   --maxw:1180px; --r:18px; --r-lg:26px;
   --font-display:"Space Grotesk","Segoe UI",system-ui,sans-serif;
   --font-body:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
-  --grad-text:linear-gradient(120deg,var(--c6),var(--c5) 45%,var(--c4));
+  --grad-text:linear-gradient(120deg,var(--c6),var(--c5) 48%,var(--c4));
   --grad-btn:linear-gradient(120deg,var(--c5),var(--c4));
   --grad-line:linear-gradient(90deg,var(--c6),var(--c4));
-  --shadow:0 30px 70px rgba(0,0,0,.45);
-  --shadow-sm:0 12px 30px rgba(0,0,0,.35);
+  --shadow:0 30px 70px rgba(0,0,0,.5);
+  --shadow-sm:0 12px 30px rgba(0,0,0,.4);
 }
 /* ============================================================
    LIGHT THEME — html[data-theme="light"] re-scopes the design tokens
@@ -28,66 +28,81 @@
    applied pre-paint by a tiny inline <head> script (no flash).
    ============================================================ */
 html[data-theme="light"]{
-  --c1:#f1f0fb; --c2:#ffffff; --c3:#e4e0f7;
-  --c4:#5b3fd6; --c5:#6d4aff; --c6:#6d28d9;
-  --ink:#0a0a0a; --muted:#3a3a44; --faint:#6b6b78;
-  --line:rgba(91,63,214,.16); --line-2:rgba(91,63,214,.26);
-  --glass:rgba(91,63,214,.05); --glass-2:rgba(91,63,214,.10);
+  /* White base + reference-image accents: sage / forest / pine */
+  --c1:#ffffff; --c2:#ffffff; --c3:#B2D08C;
+  --c4:#3C6230; --c5:#4F7B3E; --c6:#3C6230;
+  --ink:#063A18; --muted:#2f5236; --faint:#5c7a5e;
+  --line:rgba(6,58,24,.16); --line-2:rgba(6,58,24,.26);
+  --glass:rgba(79,123,62,.06); --glass-2:rgba(79,123,62,.12);
   --card:#ffffff;
-  --grad-text:linear-gradient(120deg,#4f7cff,#7c3aed 52%,#9333ea);
-  --grad-line:linear-gradient(90deg,#4f7cff,#9333ea);
-  --grad-btn:linear-gradient(135deg,#6a8bff,#6d4aff 55%,#7c3aed);
-  --shadow:0 24px 50px rgba(40,30,90,.14);
-  --shadow-sm:0 10px 24px rgba(40,30,90,.10);
+  --grad-text:linear-gradient(120deg,#4F7B3E,#063A18 58%,#2f5a2a);
+  --grad-line:linear-gradient(90deg,#4F7B3E,#063A18);
+  --grad-btn:linear-gradient(135deg,#5E9149,#3C6230 55%,#063A18);
+  --shadow:0 24px 50px rgba(16,40,18,.16);
+  --shadow-sm:0 10px 24px rgba(16,40,18,.12);
 }
-/* light mode: keep the nav a frosted light bar at all times so links stay
-   readable over the dark home hero AND over light pages */
-html[data-theme="light"] .nav{background:rgba(255,255,255,.7);
+/* light mode: keep the nav a frosted white bar at all times so links stay
+   readable over the dark home hero AND over the lemon pages */
+html[data-theme="light"] .nav{background:rgba(255,255,255,.72);
   backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid var(--line)}
-html[data-theme="light"] .nav.scrolled{background:rgba(255,255,255,.85)}
-html[data-theme="light"] .nav-links > li > a:not(.btn):hover{background:rgba(20,16,8,.05)}
+html[data-theme="light"] .nav.scrolled{background:rgba(255,255,255,.88)}
+html[data-theme="light"] .nav-links > li > a:not(.btn):hover{background:rgba(6,58,24,.06)}
 html[data-theme="light"] .nav-menu{background:rgba(255,255,255,.97)}
-html[data-theme="light"] .to-top{background:rgba(255,255,255,.72);color:var(--c4)}
-html[data-theme="light"] .footer{background:rgba(255,255,255,.55)}
-/* shiny blue-purple buttons + active pill (light mode); --grad-btn already
-   carries the gradient, so we only fix text/glow for contrast */
-html[data-theme="light"] .btn--primary{color:#fff;box-shadow:0 12px 30px rgba(109,74,255,.42)}
-html[data-theme="light"] .btn--primary:hover{box-shadow:0 18px 48px rgba(109,74,255,.58)}
-html[data-theme="light"] .nav-links > li > a.active{color:#fff;border-color:rgba(196,178,255,.65);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.45),0 0 18px -3px rgba(109,74,255,.55),0 8px 20px -8px rgba(109,74,255,.7)}
-html[data-theme="light"] .nav .btn--primary{box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 0 18px -4px rgba(109,74,255,.5),0 12px 30px rgba(109,74,255,.42)}
-html[data-theme="light"] .nav-links > li > a.active .nav-badge{background:#1a0a4a;color:#d6c8ff}
-html[data-theme="light"] .theme-toggle{color:#6d28d9}
-html[data-theme="light"] .theme-toggle:hover{border-color:#6d4aff;box-shadow:0 0 0 4px rgba(109,74,255,.14),0 10px 24px rgba(40,30,90,.16)}
-/* card icons: base gradient starts at a near-white token → white icon vanished. Use a solid indigo chip */
-html[data-theme="light"] .card__icon{background:linear-gradient(140deg,var(--c4),var(--c5));box-shadow:0 10px 24px rgba(40,30,90,.18)}
-/* swap every residual gold glow for blue-purple so light mode has zero gold */
-html[data-theme="light"] .cta{background:radial-gradient(600px 300px at 50% 0%,rgba(109,74,255,.16),transparent 70%),var(--card)}
-html[data-theme="light"] .split__media:not(.media-photo):not(.split__media--gif){background:radial-gradient(130% 110% at 100% 0%,rgba(109,74,255,.12),transparent 55%),var(--card)}
-html[data-theme="light"] .scroll-progress{box-shadow:0 0 12px rgba(109,74,255,.6)}
-html[data-theme="light"] .logo__mark{box-shadow:0 0 18px rgba(109,74,255,.5)}
-html[data-theme="light"] .nav-menu a:hover{background:rgba(109,74,255,.12)}
-html[data-theme="light"] .card--glow::after{background:radial-gradient(300px 200px at 50% 0%,rgba(109,74,255,.16),transparent 70%)}
+html[data-theme="light"] .to-top{background:rgba(255,255,255,.78);color:var(--c5)}
+html[data-theme="light"] .footer{background:rgba(255,255,255,.5)}
+/* forest→pine primary buttons + active pill (light mode); --grad-btn carries the
+   gradient, so we only fix text/glow for contrast */
+html[data-theme="light"] .btn--primary{color:#fff;box-shadow:0 12px 30px rgba(36,90,40,.34)}
+html[data-theme="light"] .btn--primary:hover{box-shadow:0 18px 48px rgba(36,90,40,.48)}
+html[data-theme="light"] .nav-links > li > a.active{color:#fff;border-color:rgba(120,170,90,.6);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 0 18px -3px rgba(36,90,40,.5),0 8px 20px -8px rgba(36,90,40,.65)}
+html[data-theme="light"] .nav .btn--primary{box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 0 18px -4px rgba(36,90,40,.45),0 12px 30px rgba(36,90,40,.34)}
+html[data-theme="light"] .nav-links > li > a.active .nav-badge{background:#063A18;color:#C7E1A6}
+/* white page bg → give white cards a soft green-tinted lift so they don't vanish */
+html[data-theme="light"] .card{box-shadow:0 10px 30px -14px rgba(16,40,18,.20)}
+html[data-theme="light"] .card:hover{box-shadow:0 18px 40px -16px rgba(16,40,18,.26)}
+html[data-theme="light"] .theme-toggle{color:#4F7B3E}
+html[data-theme="light"] .theme-toggle:hover{border-color:#4F7B3E;box-shadow:0 0 0 4px rgba(79,123,62,.16),0 10px 24px rgba(16,40,18,.16)}
+/* card icons: forest→pine chip so the white glyph stays visible */
+html[data-theme="light"] .card__icon{background:linear-gradient(140deg,var(--c5),#063A18);box-shadow:0 10px 24px rgba(16,40,18,.18)}
+/* swap every residual gold/purple glow for green so light mode reads as one palette */
+html[data-theme="light"] .cta{background:radial-gradient(600px 300px at 50% 0%,rgba(79,123,62,.18),transparent 70%),var(--card)}
+html[data-theme="light"] .split__media:not(.media-photo):not(.split__media--gif){background:radial-gradient(130% 110% at 100% 0%,rgba(79,123,62,.14),transparent 55%),var(--card)}
+html[data-theme="light"] .scroll-progress{box-shadow:0 0 12px rgba(79,123,62,.6)}
+html[data-theme="light"] .logo__mark{box-shadow:0 0 18px rgba(79,123,62,.5)}
+html[data-theme="light"] .nav-menu a:hover{background:rgba(79,123,62,.14)}
+html[data-theme="light"] .card--glow::after{background:radial-gradient(300px 200px at 50% 0%,rgba(79,123,62,.16),transparent 70%)}
 html[data-theme="light"] input,
 html[data-theme="light"] textarea,
-html[data-theme="light"] select{background:rgba(20,16,8,.04)}
+html[data-theme="light"] select{background:rgba(6,58,24,.05)}
 html[data-theme="light"] input:focus,
 html[data-theme="light"] textarea:focus,
-html[data-theme="light"] select:focus{background:rgba(20,16,8,.02)}
+html[data-theme="light"] select:focus{background:rgba(6,58,24,.03)}
+/* light-band sections: in light mode they become soft sage panels with a forest
+   accent (instead of the dark-mode gold), so lemon↔sage alternate down the page */
+html[data-theme="light"] .section--light{
+  --c6:#3C6230; --ink:#063A18; --muted:#34543a; --faint:#5c7a5e;
+  --line:rgba(6,58,24,.14); --line-2:rgba(6,58,24,.22);
+  --glass:rgba(6,58,24,.04); --glass-2:rgba(6,58,24,.07);
+  --card:#ffffff;
+  --grad-text:linear-gradient(120deg,#4F7B3E,#063A18 60%,#2f5a2a);
+  --grad-line:linear-gradient(90deg,#4F7B3E,#063A18);
+  background:#C7E1A6;
+}
 /* dark zones in light mode (home hero video + Services carousel) keep light
-   text + bright blue-purple accents so every word stays readable on dark */
+   text + bright lemon/sage accents so every word stays readable on dark */
 html[data-theme="light"] .hero,
 html[data-theme="light"] .why-section{
-  --ink:#f2f1f9; --muted:#cbc9da; --faint:#9a98ad; --c6:#b79bff;
+  --ink:#f4f7ec; --muted:#d6e4c4; --faint:#9bb293; --c6:#CDE6A8;
   --line:rgba(255,255,255,.14); --line-2:rgba(255,255,255,.24);
   --glass:rgba(255,255,255,.06); --glass-2:rgba(255,255,255,.10);
-  --card:rgba(20,18,30,.55);
-  --grad-text:linear-gradient(120deg,#7aa2ff,#b79bff 55%,#c98bff);
-  --grad-line:linear-gradient(90deg,#7aa2ff,#c98bff);
+  --card:rgba(16,28,18,.55);
+  --grad-text:linear-gradient(120deg,#CDE6A8,#A7D98A 55%,#7FB85C);
+  --grad-line:linear-gradient(90deg,#CDE6A8,#7FB85C);
 }
-/* the carousel's left/right panels paint with c1–c4 → keep them dark in light
-   mode too, otherwise the white slide titles sit on a light panel (invisible) */
-html[data-theme="light"] .why-section{ --c1:#0d0c16; --c2:#191630; --c3:#241f3e; --c4:#3a2f6a }
+/* the carousel's left/right panels paint with c1–c4 → keep them deep green in
+   light mode too, so the light slide titles never sit on a light panel */
+html[data-theme="light"] .why-section{ --c1:#0c160b; --c2:#13241a; --c3:#1c3326; --c4:#2f5a2a }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -104,7 +119,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.1}
 
 /* ---------- scroll progress + back to top (JS-injected) ---------- */
 .scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
-  background:var(--grad-line);box-shadow:0 0 12px rgba(212,175,55,.6)}
+  background:var(--grad-line);box-shadow:0 0 12px rgba(139,174,102,.6)}
 .to-top{position:fixed;right:22px;bottom:22px;z-index:55;width:46px;height:46px;
   border-radius:50%;border:1px solid var(--line-2);background:rgba(10,10,10,.6);
   backdrop-filter:blur(10px);color:var(--c6);font-size:20px;cursor:pointer;
@@ -120,21 +135,21 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.1}
 /* light band — flips a section to a premium light surface by re-scoping tokens.
    Every child (cards, headings, buttons, chips, steps) adapts automatically. */
 .section--light{
-  --ink:#0A0A0A;
-  --muted:#46585a;
-  --faint:#6b7c7d;
-  --c6:#8A6D1F;                 /* accent (eyebrow/links/dots) -> dark gold for contrast on light */
-  --line:rgba(10,10,10,.12);
-  --line-2:rgba(10,10,10,.18);
-  --glass:rgba(10,10,10,.035);
-  --glass-2:rgba(10,10,10,.06);
-  --card:#ffffff;
-  --shadow:0 24px 50px rgba(10,10,10,.10);
-  --shadow-sm:0 10px 24px rgba(10,10,10,.08);
-  --grad-text:linear-gradient(120deg,#8A6D1F,#6F5616 55%,#9a6f1f);
-  --grad-line:linear-gradient(90deg,#8A6D1F,#9a6f1f);
+  --ink:#1B211A;
+  --muted:#4d5a42;
+  --faint:#6b7c5e;
+  --c6:#4F6A33;                 /* accent (eyebrow/links/dots) -> deep moss for contrast on parchment */
+  --line:rgba(27,33,26,.14);
+  --line-2:rgba(27,33,26,.22);
+  --glass:rgba(27,33,26,.04);
+  --glass-2:rgba(27,33,26,.07);
+  --card:#FBF8EF;
+  --shadow:0 24px 50px rgba(27,33,26,.12);
+  --shadow-sm:0 10px 24px rgba(27,33,26,.10);
+  --grad-text:linear-gradient(120deg,#4F6A33,#33402A 55%,#5E7C3C);
+  --grad-line:linear-gradient(90deg,#4F6A33,#5E7C3C);
   position:relative;z-index:1;
-  background:#f5f4ef;
+  background:#EDE4CC;           /* aged parchment band */
   color:var(--ink);
 }
 .center{text-align:center}
@@ -167,8 +182,8 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.1}
 .btn:hover{transform:translateY(-2px)}
 .btn.is-magnetic{transition:box-shadow .25s,background .25s,border-color .25s}
 .btn--sm{padding:10px 20px;font-size:.88rem}
-.btn--primary{background:var(--grad-btn);color:#0A0A0A;box-shadow:0 12px 30px rgba(212,175,55,.35)}
-.btn--primary:hover{box-shadow:0 18px 46px rgba(212,175,55,.55)}
+.btn--primary{background:var(--grad-btn);color:#0A0A0A;box-shadow:0 12px 30px rgba(139,174,102,.35)}
+.btn--primary:hover{box-shadow:0 18px 46px rgba(139,174,102,.55)}
 .btn--primary::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
   background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
   transform:skewX(-20deg);transition:left .6s}
@@ -185,7 +200,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.1}
 .logo{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);
   font-weight:700;letter-spacing:1.5px;font-size:18px;color:var(--ink)}
 .logo__mark{width:26px;height:26px;border-radius:8px;background:var(--grad-btn);
-  display:grid;place-items:center;font-size:14px;color:#0A0A0A;box-shadow:0 0 18px rgba(212,175,55,.5)}
+  display:grid;place-items:center;font-size:14px;color:#0A0A0A;box-shadow:0 0 18px rgba(139,174,102,.5)}
 .logo span{background:linear-gradient(90deg,var(--c6),var(--c4));
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .nav-links{display:flex;align-items:center;gap:11px;list-style:none}
@@ -195,17 +210,17 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.1}
   border:1px solid transparent;
   transition:color .25s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease}
 .nav-links > li > a:not(.btn):hover{color:var(--ink);background:rgba(255,255,255,.05);
-  border-color:var(--line-2);box-shadow:0 0 16px -5px rgba(212,175,55,.5)}
+  border-color:var(--line-2);box-shadow:0 0 16px -5px rgba(139,174,102,.5)}
 .nav-links > li > a.active{position:relative;overflow:hidden;color:#0A0A0A;
-  background:linear-gradient(135deg,var(--c6),var(--c5) 46%,var(--c4));border-color:rgba(255,236,176,.6);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),0 0 20px -3px rgba(212,175,55,.6),0 8px 22px -8px rgba(212,175,55,.75)}
-.nav-links > li > a.active:hover{background:linear-gradient(135deg,var(--c6),var(--c5) 46%,var(--c4));border-color:rgba(255,236,176,.75)}
+  background:linear-gradient(135deg,var(--c6),var(--c5) 46%,var(--c4));border-color:rgba(245,233,205,.6);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),0 0 20px -3px rgba(139,174,102,.6),0 8px 22px -8px rgba(139,174,102,.75)}
+.nav-links > li > a.active:hover{background:linear-gradient(135deg,var(--c6),var(--c5) 46%,var(--c4));border-color:rgba(245,233,205,.75)}
 .nav-links > li > a.active::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;z-index:1;
   pointer-events:none;background:linear-gradient(120deg,transparent,rgba(255,255,255,.6),transparent);
   transform:skewX(-20deg);animation:tt-sheen 5s ease-in-out infinite}
 /* Get a Quote — shiny gold ring + glow */
-.nav .btn--primary{box-shadow:inset 0 0 0 1px rgba(255,236,176,.5),0 0 18px -4px rgba(212,175,55,.5),0 10px 26px rgba(212,175,55,.38)}
-.nav .btn--primary:hover{box-shadow:inset 0 0 0 1px rgba(255,236,176,.75),0 0 26px -3px rgba(212,175,55,.66),0 16px 40px rgba(212,175,55,.5)}
+.nav .btn--primary{box-shadow:inset 0 0 0 1px rgba(245,233,205,.5),0 0 18px -4px rgba(139,174,102,.5),0 10px 26px rgba(139,174,102,.38)}
+.nav .btn--primary:hover{box-shadow:inset 0 0 0 1px rgba(245,233,205,.75),0 0 26px -3px rgba(139,174,102,.66),0 16px 40px rgba(139,174,102,.5)}
 /* Services dropdown */
 .nav-caret{width:13px;height:13px;transition:transform .25s ease}
 .nav-item--has-menu:hover .nav-caret,.nav-item--has-menu:focus-within .nav-caret{transform:rotate(180deg)}
@@ -218,7 +233,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.1}
 .nav-item--has-menu:hover .nav-menu,.nav-item--has-menu:focus-within .nav-menu{opacity:1;transform:translateY(0);pointer-events:auto}
 .nav-menu a{display:block;padding:9px 13px;border-radius:9px;font-size:14px;color:var(--muted);
   white-space:nowrap;transition:background .2s ease,color .2s ease}
-.nav-menu a:hover{background:rgba(212,175,55,.12);color:var(--ink)}
+.nav-menu a:hover{background:rgba(139,174,102,.12);color:var(--ink)}
 /* rich dropdown (About): two-line items — title + subtitle */
 .nav-menu--rich{min-width:292px}
 .nav-menu--rich a{padding:11px 14px}
@@ -238,7 +253,7 @@ section[id]{scroll-margin-top:96px}
   background:radial-gradient(circle at 32% 26%,var(--glass-2),var(--glass));
   transition:background .25s ease,border-color .25s ease,color .25s ease,transform .2s ease,box-shadow .25s ease}
 .theme-toggle:hover{border-color:var(--c5);transform:translateY(-1px);
-  box-shadow:0 0 0 4px rgba(212,175,55,.12),0 10px 24px rgba(0,0,0,.32)}
+  box-shadow:0 0 0 4px rgba(139,174,102,.12),0 10px 24px rgba(0,0,0,.32)}
 .theme-toggle svg{position:relative;z-index:1;width:20px;height:20px;
   transition:transform .55s cubic-bezier(.34,1.5,.5,1)}
 .theme-toggle:hover svg{transform:rotate(45deg) scale(1.12)}
@@ -318,7 +333,7 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
 .card--feature{background:linear-gradient(var(--card),var(--card)) padding-box,
   var(--grad-line) border-box;border:1px solid transparent}
 .card--glow::after{content:"";position:absolute;inset:0;border-radius:inherit;
-  background:radial-gradient(300px 200px at 50% 0%,rgba(212,175,55,.16),transparent 70%);
+  background:radial-gradient(300px 200px at 50% 0%,rgba(139,174,102,.16),transparent 70%);
   opacity:0;transition:opacity .3s;pointer-events:none}
 .card--glow:hover::after{opacity:1}
 
@@ -337,7 +352,7 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
 .split{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
 .split--reverse{direction:rtl}.split--reverse>*{direction:ltr}
 .split__media{min-height:320px;border-radius:var(--r-lg);border:1px solid var(--line-2);
-  background:radial-gradient(130% 110% at 100% 0%,rgba(212,175,55,.14),transparent 55%),var(--card);
+  background:radial-gradient(130% 110% at 100% 0%,rgba(139,174,102,.14),transparent 55%),var(--card);
   backdrop-filter:blur(10px);box-shadow:var(--shadow);
   display:grid;place-content:center;gap:18px;padding:30px;overflow:hidden}
 
@@ -413,7 +428,7 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 /* ---------- CTA band ---------- */
 .cta{position:relative;text-align:center;border-radius:var(--r-lg);padding:64px 40px;
   border:1px solid var(--line-2);overflow:hidden;
-  background:radial-gradient(600px 300px at 50% 0%,rgba(160,126,34,.3),transparent 70%),var(--card)}
+  background:radial-gradient(600px 300px at 50% 0%,rgba(98,129,65,.3),transparent 70%),var(--card)}
 
 /* ---------- footer ---------- */
 .footer{position:relative;z-index:1;border-top:1px solid var(--line);margin-top:40px;
@@ -498,7 +513,7 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 .spotlight-svg{width:min(760px,92vw);height:auto;display:block;margin:6px auto 0}
 .sp-text{font-family:var(--font-display);font-weight:700;font-size:120px;letter-spacing:6px;text-anchor:middle}
 .sp-base{fill:#2c424a}
-.sp-glow{fill:#EAD9A0}
+.sp-glow{fill:#EBD5AB}
 .sp-beam{mix-blend-mode:screen;opacity:.55}
 .sp-lamp{transform-box:view-box;transform-origin:400px 20px;animation:sp-swing 3s ease-in-out infinite alternate}
 @keyframes sp-swing{from{transform:rotate(-24deg)}to{transform:rotate(24deg)}}

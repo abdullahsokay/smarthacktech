@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="'Space Grotesk','Segoe UI',system-ui,sans-serif">
+  <defs>
+    <linearGradient id="hw-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101013"/><stop offset="1" stop-color="#0a0a0c"/>
+    </linearGradient>
+    <linearGradient id="hw-gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E8C766"/><stop offset="1" stop-color="#D4AF37"/>
+    </linearGradient>
+    <radialGradient id="hw-orb" cx="0.5" cy="0.4" r="0.6">
+      <stop offset="0" stop-color="#7c6cff"/><stop offset="1" stop-color="#2a1f6e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="750" fill="#050506"/>
+  <!-- browser window -->
+  <g transform="translate(70,70)">
+    <rect width="1060" height="610" rx="20" fill="url(#hw-bg)" stroke="#ffffff" stroke-opacity=".08"/>
+    <!-- chrome bar -->
+    <path d="M0 20a20 20 0 0 1 20-20h1020a20 20 0 0 1 20 20v40H0z" fill="#1a1a1f"/>
+    <circle cx="34" cy="30" r="7" fill="#ff5f57"/><circle cx="60" cy="30" r="7" fill="#febc2e"/><circle cx="86" cy="30" r="7" fill="#28c840"/>
+    <rect x="150" y="16" width="760" height="28" rx="14" fill="#0c0c0f"/>
+    <text x="180" y="35" fill="#8a8a93" font-size="16">🔒 hacktech.pk</text>
+    <!-- hero content -->
+    <circle cx="880" cy="430" r="150" fill="url(#hw-orb)"/>
+    <g transform="translate(60,150)">
+      <rect width="230" height="34" rx="17" fill="#ffffff" fill-opacity=".05" stroke="#ffffff" stroke-opacity=".08"/>
+      <circle cx="24" cy="17" r="5" fill="#D4AF37"/>
+      <text x="42" y="23" fill="#cfcfd6" font-size="15">Software · AI · IoT · Security</text>
+      <text x="0" y="120" fill="#f5f3ee" font-size="62" font-weight="700">Pakistan&#8217;s</text>
+      <text x="0" y="190" fill="url(#hw-gold)" font-size="62" font-weight="700">complete tech</text>
+      <text x="0" y="260" fill="url(#hw-gold)" font-size="62" font-weight="700">ecosystem</text>
+      <text x="0" y="320" fill="#9a9aa3" font-size="20">Everything your business needs to go digital,</text>
+      <text x="0" y="350" fill="#9a9aa3" font-size="20">engineered in Pakistan.</text>
+      <rect x="0" y="380" width="180" height="52" rx="26" fill="url(#hw-gold)"/>
+      <text x="90" y="413" fill="#0a0a0a" font-size="19" font-weight="700" text-anchor="middle">Get a Quote</text>
+      <rect x="196" y="380" width="190" height="52" rx="26" fill="none" stroke="#ffffff" stroke-opacity=".18"/>
+      <text x="291" y="413" fill="#e9e9ee" font-size="19" font-weight="600" text-anchor="middle">Explore Services</text>
+    </g>
+    <!-- nav -->
+    <g fill="#bdbdc4" font-size="16" transform="translate(0,95)">
+      <circle cx="64" cy="0" r="14" fill="#0c0c0f" stroke="#D4AF37" stroke-opacity=".5"/>
+      <text x="92" y="5" fill="#f5f3ee" font-weight="700" font-size="18">Hack</text>
+      <text x="150" y="5" fill="#D4AF37" font-weight="700" font-size="18">Tech</text>
+      <text x="620" y="5">Home</text><text x="700" y="5">Services</text><text x="800" y="5">Portfolio</text><text x="905" y="5">About</text>
+    </g>
+  </g>
+</svg>
