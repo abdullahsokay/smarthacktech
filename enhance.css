@@ -394,11 +394,6 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
 .pf-card__text{font-size:.92rem;color:var(--muted);flex:1}
 .pf-card__body .chip-row{margin-top:6px}
 
-/* ===== Portfolio — fullpage slide mode (desktop) ===== */
-html.pf-snap{scroll-snap-type:y mandatory;scroll-behavior:smooth}
-body[data-page="portfolio"] .pf-slide{min-height:100vh;display:flex;align-items:center;
-  scroll-snap-align:start;padding-top:96px;padding-bottom:64px}
-body[data-page="portfolio"] .footer{scroll-snap-align:start}
 /* project showcase — big split, not a small card */
 .pf-show{display:grid;grid-template-columns:1.05fr 1fr;gap:52px;align-items:center;width:100%}
 .pf-show--rev .pf-show__media{order:2}
@@ -411,23 +406,8 @@ body[data-page="portfolio"] .footer{scroll-snap-align:start}
 .pf-show__info .lead{margin-bottom:20px}
 @media(max-width:860px){.pf-show{grid-template-columns:1fr;gap:26px}.pf-show--rev .pf-show__media{order:0}}
 
-/* right-side slide indicator (ticks) */
-.pf-dots{position:fixed;top:50%;right:22px;transform:translateY(-50%);z-index:40;
-  display:flex;flex-direction:column;gap:9px;align-items:flex-end}
-.pf-dots button{width:20px;height:3px;border:0;border-radius:2px;cursor:pointer;padding:0;
-  background:rgba(139,174,102,.3);transition:width .3s ease,background .3s ease,box-shadow .3s ease}
-.pf-dots button:hover{width:30px;background:var(--c5)}
-.pf-dots button.active{width:36px;height:4px;background:var(--c5);box-shadow:0 0 12px var(--c5)}
-html[data-theme="light"] .pf-dots button{background:rgba(79,123,62,.3)}
-html[data-theme="light"] .pf-dots button:hover,
-html[data-theme="light"] .pf-dots button.active{background:var(--c5);box-shadow:0 0 12px rgba(79,123,62,.6)}
-
-/* turn fullpage OFF on phones / short screens → normal scroll, no trap */
-@media(max-width:760px),(max-height:720px){
-  html.pf-snap{scroll-snap-type:none}
-  body[data-page="portfolio"] .pf-slide{min-height:auto;display:block;padding-top:64px;padding-bottom:48px}
-  .pf-dots{display:none}
-}
+/* portfolio sections now scroll normally — they inherit .section spacing.
+   .pf-slide is left as an inert hook on the markup; no fullpage/snap rules. */
 
 /* ============================================================
    Rotating edge-light — a bright line that travels around the

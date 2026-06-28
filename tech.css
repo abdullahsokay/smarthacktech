@@ -38,12 +38,12 @@ body[data-page="tech"] { min-block-size: 460vh; overflow-x: clip; }
 .stuck-grid .cat-tele { color:#C9A94A; text-shadow:0 0 30px rgba(201,169,74,.5) }
 .stuck-grid .cat-ops  { color:#EDE6D6; text-shadow:0 0 26px rgba(212,175,55,.32) }
 
-/* light theme: pale-gold words are invisible on a light bg — darken them */
-html[data-theme="light"] .stuck-grid .cat-prod { color:#6d28d9; text-shadow:0 0 26px rgba(124,58,237,.30) }
-html[data-theme="light"] .stuck-grid .cat-ai   { color:#5a3fe0; text-shadow:none }
-html[data-theme="light"] .stuck-grid .cat-conn { color:#4f7cff; text-shadow:none }
-html[data-theme="light"] .stuck-grid .cat-tele { color:#7c3aed; text-shadow:none }
-html[data-theme="light"] .stuck-grid .cat-ops  { color:#2a2a3a; text-shadow:none }
+/* light theme: pale-cream words are invisible on a light bg — use greens */
+html[data-theme="light"] .stuck-grid .cat-prod { color:#3C6230; text-shadow:0 0 26px rgba(60,98,48,.30) }
+html[data-theme="light"] .stuck-grid .cat-ai   { color:#4F7B3E; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-conn { color:#2f6e4a; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-tele { color:#5E7C3C; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-ops  { color:#1B211A; text-shadow:none }
 
 /* centre brand tile */
 .stuck-grid .grid-item.special.special {

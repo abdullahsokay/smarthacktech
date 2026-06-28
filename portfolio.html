@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ht-theme')||'dark')}catch(e){}try{document.documentElement.classList.add('pf-snap')}catch(e){}</script>
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ht-theme')||'dark')}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="enhance.css">
 <meta name="theme-color" content="#0A0A0A">
@@ -166,33 +166,8 @@
 <script>
 (function () {
   if (document.body.getAttribute('data-page') !== 'portfolio') return;
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.pf-slide'));
 
-  // build the right-side slide indicator
-  if (slides.length && window.matchMedia('(min-width:761px)').matches) {
-    var nav = document.createElement('div');
-    nav.className = 'pf-dots';
-    slides.forEach(function (s) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.setAttribute('aria-label', s.getAttribute('data-label') || 'Section');
-      b.addEventListener('click', function () { s.scrollIntoView({ behavior: 'smooth' }); });
-      nav.appendChild(b);
-    });
-    document.body.appendChild(nav);
-    var btns = nav.querySelectorAll('button');
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          var idx = slides.indexOf(e.target);
-          for (var i = 0; i < btns.length; i++) btns[i].classList.toggle('active', i === idx);
-        }
-      });
-    }, { threshold: 0.5 });
-    slides.forEach(function (s) { io.observe(s); });
-  }
-
-  // animate skill bars when their slide comes into view
+  // animate skill bars when they scroll into view
   var bars = document.querySelectorAll('.pf-bar__fill');
   if (bars.length && 'IntersectionObserver' in window) {
     var io2 = new IntersectionObserver(function (entries) {
