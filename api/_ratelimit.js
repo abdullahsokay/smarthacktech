@@ -8,8 +8,13 @@
 const buckets = new Map();
 
 function clientIp(req) {
-  const xff = (req.headers && (req.headers["x-forwarded-for"] || req.headers["x-real-ip"])) || "";
-  return String(xff).split(",")[0].trim() || "anon";
+  const h = (req && req.headers) || {};
+  // x-real-ip is set by the Vercel edge to the true client IP (not client-spoofable).
+  if (h["x-real-ip"]) return String(h["x-real-ip"]).trim();
+  // Fallback: take the LAST x-forwarded-for entry (closest to our edge) to blunt
+  // header-spoofing, since attackers can only prepend tokens, not append them.
+  const parts = String(h["x-forwarded-for"] || "").split(",").map((s) => s.trim()).filter(Boolean);
+  return parts.length ? parts[parts.length - 1] : "anon";
 }
 
 // returns true if the caller has exceeded `max` requests in `windowMs`

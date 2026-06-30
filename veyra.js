@@ -343,6 +343,8 @@
     if (window.jspdf && window.jspdf.jsPDF) return cb();
     var s = document.createElement("script");
     s.src = "https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js";
+    s.integrity = "sha384-en/ztfPSRkGfME4KIm05joYXynqzUgbsG5nMrj/xEFAHXkeZfO3yMK8QQ+mP7p1/";
+    s.crossOrigin = "anonymous";
     s.onload = cb;
     s.onerror = function () { cb(); };
     document.body.appendChild(s);
@@ -402,7 +404,7 @@
       var res = await fetch("/api/kaira-lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       var data = await res.json();
       if (!res.ok) throw new Error(data.error || "Could not submit.");
-      card.innerHTML = '<div class="vy-lead__done"><span class="vy-tier vy-tier--' + data.tier + '">' + data.tier + " lead</span>" +
+      card.innerHTML = '<div class="vy-lead__done"><span class="vy-tier vy-tier--' + esc(data.tier) + '">' + esc(data.tier) + " lead</span>" +
         '<div class="vy-lead__t" style="margin-top:10px">You&rsquo;re in good hands.</div>' +
         '<p class="vy-lead__s">KAIRA has briefed the HackTech team — a specialist will reach out shortly.</p></div>';
       scrollDown();
@@ -497,15 +499,16 @@
   (function () {
     if (document.getElementById("kaira-three")) return;
     var V = "https://cdn.jsdelivr.net/npm/three@0.128.0";
-    function load(src, id) {
+    function load(src, id, integrity) {
       var s = document.createElement("script");
       if (id) s.id = id;
       s.src = src;
+      if (integrity) { s.integrity = integrity; s.crossOrigin = "anonymous"; }
       s.async = false;
       document.body.appendChild(s);
     }
-    load(V + "/build/three.min.js", "kaira-three");
-    load(V + "/examples/js/loaders/GLTFLoader.js", "kaira-gltf");
+    load(V + "/build/three.min.js", "kaira-three", "sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu");
+    load(V + "/examples/js/loaders/GLTFLoader.js", "kaira-gltf", "sha384-fljlqkjWlmSFjkESkQvm77heIZpoWmXEOzlCA7kOpGUH+95Zk0yGfQieWM2q136E");
     load("kaira-robot.js", "kaira-robot");
   })();
 })();

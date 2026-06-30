@@ -94,9 +94,9 @@
           '<div class="footer__col"><h4>What we do</h4>' +
             '<a href="solutions.html">Services</a><a href="demo.html">Live Demo</a><a href="about.html">About</a><a href="contact.html">Get a Quote</a></div>' +
           '<div class="footer__col"><h4>Company</h4>' +
-            '<a href="about.html">About</a><a href="contact.html">Contact</a><a href="#">Careers</a></div>' +
-          '<div class="footer__col"><h4>Connect</h4>' +
-            '<a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">YouTube</a></div>' +
+            '<a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>' +
+          '<div class="footer__col"><h4>Get in touch</h4>' +
+            '<a href="mailto:hello@hacktech.pk">hello@hacktech.pk</a><a href="tel:+9221111422538">+92 21 111 422 538</a></div>' +
         "</div>" +
         '<div class="footer__bottom">' +
           "<span>© 2026 HackTech Technologies (Pvt) Ltd. All rights reserved.</span>" +
