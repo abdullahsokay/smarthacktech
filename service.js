@@ -46,7 +46,7 @@
       img: "images/circuit.jpg", tag: "Devices · Live data",
       chips: ["Fleet Monitoring", "Fuel Monitoring", "Smart Sensors", "Industrial IoT", "Asset Tracking", "Custom IoT"],
       features: [
-        ["Made-in-PK devices", "SentinelEdge boards and firmware engineered end-to-end at home."],
+        ["Made-in-PK devices", "Our own tracking boards and firmware engineered end-to-end at home."],
         ["Live dashboards", "See position, health and alerts the moment they happen."],
         ["SOTMS fleet platform", "Our flagship fleet-intelligence system — tracking, AI & savings."],
         ["Industrial IoT", "Bring machines, energy and processes online on the factory floor."],
@@ -123,14 +123,14 @@
     sotms: {
       eyebrow: "Flagship · SOTMS",
       title: 'SOTMS — <span class="accent">smart fleet, one screen</span>',
-      lead: "Locally-made SentinelEdge devices and the FleetPulse dashboard turn thousands of vehicle signals into one calm, real-time command centre.",
+      lead: "Locally-built tracking devices and the SOTMS dashboard turn thousands of vehicle signals into one calm, real-time command centre.",
       img: "images/fleet.jpg", tag: "Live fleet intelligence",
-      chips: ["Live Tracking", "DriveGuard AI", "EcoRoute Savings", "GuardianOBD", "Geo-fencing", "Reports"],
+      chips: ["Live Tracking", "Driver-behavior AI", "Fuel & Route Savings", "Vehicle Diagnostics", "Geo-fencing", "Reports"],
       features: [
         ["Live tracking", "Every vehicle's position, speed and status, second by second."],
-        ["DriveGuard AI", "On-device alerts for fatigue, harsh braking and distraction."],
-        ["EcoRoute savings", "Fuel and route optimisation that cuts cost month after month."],
-        ["GuardianOBD", "Engine health and diagnostics before small issues become big ones."],
+        ["Driver-behavior AI", "On-device alerts for fatigue, harsh braking and distraction."],
+        ["Fuel & route savings", "Fuel and route optimisation that cuts cost month after month."],
+        ["Vehicle diagnostics", "Engine health and diagnostics before small issues become big ones."],
         ["Geo-fencing", "Zones, alerts and trip rules tailored to your operation."],
         ["One dashboard", "Tracking, safety, fuel and diagnostics — one login, one truth."]
       ],
@@ -150,6 +150,29 @@
   document.title = plainTitle() + " — HackTech";
   var md = document.querySelector('meta[name="description"]');
   if (md) md.setAttribute("content", svc.lead);
+
+  // per-service SEO: canonical + Open Graph / Twitter, injected since the
+  // page is data-driven (the static head can't know which service loaded).
+  (function () {
+    var head = document.head, title = plainTitle() + " — HackTech";
+    var canonical = "https://hacktech.pk/service.html?s=" + encodeURIComponent(key);
+    function meta(attr, name, content) {
+      var el = document.querySelector("meta[" + attr + '="' + name + '"]');
+      if (!el) { el = document.createElement("meta"); el.setAttribute(attr, name); head.appendChild(el); }
+      el.setAttribute("content", content);
+    }
+    var link = document.querySelector('link[rel="canonical"]');
+    if (!link) { link = document.createElement("link"); link.rel = "canonical"; head.appendChild(link); }
+    link.href = canonical;
+    meta("property", "og:type", "website");
+    meta("property", "og:title", title);
+    meta("property", "og:description", svc.lead);
+    meta("property", "og:url", canonical);
+    meta("property", "og:image", "https://hacktech.pk/og-image.png");
+    meta("name", "twitter:card", "summary_large_image");
+    meta("name", "twitter:title", title);
+    meta("name", "twitter:description", svc.lead);
+  })();
 
   set("svc-eyebrow", esc(svc.eyebrow));
   set("svc-title", svc.title);
