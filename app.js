@@ -9,13 +9,17 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var momentum = null; // set by the momentum-scroll feature; lets other features drive scrolling
+  // scroll-linked CSS animations supported? → the progress bar runs on the
+  // compositor (enhance.css M2) and JS stops writing its width every frame.
+  var cssScrollTimeline = false;
+  try { cssScrollTimeline = !reduce && "CSS" in window && CSS.supports("animation-timeline: scroll()"); } catch (e) {}
 
   /* ---- 1. nav: transparent -> glass ---- */
   var nav = $("#nav");
   function onScroll() {
     if (nav) nav.classList.toggle("scrolled", window.scrollY > 40);
     var sp = $("#scrollProgress");
-    if (sp) {
+    if (sp && !cssScrollTimeline) {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
       sp.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
@@ -51,6 +55,7 @@
   /* ---- 6. inject scroll-progress + back-to-top ---- */
   (function () {
     var sp = document.createElement("div"); sp.className = "scroll-progress"; sp.id = "scrollProgress";
+    if (cssScrollTimeline) sp.classList.add("sp-css"); // CSS scroll() timeline drives it
     document.body.appendChild(sp);
     var tt = document.createElement("button");
     tt.className = "to-top"; tt.id = "toTop"; tt.setAttribute("aria-label", "Back to top");
@@ -70,11 +75,13 @@
       var suf = el.getAttribute("data-suffix") || "";
       var pre = el.getAttribute("data-prefix") || "";
       if (reduce) { el.textContent = pre + fmt(target, dec) + suf; return; }
-      var dur = 1500, t0 = null;
+      // easeOutExpo over a longer beat — races through the small numbers,
+      // then settles slowly onto the final figure. Feels weighed, not counted.
+      var dur = 1800, t0 = null;
       function step(t) {
         if (!t0) t0 = t;
         var p = Math.min((t - t0) / dur, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
+        var eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
         el.textContent = pre + fmt(target * eased, dec) + suf;
         if (p < 1) requestAnimationFrame(step);
       }
