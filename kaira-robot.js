@@ -1,5 +1,5 @@
 /* ============================================================
-   KAIRA — 3D mascot launcher (Three.js, classic UMD build)
+   KAIRA — cinematic 3D mascot launcher (Three.js, classic UMD)
    Uses the global THREE (loaded by veyra.js) — no ES modules.
 
    3-tier mascot, most-specific first, each falls back to the next:
@@ -14,14 +14,24 @@
           npx @gltf-transform/cli copy resized.glb models/kaira-cat/kaira-cat.gltf
         (resize first — source files can be 30MB+ with 4K textures,
         which is both slow and unnecessary for a ~150px launcher.)
-     2) procedural cyber-cat  — 100% code geometry, no files. Only
+     2) procedural cyber-cat — 100% code geometry, no files. Only
         applies its cat-specific parts (ears/tail/eyes/blink) when
         this tier is the one actually built — see `parts` below.
-     3) CSS energy orb        — if WebGL is unavailable.
+     3) CSS energy orb — if WebGL is unavailable.
 
-   Idle breathing + whole-body cursor-follow apply to any mascot in
-   tier 1 or 2. Ears/tail/blink/eye-glow are tier-2-only (`parts`).
-   Click opens chat (handled by veyra).
+   CINEMATIC LAYER (applies to tier 1 & 2):
+     · ACES filmic tone mapping — richer, film-like color
+     · 4-light rig: white key, violet rim, orbiting cyan accent,
+       breathing under-glow (colors match the .vy widget palette)
+     · floating soul-particles (additive Points) swirling around
+       the mascot — drift up, respawn, surge on hover/click
+     · ground glow disc that breathes with the idle bob
+     · layered idle: bob + sway + micro-roll, and a slow "look
+       around" wander when the pointer has been still for a while
+     · hover surge (lights + particles + lift), click power-pulse
+     · camera micro-drift for cinematic depth
+   All motion honors prefers-reduced-motion (static pose, frozen
+   dim particles, fixed lights/camera). Click opens chat (veyra).
    ============================================================ */
 (function () {
   "use strict";
@@ -45,7 +55,8 @@
 
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(34, W / H, 0.1, 100);
-  camera.position.set(0, 1.25, 6.4);
+  var CAM = { x: 0, y: 1.25, z: 6.4 };
+  camera.position.set(CAM.x, CAM.y, CAM.z);
 
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(W, H);
@@ -55,29 +66,64 @@
   } else if (THREE.sRGBEncoding) {
     renderer.outputEncoding = THREE.sRGBEncoding;
   }
+  // film-like response instead of raw linear — deeper shadows, softer highlights
+  if (THREE.ACESFilmicToneMapping) {
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.12;
+  }
   renderer.domElement.style.pointerEvents = "none";
   stage.appendChild(renderer.domElement);
 
-  // ---- Lights: soft hemi fill + white key + warm orange rim.
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x223047, 1.15));
-  var key = new THREE.DirectionalLight(0xffffff, 1.7);
+  // ---- Light rig: white key / violet rim (matches the widget's --vy-violet)
+  // / orbiting cyan accent / breathing violet under-glow.
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x223047, 1.0));
+  var key = new THREE.DirectionalLight(0xffffff, 1.5);
   key.position.set(3, 6, 5);
   scene.add(key);
-  var rim = new THREE.DirectionalLight(0xff8a3d, 1.35);
+  var rim = new THREE.DirectionalLight(0x8a63ff, 1.6);
   rim.position.set(-5, 2, -4);
   scene.add(rim);
+  var accent = new THREE.PointLight(0x2fe0e0, 0.65, 9);
+  accent.position.set(2.6, 1.2, 0);
+  scene.add(accent);
+  var underGlow = new THREE.PointLight(0x7c5cff, 0.55, 5);
+  underGlow.position.set(0, -1.1, 0.7);
+  scene.add(underGlow);
 
-  // ---- Shared state (filled once a mascot is built; may be async for GLB).
-  var cat = null;      // root object (GLB scene OR procedural group)
-  var parts = null;    // procedural sub-parts (null when a GLB is used)
-  var mixer = null;    // GLB animation mixer (null for procedural)
+  // ---- Soft round sprite for particles + ground disc (canvas radial glow).
+  function glowTexture(inner, mid) {
+    var c = document.createElement("canvas");
+    c.width = c.height = 64;
+    var g = c.getContext("2d");
+    var grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0, inner);
+    grad.addColorStop(0.35, mid);
+    grad.addColorStop(1, "rgba(0,0,0,0)");
+    g.fillStyle = grad;
+    g.fillRect(0, 0, 64, 64);
+    var tex = new THREE.CanvasTexture(c);
+    tex.needsUpdate = true;
+    return tex;
+  }
+
+  // ---- Shared state (filled once a mascot is built; async for the GLTF).
+  var cat = null;      // root object (GLTF scene OR procedural group)
+  var parts = null;    // procedural sub-parts (null when the GLTF is used)
+  var mixer = null;    // GLTF animation mixer (if the model ships clips)
   var baseY = 0;
   var baseScale = 1;
+  var cinema = null;   // { points, seeds, ground } — built with the mascot
+  var reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 
-  // Fit the max dimension to ~2.95, recenter on origin, sit slightly up —
-  // same normalize contract for both the GLB and the procedural cat.
+  // Fit the max dimension to ~2.95, recenter, sit slightly up — same
+  // normalize contract for both tiers. Then dress the stage around it.
   function normalizeAndMount(obj) {
-    obj.traverse(function (o) { if (o.isMesh) o.frustumCulled = false; });
+    obj.traverse(function (o) {
+      if (o.isMesh) {
+        o.frustumCulled = false;
+        if (o.material && o.material.map) o.material.map.anisotropy = 4;
+      }
+    });
     var box = new THREE.Box3().setFromObject(obj);
     var size = box.getSize(new THREE.Vector3());
     var center = box.getCenter(new THREE.Vector3());
@@ -87,11 +133,62 @@
     baseY = obj.position.y + 0.05;
     scene.add(obj);
     cat = obj;
+    buildCinema();
     vyRoot.classList.add("vy-3d");
   }
 
+  // ---- The stagecraft: soul-particles + breathing ground glow. Built only
+  // after a mascot exists so the orb fallback never shows floating dust.
+  function buildCinema() {
+    var N = 54;
+    var pos = new Float32Array(N * 3);
+    var seeds = [];
+    for (var i = 0; i < N; i++) {
+      seeds.push({
+        a: Math.random() * Math.PI * 2,            // orbit angle
+        r: 0.7 + Math.random() * 1.0,              // orbit radius
+        y: -1.4 + Math.random() * 3.2,             // height
+        vy: 0.14 + Math.random() * 0.22,           // rise speed
+        va: (Math.random() < 0.5 ? -1 : 1) * (0.15 + Math.random() * 0.3), // swirl speed
+        s: 0.5 + Math.random() * 0.5               // per-particle shimmer phase
+      });
+      pos[i * 3] = Math.cos(seeds[i].a) * seeds[i].r;
+      pos[i * 3 + 1] = seeds[i].y;
+      pos[i * 3 + 2] = Math.sin(seeds[i].a) * seeds[i].r;
+    }
+    var pGeo = new THREE.BufferGeometry();
+    pGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    var pMat = new THREE.PointsMaterial({
+      size: 0.11,
+      map: glowTexture("rgba(255,255,255,.95)", "rgba(155,123,255,.55)"),
+      transparent: true,
+      opacity: reduce ? 0.22 : 0.0,   // fades in with the entrance
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      color: 0xb9a4ff
+    });
+    var points = new THREE.Points(pGeo, pMat);
+    scene.add(points);
+
+    var ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(3.6, 3.6),
+      new THREE.MeshBasicMaterial({
+        map: glowTexture("rgba(155,123,255,.85)", "rgba(124,92,255,.35)"),
+        transparent: true,
+        opacity: 0.5,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+      })
+    );
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = -1.42;
+    scene.add(ground);
+
+    cinema = { points: points, geo: pGeo, mat: pMat, seeds: seeds, ground: ground };
+  }
+
   // ============================================================
-  // (1) GLB model, if present. onError (incl. 404) → procedural cat.
+  // (1) GLTF model, if present. onError (incl. 404) → procedural cat.
   // ============================================================
   function useGLB(gltf) {
     normalizeAndMount(gltf.scene);
@@ -127,7 +224,6 @@
 
     var group = new THREE.Group();
 
-    // Torso: dark undersuit + orange cyber jacket.
     var torso = new THREE.Group();
     torso.position.set(0, 0.62, 0);
     group.add(torso);
@@ -145,7 +241,6 @@
 
     mesh(new THREE.CylinderGeometry(0.26, 0.3, 0.26, 12), matSuit, 0, 1.26, 0, group);
 
-    // Head (pivot at the neck).
     var head = new THREE.Group();
     head.position.set(0, 1.32, 0);
     group.add(head);
@@ -222,7 +317,7 @@
     normalizeAndMount(group);
   }
 
-  // Pick the mascot: try the GLB first, fall back to procedural.
+  // Pick the mascot: try the real model first, fall back to procedural.
   if (THREE.GLTFLoader) {
     try {
       new THREE.GLTFLoader().load("/models/kaira-cat/kaira-cat.gltf", useGLB, undefined, buildProceduralCat);
@@ -240,12 +335,14 @@
   var target = { x: 0, y: 0 };
   var hover = 0;
   var hoverTarget = 0;
-  var reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var surge = 0;              // click power-pulse, decays each frame
+  var lastMove = 0;           // seconds timestamp of last pointer move
 
   var launch = document.querySelector(".vy-launch");
   if (launch) {
     launch.addEventListener("mouseenter", function () { hoverTarget = 1; });
     launch.addEventListener("mouseleave", function () { hoverTarget = 0; });
+    launch.addEventListener("click", function () { surge = 1; });
   }
 
   window.addEventListener("pointermove", function (e) {
@@ -254,6 +351,7 @@
     var dy = (e.clientY - (r.top + r.height / 2)) / Math.max(window.innerHeight, 1);
     target.y = Math.max(-0.7, Math.min(0.7, dx * 2.2));
     target.x = Math.max(-0.32, Math.min(0.32, dy * 1.3));
+    lastMove = t;
   }, { passive: true });
 
   window.addEventListener("resize", function () {
@@ -284,16 +382,61 @@
     var dt = Math.min(clock.getDelta(), 0.05);
     t += dt;
     hover += (hoverTarget - hover) * 0.12;
+    surge = Math.max(0, surge - dt * 2.2);
     if (mixer) mixer.update(dt);
-    if (!cat) { renderer.render(scene, camera); return; }   // mascot not built yet
 
-    // ---- Entrance pop + idle bob (both mascot types).
+    // ---- Stagecraft runs as soon as it exists (even while GLTF loads).
+    if (cinema && !reduce) {
+      var pos = cinema.geo.attributes.position.array;
+      var boost = 1 + hover * 1.4 + surge * 2.5;
+      for (var i = 0; i < cinema.seeds.length; i++) {
+        var s = cinema.seeds[i];
+        s.y += s.vy * boost * dt;
+        s.a += s.va * boost * dt;
+        if (s.y > 1.9) s.y = -1.45;              // recycle at the top
+        pos[i * 3] = Math.cos(s.a) * s.r;
+        pos[i * 3 + 1] = s.y;
+        pos[i * 3 + 2] = Math.sin(s.a) * s.r;
+      }
+      cinema.geo.attributes.position.needsUpdate = true;
+      // fade in with the entrance; shimmer + brighten under attention
+      cinema.mat.opacity = Math.min(intro, 1) * (0.5 + Math.sin(t * 2.6) * 0.12 + hover * 0.3 + surge * 0.4);
+      cinema.ground.material.opacity = 0.38 + Math.sin(t * 1.7) * 0.1 + hover * 0.25 + surge * 0.3;
+      var gs = 1 + Math.sin(t * 1.7) * 0.05 + surge * 0.18;
+      cinema.ground.scale.set(gs, gs, 1);
+    }
+
+    // ---- Lights breathe; accent orbits slowly.
+    if (!reduce) {
+      accent.position.set(Math.cos(t * 0.4) * 2.6, 1.2 + Math.sin(t * 0.9) * 0.3, Math.sin(t * 0.4) * 2.6);
+      accent.intensity = 0.55 + Math.sin(t * 1.3) * 0.15 + hover * 0.5 + surge * 0.8;
+      underGlow.intensity = 0.45 + Math.sin(t * 1.7) * 0.15 + hover * 0.4 + surge * 0.9;
+      rim.intensity = 1.5 + hover * 0.5 + surge * 0.6;
+      // camera micro-drift — barely-there handheld feel
+      camera.position.x = CAM.x + Math.sin(t * 0.23) * 0.05;
+      camera.position.y = CAM.y + Math.sin(t * 0.31) * 0.035;
+      camera.lookAt(0, 0.1, 0);
+    }
+
+    if (!cat) { renderer.render(scene, camera); return; }   // model still loading
+
+    // ---- Entrance pop + layered idle (bob + sway + micro-roll).
     if (intro < 1) intro = Math.min(intro + dt / 0.65, 1);
     var pop = easeOutBack(intro);
     var settle = 1 - intro;
     var bob = reduce ? 0 : Math.sin(t * 1.7) * 0.06;
-    cat.scale.setScalar(baseScale * (0.6 + 0.4 * pop));
+    var pulse = 1 + surge * 0.06;                            // click power-pulse
+    cat.scale.setScalar(baseScale * (0.6 + 0.4 * pop) * pulse);
     cat.position.y = baseY + bob + hover * 0.12 - settle * 0.35;
+    if (!reduce) {
+      cat.position.x = Math.sin(t * 0.6) * 0.03;             // gentle sway
+      cat.rotation.z = Math.sin(t * 0.8) * 0.02;             // micro-roll
+    }
+
+    // ---- Where to look: the pointer — or wander when it's been idle.
+    var idle = !reduce && (t - lastMove) > 5;
+    var lookY = idle ? Math.sin(t * 0.33) * 0.42 : target.y;
+    var lookX = idle ? Math.sin(t * 0.21) * 0.10 : target.x;
 
     if (reduce) {
       cat.rotation.set(0, 0, 0);
@@ -303,19 +446,16 @@
         parts.eyeLight.intensity = 0.9 + hover * 0.5;
       }
     } else {
-      // ---- Cursor-follow: whole body eases toward the pointer.
-      cat.rotation.y += (target.y * 0.45 - cat.rotation.y) * 0.07;
-      cat.rotation.x += (target.x * 0.35 - cat.rotation.x) * 0.07;
+      cat.rotation.y += (lookY * 0.45 - cat.rotation.y) * 0.07;
+      cat.rotation.x += (lookX * 0.35 - cat.rotation.x) * 0.07;
 
       if (parts) {
         if (!twitchEar) twitchEar = parts.earL;
-        // head leads the body
-        parts.head.rotation.y += (target.y * 0.55 - parts.head.rotation.y) * 0.11;
-        parts.head.rotation.x += (target.x * 0.6 - parts.head.rotation.x) * 0.11;
+        parts.head.rotation.y += (lookY * 0.55 - parts.head.rotation.y) * 0.11;
+        parts.head.rotation.x += (lookX * 0.6 - parts.head.rotation.x) * 0.11;
         parts.torso.scale.y = 1 + Math.sin(t * 2.1) * 0.012;
 
-        // eye glow + blink
-        var glow = 1.5 + Math.sin(t * 2.4) * 0.25 + hover * 0.9;
+        var glow = 1.5 + Math.sin(t * 2.4) * 0.25 + hover * 0.9 + surge * 1.2;
         if (blinkT >= 0) {
           blinkT += dt;
           var k = Math.sin(Math.PI * Math.min(blinkT / BLINK_DUR, 1));
@@ -332,13 +472,11 @@
         parts.matEye.emissiveIntensity = glow;
         parts.eyeLight.intensity = 0.7 + glow * 0.25;
 
-        // tail sway + arm micro-swing
         parts.tail.rotation.y = Math.sin(t * 1.3) * 0.28;
         parts.tail.rotation.x = Math.sin(t * 0.9 + 1.2) * 0.08;
         parts.armL.rotation.z = 0.14 + Math.sin(t * 1.7) * 0.03;
         parts.armR.rotation.z = -0.14 - Math.sin(t * 1.7 + 0.6) * 0.03;
 
-        // ears: hover perk + rare twitch
         var perk = 1 - hover * 0.5;
         parts.earL.rotation.z = 0.22 * perk;
         parts.earR.rotation.z = -0.22 * perk;
