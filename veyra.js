@@ -494,8 +494,10 @@
     if (e.key === "Escape" && root.classList.contains("is-open")) close();
   });
 
-  // mount the 3D mascot launcher — Three.js (UMD, classic) from
-  // jsdelivr (CSP-allowed), then the mascot. async=false preserves order.
+  // mount the 3D mascot launcher — Three.js (UMD, classic) + GLTFLoader
+  // from jsdelivr (CSP-allowed), then the mascot. The loader lets a real
+  // models/kaira-cat.glb take over if present; otherwise the mascot builds
+  // its procedural cat. async=false preserves load order.
   (function () {
     if (document.getElementById("kaira-three")) return;
     var V = "https://cdn.jsdelivr.net/npm/three@0.128.0";
@@ -508,6 +510,7 @@
       document.body.appendChild(s);
     }
     load(V + "/build/three.min.js", "kaira-three", "sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu");
+    load(V + "/examples/js/loaders/GLTFLoader.js", "kaira-gltf", "sha384-fljlqkjWlmSFjkESkQvm77heIZpoWmXEOzlCA7kOpGUH+95Zk0yGfQieWM2q136E");
     load("kaira-robot.js", "kaira-robot");
   })();
 })();
