@@ -467,14 +467,14 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
   background:linear-gradient(90deg,transparent,var(--c5),transparent);opacity:.55}
 .footer__top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px;padding-block:54px 36px}
 .footer__brand p{color:var(--muted);font-size:.92rem;margin-top:14px;max-width:34ch}
-.footer__col h4{font-family:var(--font-display);font-size:.82rem;letter-spacing:1.5px;
+.footer__col h3{font-family:var(--font-display);font-size:.82rem;letter-spacing:1.5px;
   text-transform:uppercase;color:var(--c6);margin-bottom:16px}
 .footer__col a{display:block;color:var(--muted);font-size:.92rem;padding:5px 0;
   transition:color var(--dur-1) var(--ease-out),translate var(--dur-1) var(--ease-out)}
 .footer__col a:hover{color:var(--c6);translate:4px 0}
 .footer__bottom{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
   align-items:center;padding-block:22px;border-top:1px solid var(--line);
-  color:var(--faint);font-size:.85rem}
+  color:var(--muted);font-size:.85rem}
 
 /* ---------- scroll reveal ----------
    fade + rise + a whisper of blur, landing on the long expo curve.

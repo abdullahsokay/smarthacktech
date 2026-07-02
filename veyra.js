@@ -495,22 +495,31 @@
   });
 
   // mount the 3D mascot launcher — Three.js (UMD, classic) + GLTFLoader
-  // from jsdelivr (CSP-allowed), then the mascot. The loader lets a real
-  // models/kaira-cat.glb take over if present; otherwise the mascot builds
-  // its procedural cat. async=false preserves load order.
+  // from jsdelivr (CSP-allowed), then the mascot (gltf model → procedural
+  // fallback). Perf: the whole 3D stack (~3.4MB) is DEFERRED until first
+  // interaction — or an 8s idle fallback — so it never competes with
+  // first paint. The CSS orb covers the launcher until then.
   (function () {
-    if (document.getElementById("kaira-three")) return;
-    var V = "https://cdn.jsdelivr.net/npm/three@0.128.0";
-    function load(src, id, integrity) {
-      var s = document.createElement("script");
-      if (id) s.id = id;
-      s.src = src;
-      if (integrity) { s.integrity = integrity; s.crossOrigin = "anonymous"; }
-      s.async = false;
-      document.body.appendChild(s);
+    var armed = false;
+    function mount3d() {
+      if (armed || document.getElementById("kaira-three")) return;
+      armed = true;
+      var V = "https://cdn.jsdelivr.net/npm/three@0.128.0";
+      function load(src, id, integrity) {
+        var s = document.createElement("script");
+        if (id) s.id = id;
+        s.src = src;
+        if (integrity) { s.integrity = integrity; s.crossOrigin = "anonymous"; }
+        s.async = false;
+        document.body.appendChild(s);
+      }
+      load(V + "/build/three.min.js", "kaira-three", "sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu");
+      load(V + "/examples/js/loaders/GLTFLoader.js", "kaira-gltf", "sha384-fljlqkjWlmSFjkESkQvm77heIZpoWmXEOzlCA7kOpGUH+95Zk0yGfQieWM2q136E");
+      load("kaira-robot.js", "kaira-robot");
     }
-    load(V + "/build/three.min.js", "kaira-three", "sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu");
-    load(V + "/examples/js/loaders/GLTFLoader.js", "kaira-gltf", "sha384-fljlqkjWlmSFjkESkQvm77heIZpoWmXEOzlCA7kOpGUH+95Zk0yGfQieWM2q136E");
-    load("kaira-robot.js", "kaira-robot");
+    ["pointermove", "pointerdown", "scroll", "touchstart", "keydown"].forEach(function (ev) {
+      window.addEventListener(ev, mount3d, { once: true, passive: true });
+    });
+    setTimeout(mount3d, 8000);
   })();
 })();

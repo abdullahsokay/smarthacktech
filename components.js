@@ -91,11 +91,11 @@
             '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true">⬡</span> Hack<span>Tech</span></a>' +
             "<p>Pakistan's complete technology ecosystem — software, AI, IoT, security, automation and training. Made in Pakistan.</p>" +
           "</div>" +
-          '<div class="footer__col"><h4>What we do</h4>' +
+          '<div class="footer__col"><h3>What we do</h3>' +
             '<a href="solutions.html">Services</a><a href="demo.html">Live Demo</a><a href="about.html">About</a><a href="contact.html">Get a Quote</a></div>' +
-          '<div class="footer__col"><h4>Company</h4>' +
+          '<div class="footer__col"><h3>Company</h3>' +
             '<a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>' +
-          '<div class="footer__col"><h4>Get in touch</h4>' +
+          '<div class="footer__col"><h3>Get in touch</h3>' +
             '<a href="mailto:contact.hacktechzone@gmail.com">contact.hacktechzone@gmail.com</a><a href="tel:+923275516703">0327 5516703</a><a href="https://www.tiktok.com/@hacktechzone" target="_blank" rel="noopener">TikTok · hacktech zone</a></div>' +
         "</div>" +
         '<div class="footer__bottom">' +
