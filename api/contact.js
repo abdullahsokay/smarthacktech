@@ -6,7 +6,7 @@
 
    Set in Vercel → Project → Settings → Environment Variables:
      RESEND_API_KEY   (required)  from https://resend.com  — free tier
-     CONTACT_TO       (optional)  inbox for leads   — default hello@hacktech.pk
+     CONTACT_TO       (optional)  inbox for leads   — default contact.hacktechzone@gmail.com
      CONTACT_FROM     (optional)  verified sender   — default onboarding@resend.dev
                                   (for production, verify hacktech.pk in Resend and
                                    set this to e.g. "HackTech <noreply@hacktech.pk>")
@@ -46,7 +46,7 @@ module.exports = async function handler(req, res) {
   }
 
   var apiKey = process.env.RESEND_API_KEY;
-  var to = process.env.CONTACT_TO || "hello@hacktech.pk";
+  var to = process.env.CONTACT_TO || "contact.hacktechzone@gmail.com";
   var from = process.env.CONTACT_FROM || "HackTech Website <onboarding@resend.dev>";
 
   // Not wired up yet → let the browser fall back to mailto.

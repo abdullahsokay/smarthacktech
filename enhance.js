@@ -148,6 +148,49 @@
     });
   })();
 
+  /* ---- 6b. kinetic hero headline: char-level cascade, accent lands whole ----
+     Plain text splits into per-char spans that cascade in; the gradient
+     .accent span animates as ONE unit (per-char background-clip would
+     restart the gradient on every letter). Replaces the block-level
+     .reveal for this element so the two entrances don't fight. */
+  (function () {
+    if (reduce) return;
+    var kh = document.querySelector(".hero .display");
+    if (!kh) return;
+    kh.classList.remove("reveal");
+    kh.style.transitionDelay = "0s";
+    var idx = { n: 0 };
+    (function split(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (ch) {
+        if (ch.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          ch.textContent.split(/(\s+)/).forEach(function (tok) {
+            if (!tok) return;
+            if (/^\s+$/.test(tok)) { frag.appendChild(document.createTextNode(" ")); return; }
+            var w = document.createElement("span");
+            w.className = "kword";                    // words stay unbreakable
+            tok.split("").forEach(function (c) {
+              var s = document.createElement("span");
+              s.className = "kchar";
+              s.style.setProperty("--i", idx.n++);
+              s.textContent = c;
+              w.appendChild(s);
+            });
+            frag.appendChild(w);
+          });
+          node.replaceChild(frag, ch);
+        } else if (ch.nodeType === 1) {
+          if (ch.classList.contains("accent")) {
+            ch.classList.add("kchar");
+            ch.style.setProperty("--i", idx.n);
+            idx.n += 6;
+          } else split(ch);
+        }
+      });
+    })(kh);
+    kh.classList.add("kinetic");
+  })();
+
   /* ---- 7. rotating edge-light: a bright line orbiting every card/box ---- */
   (function () {
     var TARGETS = ".card,.step,.kpi,.stat,.tcard,.cta,.pf-show__media,.media-photo";

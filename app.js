@@ -204,7 +204,7 @@
       function mailtoFallback() {
         var lines = [];
         fd.forEach(function (v, k) { if (k.charAt(0) !== "_") lines.push(k + ": " + v); });
-        window.location.href = "mailto:hello@hacktech.pk?subject=" +
+        window.location.href = "mailto:contact.hacktechzone@gmail.com?subject=" +
           encodeURIComponent("New enquiry — " + (fd.get("service") || "HackTech")) +
           "&body=" + encodeURIComponent(lines.join("\n"));
         ok();

@@ -59,7 +59,7 @@ module.exports = async function handler(req, res) {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (apiKey) {
-    const to = process.env.CONTACT_TO || "hello@hacktech.pk";
+    const to = process.env.CONTACT_TO || "contact.hacktechzone@gmail.com";
     const from = process.env.CONTACT_FROM || "KAIRA <onboarding@resend.dev>";
     const html =
       `<h2>New KAIRA lead — <b>${esc(tier)}</b></h2>` +

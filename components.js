@@ -96,7 +96,7 @@
           '<div class="footer__col"><h4>Company</h4>' +
             '<a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>' +
           '<div class="footer__col"><h4>Get in touch</h4>' +
-            '<a href="mailto:hello@hacktech.pk">hello@hacktech.pk</a><a href="tel:+9221111422538">+92 21 111 422 538</a></div>' +
+            '<a href="mailto:contact.hacktechzone@gmail.com">contact.hacktechzone@gmail.com</a><a href="tel:+923275516703">0327 5516703</a><a href="https://www.tiktok.com/@hacktechzone" target="_blank" rel="noopener">TikTok · hacktech zone</a></div>' +
         "</div>" +
         '<div class="footer__bottom">' +
           "<span>© 2026 HackTech Technologies (Pvt) Ltd. All rights reserved.</span>" +

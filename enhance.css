@@ -106,6 +106,18 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
 }
 .ws-right.ws-shot .ws-text{ color:#f4f9f8; text-shadow:0 2px 18px rgba(0,0,0,.5) }
 
+/* ---------- 4c. kinetic hero headline ---------- */
+.kinetic .kchar{display:inline-block;opacity:0;transform:translateY(.55em) rotate(3deg);
+  filter:blur(6px);animation:kchar-in .75s var(--ease-out-expo) forwards;
+  animation-delay:calc(.15s + var(--i)*.026s)}
+/* inline-block chars fall outside the parent's background-clip:text —
+   give plain chars the ramp-start ink; .accent keeps its own gradient */
+.kinetic .kword{display:inline-block;white-space:nowrap}
+.display.kinetic .kchar{color:var(--c6)}
+.display.kinetic .accent.kchar{color:transparent}
+@keyframes kchar-in{to{opacity:1;transform:none;filter:none}}
+@media (prefers-reduced-motion:reduce){.kinetic .kchar{animation:none;opacity:1;transform:none;filter:none}}
+
 /* ---------- 5. respect user preferences ---------- */
 @media (prefers-reduced-motion:reduce){
   .media-photo img{ transform:none !important; transition:none }

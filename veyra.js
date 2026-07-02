@@ -336,7 +336,7 @@
       (e.phases || []).map(function (p) { return "  - " + p.name + " (" + p.weeks + "): " + p.focus; }).join("\n") +
       "\n  Risks:\n" + L(e.risks) + "\n\n== PROPOSAL ==\n" + (pr.overview || "") + "\n  Scope:\n" + L(pr.scope) +
       "\n  Deliverables:\n" + L(pr.deliverables) + "\n  Next steps:\n" + L(pr.nextSteps) +
-      "\n\nPrepared by KAIRA — HackTech. hello@hacktech.pk";
+      "\n\nPrepared by KAIRA — HackTech. contact.hacktechzone@gmail.com";
   }
 
   function loadJsPdf(cb) {
