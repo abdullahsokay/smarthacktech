@@ -19,6 +19,15 @@
   --grad-line:linear-gradient(90deg,var(--c6),var(--c4));
   --shadow:0 30px 70px rgba(0,0,0,.5);
   --shadow-sm:0 12px 30px rgba(0,0,0,.4);
+  /* ---- motion tokens: one easing/duration system for the whole site.
+     Old-money motion = unhurried, confident, never bouncy. ---- */
+  --ease-out:cubic-bezier(.22,1,.36,1);       /* signature decel — hovers, lifts */
+  --ease-out-expo:cubic-bezier(.16,1,.3,1);   /* long confident landing — reveals, menus */
+  --ease-io:cubic-bezier(.65,.05,.36,1);      /* symmetric glide — exits & page morphs */
+  --ease-spring:cubic-bezier(.34,1.45,.5,1);  /* faint overshoot — small playful micro only */
+  --dur-1:.25s;                               /* micro: hovers, presses, colour */
+  --dur-2:.5s;                                /* standard: menus, card lifts */
+  --dur-3:.95s;                               /* entrances: reveals, media zooms */
 }
 /* ============================================================
    LIGHT THEME — html[data-theme="light"] re-scopes the design tokens
@@ -124,7 +133,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.1}
   border-radius:50%;border:1px solid var(--line-2);background:rgba(10,10,10,.6);
   backdrop-filter:blur(10px);color:var(--c6);font-size:20px;cursor:pointer;
   display:grid;place-items:center;opacity:0;transform:translateY(20px);
-  transition:opacity .35s,transform .35s,background .3s}
+  transition:opacity var(--dur-1) ease,transform var(--dur-2) var(--ease-out),background .3s ease}
 .to-top.show{opacity:1;transform:none}
 .to-top:hover{background:var(--glass-2)}
 
@@ -178,9 +187,14 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.1}
 .btn{position:relative;display:inline-flex;align-items:center;gap:9px;padding:14px 28px;
   border-radius:999px;font-family:var(--font-display);font-weight:600;font-size:.95rem;
   cursor:pointer;border:1px solid transparent;overflow:hidden;
-  transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
+  transition:transform var(--dur-1) var(--ease-out),box-shadow var(--dur-1) var(--ease-out),
+    background var(--dur-1) ease,border-color var(--dur-1) ease,scale .18s var(--ease-out)}
 .btn:hover{transform:translateY(-2px)}
-.btn.is-magnetic{transition:box-shadow .25s,background .25s,border-color .25s}
+/* press depth — the independent `scale` property composes with the hover/magnetic
+   transform, so the press reads even mid-magnet. Ignored by older engines. */
+.btn:active{scale:.965}
+.btn.is-magnetic{transition:box-shadow var(--dur-1) var(--ease-out),background var(--dur-1) ease,
+  border-color var(--dur-1) ease,scale .18s var(--ease-out)}
 .btn--sm{padding:10px 20px;font-size:.88rem}
 .btn--primary{background:var(--grad-btn);color:#0A0A0A;box-shadow:0 12px 30px rgba(139,174,102,.35)}
 .btn--primary:hover{box-shadow:0 18px 46px rgba(139,174,102,.55)}
@@ -208,9 +222,10 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.1}
 .nav-links > li > a:not(.btn){display:inline-flex;align-items:center;gap:5px;font-size:13px;
   letter-spacing:.2px;color:var(--muted);padding:8px 13px;border-radius:999px;
   border:1px solid transparent;
-  transition:color .25s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease}
+  transition:color var(--dur-1) ease,background var(--dur-1) ease,border-color var(--dur-1) ease,
+    box-shadow var(--dur-1) ease,translate var(--dur-1) var(--ease-out)}
 .nav-links > li > a:not(.btn):hover{color:var(--ink);background:rgba(255,255,255,.05);
-  border-color:var(--line-2);box-shadow:0 0 16px -5px rgba(139,174,102,.5)}
+  border-color:var(--line-2);box-shadow:0 0 16px -5px rgba(139,174,102,.5);translate:0 -1px}
 .nav-links > li > a.active{position:relative;overflow:hidden;color:#0A0A0A;
   background:linear-gradient(135deg,var(--c6),var(--c5) 46%,var(--c4));border-color:rgba(245,233,205,.6);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),0 0 20px -3px rgba(139,174,102,.6),0 8px 22px -8px rgba(139,174,102,.75)}
@@ -227,8 +242,8 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.1}
 .nav-menu{position:absolute;top:calc(100% + 10px);left:0;min-width:232px;list-style:none;padding:8px;
   border-radius:14px;background:rgba(16,15,12,.94);backdrop-filter:blur(16px) saturate(140%);
   border:1px solid var(--line-2);box-shadow:0 20px 44px -16px rgba(0,0,0,.7);
-  opacity:0;transform:translateY(8px);pointer-events:none;
-  transition:opacity .25s ease,transform .25s ease;z-index:60}
+  opacity:0;transform:translateY(10px) scale(.98);transform-origin:top left;pointer-events:none;
+  transition:opacity var(--dur-1) var(--ease-out),transform var(--dur-2) var(--ease-out-expo);z-index:60}
 .nav-menu::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
 .nav-item--has-menu:hover .nav-menu,.nav-item--has-menu:focus-within .nav-menu{opacity:1;transform:translateY(0);pointer-events:auto}
 .nav-menu a{display:block;padding:9px 13px;border-radius:9px;font-size:14px;color:var(--muted);
@@ -255,7 +270,7 @@ section[id]{scroll-margin-top:96px}
 .theme-toggle:hover{border-color:var(--c5);transform:translateY(-1px);
   box-shadow:0 0 0 4px rgba(139,174,102,.12),0 10px 24px rgba(0,0,0,.32)}
 .theme-toggle svg{position:relative;z-index:1;width:20px;height:20px;
-  transition:transform .55s cubic-bezier(.34,1.5,.5,1)}
+  transition:transform .55s var(--ease-spring)}
 .theme-toggle:hover svg{transform:rotate(45deg) scale(1.12)}
 .theme-toggle:active svg{transform:rotate(180deg) scale(.92)}
 .theme-toggle .ico-moon{display:none}
@@ -308,7 +323,8 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
 .grid--3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
 .grid--4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
 .card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);
-  padding:32px;backdrop-filter:blur(8px);transition:transform .3s,border-color .3s,background .3s;
+  padding:32px;backdrop-filter:blur(8px);
+  transition:transform var(--dur-2) var(--ease-out),border-color .3s ease,background .3s ease;
   transform-style:preserve-3d}
 .card:hover{transform:translateY(-6px);border-color:var(--line-2);background:var(--glass-2)}
 .card.tilt:hover{transform:translateY(-6px)}
@@ -319,7 +335,8 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
 .info-item .card__icon .ico{width:22px;height:22px}
 .card__media{position:relative;aspect-ratio:16/10;border-radius:13px;overflow:hidden;margin-bottom:20px;
   background:linear-gradient(140deg,var(--c3),var(--c5))}
-.card__media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.card__media img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform var(--dur-3) var(--ease-out)}
 .card:hover .card__media img{transform:scale(1.05)}
 /* smart-home section media: show the full portrait GIF, phone-style, no crop/stretch */
 .split__media--gif{padding:18px;background:linear-gradient(160deg,#0d181b,#0a1417)}
@@ -327,9 +344,13 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
   border-radius:18px;box-shadow:var(--shadow);display:block}
 .card__title{font-size:1.28rem;margin-bottom:10px}
 .card__text{color:var(--muted);font-size:.97rem}
-.card__link{display:inline-flex;gap:6px;margin-top:18px;color:var(--c6);font-weight:600;
+.card__link{position:relative;display:inline-flex;gap:6px;margin-top:18px;color:var(--c6);font-weight:600;
   font-size:.9rem;font-family:var(--font-display)}
-.card__link:hover{gap:11px;transition:gap .25s}
+/* underline sweeps in from the left on hover — transform only, no layout shift */
+.card__link::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;
+  background:currentColor;opacity:.7;transform:scaleX(0);transform-origin:left center;
+  transition:transform var(--dur-2) var(--ease-out-expo)}
+.card__link:hover::after,.card__link:focus-visible::after{transform:scaleX(1)}
 .card--glow::after{content:"";position:absolute;inset:0;border-radius:inherit;
   background:radial-gradient(300px 200px at 50% 0%,rgba(139,174,102,.16),transparent 70%);
   opacity:0;transition:opacity .3s;pointer-events:none}
@@ -377,7 +398,7 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
 /* ---------- testimonials carousel ---------- */
 .carousel{position:relative;max-width:760px;margin:0 auto}
 .testimonial{display:none;text-align:center;padding:10px}
-.testimonial.active{display:block;animation:fade .6s ease}
+.testimonial.active{display:block;animation:fade var(--dur-3) var(--ease-out-expo)}
 @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .testimonial__quote{font-family:var(--font-display);font-size:clamp(1.2rem,2.4vw,1.7rem);
   line-height:1.5;margin-bottom:22px}
@@ -429,13 +450,16 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
   align-items:center;padding-block:22px;border-top:1px solid var(--line);
   color:var(--faint);font-size:.85rem}
 
-/* ---------- scroll reveal ---------- */
-.reveal{opacity:0;transform:translateY(44px);
-  transition:opacity .9s cubic-bezier(.16,.84,.36,1),transform .9s cubic-bezier(.16,.84,.36,1)}
+/* ---------- scroll reveal ----------
+   fade + rise + a whisper of blur, landing on the long expo curve.
+   Ends on filter:none (not blur(0)) so no stacking context lingers. */
+.reveal{opacity:0;transform:translateY(44px);filter:blur(6px);
+  transition:opacity var(--dur-3) var(--ease-out-expo),transform var(--dur-3) var(--ease-out-expo),
+    filter var(--dur-3) var(--ease-out-expo)}
 .reveal--left{transform:translateX(-46px)}
 .reveal--right{transform:translateX(46px)}
 .reveal--scale{transform:scale(.94)}
-.reveal.show{opacity:1;transform:none}
+.reveal.show{opacity:1;transform:none;filter:none}
 
 /* ---------- accessibility & app chrome ---------- */
 .skip-link{position:fixed;top:-120px;left:16px;z-index:100;padding:12px 18px;border-radius:10px;
@@ -445,10 +469,23 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 :focus-visible{outline:2px solid var(--c6);outline-offset:3px;border-radius:6px}
 .nav-toggle:focus-visible,.btn:focus-visible{outline-offset:4px}
 
-/* ---------- smooth cross-page transitions (progressive enhancement) ---------- */
+/* ---------- smooth cross-page transitions (progressive enhancement) ----------
+   Cross-document view transitions (Chrome/Edge 126+, Safari 26+). Elsewhere the
+   at-rule and pseudo-elements are simply ignored — instant navigation, no-op.
+   The outgoing page exhales upward while the incoming one rises to meet it:
+   one continuous, unhurried gesture. The fixed nav + logo are NAMED so they
+   persist and morph between pages instead of fading with the root. */
 @view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .32s var(--ease-io) both}
+::view-transition-new(root){animation:vt-in .55s var(--ease-out-expo) both}
+@keyframes vt-out{to{opacity:0;transform:translateY(-14px)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(18px)}}
+.nav{view-transition-name:site-nav}
+.nav .logo{view-transition-name:site-brand}
 @media (prefers-reduced-motion:reduce){
-  ::view-transition-group(*),::view-transition-old(root),::view-transition-new(root){animation:none!important}
+  @view-transition{navigation:none}
+  ::view-transition-group(*),::view-transition-image-pair(*),
+  ::view-transition-old(*),::view-transition-new(*){animation:none!important}
 }
 
 /* ---------- "Why HackTech" parallax slider (Swiper) ---------- */
@@ -521,7 +558,12 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 @media(max-width:520px){.footer__top{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important}
-  .reveal{opacity:1;transform:none;transition:none}
+  .reveal{opacity:1;transform:none;filter:none;transition:none}
   html{scroll-behavior:auto}
   .marquee__track{animation:none}
+  /* calm, instant micro-interactions — no movement, state changes still legible */
+  .btn:active{scale:none}
+  .nav-links > li > a:not(.btn){translate:none;transition:none}
+  .nav-menu{transition:none}
+  .card__link::after{transition:none}
 }

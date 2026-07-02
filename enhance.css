@@ -48,7 +48,7 @@
   width:100%; height:100%; min-height:inherit; object-fit:cover; display:block;
   /* nudge bright stock toward the brand palette without a heavy filter */
   filter:saturate(.92) contrast(1.02);
-  transform:scale(1.04); transition:transform 1.1s cubic-bezier(.16,.84,.36,1);
+  transform:scale(1.04); transition:transform 1.1s var(--ease-out-expo);
   will-change:transform;
 }
 .split:hover .media-photo img,
@@ -89,7 +89,7 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
 
 /* ---------- 4. reveal: let stock photos fade+rise in like the rest of the site ---------- */
 .media-photo.reveal-img{ opacity:0; transform:translateY(28px);
-  transition:opacity 1s cubic-bezier(.16,.84,.36,1), transform 1s cubic-bezier(.16,.84,.36,1) }
+  transition:opacity var(--dur-3) var(--ease-out-expo), transform var(--dur-3) var(--ease-out-expo) }
 .media-photo.reveal-img.show{ opacity:1; transform:none }
 
 /* ---------- 4b. photographic service slides (solutions.html) ----------
@@ -237,7 +237,7 @@ video::-webkit-media-controls-overlay-enclosure{
   cursor:pointer; background:var(--c2); border:1px solid var(--line-2); box-shadow:var(--shadow);
   outline:none; transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
   will-change:transform, flex-grow;
-  transition:flex-grow .6s cubic-bezier(.4,0,.2,1), transform .25s ease,
+  transition:flex-grow .6s var(--ease-io), transform .25s ease,
              box-shadow .45s ease, border-color .45s ease }
 .tcard.is-active{ flex-grow:5.4; border-color:rgba(139,174,102,.55);
   box-shadow:0 26px 60px -22px rgba(0,0,0,.7), 0 0 0 1px rgba(139,174,102,.18),
@@ -278,7 +278,7 @@ video::-webkit-media-controls-overlay-enclosure{
 @media (max-width:720px){
   .team-accordion{ flex-direction:column; height:auto; gap:12px; perspective:none }
   .tcard{ flex:none; height:84px; transform:none !important;
-    transition:height .55s cubic-bezier(.4,0,.2,1), box-shadow .45s, border-color .45s }
+    transition:height .55s var(--ease-io), box-shadow .45s, border-color .45s }
   .tcard.is-active{ height:324px }
   .tcard__meta{ opacity:1; transform:none }       /* full-width rows — names always readable */
   .tcard__bio{ display:none }
@@ -316,7 +316,7 @@ html[data-theme="light"] .work-tag{background:rgba(255,255,255,.82);color:var(--
 .pf-people{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .pf-person{display:flex;flex-direction:column;align-items:center;text-align:center;gap:9px;
   padding:26px 16px;border-radius:18px;background:var(--card);border:1px solid var(--line);
-  transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+  transition:transform var(--dur-2) var(--ease-out),border-color .3s ease,box-shadow .3s ease}
 .pf-person:hover{transform:translateY(-5px);border-color:var(--line-2);
   box-shadow:0 18px 40px -20px rgba(0,0,0,.6),0 0 26px -10px rgba(139,174,102,.45)}
 .pf-avatar{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;
@@ -343,11 +343,12 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
 .pf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
 .pf-card{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;
   background:var(--card);border:1px solid var(--line);
-  transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+  transition:transform var(--dur-2) var(--ease-out),border-color .35s ease,box-shadow .35s ease}
 .pf-card:hover{transform:translateY(-6px);border-color:var(--line-2);
   box-shadow:0 26px 56px -26px rgba(0,0,0,.7),0 0 30px -12px rgba(139,174,102,.45)}
 .pf-card__shot{position:relative;aspect-ratio:16/10;overflow:hidden}
-.pf-card__shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.pf-card__shot img{width:100%;height:100%;object-fit:cover;
+  transition:transform var(--dur-3) var(--ease-out)}
 .pf-card:hover .pf-card__shot img{transform:scale(1.06)}
 .pf-card__shot::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(180deg,transparent 48%,rgba(10,10,10,.5))}
@@ -369,7 +370,8 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
 .pf-show--rev .pf-show__media{order:2}
 .pf-show__media{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line-2);
   aspect-ratio:16/11;box-shadow:0 40px 90px -42px rgba(0,0,0,.85),0 0 50px -18px rgba(139,174,102,.4)}
-.pf-show__media img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.pf-show__media img{width:100%;height:100%;object-fit:cover;
+  transition:transform var(--dur-3) var(--ease-out)}
 .pf-show:hover .pf-show__media img{transform:scale(1.04)}
 .pf-show__info .pf-card__cat{font-size:.8rem}
 .pf-show__info .h2{margin:12px 0 16px}
@@ -417,7 +419,7 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
   .grid--2 > .card,
   .grid--3 > .card,
   .grid--4 > .card{
-    transition:transform .45s cubic-bezier(.22,1,.36,1),
+    transition:transform var(--dur-2) var(--ease-out),
                filter .4s ease, opacity .4s ease,
                box-shadow .4s ease, border-color .3s ease, background .3s ease;
   }
@@ -436,4 +438,129 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
     transform:scale(1.06) translateY(-10px);
     z-index:6;
   }
+}
+
+/* ============================================================
+   MOTION SYSTEM — premium transition layer (all additive).
+   Tokens live in styles.css :root (--ease-*, --dur-*). Every
+   block below is progressive enhancement: unsupported browsers
+   simply keep the base behaviour; reduced-motion gets a calm,
+   instant fallback (see the mop-up block at the end).
+   ============================================================ */
+
+/* ---- M1. cross-page continuity for floating chrome ----
+   During a cross-document view transition the named elements keep
+   their place instead of fading/drifting with the page root.
+   (Kaira launcher + back-to-top; nav/logo are named in styles.css.)
+   view-transition-name is inert outside a transition — zero effect
+   on rendering in any browser that doesn't run one. */
+.vy-launch{ view-transition-name:kaira-widget }
+.to-top{ view-transition-name:ht-totop }
+
+/* ---- M2. scroll progress bar on the compositor ----
+   Where scroll-linked animations exist, the bar is a scaleX driven
+   directly by scroll(root) — zero main-thread work, buttery under
+   load. app.js detects support, adds .sp-css and stops writing
+   width; elsewhere the original JS width updates keep working. */
+@supports (animation-timeline: scroll()) {
+  .scroll-progress.sp-css{
+    width:100%; transform:scaleX(0); transform-origin:0 50%;
+    animation:ht-sp-grow 1s linear both;
+    animation-timeline:scroll(root);
+  }
+  @keyframes ht-sp-grow{ to{ transform:scaleX(1) } }
+}
+
+/* ---- M3. scroll-driven entrances for card grids & steps ----
+   Supported engines scrub the entrance with the scroll position
+   itself (frame-perfect, no IO latency) and stagger columns via
+   nth-child ranges. The base .reveal state is neutralised here so
+   the JS reveal (still running underneath) never double-animates —
+   in unsupported browsers the JS .reveal remains the one driver.
+   fill-mode:backwards = hidden before entry, fully RELEASED after
+   the range, so hover transforms/filters (.ht-up/.ht-focus) keep
+   working on settled cards. Only opacity/translate/filter animate. */
+@supports (animation-timeline: view()) {
+  html.fx-on :is(.grid--2,.grid--3,.grid--4,.steps) > .reveal{
+    opacity:1; transform:none; filter:none;      /* release the JS reveal */
+    animation-name:ht-view-in;
+    animation-duration:1s;                       /* fallback… */
+    animation-duration:auto;                     /* …auto = fill the range */
+    animation-timing-function:linear;            /* scrubbing tracks the thumb */
+    animation-fill-mode:backwards;
+    animation-timeline:view(block);
+    animation-range:entry 0% entry 52%;
+  }
+  /* column stagger — second and third columns land a beat later */
+  html.fx-on :is(.grid--2,.grid--3,.grid--4,.steps) > .reveal:nth-child(3n+2){
+    animation-range:entry 8% entry 60%;
+  }
+  html.fx-on :is(.grid--2,.grid--3,.grid--4,.steps) > .reveal:nth-child(3n){
+    animation-range:entry 16% entry 68%;
+  }
+  @keyframes ht-view-in{
+    from{ opacity:0; translate:0 42px; filter:blur(7px) }
+  }
+}
+
+/* ---- M4. hero entrance choreography (index) ----
+   The copy already staggers in via .reveal delays; the backdrop
+   video performs a slow 1.06→1 settle underneath it and the scroll
+   hint arrives last, once the room is set. `scale` composes — it
+   never touches the video's transform/object-position. */
+html.fx-on .hero-portal__vid{ animation:ht-hero-settle 2.4s var(--ease-out-expo) both }
+@keyframes ht-hero-settle{ from{ scale:1.06 } }
+html.fx-on .scroll-hint{
+  animation:bob 2s ease-in-out infinite, ht-hint-in 1.2s var(--ease-out-expo) 1.1s backwards;
+}
+@keyframes ht-hint-in{ from{ opacity:0 } }
+
+/* ---- M5. eyebrow sheen — one polite gloss sweep as its section
+   reveals (driven by the .show class the JS reveal already sets).
+   Runs once, ends transparent, never loops. */
+html.fx-on .eyebrow{ position:relative; overflow:hidden }
+html.fx-on .eyebrow::after{
+  content:""; position:absolute; top:0; bottom:0; left:-70%; width:55%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.32),transparent);
+  transform:skewX(-18deg); opacity:0; pointer-events:none;
+}
+html.fx-on .reveal.show .eyebrow::after,
+html.fx-on .eyebrow.reveal.show::after{
+  animation:ht-eyebrow-sheen 1.2s var(--ease-io) .5s both;
+}
+@keyframes ht-eyebrow-sheen{
+  0%{ opacity:0; translate:0 0 } 25%{ opacity:1 } 100%{ opacity:0; translate:340% 0 }
+}
+
+/* ---- M6. dropdown cascade — menu items drift up into place a beat
+   apart when a nav menu opens. Desktop widths only (on mobile the
+   menu is static and always visible) and motion-ok only. */
+@media (min-width:761px) and (prefers-reduced-motion:no-preference){
+  .nav-menu > li{
+    opacity:0; translate:0 7px;
+    transition:opacity .35s var(--ease-out), translate .35s var(--ease-out);
+  }
+  .nav-item--has-menu:hover .nav-menu > li,
+  .nav-item--has-menu:focus-within .nav-menu > li{ opacity:1; translate:none }
+  .nav-item--has-menu:hover .nav-menu > li:nth-child(2),
+  .nav-item--has-menu:focus-within .nav-menu > li:nth-child(2){ transition-delay:.04s }
+  .nav-item--has-menu:hover .nav-menu > li:nth-child(3),
+  .nav-item--has-menu:focus-within .nav-menu > li:nth-child(3){ transition-delay:.08s }
+  .nav-item--has-menu:hover .nav-menu > li:nth-child(4),
+  .nav-item--has-menu:focus-within .nav-menu > li:nth-child(4){ transition-delay:.12s }
+  .nav-item--has-menu:hover .nav-menu > li:nth-child(5),
+  .nav-item--has-menu:focus-within .nav-menu > li:nth-child(5){ transition-delay:.16s }
+  .nav-item--has-menu:hover .nav-menu > li:nth-child(6),
+  .nav-item--has-menu:focus-within .nav-menu > li:nth-child(6){ transition-delay:.2s }
+  .nav-item--has-menu:hover .nav-menu > li:nth-child(7),
+  .nav-item--has-menu:focus-within .nav-menu > li:nth-child(7){ transition-delay:.24s }
+}
+
+/* ---- M7. reduced-motion mop-up for this layer ----
+   (the global *{animation:none} in styles.css already stills every
+   keyframe above; this pins the remaining states to their calm end.) */
+@media (prefers-reduced-motion:reduce){
+  .eyebrow::after{ display:none }
+  .nav-menu > li{ opacity:1; translate:none; transition:none }
+  .scroll-hint{ opacity:1 }
 }
