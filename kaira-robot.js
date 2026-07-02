@@ -3,13 +3,25 @@
    Uses the global THREE (loaded by veyra.js) — no ES modules.
 
    3-tier mascot, most-specific first, each falls back to the next:
-     1) models/kaira-cat.glb  — if you drop a real 3D model there,
-        it loads and takes over automatically (GLTFLoader).
-     2) procedural cyber-cat  — 100% code geometry, no files.
+     1) models/kaira-cat/kaira-cat.gltf — the real 3D mascot model.
+        Loads and takes over automatically (GLTFLoader). Uses the
+        .gltf + external .bin/.png form (not a single .glb) on purpose:
+        GLTFLoader decodes embedded/binary-chunk images via a blob-URL
+        + createImageBitmap path that is unreliable in some browser
+        contexts; external image files load through the plain, robust
+        <img> element path instead. To swap in a different model:
+          npx @gltf-transform/cli resize --width 512 --height 512 in.glb resized.glb
+          npx @gltf-transform/cli copy resized.glb models/kaira-cat/kaira-cat.gltf
+        (resize first — source files can be 30MB+ with 4K textures,
+        which is both slow and unnecessary for a ~150px launcher.)
+     2) procedural cyber-cat  — 100% code geometry, no files. Only
+        applies its cat-specific parts (ears/tail/eyes/blink) when
+        this tier is the one actually built — see `parts` below.
      3) CSS energy orb        — if WebGL is unavailable.
 
-   Idle breathing, cursor-follow, glowing green eyes + blink, tail
-   sway, ear twitch, hover perk. Click opens chat (handled by veyra).
+   Idle breathing + whole-body cursor-follow apply to any mascot in
+   tier 1 or 2. Ears/tail/blink/eye-glow are tier-2-only (`parts`).
+   Click opens chat (handled by veyra).
    ============================================================ */
 (function () {
   "use strict";
@@ -213,7 +225,7 @@
   // Pick the mascot: try the GLB first, fall back to procedural.
   if (THREE.GLTFLoader) {
     try {
-      new THREE.GLTFLoader().load("/models/kaira-cat.glb", useGLB, undefined, buildProceduralCat);
+      new THREE.GLTFLoader().load("/models/kaira-cat/kaira-cat.gltf", useGLB, undefined, buildProceduralCat);
     } catch (e) {
       buildProceduralCat();
     }
