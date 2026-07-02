@@ -123,6 +123,24 @@ img{max-width:100%;display:block}
 h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.1}
 ::selection{background:var(--c4);color:#fff}
 
+/* ---------- premium finish layer ---------- */
+/* film grain: breaks the flat digital gradients, reads as printed matter.
+   Inline SVG noise, ~3% opacity — invisible as texture, felt as depth. */
+body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.032;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+html[data-theme="light"] body::after{opacity:.05;mix-blend-mode:multiply}
+/* themed scrollbar — the default grey bar breaks the world */
+html{scrollbar-width:thin;scrollbar-color:var(--c4) transparent}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--c3);border-radius:99px;border:2px solid var(--c1)}
+::-webkit-scrollbar-thumb:hover{background:var(--c4)}
+/* typographic rag control — headlines balance, body avoids orphans */
+h1,h2,h3,.display,.h2{text-wrap:balance}
+.lead,.card__text{text-wrap:pretty}
+/* stats: digits align while counting up */
+.stat__num,.kpi__num{font-variant-numeric:tabular-nums}
+
 /* ---------- backdrop (solid colour — no glow/gradient effects) ---------- */
 .backdrop{position:fixed;inset:0;z-index:-2;background:var(--c1)}
 
@@ -440,12 +458,17 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 /* ---------- footer ---------- */
 .footer{position:relative;z-index:1;border-top:1px solid var(--line);margin-top:40px;
   background:rgba(10,10,10,.5);backdrop-filter:blur(12px)}
+/* luminous hairline — the footer "catches light" where it meets the page */
+.footer::before{content:"";position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+  width:min(720px,80%);height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--c5),transparent);opacity:.55}
 .footer__top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px;padding-block:54px 36px}
 .footer__brand p{color:var(--muted);font-size:.92rem;margin-top:14px;max-width:34ch}
 .footer__col h4{font-family:var(--font-display);font-size:.82rem;letter-spacing:1.5px;
   text-transform:uppercase;color:var(--c6);margin-bottom:16px}
-.footer__col a{display:block;color:var(--muted);font-size:.92rem;padding:5px 0;transition:color .25s}
-.footer__col a:hover{color:var(--c6)}
+.footer__col a{display:block;color:var(--muted);font-size:.92rem;padding:5px 0;
+  transition:color var(--dur-1) var(--ease-out),translate var(--dur-1) var(--ease-out)}
+.footer__col a:hover{color:var(--c6);translate:4px 0}
 .footer__bottom{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
   align-items:center;padding-block:22px;border-top:1px solid var(--line);
   color:var(--faint);font-size:.85rem}
