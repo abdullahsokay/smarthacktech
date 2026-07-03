@@ -122,6 +122,7 @@
 
   function open() {
     root.classList.add("is-open");
+    startTypewriter();
     if (!tracked) {
       tracked = true;
       try {
@@ -489,8 +490,13 @@
   ta.addEventListener("input", autosize);
 
   // ---- typewriter placeholder: rotates real prompts so visitors instantly
-  // see what Kaira can do. Pauses while typing/focused; reduced-motion static.
-  (function () {
+  // see what Kaira can do. Starts only when the panel first OPENS (the
+  // placeholder is invisible before that, and a hidden repaint loop
+  // tanks Speed Index). Pauses while typing/focused; reduced-motion static.
+  var twStarted = false;
+  function startTypewriter() {
+    if (twStarted) return;
+    twStarted = true;
     var PROMPTS = [
       "Quote for a fleet-tracking system…",
       "I need a website for my business…",
@@ -514,7 +520,7 @@
       }
       setTimeout(type, del ? 28 : 55);
     })();
-  })();
+  }
   ta.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(ta.value); }
   });
