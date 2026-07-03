@@ -68,7 +68,7 @@
   var headerHTML =
     '<a class="skip-link" href="#main">Skip to main content</a>' +
     '<nav class="nav" id="nav" aria-label="Primary">' +
-      '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true">⬡</span> Hack<span>Tech</span></a>' +
+      '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" aria-hidden="true"><path class="logo__hex" d="M16 4.5l10 5.75v11.5L16 27.5 6 21.75V10.25z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg></span> Hack<span>Tech</span></a>' +
       '<button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">' +
         "<span></span><span></span><span></span>" +
       "</button>" +
@@ -88,7 +88,7 @@
       '<div class="container">' +
         '<div class="footer__top">' +
           '<div class="footer__brand">' +
-            '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true">⬡</span> Hack<span>Tech</span></a>' +
+            '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" aria-hidden="true"><path class="logo__hex" d="M16 4.5l10 5.75v11.5L16 27.5 6 21.75V10.25z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg></span> Hack<span>Tech</span></a>' +
             "<p>Pakistan's complete technology ecosystem — software, AI, IoT, security, automation and training. Made in Pakistan.</p>" +
           "</div>" +
           '<div class="footer__col"><h3>What we do</h3>' +
@@ -96,10 +96,11 @@
           '<div class="footer__col"><h3>Company</h3>' +
             '<a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>' +
           '<div class="footer__col"><h3>Get in touch</h3>' +
-            '<a href="mailto:contact.hacktechzone@gmail.com">contact.hacktechzone@gmail.com</a><a href="tel:+923275516703">0327 5516703</a><a href="https://www.tiktok.com/@hacktechzone" target="_blank" rel="noopener">TikTok · hacktech zone</a></div>' +
+            '<a href="mailto:contact.hacktechzone@gmail.com">contact.hacktechzone@gmail.com</a><a href="tel:+923275516703">0327 5516703</a><a href="https://www.tiktok.com/@hacktech.zone" target="_blank" rel="noopener">TikTok · hacktech zone</a></div>' +
         "</div>" +
         '<div class="footer__bottom">' +
           "<span>© 2026 HackTech Technologies (Pvt) Ltd. All rights reserved.</span>" +
+          '<span class="open-chip" id="openChip"></span>' +
           "<span>Engineered in Pakistan 🇵🇰</span>" +
         "</div>" +
       "</div>" +
@@ -129,6 +130,42 @@
       try { localStorage.setItem("ht-theme", next); } catch (e) {}
       apply(next);
     });
+  })();
+
+  // ---- WhatsApp floating button (bottom-left; Kaira owns bottom-right) ----
+  (function () {
+    var a = document.createElement("a");
+    a.className = "wa-fab";
+    a.href = "https://wa.me/923275516703?text=" + encodeURIComponent("Hi HackTech! I'd like to discuss a project.");
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.setAttribute("aria-label", "Chat with HackTech on WhatsApp");
+    a.innerHTML =
+      '<svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.6.1-.8l.4-.5c.1-.2.2-.3.3-.5v-.5c0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.2z"/></svg>';
+    document.body.appendChild(a);
+  })();
+
+  // ---- "Open now" chip — live Karachi time + Mon–Sat 9:00–18:00 status ----
+  (function () {
+    var chip = document.getElementById("openChip");
+    if (!chip) return;
+    function tick() {
+      try {
+        var parts = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Asia/Karachi", hour: "2-digit", minute: "2-digit",
+          hour12: false, weekday: "short"
+        }).formatToParts(new Date());
+        var get = function (t) { return (parts.find(function (p) { return p.type === t; }) || {}).value; };
+        var day = get("weekday"), hh = parseInt(get("hour"), 10);
+        var open = day !== "Sun" && hh >= 9 && hh < 18;
+        chip.innerHTML = open
+          ? '<i class="dot-live"></i> Open now · ' + get("hour") + ":" + get("minute") + " PKT"
+          : "Closed · opens " + (day === "Sat" ? "Mon" : "") + " 9:00 PKT";
+        chip.classList.toggle("is-open", open);
+      } catch (e) { /* Intl unsupported → chip stays empty */ }
+    }
+    tick();
+    setInterval(tick, 60000);
   })();
 
   // ---- VEYRA on-site chat widget (loaded site-wide) ----

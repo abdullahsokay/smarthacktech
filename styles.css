@@ -3,6 +3,12 @@
    Design system (Aurora glass theme, polished)
    Palette (old-money): #1B211A #232B21 #33402A #628141 #8BAE66 #EBD5AB
    ============================================================ */
+/* ---- self-hosted variable fonts (latin) — no third-party font chain ---- */
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;
+  src:url("fonts/inter-var.woff2") format("woff2")}
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:300 700;font-display:swap;
+  src:url("fonts/spacegrotesk-var.woff2") format("woff2")}
+
 :root{
   --c1:#1B211A; --c2:#232B21; --c3:#33402A;
   --c4:#628141; --c5:#8BAE66; --c6:#EBD5AB;
@@ -140,6 +146,43 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
 .lead,.card__text{text-wrap:pretty}
 /* stats: digits align while counting up */
 .stat__num,.kpi__num{font-variant-numeric:tabular-nums}
+
+/* scroll-spy soft glow on the matching nav link */
+.nav-links > li > a.insection:not(.active){color:var(--c6);text-shadow:0 0 14px rgba(139,174,102,.5)}
+/* hero "Ask our AI Architect" — live dot inside the ghost button */
+.btn--kaira .dot-live{width:8px;height:8px;border-radius:50%;background:var(--ok);
+  box-shadow:0 0 10px var(--ok);display:inline-block}
+
+/* ---------- WhatsApp floating button ---------- */
+.wa-fab{position:fixed;left:18px;bottom:18px;z-index:65;width:52px;height:52px;
+  display:grid;place-items:center;border-radius:50%;color:#fff;
+  background:linear-gradient(140deg,#2fd366,#128c4b);
+  box-shadow:0 10px 26px -8px rgba(18,140,75,.65),0 0 0 0 rgba(47,211,102,.45);
+  animation:wa-pulse 2.6s var(--ease-out) infinite;
+  transition:transform var(--dur-1) var(--ease-out)}
+.wa-fab:hover{transform:translateY(-3px) scale(1.06);animation-play-state:paused}
+@keyframes wa-pulse{
+  0%{box-shadow:0 10px 26px -8px rgba(18,140,75,.65),0 0 0 0 rgba(47,211,102,.45)}
+  70%{box-shadow:0 10px 26px -8px rgba(18,140,75,.65),0 0 0 14px rgba(47,211,102,0)}
+  100%{box-shadow:0 10px 26px -8px rgba(18,140,75,.65),0 0 0 0 rgba(47,211,102,0)}}
+@media(max-width:760px){.wa-fab{left:14px;bottom:14px;width:48px;height:48px}}
+
+/* ---------- footer "open now" chip ---------- */
+.open-chip{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--muted)}
+.open-chip.is-open{color:var(--ok)}
+.open-chip .dot-live{width:7px;height:7px;border-radius:50%;background:var(--ok);
+  box-shadow:0 0 8px var(--ok);animation:wa-pulse-dot 2s ease-in-out infinite}
+@keyframes wa-pulse-dot{50%{opacity:.5}}
+
+/* ---------- logo hexagon: draws itself once per page ---------- */
+.logo__hex{stroke-dasharray:76;stroke-dashoffset:76;
+  animation:hex-draw 1.1s var(--ease-out-expo) .2s forwards}
+@keyframes hex-draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){
+  .wa-fab{animation:none}
+  .open-chip .dot-live{animation:none}
+  .logo__hex{animation:none;stroke-dashoffset:0}
+}
 
 /* ---------- backdrop (solid colour — no glow/gradient effects) ---------- */
 .backdrop{position:fixed;inset:0;z-index:-2;background:var(--c1)}

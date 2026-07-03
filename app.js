@@ -284,6 +284,21 @@
     window.addEventListener("load", sync);
   })();
 
+  /* ---- 15b. scroll-spy: nav link glows while its section is in view ---- */
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    var map = { portfolio: "portfolio" };            // section id → data-nav
+    var sections = Object.keys(map).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    if (!sections.length) return;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var link = document.querySelector('.nav-links a[data-nav="' + map[e.target.id] + '"]');
+        if (link) link.classList.toggle("insection", e.isIntersecting);
+      });
+    }, { rootMargin: "-30% 0px -50% 0px" });
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+
   /* ---- 16. magnetic primary buttons (capped; excludes the fixed nav CTA) ---- */
   (function () {
     if (reduce || !window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;

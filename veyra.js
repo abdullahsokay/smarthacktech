@@ -487,6 +487,34 @@
   if (refreshBtn) refreshBtn.addEventListener("click", resetChat);
   sendBtn.addEventListener("click", function () { send(ta.value); });
   ta.addEventListener("input", autosize);
+
+  // ---- typewriter placeholder: rotates real prompts so visitors instantly
+  // see what Kaira can do. Pauses while typing/focused; reduced-motion static.
+  (function () {
+    var PROMPTS = [
+      "Quote for a fleet-tracking system…",
+      "I need a website for my business…",
+      "Audit my website's performance…",
+      "Build me an AI chatbot…",
+      "Estimate a mobile app…"
+    ];
+    if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) {
+      ta.placeholder = PROMPTS[0];
+      return;
+    }
+    var pi = 0, ci = 0, del = false;
+    (function type() {
+      var active = document.activeElement === ta || ta.value;
+      if (!active) {
+        var w = PROMPTS[pi];
+        ci += del ? -1 : 1;
+        ta.placeholder = w.slice(0, ci);
+        if (!del && ci === w.length) { del = true; return setTimeout(type, 1800); }
+        if (del && ci === 0) { del = false; pi = (pi + 1) % PROMPTS.length; }
+      }
+      setTimeout(type, del ? 28 : 55);
+    })();
+  })();
   ta.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(ta.value); }
   });

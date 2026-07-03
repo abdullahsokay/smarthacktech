@@ -4,13 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HackTech — Pakistan's Complete Technology Ecosystem | Software, AI, IoT, Security</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"></noscript>
 <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ht-theme')||'dark')}catch(e){}</script>
+<link rel="preload" as="font" type="font/woff2" href="fonts/spacegrotesk-var.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/inter-var.woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="enhance.css">
-<link rel="preload" as="image" href="images/hero-poster.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="images/hero-poster.webp" fetchpriority="high">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%230A0A0A'%2F%3E%3Cpath%20d%3D'M16%206.5l8%204.6v9.2l-8%204.6-8-4.6v-9.2z'%20fill%3D'none'%20stroke%3D'%23D4AF37'%20stroke-width%3D'2.2'%20stroke-linejoin%3D'round'%2F%3E%3C%2Fsvg%3E">
 <meta name="description" content="HackTech is Pakistan's complete technology ecosystem — software, AI, IoT, security &amp; surveillance, smart-home automation and training.">
@@ -45,7 +44,7 @@
         <p class="lead">Software, AI, IoT, security, smart-home automation and training &mdash; everything your business needs to go digital, under one roof and engineered in Pakistan.</p>
         <div class="actions">
           <a class="btn btn--primary" href="contact.html">Get a Quote</a>
-          <a class="btn btn--ghost" href="solutions.html">Explore Services</a>
+          <button class="btn btn--ghost btn--kaira" type="button" onclick="window.KairaChat?window.KairaChat.open():location.href='contact.html'"><span class="dot-live" aria-hidden="true"></span> Ask our AI Architect</button>
           <a class="btn btn--ghost" href="demo.html">Watch Live Demo &rarr;</a>
         </div>
         <div class="hero-meta">
@@ -57,7 +56,7 @@
       </div>
       <div class="hero__visual reveal reveal--scale" style="transition-delay:.18s">
         <div class="hero-portal">
-          <video class="hero-portal__vid" autoplay muted loop playsinline preload="metadata" poster="images/hero-poster.jpg" tabindex="-1" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true">
+          <video class="hero-portal__vid" autoplay muted loop playsinline preload="metadata" poster="images/hero-poster.webp" tabindex="-1" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true">
             <source src="images/hero.mp4" type="video/mp4">
           </video>
           <span class="hero-portal__grid" aria-hidden="true"></span>
@@ -83,37 +82,37 @@
     </div>
     <div class="grid--3">
       <article class="card card--glow tilt reveal">
-        <div class="card__media"><img src="images/software.jpg" alt="Software development at HackTech" loading="lazy"></div>
+        <div class="card__media"><img src="images/software.webp" alt="Software development at HackTech" loading="lazy"></div>
         <h3 class="card__title">Software Development</h3>
         <p class="card__text">Web, mobile, SaaS and enterprise software built around the way you actually work.</p>
         <a class="card__link" href="service.html?s=software">Explore &rarr;</a>
       </article>
       <article class="card card--glow tilt reveal" style="transition-delay:.06s">
-        <div class="card__media"><img src="images/ai.jpg" alt="AI and automation solutions" loading="lazy"></div>
+        <div class="card__media"><img src="images/ai.webp" alt="AI and automation solutions" loading="lazy"></div>
         <h3 class="card__title">AI &amp; Automation</h3>
         <p class="card__text">Chatbots, agents, computer vision and workflow automation that save real hours.</p>
         <a class="card__link" href="service.html?s=ai">Explore &rarr;</a>
       </article>
       <article class="card card--glow tilt reveal" style="transition-delay:.12s">
-        <div class="card__media"><img src="images/circuit.jpg" alt="Locally-engineered IoT devices" loading="lazy"></div>
+        <div class="card__media"><img src="images/circuit.webp" alt="Locally-engineered IoT devices" loading="lazy"></div>
         <h3 class="card__title">IoT Solutions</h3>
         <p class="card__text">Locally-engineered devices and live dashboards &mdash; including our SOTMS fleet flagship.</p>
         <a class="card__link" href="service.html?s=iot">Explore &rarr;</a>
       </article>
       <article class="card card--glow tilt reveal">
-        <div class="card__media"><img src="images/security.jpg" alt="CCTV and security surveillance" loading="lazy"></div>
+        <div class="card__media"><img src="images/security.webp" alt="CCTV and security surveillance" loading="lazy"></div>
         <h3 class="card__title">Security &amp; Surveillance</h3>
         <p class="card__text">CCTV, IP cameras, access control and biometrics &mdash; installed and monitored end to end.</p>
         <a class="card__link" href="service.html?s=security">Explore &rarr;</a>
       </article>
       <article class="card card--glow tilt reveal" style="transition-delay:.06s">
-        <div class="card__media"><img src="images/smart-home.jpg" alt="Smart home automation" loading="lazy"></div>
+        <div class="card__media"><img src="images/smart-home.webp" alt="Smart home automation" loading="lazy"></div>
         <h3 class="card__title">Smart Home &amp; Automation</h3>
         <p class="card__text">Lighting, locks, cameras and energy &mdash; all from one app or a single voice command.</p>
         <a class="card__link" href="service.html?s=smarthome">Explore &rarr;</a>
       </article>
       <article class="card card--glow tilt reveal" style="transition-delay:.12s">
-        <div class="card__media"><img src="images/training.jpg" alt="Hands-on technology training" loading="lazy"></div>
+        <div class="card__media"><img src="images/training.webp" alt="Hands-on technology training" loading="lazy"></div>
         <h3 class="card__title">Training &amp; Education</h3>
         <p class="card__text">Hands-on, project-based training and workshops taught by working engineers.</p>
         <a class="card__link" href="service.html?s=training">Explore &rarr;</a>
@@ -131,7 +130,7 @@
   <div class="container">
     <div class="split reveal">
       <div class="split__media split__media--gif">
-        <video class="sh-demo js-inview-video" autoplay muted loop playsinline preload="metadata" poster="images/smarthome-poster.jpg" tabindex="-1" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true">
+        <video class="sh-demo js-inview-video" autoplay muted loop playsinline preload="metadata" poster="images/smarthome-poster.webp" tabindex="-1" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true">
           <source src="images/smarthomevideo.mp4" type="video/mp4">
         </video>
       </div>
@@ -308,6 +307,7 @@
 <script src="components.js"></script>
 <script src="app.js"></script>
 <script src="enhance.js"></script>
+<script src="palette.js" defer></script>
 
 </body>
 </html>

@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Live Demo — HackTech SOTMS Dashboard</title>
 <meta name="description" content="A live, simulated look at HackTech's SOTMS operations dashboard — real-time vehicle tracking, AI alerts and fuel analytics.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"></noscript>
 <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ht-theme')||'dark')}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="enhance.css">
@@ -42,7 +39,7 @@
     </div>
 
     <div class="demo-video reveal">
-      <video class="demo-video__vid" autoplay muted loop playsinline preload="metadata" poster="images/sotms-poster.jpg" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-label="SOTMS live demo">
+      <video class="demo-video__vid" autoplay muted loop playsinline preload="metadata" poster="images/sotms-poster.webp" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-label="SOTMS live demo">
         <source src="images/sotms.mp4" type="video/mp4">
         Your browser doesn&rsquo;t support video playback.
       </video>
@@ -104,5 +101,6 @@
 <script src="components.js"></script>
 <script src="app.js"></script>
 <script src="enhance.js"></script>
+<script src="palette.js" defer></script>
 </body>
 </html>

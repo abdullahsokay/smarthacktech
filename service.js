@@ -11,7 +11,7 @@
       eyebrow: "Service · Software Development",
       title: 'Software that <span class="accent">fits how you work</span>',
       lead: "From idea to launch — scalable web, mobile and enterprise software, built with clean code and long-term support.",
-      img: "images/software.jpg", tag: "Web · Mobile · SaaS",
+      img: "images/software.webp", tag: "Web · Mobile · SaaS",
       chips: ["Web Applications", "Mobile Apps", "SaaS Platforms", "Enterprise Software", "APIs & Integrations", "AI Features"],
       features: [
         ["Custom web apps", "Dashboards, portals and platforms tailored to your exact workflow."],
@@ -27,7 +27,7 @@
       eyebrow: "Service · AI & Automation",
       title: 'Put <span class="accent">AI to work</span>',
       lead: "Chatbots, autonomous agents, computer vision and workflow automation that remove busywork and save real hours every week.",
-      img: "images/ai.jpg", tag: "Agents · Vision · Workflows",
+      img: "images/ai.webp", tag: "Agents · Vision · Workflows",
       chips: ["AI Chatbots", "AI Agents", "Computer Vision", "Process Automation", "Knowledge / RAG", "Integrations"],
       features: [
         ["AI chatbots", "Support and sales assistants trained on your own content."],
@@ -43,7 +43,7 @@
       eyebrow: "Service · IoT Solutions",
       title: 'Bring everything <span class="accent">online, in real time</span>',
       lead: "Locally-engineered devices and live dashboards that connect vehicles, fuel, machines and assets — including our SOTMS fleet flagship.",
-      img: "images/circuit.jpg", tag: "Devices · Live data",
+      img: "images/circuit.webp", tag: "Devices · Live data",
       chips: ["Fleet Monitoring", "Fuel Monitoring", "Smart Sensors", "Industrial IoT", "Asset Tracking", "Custom IoT"],
       features: [
         ["Made-in-PK devices", "Our own tracking boards and firmware engineered end-to-end at home."],
@@ -60,7 +60,7 @@
       eyebrow: "Service · Security & Surveillance",
       title: 'Protect <span class="accent">what matters</span>',
       lead: "Cameras, access control and biometrics — professionally surveyed, installed, configured and monitored end to end.",
-      img: "images/security.jpg", tag: "CCTV · Access · Biometrics",
+      img: "images/security.webp", tag: "CCTV · Access · Biometrics",
       chips: ["CCTV Installation", "IP Cameras", "Access Control", "Biometric Systems", "24/7 Monitoring", "Maintenance"],
       features: [
         ["Site survey", "We map your premises and design the right coverage — no blind spots."],
@@ -76,7 +76,7 @@
       eyebrow: "Service · Smart Home & Automation",
       title: 'Your whole space, <span class="accent">one tap away</span>',
       lead: "Lighting, locks, doorbells, cameras and energy — all from a single app or your voice, at home or the office.",
-      img: "images/smart-home.jpg", tag: "One app · One voice",
+      img: "images/smart-home.webp", tag: "One app · One voice",
       chips: ["Smart Lighting", "Smart Locks", "Doorbells & Cameras", "Energy Management", "Voice Control", "Office Automation"],
       features: [
         ["Smart lighting", "Scenes, schedules and dimming for every room and mood."],
@@ -92,7 +92,7 @@
       eyebrow: "Service · Training & Education",
       title: 'Turn learners into <span class="accent">builders</span>',
       lead: "Hands-on, project-based training and workshops that turn students and teams into real builders — taught by working engineers.",
-      img: "images/training.jpg", tag: "Hands-on · Project-based",
+      img: "images/training.webp", tag: "Hands-on · Project-based",
       chips: ["AI Training", "Web Development", "Mobile Development", "IoT Training", "Workshops", "Corporate Cohorts"],
       features: [
         ["AI & data", "Practical AI, prompting and automation for students and teams."],
@@ -124,7 +124,7 @@
       eyebrow: "Flagship · SOTMS",
       title: 'SOTMS — <span class="accent">smart fleet, one screen</span>',
       lead: "Locally-built tracking devices and the SOTMS dashboard turn thousands of vehicle signals into one calm, real-time command centre.",
-      img: "images/fleet.jpg", tag: "Live fleet intelligence",
+      img: "images/fleet.webp", tag: "Live fleet intelligence",
       chips: ["Live Tracking", "Driver-behavior AI", "Fuel & Route Savings", "Vehicle Diagnostics", "Geo-fencing", "Reports"],
       features: [
         ["Live tracking", "Every vehicle's position, speed and status, second by second."],
