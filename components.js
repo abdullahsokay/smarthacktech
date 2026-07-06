@@ -171,14 +171,24 @@
   // ---- VEYRA on-site chat widget (loaded site-wide) ----
   (function () {
     if (document.getElementById("vy-css")) return;
-    var css = document.createElement("link");
-    css.id = "vy-css";
-    css.rel = "stylesheet";
-    css.href = "veyra.css";
-    document.head.appendChild(css);
-    var js = document.createElement("script");
-    js.src = "veyra.js";
-    js.defer = true;
-    document.body.appendChild(js);
+    function mount() {
+      if (document.getElementById("vy-css")) return;
+      var css = document.createElement("link");
+      css.id = "vy-css";
+      css.rel = "stylesheet";
+      css.href = "veyra.css";
+      document.head.appendChild(css);
+      var js = document.createElement("script");
+      js.src = "veyra.js";
+      js.defer = true;
+      document.body.appendChild(js);
+    }
+    // Phones: keep the main thread clear during first paint — mount the
+    // widget when the CPU idles (or after 4s, whichever comes first).
+    if (window.matchMedia("(hover:none),(pointer:coarse),(max-width:760px)").matches && "requestIdleCallback" in window) {
+      requestIdleCallback(mount, { timeout: 4000 });
+    } else {
+      mount();
+    }
   })();
 })();

@@ -366,7 +366,8 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
 .hero-meta{display:flex;flex-wrap:wrap;gap:34px;margin-top:42px}
 .hero-meta .stat__num{font-size:clamp(1.6rem,3vw,2.2rem)}
 .scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
-  color:var(--faint);font-size:12px;letter-spacing:2px;animation:bob 2s ease-in-out infinite}
+  color:var(--muted);font-size:12px;letter-spacing:2px;text-shadow:0 1px 8px rgba(0,0,0,.6);
+  animation:bob 2s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,9px)}}
 
 /* ---------- marquee (trusted by) ---------- */
