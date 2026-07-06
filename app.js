@@ -200,14 +200,20 @@
         if (msg) { msg.textContent = "Shukriya" + first + "! Aapki request mil gayi — hamari team 24 ghante mein rabta karegi."; msg.style.color = "var(--c6)"; }
         form.reset();
       }
-      // never lose a lead: hand off to the visitor's email client
+      // never lose a lead: hand off to the visitor's email client — and be
+      // HONEST that the form itself did not go through (the draft still has
+      // to be sent by the visitor).
       function mailtoFallback() {
         var lines = [];
         fd.forEach(function (v, k) { if (k.charAt(0) !== "_") lines.push(k + ": " + v); });
         window.location.href = "mailto:contact.hacktechzone@gmail.com?subject=" +
           encodeURIComponent("New enquiry — " + (fd.get("service") || "HackTech")) +
           "&body=" + encodeURIComponent(lines.join("\n"));
-        ok();
+        if (msg) {
+          msg.textContent = "Form submit nahi ho saka — humne aapke email app mein draft khol diya hai. Wahan Send dabayen, ya WhatsApp karein: 0327 5516703.";
+          msg.style.color = "var(--warn)";
+        }
+        // keep the form filled so the visitor can retry without retyping
       }
 
       if (!isEndpoint) { mailtoFallback(); return; }
@@ -330,3 +336,20 @@
 
   onScroll();
 })();
+
+  /* ---- 17. contact form: pre-select the service the visitor came from ----
+     Service pages link contact.html?s=<key>; keep that context so the
+     visitor doesn't re-answer a question they already answered. */
+  (function () {
+    var sel = document.querySelector('#quote select[name="service"], form select[name="service"]');
+    if (!sel) return;
+    var key = new URLSearchParams(location.search).get("s");
+    if (!key) return;
+    var MAP = {
+      software: "Software Development", ai: "AI & Automation", iot: "IoT Solutions",
+      security: "Security & Surveillance", smarthome: "Smart Home & Automation",
+      training: "Training & Education", design: "Graphic Design", sotms: "Fleet / Vehicle IoT"
+    };
+    var val = MAP[key.toLowerCase()];
+    if (val) sel.value = val;
+  })();

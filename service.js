@@ -193,6 +193,10 @@
   set("svc-cta-h", "Ready for " + esc(ctaLabel) + "?");
   set("svc-cta-p", esc(svc.ctaP || "Tell us your goal and we'll put the right team on it."));
 
+  // quote CTA carries the service context so the contact form pre-selects it
+  var cp = document.getElementById("svc-cta-primary");
+  if (cp) cp.href = "contact.html?s=" + encodeURIComponent(key);
+
   // optional secondary hero button (e.g. live demo for IoT/SOTMS)
   if (svc.ghost) {
     var g = document.getElementById("svc-cta-ghost");

@@ -116,9 +116,12 @@
     else location.href = it.href;
   }
 
+  var lastFocus = null;   // restore focus here on close (dialog pattern)
+
   function openPal() {
     build();
     open = true;
+    lastFocus = document.activeElement;
     root.classList.add("is-open");
     input.value = "";
     filter("");
@@ -130,6 +133,7 @@
     open = false;
     root.classList.remove("is-open");
     document.documentElement.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
   window.addEventListener("keydown", function (e) {
@@ -137,6 +141,9 @@
       e.preventDefault();
       open ? close() : openPal();
     } else if (e.key === "Escape" && open) close();
+    // focus trap: the search input is the dialog's only tabbable control,
+    // so Tab must not escape into the inert page behind the scrim.
+    else if (e.key === "Tab" && open) { e.preventDefault(); input.focus(); }
   });
 
   // desktop hint chip in the nav tools (fine pointers only)

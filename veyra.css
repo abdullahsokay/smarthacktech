@@ -415,3 +415,13 @@
 @media (prefers-reduced-motion: reduce) {
   .vy-launch__orb, .vy-launch__glow, .vy-dots i, .vy-orb__swirl, .vy-orb__glow, .vy-orb__ball, .vy-wave i, .vy-panel::before { animation: none; }
 }
+
+/* ---------- touch targets + mobile input ergonomics ---------- */
+.vy-x,.vy-refresh{width:44px;height:44px}
+.vy-chip{min-height:44px;padding:10px 14px}
+.vy.is-open .vy-launch{visibility:hidden}
+@media (max-width:480px){
+  .vy-row input,.vy-lead__form input,.vy-lead__form select{font-size:16px}
+  .vy-panel{height:min(92vh,92dvh)}
+  .vy-launch{width:96px;height:110px;right:8px;bottom:8px}
+}

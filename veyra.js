@@ -53,7 +53,7 @@
           '<h2 class="vy-ask">How can I help you <span>today</span>?</h2>' +
           '<div class="vy-chips"></div>' +
         "</div>" +
-        '<div class="vy-thread"></div>' +
+        '<div class="vy-thread" role="log" aria-live="polite"></div>' +
       "</div>" +
       '<div class="vy-foot">' +
         '<div class="vy-actions"><button class="vy-act" id="vyBp" type="button">✦ Generate Blueprint</button></div>' +
@@ -204,6 +204,7 @@
       if (body.parentNode) body.parentNode.remove();
       var er = document.createElement("div");
       er.className = "vy-err";
+      er.setAttribute("role", "alert");
       er.textContent = (err && err.message) || "Something went wrong. Please try again.";
       thread.appendChild(er);
       scrollDown();
@@ -373,10 +374,10 @@
       '<form class="vy-lead__form">' +
         '<input name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">' +
         '<div class="vy-lf-row"><input name="name" placeholder="Full name" required><input name="email" type="email" placeholder="Email" required></div>' +
-        '<div class="vy-lf-row"><input name="company" placeholder="Company (optional)"><input name="industry" placeholder="Industry (optional)"></div>' +
+        '<div class="vy-lf-row"><input name="company" placeholder="Company (optional)" aria-label="Company" autocomplete="organization"><input name="industry" placeholder="Industry (optional)" aria-label="Industry"></div>' +
         '<div class="vy-lf-row">' +
-          '<select name="budget"><option value="">Budget range</option><option>Under PKR 100k</option><option>PKR 100k–500k</option><option>PKR 500k–2m</option><option>PKR 2m+ (enterprise)</option></select>' +
-          '<select name="timeline"><option value="">Timeline</option><option>ASAP / this month</option><option>1–3 months</option><option>3–6 months</option><option>Just exploring</option></select>' +
+          '<select name="budget" aria-label="Budget range"><option value="">Budget range</option><option>Under PKR 100k</option><option>PKR 100k–500k</option><option>PKR 500k–2m</option><option>PKR 2m+ (enterprise)</option></select>' +
+          '<select name="timeline" aria-label="Timeline"><option value="">Timeline</option><option>ASAP / this month</option><option>1–3 months</option><option>3–6 months</option><option>Just exploring</option></select>' +
         "</div>" +
         '<button class="vy-lf-submit" type="submit">Send to HackTech</button>' +
         '<div class="vy-lf-msg"></div>' +
@@ -424,7 +425,7 @@
     card.innerHTML = '<div class="vy-bp__eyebrow">🔍 Website Audit</div>' +
       '<div class="vy-lead__t">Analyze any website</div>' +
       '<p class="vy-lead__s">Enter a URL — KAIRA checks performance, SEO, accessibility &amp; best-practices, then gives professional fixes.</p>' +
-      '<form class="vy-lead__form"><div class="vy-af-row"><input name="url" placeholder="example.com" required>' +
+      '<form class="vy-lead__form"><div class="vy-af-row"><input name="url" placeholder="example.com" aria-label="Website URL" inputmode="url" required>' +
       '<button class="vy-lf-submit" type="submit" style="margin:0;white-space:nowrap">Analyze</button></div></form>';
     thread.appendChild(card);
     scrollDown();

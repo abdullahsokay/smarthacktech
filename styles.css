@@ -12,7 +12,7 @@
 :root{
   --c1:#1B211A; --c2:#232B21; --c3:#33402A;
   --c4:#628141; --c5:#8BAE66; --c6:#EBD5AB;
-  --ink:#ECE3CE; --muted:#A7AE93; --faint:#6E7A62;
+  --ink:#ECE3CE; --muted:#A7AE93; --faint:#8b9880;
   --line:rgba(139,174,102,.18); --line-2:rgba(139,174,102,.30);
   --glass:rgba(235,213,171,.05); --glass-2:rgba(235,213,171,.085);
   --card:rgba(35,43,33,.55);
@@ -331,7 +331,7 @@ section[id]{scroll-margin-top:96px}
 .theme-toggle:hover{border-color:var(--c5);transform:translateY(-1px);
   box-shadow:0 0 0 4px rgba(139,174,102,.12),0 10px 24px rgba(0,0,0,.32)}
 .theme-toggle svg{position:relative;z-index:1;width:20px;height:20px;
-  transition:transform .55s var(--ease-spring)}
+  transition:transform .55s var(--ease-out)}
 .theme-toggle:hover svg{transform:rotate(45deg) scale(1.12)}
 .theme-toggle:active svg{transform:rotate(180deg) scale(.92)}
 .theme-toggle .ico-moon{display:none}
@@ -490,7 +490,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--c5);back
   box-shadow:0 0 0 3px rgba(139,174,102,.14),0 8px 28px -12px rgba(139,174,102,.35)}
 .field:focus-within label{color:var(--c5)}
 input,textarea,select{transition:border-color var(--dur-1) var(--ease-out),box-shadow var(--dur-1) var(--ease-out),background var(--dur-1) var(--ease-out)}
-input::placeholder,textarea::placeholder{color:rgba(158,151,138,.55)}
+input::placeholder,textarea::placeholder{color:var(--muted)}
 select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--c6) 50%),
   linear-gradient(135deg,var(--c6) 50%,transparent 50%);
   background-position:calc(100% - 20px) 22px,calc(100% - 14px) 22px;
@@ -523,7 +523,7 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 /* ---------- scroll reveal ----------
    fade + rise + a whisper of blur, landing on the long expo curve.
    Ends on filter:none (not blur(0)) so no stacking context lingers. */
-.reveal{opacity:0;transform:translateY(44px);filter:blur(6px);
+html.js .reveal{opacity:0;transform:translateY(44px);filter:blur(6px);
   transition:opacity var(--dur-3) var(--ease-out-expo),transform var(--dur-3) var(--ease-out-expo),
     filter var(--dur-3) var(--ease-out-expo)}
 .reveal--left{transform:translateX(-46px)}
@@ -646,3 +646,13 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
   .nav-menu{transition:none}
   .card__link::after{transition:none}
 }
+
+/* ---------- WCAG touch targets (44px min on conversion controls) ---------- */
+.nav-toggle{padding:10px;margin:-10px}
+a.chip{min-height:44px;display:inline-flex;align-items:center}
+#services .swiper-pagination-bullet{position:relative}
+#services .swiper-pagination-bullet::before{content:"";position:absolute;inset:-9px}
+.swiper-pause{position:absolute;right:16px;bottom:14px;z-index:12;width:44px;height:44px;
+  border-radius:50%;border:1px solid var(--line-2);background:rgba(10,10,10,.55);color:var(--ink);
+  font-size:13px;cursor:pointer;backdrop-filter:blur(8px)}
+.swiper-pause:hover{border-color:var(--c5)}
