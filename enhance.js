@@ -154,9 +154,14 @@
      restart the gradient on every letter). Replaces the block-level
      .reveal for this element so the two entrances don't fight. */
   (function () {
-    if (reduce) return;
     var kh = document.querySelector(".hero .display");
     if (!kh) return;
+    // Mobile/coarse: hundreds of blurred char-spans = paint storm on slow
+    // CPUs and it delays LCP. Paint the headline instantly instead.
+    if (reduce || window.matchMedia("(hover:none),(pointer:coarse),(max-width:760px)").matches) {
+      kh.classList.add("show");
+      return;
+    }
     kh.classList.remove("reveal");
     kh.style.transitionDelay = "0s";
     var idx = { n: 0 };

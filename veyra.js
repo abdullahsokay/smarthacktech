@@ -551,9 +551,13 @@
       load(V + "/examples/js/loaders/GLTFLoader.js", "kaira-gltf", "sha384-fljlqkjWlmSFjkESkQvm77heIZpoWmXEOzlCA7kOpGUH+95Zk0yGfQieWM2q136E");
       load("kaira-robot.js", "kaira-robot");
     }
-    ["pointermove", "pointerdown", "scroll", "touchstart", "keydown"].forEach(function (ev) {
+    // Mobile/coarse pointers never mount the 3D stack (3.4MB + heavy main
+    // thread on slow CPUs) — the branded CSS orb stays as the launcher and
+    // chat works exactly the same. Desktop mounts on first interaction,
+    // which real users produce immediately; no blanket timer.
+    if (window.matchMedia("(hover:none),(pointer:coarse),(max-width:760px)").matches) return;
+    ["pointermove", "pointerdown", "scroll", "keydown"].forEach(function (ev) {
       window.addEventListener(ev, mount3d, { once: true, passive: true });
     });
-    setTimeout(mount3d, 8000);
   })();
 })();
