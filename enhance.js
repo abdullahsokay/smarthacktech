@@ -74,6 +74,17 @@
   (function () {
     var vids = $$(".hero-portal__vid, .js-inview-video");
     if (!vids.length) return;
+    // Videos ship without src (data-src) so phones never download them —
+    // the poster is the mobile experience. Wide screens attach the source
+    // here, then the observer below starts playback in view.
+    if (window.matchMedia("(min-width:761px)").matches && !reduce) {
+      vids.forEach(function (v) {
+        if (v.dataset.src && !v.getAttribute("src")) {
+          v.src = v.dataset.src;
+          v.autoplay = true;
+        }
+      });
+    }
     var io = ("IntersectionObserver" in window) ? new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         var v = e.target;
