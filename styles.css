@@ -146,12 +146,6 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
 .lead,.card__text{text-wrap:pretty}
 /* stats: digits align while counting up */
 .stat__num,.kpi__num{font-variant-numeric:tabular-nums}
-/* mobile: skip rendering below-fold sections until they approach the
-   viewport — big first-paint/main-thread win on slow devices. Sized
-   placeholder keeps scrollbar stable (no CLS). */
-@media(max-width:760px){
-  .section--light,.why-section,.footer{content-visibility:auto;contain-intrinsic-size:auto 720px}
-}
 
 /* scroll-spy soft glow on the matching nav link */
 .nav-links > li > a.insection:not(.active){color:var(--c6);text-shadow:0 0 14px rgba(139,174,102,.5)}
