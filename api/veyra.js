@@ -36,7 +36,7 @@ Six service lines:
 5. Smart Home & Automation, lighting, locks, doorbells, cameras and energy, controlled from one app or by voice.
 6. Training & Education, hands-on, project-based cohorts and workshops taught by working engineers.
 
-Flagship, SOTMS (fleet intelligence): locally-built GPS tracking devices plus the SOTMS dashboard. Capabilities: live tracking, driver-behavior AI (fatigue / harsh-braking / distraction alerts), fuel & route optimization, vehicle diagnostics, geo-fencing, and one unified dashboard. There is a live demo on the website.
+Flagship, SOTMS (fleet intelligence): locally-built GPS tracking devices plus the SOTMS dashboard. Capabilities: live tracking, driver-behavior AI (fatigue / harsh-braking / distraction alerts), fuel & route optimization, vehicle diagnostics, geo-fencing, and one unified dashboard.
 
 The team is a tight 4-person crew: Abdullah Iqbal (Team Lead & Full-Stack Engineer), Naba Batool (Product Designer & Frontend Engineer), Aleeza Shabbir (AI & Backend Engineer), Atif Riaz (IoT & Hardware Engineer).
 

@@ -11,7 +11,6 @@
     ["home", "index.html", "Home"],
     ["solutions", "solutions.html", "Services"],
     ["portfolio", "portfolio.html", "Portfolio"],
-    ["demo", "demo.html", "Live Demo"],
     ["about", "about.html", "About"],
     ["tech", "tech.html", "Experience"]
   ];
@@ -61,8 +60,7 @@
         '<ul class="nav-menu nav-menu--rich" aria-label="About">' + amenu + "</ul>" +
       "</li>";
     }
-    var badge = key === "demo" ? ' <span class="nav-badge">NEW</span>' : "";
-    return '<li><a href="' + href + '" data-nav="' + key + '"' + activeAttr(key) + ">" + label + badge + "</a></li>";
+    return '<li><a href="' + href + '" data-nav="' + key + '"' + activeAttr(key) + ">" + label + "</a></li>";
   }).join("");
 
   var headerHTML =
@@ -92,7 +90,7 @@
             "<p>Pakistan's complete technology ecosystem, software, AI, IoT, security, automation and training. Made in Pakistan.</p>" +
           "</div>" +
           '<div class="footer__col"><h3>What we do</h3>' +
-            '<a href="solutions.html">Services</a><a href="demo.html">Live Demo</a><a href="about.html">About</a><a href="contact.html">Get a Quote</a></div>' +
+            '<a href="solutions.html">Services</a><a href="about.html">About</a><a href="contact.html">Get a Quote</a></div>' +
           '<div class="footer__col"><h3>Company</h3>' +
             '<a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>' +
           '<div class="footer__col"><h3>Get in touch</h3>' +

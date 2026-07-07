@@ -53,8 +53,7 @@
         ["Asset tracking", "Know where your assets are and how they're being used."],
         ["Custom builds", "Have an idea? We design the device, firmware and app together."]
       ],
-      ctaP: "From one sensor to a nationwide fleet, tell us what you want to connect.",
-      ghost: { href: "demo.html", label: "Open Live Demo →" }
+      ctaP: "From one sensor to a nationwide fleet, tell us what you want to connect."
     },
     security: {
       eyebrow: "Service · Security & Surveillance",
@@ -134,8 +133,7 @@
         ["Geo-fencing", "Zones, alerts and trip rules tailored to your operation."],
         ["One dashboard", "Tracking, safety, fuel and diagnostics, one login, one truth."]
       ],
-      ctaP: "See it on sample data, then book a walkthrough on your real vehicles.",
-      ghost: { href: "demo.html", label: "Open Live Demo →" }
+      ctaP: "See it on sample data, then book a walkthrough on your real vehicles."
     }
   };
 
@@ -197,7 +195,6 @@
   var cp = document.getElementById("svc-cta-primary");
   if (cp) cp.href = "contact.html?s=" + encodeURIComponent(key);
 
-  // optional secondary hero button (e.g. live demo for IoT/SOTMS)
   if (svc.ghost) {
     var g = document.getElementById("svc-cta-ghost");
     if (g) { g.href = svc.ghost.href; g.textContent = svc.ghost.label; }

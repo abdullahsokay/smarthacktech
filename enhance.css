@@ -617,3 +617,10 @@ html.fx-on .scroll-hint{
   .nav-menu > li{ opacity:1; translate:none; transition:none }
   .scroll-hint{ opacity:1 }
 }
+
+/* mobile: the hero video portal never plays on phones — don't ship its
+   blank frame or 85KB poster; the copy IS the hero on small screens */
+@media(max-width:760px){
+  .hero--video .hero__visual{display:none}
+  .hero--video{min-height:auto;padding-top:96px;padding-bottom:56px}
+}

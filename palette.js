@@ -37,7 +37,6 @@
     { t: "Home", s: "Pakistan's complete technology ecosystem", href: "index.html", k: I.home },
     { t: "Services", s: "All seven service lines", href: "solutions.html", k: I.grid },
     { t: "Portfolio", s: "The team & the work we've shipped", href: "portfolio.html", k: I.folder },
-    { t: "Live Demo", s: "SOTMS fleet dashboard, live", href: "demo.html", k: I.signal },
     { t: "About", s: "Our story, team & values", href: "about.html", k: I.users },
     { t: "Contact", s: "Get a quote, we reply fast", href: "contact.html", k: I.mail },
     // services
@@ -120,7 +119,7 @@
         '<span class="cp__ico">' + it.k + "</span><span><b>" + esc(it.t) + "</b><small>" + esc(it.s) + "</small></span>" +
         (it.href ? '<span class="cp__go">↵</span>' : '<span class="cp__go cp__go--act">run</span>') +
       "</li>";
-    }).join("") : '<li class="cp__empty">No matches, try "AI", "quote", "demo"…</li>';
+    }).join("") : '<li class="cp__empty">No matches, try "AI", "quote", "portfolio"…</li>';
     var el = list.querySelector(".is-sel");
     if (el) el.scrollIntoView({ block: "nearest" });
   }
