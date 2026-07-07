@@ -425,3 +425,9 @@
   .vy-panel{height:min(92vh,92dvh)}
   .vy-launch{width:96px;height:110px;right:8px;bottom:8px}
 }
+
+/* perf: the closed panel is opacity:0 but its infinite animations
+   (edge conic spin, orb glow/swirl) still force style+paint every
+   frame from page load. Run them only while the panel is open. */
+.vy:not(.is-open) .vy-panel::before,
+.vy:not(.is-open) .vy-panel *{animation-play-state:paused!important}
