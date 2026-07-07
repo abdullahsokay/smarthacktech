@@ -1,5 +1,5 @@
 /* ============================================================
-   KAIRA — on-site AI assistant (HackTech)
+   KAIRA, on-site AI assistant (HackTech)
    Energy-orb welcome screen → streaming chat. The 3D robot
    (kaira-robot.js) mounts into #kaira-stage. Chat → /api/veyra.
    ============================================================ */
@@ -8,18 +8,35 @@
   if (window.__kaira) return;
   window.__kaira = true;
 
+  // inline SVG glyphs (no emoji — inconsistent across OSes, off-palette)
+  function vic(p) {
+    return '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + "</svg>";
+  }
+  var VI = {
+    globe: vic('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>'),
+    phone: vic('<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/>'),
+    spark: vic('<path d="M12 3v5M12 16v5M3 12h5M16 12h5"/><path d="M12 8l1.4 2.6L16 12l-2.6 1.4L12 16l-1.4-2.6L8 12l2.6-1.4z"/>'),
+    chip: vic('<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>'),
+    shield: vic('<path d="M12 3l8 3.5v5c0 4.6-3.4 7.8-8 9-4.6-1.2-8-4.4-8-9v-5z"/>'),
+    home: vic('<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>'),
+    bars: vic('<line x1="3" y1="21" x2="21" y2="21"/><rect x="5" y="11" width="3" height="8"/><rect x="11" y="6" width="3" height="13"/><rect x="17" y="14" width="3" height="5"/>'),
+    calc: vic('<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/>'),
+    doc: vic('<path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/>'),
+    cal: vic('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/>'),
+    search: vic('<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>')
+  };
   var STARTERS = [
-    { l: "🚀 Build a Website", m: "I want to build a website." },
-    { l: "📱 Mobile App", m: "I want to build a mobile app." },
-    { l: "🤖 AI Product", m: "I want to build an AI product." },
-    { l: "🌐 IoT Platform", m: "I want to build an IoT platform." },
-    { l: "🔐 Security & CCTV", m: "I need a security & CCTV system." },
-    { l: "🏠 Smart Home", m: "I want smart home automation." },
-    { l: "📊 Business Software", m: "I need custom business software." },
-    { l: "💰 Estimate Project", m: "Help me estimate my project — ask me what you need to know." },
-    { l: "📄 Generate Proposal", m: "I'd like a proposal for my project." },
-    { l: "📅 Book Consultation", m: "", a: "lead" },
-    { l: "🔍 Website Audit", m: "", a: "audit" },
+    { g: VI.globe, l: "Build a Website", m: "I want to build a website." },
+    { g: VI.phone, l: "Mobile App", m: "I want to build a mobile app." },
+    { g: VI.spark, l: "AI Product", m: "I want to build an AI product." },
+    { g: VI.chip, l: "IoT Platform", m: "I want to build an IoT platform." },
+    { g: VI.shield, l: "Security & CCTV", m: "I need a security & CCTV system." },
+    { g: VI.home, l: "Smart Home", m: "I want smart home automation." },
+    { g: VI.bars, l: "Business Software", m: "I need custom business software." },
+    { g: VI.calc, l: "Estimate Project", m: "Help me estimate my project, ask me what you need to know." },
+    { g: VI.doc, l: "Generate Proposal", m: "I'd like a proposal for my project." },
+    { g: VI.cal, l: "Book Consultation", m: "", a: "lead" },
+    { g: VI.search, l: "Website Audit", m: "", a: "audit" },
   ];
   var ARROW =
     '<svg class="vy-send__arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
@@ -33,7 +50,7 @@
       '<span class="vy-launch__orb" aria-hidden="true"></span>' +
       '<span class="vy-launch__tip">Ask <b>Kaira</b></span>' +
     "</button>" +
-    '<section class="vy-panel" role="dialog" aria-label="Kaira — HackTech AI assistant" aria-modal="false">' +
+    '<section class="vy-panel" role="dialog" aria-label="Kaira, HackTech AI assistant" aria-modal="false">' +
       '<div class="vy-top">' +
         '<span class="vy-top__brand"><i></i> KAIRA</span>' +
         '<div class="vy-top__tools">' +
@@ -49,14 +66,14 @@
             '<span class="vy-orb__glow"></span>' +
             '<span class="vy-orb__ball"><span class="vy-orb__swirl"></span><span class="vy-orb__rim"></span><span class="vy-orb__hi"></span></span>' +
           "</div>" +
-          '<div class="vy-hello">I&rsquo;m KAIRA — your AI Solutions Architect</div>' +
+          '<div class="vy-hello">I&rsquo;m KAIRA, your AI Solutions Architect</div>' +
           '<h2 class="vy-ask">How can I help you <span>today</span>?</h2>' +
           '<div class="vy-chips"></div>' +
         "</div>" +
         '<div class="vy-thread" role="log" aria-live="polite"></div>' +
       "</div>" +
       '<div class="vy-foot">' +
-        '<div class="vy-actions"><button class="vy-act" id="vyBp" type="button">✦ Generate Blueprint</button></div>' +
+        '<div class="vy-actions"><button class="vy-act" id="vyBp" type="button">Generate Blueprint</button></div>' +
         '<div class="vy-row">' +
           '<input type="text" placeholder="Ask anything…" aria-label="Message Kaira">' +
           '<button class="vy-send" type="button" aria-label="Send">' +
@@ -93,7 +110,7 @@
     var b = document.createElement("button");
     b.className = "vy-chip";
     b.type = "button";
-    b.textContent = s.l;
+    b.innerHTML = (s.g || "") + " " + s.l;
     b.addEventListener("click", function () {
       if (s.a === "lead") openLeadForm();
       else if (s.a === "audit") openAuditForm();
@@ -230,7 +247,7 @@
   async function generateBlueprint() {
     if (streaming || generating) return;
     if (messages.filter(function (m) { return m.role === "user"; }).length === 0) {
-      send("I'd like a full blueprint — here's my project idea: ");
+      send("I'd like a full blueprint, here's my project idea: ");
       return;
     }
     if (!started) { started = true; panel.classList.add("is-chatting"); }
@@ -238,7 +255,7 @@
     bpBtn.disabled = true;
     var sid = session;
     var loading = bubble("kaira", "");
-    loading.innerHTML = 'Designing your blueprint — architecture, stack, estimate &amp; proposal… <span class="vy-dots"><i></i><i></i><i></i></span>';
+    loading.innerHTML = 'Designing your blueprint, architecture, stack, estimate &amp; proposal… <span class="vy-dots"><i></i><i></i><i></i></span>';
     scrollDown();
     try {
       var res = await fetch("/api/kaira-blueprint", {
@@ -278,7 +295,7 @@
         esc(p.focus) + "</div></div></div>";
     }).join("");
     var pr = bp.proposal || {};
-    return '<div class="vy-bp__head"><div class="vy-bp__eyebrow">✦ Project Blueprint</div>' +
+    return '<div class="vy-bp__head"><div class="vy-bp__eyebrow">Project Blueprint</div>' +
       '<h3 class="vy-bp__title">' + esc(bp.projectName || "Your Project") + "</h3>" +
       '<p class="vy-bp__sum">' + esc(bp.summary) + "</p></div>" +
       '<div class="vy-bp__card"><div class="vy-bp__label">System Architecture</div><div class="vy-diagram">' + arch + "</div></div>" +
@@ -327,9 +344,9 @@
   function blueprintToText(bp) {
     var e = bp.estimation || {}, pr = bp.proposal || {}, st = bp.stack || {};
     var L = function (a) { return (a || []).map(function (x) { return "  - " + x; }).join("\n"); };
-    return "PROJECT BLUEPRINT — " + (bp.projectName || "") + "\nby KAIRA · HackTech AI Solutions Architect\n\n" +
+    return "PROJECT BLUEPRINT, " + (bp.projectName || "") + "\nby KAIRA · HackTech AI Solutions Architect\n\n" +
       (bp.summary || "") + "\n\n== ARCHITECTURE ==\n" +
-      (bp.architecture || []).map(function (n) { return "  - " + n.layer + ": " + n.tech + " — " + n.note; }).join("\n") +
+      (bp.architecture || []).map(function (n) { return "  - " + n.layer + ": " + n.tech + ", " + n.note; }).join("\n") +
       "\n\n== TECHNOLOGY STACK ==\n  - Frontend: " + st.frontend + "\n  - Backend: " + st.backend +
       "\n  - Database: " + st.database + "\n  - AI: " + st.ai + "\n  - Infrastructure: " + st.infrastructure +
       "\n\n== SECURITY ==\n" + L(bp.security) + "\n\n== SCALABILITY ==\n" + L(bp.scalability) +
@@ -338,7 +355,7 @@
       (e.phases || []).map(function (p) { return "  - " + p.name + " (" + p.weeks + "): " + p.focus; }).join("\n") +
       "\n  Risks:\n" + L(e.risks) + "\n\n== PROPOSAL ==\n" + (pr.overview || "") + "\n  Scope:\n" + L(pr.scope) +
       "\n  Deliverables:\n" + L(pr.deliverables) + "\n  Next steps:\n" + L(pr.nextSteps) +
-      "\n\nPrepared by KAIRA — HackTech. contact.hacktechzone@gmail.com";
+      "\n\nPrepared by KAIRA, HackTech. contact.hacktechzone@gmail.com";
   }
 
   function loadJsPdf(cb) {
@@ -354,7 +371,7 @@
   function downloadPdf(bp) {
     loadJsPdf(function () {
       var J = window.jspdf && window.jspdf.jsPDF;
-      if (!J) { alert("PDF library couldn't load — try Copy instead."); return; }
+      if (!J) { alert("PDF library couldn't load, try Copy instead."); return; }
       var doc = new J({ unit: "pt", format: "a4" });
       doc.setFont("helvetica", "normal"); doc.setFontSize(10);
       var margin = 42, y = margin, lines = doc.splitTextToSize(blueprintToText(bp), 515);
@@ -368,9 +385,9 @@
 
   // ---------- Lead capture ----------
   function leadFormHTML() {
-    return '<div class="vy-lead__head"><div class="vy-bp__eyebrow">✦ Book a Consultation</div>' +
+    return '<div class="vy-lead__head"><div class="vy-bp__eyebrow">Book a Consultation</div>' +
       '<div class="vy-lead__t">Let&rsquo;s make it real</div>' +
-      '<p class="vy-lead__s">Share your details — KAIRA will brief a HackTech specialist on your project.</p></div>' +
+      '<p class="vy-lead__s">Share your details, KAIRA will brief a HackTech specialist on your project.</p></div>' +
       '<form class="vy-lead__form">' +
         '<input name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">' +
         '<div class="vy-lf-row"><input name="name" placeholder="Full name" required><input name="email" type="email" placeholder="Email" required></div>' +
@@ -408,7 +425,7 @@
       if (!res.ok) throw new Error(data.error || "Could not submit.");
       card.innerHTML = '<div class="vy-lead__done"><span class="vy-tier vy-tier--' + esc(data.tier) + '">' + esc(data.tier) + " lead</span>" +
         '<div class="vy-lead__t" style="margin-top:10px">You&rsquo;re in good hands.</div>' +
-        '<p class="vy-lead__s">KAIRA has briefed the HackTech team — a specialist will reach out shortly.</p></div>';
+        '<p class="vy-lead__s">KAIRA has briefed the HackTech team, a specialist will reach out shortly.</p></div>';
       scrollDown();
     } catch (err) {
       msg.textContent = (err && err.message) || "Something went wrong.";
@@ -424,7 +441,7 @@
     card.className = "vy-lead";
     card.innerHTML = '<div class="vy-bp__eyebrow">🔍 Website Audit</div>' +
       '<div class="vy-lead__t">Analyze any website</div>' +
-      '<p class="vy-lead__s">Enter a URL — KAIRA checks performance, SEO, accessibility &amp; best-practices, then gives professional fixes.</p>' +
+      '<p class="vy-lead__s">Enter a URL, KAIRA checks performance, SEO, accessibility &amp; best-practices, then gives professional fixes.</p>' +
       '<form class="vy-lead__form"><div class="vy-af-row"><input name="url" placeholder="example.com" aria-label="Website URL" inputmode="url" required>' +
       '<button class="vy-lf-submit" type="submit" style="margin:0;white-space:nowrap">Analyze</button></div></form>';
     thread.appendChild(card);
@@ -438,7 +455,7 @@
     var btn = form.querySelector(".vy-lf-submit");
     btn.disabled = true; btn.textContent = "Analyzing…";
     var loading = bubble("kaira", "");
-    loading.innerHTML = "Running a full audit on <b>" + esc(url) + "</b> — performance, SEO, accessibility… this takes ~15s. " +
+    loading.innerHTML = "Running a full audit on <b>" + esc(url) + "</b>, performance, SEO, accessibility… this takes ~15s. " +
       '<span class="vy-dots"><i></i><i></i><i></i></span>';
     scrollDown();
     try {
@@ -529,10 +546,10 @@
     if (e.key === "Escape" && root.classList.contains("is-open")) close();
   });
 
-  // mount the 3D mascot launcher — Three.js (UMD, classic) + GLTFLoader
+  // mount the 3D mascot launcher, Three.js (UMD, classic) + GLTFLoader
   // from jsdelivr (CSP-allowed), then the mascot (gltf model → procedural
   // fallback). Perf: the whole 3D stack (~3.4MB) is DEFERRED until first
-  // interaction — or an 8s idle fallback — so it never competes with
+  // interaction, or an 8s idle fallback, so it never competes with
   // first paint. The CSS orb covers the launcher until then.
   (function () {
     var armed = false;
@@ -553,7 +570,7 @@
       load("kaira-robot.js", "kaira-robot");
     }
     // Mobile/coarse pointers never mount the 3D stack (3.4MB + heavy main
-    // thread on slow CPUs) — the branded CSS orb stays as the launcher and
+    // thread on slow CPUs), the branded CSS orb stays as the launcher and
     // chat works exactly the same. Desktop mounts on first interaction,
     // which real users produce immediately; no blanket timer.
     if (window.matchMedia("(hover:none),(pointer:coarse),(max-width:760px)").matches) return;

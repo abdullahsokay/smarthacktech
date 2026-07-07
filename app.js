@@ -1,5 +1,5 @@
 /* ============================================================
-   HACKTECH — shared interactions & "wow" features
+   HACKTECH, shared interactions & "wow" features
    Every feature is guarded so it only runs if its markup exists.
    ============================================================ */
 (function () {
@@ -29,7 +29,7 @@
   }
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  /* ---- 2. (active nav link is set by components.js — single source of truth) ---- */
+  /* ---- 2. (active nav link is set by components.js, single source of truth) ---- */
 
   /* ---- 3. mobile menu ---- */
   var toggle = $("#navToggle"), links = $("#navLinks");
@@ -50,7 +50,7 @@
   }, { threshold: 0.14 });
   $$(".reveal").forEach(function (el) { io.observe(el); });
 
-  /* ---- 5. (background mouse-glow removed — solid background) ---- */
+  /* ---- 5. (background mouse-glow removed, solid background) ---- */
 
   /* ---- 6. inject scroll-progress + back-to-top ---- */
   (function () {
@@ -75,7 +75,7 @@
       var suf = el.getAttribute("data-suffix") || "";
       var pre = el.getAttribute("data-prefix") || "";
       if (reduce) { el.textContent = pre + fmt(target, dec) + suf; return; }
-      // easeOutExpo over a longer beat — races through the small numbers,
+      // easeOutExpo over a longer beat, races through the small numbers,
       // then settles slowly onto the final figure. Feels weighed, not counted.
       var dur = 1800, t0 = null;
       function step(t) {
@@ -177,7 +177,7 @@
     }
   })();
 
-  /* ---- 13. (live fleet dashboard removed — the demo page is a video now) ---- */
+  /* ---- 13. (live fleet dashboard removed, the demo page is a video now) ---- */
 
   /* ---- 14. contact / quote form (posts JSON to /api/contact; mailto fallback) ---- */
   var form = $("#contactForm");
@@ -197,20 +197,20 @@
         (/^https?:/.test(action) || action.charAt(0) === "/");
 
       function ok() {
-        if (msg) { msg.textContent = "Shukriya" + first + "! Aapki request mil gayi — hamari team 24 ghante mein rabta karegi."; msg.style.color = "var(--c6)"; }
+        if (msg) { msg.textContent = "Shukriya" + first + "! Aapki request mil gayi, hamari team 24 ghante mein rabta karegi."; msg.style.color = "var(--c6)"; }
         form.reset();
       }
-      // never lose a lead: hand off to the visitor's email client — and be
+      // never lose a lead: hand off to the visitor's email client, and be
       // HONEST that the form itself did not go through (the draft still has
       // to be sent by the visitor).
       function mailtoFallback() {
         var lines = [];
         fd.forEach(function (v, k) { if (k.charAt(0) !== "_") lines.push(k + ": " + v); });
         window.location.href = "mailto:contact.hacktechzone@gmail.com?subject=" +
-          encodeURIComponent("New enquiry — " + (fd.get("service") || "HackTech")) +
+          encodeURIComponent("New enquiry, " + (fd.get("service") || "HackTech")) +
           "&body=" + encodeURIComponent(lines.join("\n"));
         if (msg) {
-          msg.textContent = "Form submit nahi ho saka — humne aapke email app mein draft khol diya hai. Wahan Send dabayen, ya WhatsApp karein: 0327 5516703.";
+          msg.textContent = "Form submit nahi ho saka, humne aapke email app mein draft khol diya hai. Wahan Send dabayen, ya WhatsApp karein: 0327 5516703.";
           msg.style.color = "var(--warn)";
         }
         // keep the form filled so the visitor can retry without retyping

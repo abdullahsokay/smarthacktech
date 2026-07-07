@@ -1,5 +1,5 @@
 /* ============================================================
-   HackTech — shared header & footer
+   HackTech, shared header & footer
    Single source of truth, injected into every page.
    ============================================================ */
 (function () {
@@ -20,7 +20,7 @@
     return key === page ? ' class="active" aria-current="page"' : "";
   }
 
-  // Services dropdown — the service lines (mirrors service.js keys)
+  // Services dropdown, the service lines (mirrors service.js keys)
   var SERVICE_MENU = [
     ["software", "Software Development"],
     ["ai", "AI &amp; Automation"],
@@ -30,7 +30,7 @@
     ["design", "Graphic Design"],
     ["training", "Training &amp; Education"]
   ];
-  // About dropdown — quick links into the About page sections (title + subtitle)
+  // About dropdown, quick links into the About page sections (title + subtitle)
   var ABOUT_MENU = [
     ["about.html#deliver", "What We Deliver", "Our services at a glance"],
     ["about.html#story", "Our Story", "How HackTech started"],
@@ -89,7 +89,7 @@
         '<div class="footer__top">' +
           '<div class="footer__brand">' +
             '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" aria-hidden="true"><path class="logo__hex" d="M16 4.5l10 5.75v11.5L16 27.5 6 21.75V10.25z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg></span> Hack<span>Tech</span></a>' +
-            "<p>Pakistan's complete technology ecosystem — software, AI, IoT, security, automation and training. Made in Pakistan.</p>" +
+            "<p>Pakistan's complete technology ecosystem, software, AI, IoT, security, automation and training. Made in Pakistan.</p>" +
           "</div>" +
           '<div class="footer__col"><h3>What we do</h3>' +
             '<a href="solutions.html">Services</a><a href="demo.html">Live Demo</a><a href="about.html">About</a><a href="contact.html">Get a Quote</a></div>' +
@@ -145,7 +145,7 @@
     document.body.appendChild(a);
   })();
 
-  // ---- "Open now" chip — live Karachi time + Mon–Sat 9:00–18:00 status ----
+  // ---- "Open now" chip, live Karachi time + Mon–Sat 9:00–18:00 status ----
   (function () {
     var chip = document.getElementById("openChip");
     if (!chip) return;
@@ -183,7 +183,7 @@
       js.defer = true;
       document.body.appendChild(js);
     }
-    // Phones: keep the main thread clear during first paint — mount the
+    // Phones: keep the main thread clear during first paint, mount the
     // widget when the CPU idles (or after 4s, whichever comes first).
     if (window.matchMedia("(hover:none),(pointer:coarse),(max-width:760px)").matches && "requestIdleCallback" in window) {
       requestIdleCallback(mount, { timeout: 4000 });

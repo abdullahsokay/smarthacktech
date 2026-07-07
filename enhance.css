@@ -583,22 +583,7 @@ html.fx-on .scroll-hint{
 }
 @keyframes ht-hint-in{ from{ opacity:0 } }
 
-/* ---- M5. eyebrow sheen — one polite gloss sweep as its section
-   reveals (driven by the .show class the JS reveal already sets).
-   Runs once, ends transparent, never loops. */
-html.fx-on .eyebrow{ position:relative; overflow:hidden }
-html.fx-on .eyebrow::after{
-  content:""; position:absolute; top:0; bottom:0; left:-70%; width:55%;
-  background:linear-gradient(105deg,transparent,rgba(255,255,255,.32),transparent);
-  transform:skewX(-18deg); opacity:0; pointer-events:none;
-}
-html.fx-on .reveal.show .eyebrow::after,
-html.fx-on .eyebrow.reveal.show::after{
-  animation:ht-eyebrow-sheen 1.2s var(--ease-io) .5s both;
-}
-@keyframes ht-eyebrow-sheen{
-  0%{ opacity:0; translate:0 0 } 25%{ opacity:1 } 100%{ opacity:0; translate:340% 0 }
-}
+/* ---- M5 removed: eyebrow sheen retired with the quiet-kicker redesign ---- */
 
 /* ---- M6. dropdown cascade — menu items drift up into place a beat
    apart when a nav menu opens. Desktop widths only (on mobile the

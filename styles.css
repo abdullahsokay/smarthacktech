@@ -225,17 +225,14 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
 .center{text-align:center}
 .center .actions{justify-content:center}
 .muted{color:var(--muted)}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);
+/* quiet kicker: plain small-caps text — no pill, no dot, no sheen */
+.eyebrow{display:inline-block;font-family:var(--font-display);
   font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--c6);
-  margin-bottom:18px;padding:7px 15px;border:1px solid var(--line);border-radius:999px;
-  background:var(--glass)}
-.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c6);
-  box-shadow:0 0 10px var(--c6)}
-.eyebrow.center{display:flex;justify-content:center;width:max-content;margin-inline:auto}
-.display{font-size:clamp(2.7rem,7.2vw,5.4rem);font-weight:700;letter-spacing:-2px;
-  line-height:1.02;background:var(--grad-text);-webkit-background-clip:text;
-  background-clip:text;color:transparent}
-.h2{font-size:clamp(1.9rem,4vw,3.1rem);letter-spacing:-1px}
+  margin-bottom:16px}
+.eyebrow.center{display:block;width:max-content;margin-inline:auto}
+.display{font-size:clamp(2.7rem,7.2vw,5.4rem);font-weight:700;letter-spacing:-.025em;
+  line-height:1.02;color:var(--ink)}
+.h2{font-size:clamp(1.9rem,4vw,3.1rem);letter-spacing:-.03em}
 .h2 .accent,.display .accent{background:var(--grad-text);-webkit-background-clip:text;
   background-clip:text;color:transparent}
 .lead{font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--muted);max-width:62ch}
@@ -422,8 +419,7 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
 .stats{display:flex;flex-wrap:wrap;gap:36px;justify-content:space-between}
 .stat{display:flex;flex-direction:column;gap:4px}
 .stat__num{display:block;font-family:var(--font-display);font-weight:700;
-  font-size:clamp(2rem,4vw,2.9rem);background:var(--grad-text);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
+  font-size:clamp(2rem,4vw,2.9rem);color:var(--c6)}
 .stat__label{display:block;color:var(--muted);font-size:.9rem;letter-spacing:.4px}
 /* media panels are dark glass now — KPI cards keep their default dark styling
    and semantic ok/warn colours; just give the cards a touch more contrast */
@@ -529,7 +525,7 @@ html.js .reveal{opacity:0;transform:translateY(44px);filter:blur(6px);
 .reveal--left{transform:translateX(-46px)}
 .reveal--right{transform:translateX(46px)}
 .reveal--scale{transform:scale(.94)}
-.reveal.show{opacity:1;transform:none;filter:none}
+html.js .reveal.show{opacity:1;transform:none;filter:none}
 
 /* ---------- accessibility & app chrome ---------- */
 .skip-link{position:fixed;top:-120px;left:16px;z-index:100;padding:12px 18px;border-radius:10px;
@@ -656,3 +652,11 @@ a.chip{min-height:44px;display:inline-flex;align-items:center}
   border-radius:50%;border:1px solid var(--line-2);background:rgba(10,10,10,.55);color:var(--ink);
   font-size:13px;cursor:pointer;backdrop-filter:blur(8px)}
 .swiper-pause:hover{border-color:var(--c5)}
+/* set-in-type fact line — replaces the count-up stat row */
+.hero-fact{margin-top:34px;font-family:var(--font-display);font-size:clamp(.95rem,1.4vw,1.08rem);
+  color:var(--muted);letter-spacing:.2px}
+.hero-fact.center{text-align:center}
+/* the mark is a span too — undo the gradient-clip transparency so the
+   hexagon stroke (currentColor) is visible */
+.logo .logo__mark{color:var(--c6);-webkit-text-fill-color:var(--c6);background:var(--grad-btn)}
+.logo__hex{stroke:var(--c6)}
