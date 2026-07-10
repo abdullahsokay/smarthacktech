@@ -32,18 +32,18 @@ body[data-page="tech"] { min-block-size: 460vh; overflow-x: clip; }
 }
 
 /* category colour + glow (glow fades with the JS-driven opacity) */
-.stuck-grid .cat-prod { color:#8CE7DA; font-weight:500; text-shadow:0 0 36px rgba(53,182,196,.6) }   /* Cyber */
-.stuck-grid .cat-ai   { color:#4FC8D6; text-shadow:0 0 34px rgba(53,182,196,.5) }                     /* Laguna */
+.stuck-grid .cat-prod { color:#6FD7C4; font-weight:500; text-shadow:0 0 36px rgba(42,161,152,.6) }   /* Cyber */
+.stuck-grid .cat-ai   { color:#2AA198; text-shadow:0 0 34px rgba(42,161,152,.5) }                     /* Laguna */
 .stuck-grid .cat-conn { color:#EBE07A; text-shadow:0 0 30px rgba(235,224,122,.45) }                   /* Lemon */
 .stuck-grid .cat-tele { color:#E9B44C; text-shadow:0 0 30px rgba(233,180,76,.45) }                    /* Amber */
 .stuck-grid .cat-ops  { color:#F4B79A; text-shadow:0 0 26px rgba(244,183,154,.32) }                   /* Peach */
 
 /* light theme: pale-cream words are invisible on a light bg — use greens */
-html[data-theme="light"] .stuck-grid .cat-prod { color:#0E6B77; text-shadow:0 0 26px rgba(14,107,119,.30) }
-html[data-theme="light"] .stuck-grid .cat-ai   { color:#12808F; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-prod { color:#0E6B5F; text-shadow:0 0 26px rgba(13,107,96,.30) }
+html[data-theme="light"] .stuck-grid .cat-ai   { color:#12807A; text-shadow:none }
 html[data-theme="light"] .stuck-grid .cat-conn { color:#3E8E5A; text-shadow:none }   /* Golf */
 html[data-theme="light"] .stuck-grid .cat-tele { color:#8a5a00; text-shadow:none }   /* Amber (dark for AA) */
-html[data-theme="light"] .stuck-grid .cat-ops  { color:#06282D; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-ops  { color:#052824; text-shadow:none }
 
 /* centre brand tile */
 .stuck-grid .grid-item.special.special {
