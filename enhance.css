@@ -17,7 +17,7 @@
   content:""; position:absolute; inset:0; border-radius:inherit; z-index:1;
   pointer-events:none; opacity:0; transition:opacity .35s ease;
   background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),
-    rgba(42,161,152,.16), transparent 42%);
+    rgba(47,168,239,.16), transparent 42%);
   mix-blend-mode:screen;
 }
 .fx-sheen.is-live::after{ opacity:1 }
@@ -26,7 +26,7 @@
   content:""; position:absolute; inset:0; border-radius:inherit; z-index:1;
   pointer-events:none; opacity:0; transition:opacity .35s ease; padding:1px;
   background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),
-    rgba(42,161,152,.55), rgba(42,161,152,.30) 40%, transparent 60%);
+    rgba(47,168,239,.55), rgba(47,168,239,.30) 40%, transparent 60%);
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor; mask-composite:exclude;
 }
@@ -35,14 +35,14 @@
 .fx-sheen>*{ position:relative; z-index:2 }
 .section--light .fx-sheen::after{
   background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),
-    rgba(42,161,152,.12), transparent 42%);
+    rgba(47,168,239,.12), transparent 42%);
 }
 
 /* ---------- 3. themed photo frame (blends bright photos into the dark theme) ---------- */
 .media-photo{
   position:relative; overflow:hidden; border-radius:var(--r-lg);
   border:1px solid var(--line-2); box-shadow:var(--shadow);
-  background:#0a1417; min-height:320px;
+  background:#051622; min-height:320px;
 }
 .media-photo img{
   width:100%; height:100%; min-height:inherit; object-fit:cover; display:block;
@@ -57,8 +57,8 @@
 .media-photo::after{
   content:""; position:absolute; inset:0; pointer-events:none;
   background:
-    linear-gradient(180deg, rgba(10,20,23,.10), rgba(10,20,23,.55)),
-    linear-gradient(120deg, rgba(42,161,152,.20), transparent 55%);
+    linear-gradient(180deg, rgba(4,20,31,.10), rgba(4,20,31,.55)),
+    linear-gradient(120deg, rgba(47,168,239,.20), transparent 55%);
   mix-blend-mode:multiply;
 }
 /* subtle scanline texture for the "engineered" feel — very low contrast */
@@ -100,7 +100,7 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
 .ws-right.ws-shot{
   background-image:
     linear-gradient(150deg, rgba(10,10,10,.74), rgba(10,16,19,.84)),
-    linear-gradient(120deg, rgba(23,113,106,.28), transparent 60%),
+    linear-gradient(120deg, rgba(15,111,176,.28), transparent 60%),
     var(--shot);
   background-size:cover; background-position:center; background-repeat:no-repeat;
 }
@@ -116,7 +116,7 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
 .cp__panel{position:absolute;left:50%;top:14vh;transform:translateX(-50%);
   width:min(620px,92vw);border-radius:18px;overflow:hidden;
   background:rgba(24,29,23,.92);border:1px solid var(--line-2);
-  box-shadow:0 40px 90px -30px rgba(0,0,0,.8),0 0 40px -18px rgba(42,161,152,.45);
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.8),0 0 40px -18px rgba(47,168,239,.45);
   backdrop-filter:blur(20px) saturate(130%);
   animation:cp-pop var(--dur-2) var(--ease-out-expo)}
 html[data-theme="light"] .cp__panel{background:rgba(255,255,255,.95)}
@@ -199,11 +199,11 @@ html[data-theme="light"] .cp__scrim{background:rgba(20,30,20,.35)}
   background:
     linear-gradient(90deg, rgba(7,11,15,.94) 0%, rgba(7,11,15,.74) 36%, rgba(7,11,15,.34) 66%, rgba(7,11,15,.10) 100%),
     linear-gradient(0deg, rgba(10,10,10,1) 1%, rgba(7,11,15,.22) 26%, transparent 50%),
-    linear-gradient(155deg, rgba(42,161,152,.16), transparent 42%) }
+    linear-gradient(155deg, rgba(47,168,239,.16), transparent 42%) }
 .hero-portal__grid{ position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.35;
-  background:repeating-linear-gradient(0deg, rgba(170,232,222,.04) 0 1px, transparent 1px 5px) }
+  background:repeating-linear-gradient(0deg, rgba(198,225,247,.04) 0 1px, transparent 1px 5px) }
 .hero-portal__scan{ position:absolute; left:0; right:0; height:20%; z-index:1; pointer-events:none;
-  background:linear-gradient(180deg, transparent, rgba(170,232,222,.10), transparent);
+  background:linear-gradient(180deg, transparent, rgba(198,225,247,.10), transparent);
   animation:hp-scan 6.5s linear infinite }
 .hero-portal__corner, .hero-portal__tag{ display:none }   /* drop framed-portal chrome in full-bleed */
 #heroCanvas{ display:none }                               /* the video is the background now */
@@ -215,7 +215,7 @@ html[data-theme="light"] .cp__scrim{background:rgba(20,30,20,.35)}
   .hero-portal__vid{ object-position:center 22% }
   .hero-portal::after{ background:
     linear-gradient(0deg, rgba(10,10,10,1) 2%, rgba(7,11,15,.55) 34%, rgba(7,11,15,.5) 100%),
-    linear-gradient(155deg, rgba(42,161,152,.16), transparent 42%) }
+    linear-gradient(155deg, rgba(47,168,239,.16), transparent 42%) }
 }
 /* reduced motion / no autoplay: show the still poster, no video, no scan */
 @media (prefers-reduced-motion:reduce){
@@ -307,10 +307,10 @@ video::-webkit-media-controls-overlay-enclosure{
   will-change:transform, flex-grow;
   transition:flex-grow .6s var(--ease-io), transform .25s ease,
              box-shadow .45s ease, border-color .45s ease }
-.tcard.is-active{ flex-grow:5.4; border-color:rgba(42,161,152,.55);
-  box-shadow:0 26px 60px -22px rgba(0,0,0,.7), 0 0 0 1px rgba(42,161,152,.18),
-             0 0 42px -12px rgba(42,161,152,.32) }
-.tcard:focus-visible{ border-color:var(--c5); box-shadow:0 0 0 3px rgba(42,161,152,.35) }
+.tcard.is-active{ flex-grow:5.4; border-color:rgba(47,168,239,.55);
+  box-shadow:0 26px 60px -22px rgba(0,0,0,.7), 0 0 0 1px rgba(47,168,239,.18),
+             0 0 42px -12px rgba(47,168,239,.32) }
+.tcard:focus-visible{ border-color:var(--c5); box-shadow:0 0 0 3px rgba(47,168,239,.35) }
 /* no-JS / pure-hover fallback so the cards still expand without enhance.js */
 @media (hover:hover){
   .team-accordion:hover .tcard.is-active:not(:hover){ flex-grow:1;
@@ -328,7 +328,7 @@ video::-webkit-media-controls-overlay-enclosure{
 .tcard:not(.is-active) .tcard__content{ padding:18px 14px }
 .tcard__head{ display:flex; align-items:center; gap:13px; white-space:nowrap }
 .tcard__badge{ flex:none; width:46px; height:46px; border-radius:14px; display:grid; place-items:center;
-  background:rgba(10,10,10,.55); border:1px solid rgba(42,161,152,.45); backdrop-filter:blur(8px);
+  background:rgba(10,10,10,.55); border:1px solid rgba(47,168,239,.45); backdrop-filter:blur(8px);
   color:var(--c6); box-shadow:0 6px 18px rgba(0,0,0,.4); transition:background .4s, color .4s, border-color .4s }
 .tcard__badge svg{ width:22px; height:22px }
 .tcard.is-active .tcard__badge{ background:linear-gradient(140deg,var(--c5),var(--c4)); color:#0A0A0A;
@@ -361,9 +361,9 @@ video::-webkit-media-controls-overlay-enclosure{
 /* the media-tag pill keeps a dark frosted bg on the photo → force light text */
 html[data-theme="light"] .media-photo .media-tag{ color:#f3f7ec }
 /* team accordion cards sit on dark photos → keep their text light in light mode */
-html[data-theme="light"] .tcard__name{ color:#edf6f2 }
-html[data-theme="light"] .tcard__bio{ color:#cfe7df }
-html[data-theme="light"] .tcard__role{ color:#BDEDE0 }
+html[data-theme="light"] .tcard__name{ color:#eef5fb }
+html[data-theme="light"] .tcard__bio{ color:#d3e5f2 }
+html[data-theme="light"] .tcard__role{ color:#C6E1F7 }
 
 /* ===== Portfolio / Our Work ===== */
 .work-card{display:flex;flex-direction:column}
@@ -386,11 +386,11 @@ html[data-theme="light"] .work-tag{background:rgba(255,255,255,.82);color:var(--
   padding:26px 16px;border-radius:18px;background:var(--card);border:1px solid var(--line);
   transition:transform var(--dur-2) var(--ease-out),border-color .3s ease,box-shadow .3s ease}
 .pf-person:hover{transform:translateY(-5px);border-color:var(--line-2);
-  box-shadow:0 18px 40px -20px rgba(0,0,0,.6),0 0 26px -10px rgba(42,161,152,.45)}
+  box-shadow:0 18px 40px -20px rgba(0,0,0,.6),0 0 26px -10px rgba(47,168,239,.45)}
 .pf-avatar{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;
   font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:#0A0A0A;letter-spacing:.5px;
   background:linear-gradient(135deg,var(--c6),var(--c4));
-  box-shadow:0 0 22px -4px rgba(42,161,152,.6),inset 0 0 0 1px rgba(255,255,255,.4)}
+  box-shadow:0 0 22px -4px rgba(47,168,239,.6),inset 0 0 0 1px rgba(255,255,255,.4)}
 .pf-person__name{font-family:var(--font-display);font-weight:600;font-size:1rem;color:var(--ink)}
 .pf-person__role{font-size:.82rem;color:var(--muted)}
 .pf-skills .eyebrow{margin-bottom:14px}
@@ -404,7 +404,7 @@ html[data-theme="light"] .work-tag{background:rgba(255,255,255,.82);color:var(--
   overflow:hidden;border:1px solid var(--line)}
 .pf-bar__fill{height:100%;width:0;border-radius:999px;
   background:linear-gradient(90deg,var(--c4),var(--c5),var(--c6));
-  box-shadow:0 0 14px -2px rgba(42,161,152,.6);transition:width 1.4s cubic-bezier(.22,1,.36,1)}
+  box-shadow:0 0 14px -2px rgba(47,168,239,.6);transition:width 1.4s cubic-bezier(.22,1,.36,1)}
 html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
 
 /* ===== Portfolio page — project cards (reference style) ===== */
@@ -413,7 +413,7 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
   background:var(--card);border:1px solid var(--line);
   transition:transform var(--dur-2) var(--ease-out),border-color .35s ease,box-shadow .35s ease}
 .pf-card:hover{transform:translateY(-6px);border-color:var(--line-2);
-  box-shadow:0 26px 56px -26px rgba(0,0,0,.7),0 0 30px -12px rgba(42,161,152,.45)}
+  box-shadow:0 26px 56px -26px rgba(0,0,0,.7),0 0 30px -12px rgba(47,168,239,.45)}
 .pf-card__shot{position:relative;aspect-ratio:16/10;overflow:hidden}
 .pf-card__shot img{width:100%;height:100%;object-fit:cover;
   transition:transform var(--dur-3) var(--ease-out)}
@@ -424,7 +424,7 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
   font-family:var(--font-display);font-size:.72rem;font-weight:600;letter-spacing:.03em;
   padding:5px 11px;border-radius:999px;color:#0A0A0A;
   background:linear-gradient(135deg,var(--c5),var(--c4));
-  box-shadow:0 4px 14px -2px rgba(42,161,152,.6),inset 0 0 0 1px rgba(255,255,255,.4)}
+  box-shadow:0 4px 14px -2px rgba(47,168,239,.6),inset 0 0 0 1px rgba(255,255,255,.4)}
 .pf-card__body{display:flex;flex-direction:column;gap:9px;padding:20px}
 .pf-card__cat{font-family:var(--font-display);font-size:.74rem;letter-spacing:.06em;
   text-transform:uppercase;color:var(--c6)}
@@ -437,7 +437,7 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
 .pf-show{display:grid;grid-template-columns:1.05fr 1fr;gap:52px;align-items:center;width:100%}
 .pf-show--rev .pf-show__media{order:2}
 .pf-show__media{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line-2);
-  aspect-ratio:16/11;box-shadow:0 40px 90px -42px rgba(0,0,0,.85),0 0 50px -18px rgba(42,161,152,.4)}
+  aspect-ratio:16/11;box-shadow:0 40px 90px -42px rgba(0,0,0,.85),0 0 50px -18px rgba(47,168,239,.4)}
 .pf-show__media img{width:100%;height:100%;object-fit:cover;
   transition:transform var(--dur-3) var(--ease-out)}
 .pf-show:hover .pf-show__media img{transform:scale(1.04)}
