@@ -215,7 +215,7 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
   --head:#0A2233;
   --muted:#3d5a70;
   --faint:#5c7d92;
-  --c6:#08507F;                 /* accent (eyebrow/links/dots) -> deep petrol for contrast on pale band */
+  --c6:#08507F;                 /* accent (eyebrow/links/dots) -> deep azure for contrast on white */
   --line:rgba(8,34,51,.14);
   --line-2:rgba(8,34,51,.22);
   --glass:rgba(8,34,51,.04);
@@ -226,9 +226,12 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
   --grad-text:linear-gradient(120deg,#08507F,#041F30 55%,#0A6199);
   --grad-line:linear-gradient(90deg,#08507F,#0A6199);
   position:relative;z-index:1;
-  background:#E7F2FB;           /* pale aqua band (petrol rhythm) */
+  background:#ffffff;           /* crisp white section (monit rhythm) */
   color:var(--ink);
 }
+/* sky variant — same light re-scope, pale-sky wash instead of pure white,
+   so the page alternates navy / white / sky rather than one flat tone */
+.section--light.section--sky{background:#E7F2FB;--card:#ffffff}
 .center{text-align:center}
 .center .actions{justify-content:center}
 .muted{color:var(--muted)}
