@@ -13,6 +13,7 @@
   --c1:#1B211A; --c2:#232B21; --c3:#33402A;
   --c4:#628141; --c5:#8BAE66; --c6:#EBD5AB;
   --ink:#ECE3CE; --muted:#A7AE93; --faint:#8b9880;
+  --head:#ffffff;   /* top tier: headings · nav · key numbers (crisp white on olive) */
   --line:rgba(139,174,102,.18); --line-2:rgba(139,174,102,.30);
   --glass:rgba(235,213,171,.05); --glass-2:rgba(235,213,171,.085);
   --card:rgba(35,43,33,.55);
@@ -46,7 +47,7 @@ html[data-theme="light"]{
   /* White base + reference-image accents: sage / forest / pine */
   --c1:#ffffff; --c2:#ffffff; --c3:#B2D08C;
   --c4:#3C6230; --c5:#4F7B3E; --c6:#3C6230;
-  --ink:#063A18; --muted:#2f5236; --faint:#5c7a5e;
+  --ink:#063A18; --muted:#2f5236; --faint:#5c7a5e; --head:#052e13;
   --line:rgba(6,58,24,.16); --line-2:rgba(6,58,24,.26);
   --glass:rgba(79,123,62,.06); --glass-2:rgba(79,123,62,.12);
   --card:#ffffff;
@@ -96,7 +97,7 @@ html[data-theme="light"] select:focus{background:rgba(6,58,24,.03)}
 /* light-band sections: in light mode they become soft sage panels with a forest
    accent (instead of the dark-mode gold), so lemon↔sage alternate down the page */
 html[data-theme="light"] .section--light{
-  --c6:#3C6230; --ink:#063A18; --muted:#34543a; --faint:#5c7a5e;
+  --c6:#3C6230; --ink:#063A18; --head:#052e13; --muted:#34543a; --faint:#5c7a5e;
   --line:rgba(6,58,24,.14); --line-2:rgba(6,58,24,.22);
   --glass:rgba(6,58,24,.04); --glass-2:rgba(6,58,24,.07);
   --card:#ffffff;
@@ -108,7 +109,7 @@ html[data-theme="light"] .section--light{
    text + bright lemon/sage accents so every word stays readable on dark */
 html[data-theme="light"] .hero,
 html[data-theme="light"] .why-section{
-  --ink:#f4f7ec; --muted:#d6e4c4; --faint:#9bb293; --c6:#CDE6A8;
+  --ink:#f4f7ec; --head:#ffffff; --muted:#d6e4c4; --faint:#9bb293; --c6:#CDE6A8;
   --line:rgba(255,255,255,.14); --line-2:rgba(255,255,255,.24);
   --glass:rgba(255,255,255,.06); --glass-2:rgba(255,255,255,.10);
   --card:rgba(16,28,18,.55);
@@ -206,6 +207,7 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
    Every child (cards, headings, buttons, chips, steps) adapts automatically. */
 .section--light{
   --ink:#1B211A;
+  --head:#1B211A;
   --muted:#4d5a42;
   --faint:#6b7c5e;
   --c6:#4F6A33;                 /* accent (eyebrow/links/dots) -> deep moss for contrast on parchment */
@@ -231,8 +233,8 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
   margin-bottom:16px}
 .eyebrow.center{display:block;width:max-content;margin-inline:auto}
 .display{font-size:clamp(2.7rem,7.2vw,5.4rem);font-weight:700;letter-spacing:-.025em;
-  line-height:1.02;color:var(--ink)}
-.h2{font-size:clamp(1.9rem,4vw,3.1rem);letter-spacing:-.03em}
+  line-height:1.02;color:var(--head)}
+.h2{font-size:clamp(1.9rem,4vw,3.1rem);letter-spacing:-.03em;color:var(--head)}
 .h2 .accent,.display .accent{background:var(--grad-text);-webkit-background-clip:text;
   background-clip:text;color:transparent}
 .lead{font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--muted);max-width:62ch}
@@ -270,7 +272,7 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
 .nav.scrolled{padding:12px 7vw;background:rgba(10,10,10,.55);
   backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid var(--line)}
 .logo{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);
-  font-weight:700;letter-spacing:1.5px;font-size:18px;color:var(--ink)}
+  font-weight:700;letter-spacing:1.5px;font-size:18px;color:var(--head)}
 .logo__mark{width:26px;height:26px;border-radius:8px;background:var(--grad-btn);
   display:grid;place-items:center;font-size:14px;color:#0A0A0A;box-shadow:0 0 18px rgba(139,174,102,.5)}
 .logo span{background:linear-gradient(90deg,var(--c6),var(--c4));
@@ -278,11 +280,11 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
 .nav-links{display:flex;align-items:center;gap:11px;list-style:none}
 .nav-links > li{position:relative}
 .nav-links > li > a:not(.btn){display:inline-flex;align-items:center;gap:5px;font-size:13px;
-  letter-spacing:.2px;color:var(--muted);padding:8px 13px;border-radius:999px;
+  letter-spacing:.2px;color:var(--head);padding:8px 13px;border-radius:999px;
   border:1px solid transparent;
   transition:color var(--dur-1) ease,background var(--dur-1) ease,border-color var(--dur-1) ease,
     box-shadow var(--dur-1) ease,translate var(--dur-1) var(--ease-out)}
-.nav-links > li > a:not(.btn):hover{color:var(--ink);background:rgba(255,255,255,.05);
+.nav-links > li > a:not(.btn):hover{color:var(--head);background:rgba(255,255,255,.07);
   border-color:var(--line-2);box-shadow:0 0 16px -5px rgba(139,174,102,.5);translate:0 -1px}
 .nav-links > li > a.active{position:relative;overflow:hidden;color:#0A0A0A;
   background:linear-gradient(135deg,var(--c6),var(--c5) 46%,var(--c4));border-color:rgba(245,233,205,.6);
@@ -401,7 +403,7 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
 .split__media--gif{padding:18px;background:linear-gradient(160deg,#0d181b,#0a1417)}
 .split__media--gif img{width:auto;max-width:100%;max-height:600px;height:auto;
   border-radius:18px;box-shadow:var(--shadow);display:block}
-.card__title{font-size:1.28rem;margin-bottom:10px}
+.card__title{font-size:1.28rem;margin-bottom:10px;color:var(--head)}
 .card__text{color:var(--muted);font-size:.97rem}
 .card__link{position:relative;display:inline-flex;gap:6px;margin-top:18px;color:var(--c6);font-weight:600;
   font-size:.9rem;font-family:var(--font-display)}
@@ -419,7 +421,7 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
 .stats{display:flex;flex-wrap:wrap;gap:36px;justify-content:space-between}
 .stat{display:flex;flex-direction:column;gap:4px}
 .stat__num{display:block;font-family:var(--font-display);font-weight:700;
-  font-size:clamp(2rem,4vw,2.9rem);color:var(--c6)}
+  font-size:clamp(2rem,4vw,2.9rem);color:var(--head)}
 .stat__label{display:block;color:var(--muted);font-size:.9rem;letter-spacing:.4px}
 /* media panels are dark glass now — KPI cards keep their default dark styling
    and semantic ok/warn colours; just give the cards a touch more contrast */
