@@ -116,7 +116,7 @@
     var meta = document.querySelector('meta[name="theme-color"]');
     function apply(theme) {
       root.setAttribute("data-theme", theme);
-      if (meta) meta.setAttribute("content", theme === "light" ? "#f4f2ec" : "#0A0A0A");
+      if (meta) meta.setAttribute("content", theme === "light" ? "#eaf3f2" : "#08191C");
       if (btn) {
         btn.setAttribute("aria-pressed", String(theme === "light"));
         btn.setAttribute("aria-label", theme === "light" ? "Switch to dark theme" : "Switch to light theme");

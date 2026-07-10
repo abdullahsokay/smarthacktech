@@ -1,7 +1,8 @@
 /* ============================================================
    HACKTECH — IoT & Embedded AI for smarter fleets
    Design system (Aurora glass theme, polished)
-   Palette (old-money): #1B211A #232B21 #33402A #628141 #8BAE66 #EBD5AB
+   Palette (petrol): #08191C #0D2429 #123A42 #1C7A88 #35B6C4 (Laguna) #8CE7DA (Cyber)
+   Warm accents: Amber #E9B44C · Golf #3E8E5A · Peach #F4B79A · Lemon #EBE07A
    ============================================================ */
 /* ---- self-hosted variable fonts (latin) — no third-party font chain ---- */
 @font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;
@@ -10,19 +11,23 @@
   src:url("fonts/spacegrotesk-var.woff2") format("woff2")}
 
 :root{
-  --c1:#1B211A; --c2:#232B21; --c3:#33402A;
-  --c4:#628141; --c5:#8BAE66; --c6:#EBD5AB;
-  --ink:#ECE3CE; --muted:#A7AE93; --faint:#8b9880;
-  --head:#ffffff;   /* top tier: headings · nav · key numbers (crisp white on olive) */
-  --line:rgba(139,174,102,.18); --line-2:rgba(139,174,102,.30);
-  --glass:rgba(235,213,171,.05); --glass-2:rgba(235,213,171,.085);
-  --card:rgba(35,43,33,.55);
-  --ok:#7fc99a; --warn:#d9b46a; --bad:#d98a86;
+  /* ---- petrol palette: deep teal base, Laguna + Cyber accents ---- */
+  --c1:#08191C; --c2:#0D2429; --c3:#123A42;   /* petrol depths → panels → borders */
+  --c4:#1C7A88; --c5:#35B6C4; --c6:#8CE7DA;   /* petrol → Laguna cyan → Cyber mint */
+  --ink:#D6E7E6; --muted:#93B4B6; --faint:#6f9295;
+  --head:#ffffff;   /* top tier: headings · nav · key numbers (crisp white on petrol) */
+  /* named accent ramp (from brief): drive identity w/ laguna+cyber, warm pops via amber */
+  --laguna:#35B6C4; --cyber:#8CE7DA; --golf:#3E8E5A; --amber:#E9B44C;
+  --peach:#F4B79A; --lemon:#EBE07A; --cam:#A9B48C; --rembi:#5C8A90;
+  --line:rgba(53,182,196,.18); --line-2:rgba(53,182,196,.30);
+  --glass:rgba(180,232,232,.05); --glass-2:rgba(180,232,232,.085);
+  --card:rgba(13,36,41,.55);
+  --ok:#5FB98A; --warn:#E9B44C; --bad:#E6867E;
   --maxw:1180px; --r:18px; --r-lg:26px;
   --font-display:"Space Grotesk","Segoe UI",system-ui,sans-serif;
   --font-body:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
   --grad-text:linear-gradient(120deg,var(--c6),var(--c5) 48%,var(--c4));
-  --grad-btn:linear-gradient(120deg,var(--c5),var(--c4));
+  --grad-btn:linear-gradient(120deg,#4FC8D6,#22A6B6);   /* bright petrol → keeps dark btn text AA */
   --grad-line:linear-gradient(90deg,var(--c6),var(--c4));
   --shadow:0 30px 70px rgba(0,0,0,.5);
   --shadow-sm:0 12px 30px rgba(0,0,0,.4);
@@ -44,81 +49,81 @@
    applied pre-paint by a tiny inline <head> script (no flash).
    ============================================================ */
 html[data-theme="light"]{
-  /* White base + reference-image accents: sage / forest / pine */
-  --c1:#ffffff; --c2:#ffffff; --c3:#B2D08C;
-  --c4:#3C6230; --c5:#4F7B3E; --c6:#3C6230;
-  --ink:#063A18; --muted:#2f5236; --faint:#5c7a5e; --head:#052e13;
-  --line:rgba(6,58,24,.16); --line-2:rgba(6,58,24,.26);
-  --glass:rgba(79,123,62,.06); --glass-2:rgba(79,123,62,.12);
+  /* White base + petrol accents: Laguna / deep petrol / pine-teal */
+  --c1:#ffffff; --c2:#ffffff; --c3:#AEDDDF;
+  --c4:#0E6B77; --c5:#12808F; --c6:#0E6B77;
+  --ink:#06282D; --muted:#2c5b60; --faint:#4f7377; --head:#052227;
+  --line:rgba(6,50,56,.16); --line-2:rgba(6,50,56,.26);
+  --glass:rgba(18,128,143,.06); --glass-2:rgba(18,128,143,.12);
   --card:#ffffff;
-  --grad-text:linear-gradient(120deg,#4F7B3E,#063A18 58%,#2f5a2a);
-  --grad-line:linear-gradient(90deg,#4F7B3E,#063A18);
-  --grad-btn:linear-gradient(135deg,#5E9149,#3C6230 55%,#063A18);
-  --shadow:0 24px 50px rgba(16,40,18,.16);
-  --shadow-sm:0 10px 24px rgba(16,40,18,.12);
+  --grad-text:linear-gradient(120deg,#12808F,#06282D 58%,#0e5a63);
+  --grad-line:linear-gradient(90deg,#12808F,#06282D);
+  --grad-btn:linear-gradient(135deg,#159AAC,#0E6B77 55%,#06282D);
+  --shadow:0 24px 50px rgba(6,40,44,.16);
+  --shadow-sm:0 10px 24px rgba(6,40,44,.12);
 }
 /* light mode: keep the nav a frosted white bar at all times so links stay
    readable over the dark home hero AND over the lemon pages */
 html[data-theme="light"] .nav{background:rgba(255,255,255,.72);
   backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid var(--line)}
 html[data-theme="light"] .nav.scrolled{background:rgba(255,255,255,.88)}
-html[data-theme="light"] .nav-links > li > a:not(.btn):hover{background:rgba(6,58,24,.06)}
+html[data-theme="light"] .nav-links > li > a:not(.btn):hover{background:rgba(6,50,56,.06)}
 html[data-theme="light"] .nav-menu{background:rgba(255,255,255,.97)}
 html[data-theme="light"] .to-top{background:rgba(255,255,255,.78);color:var(--c5)}
 html[data-theme="light"] .footer{background:rgba(255,255,255,.5)}
 /* forest→pine primary buttons + active pill (light mode); --grad-btn carries the
    gradient, so we only fix text/glow for contrast */
-html[data-theme="light"] .btn--primary{color:#fff;box-shadow:0 12px 30px rgba(36,90,40,.34)}
-html[data-theme="light"] .btn--primary:hover{box-shadow:0 18px 48px rgba(36,90,40,.48)}
-html[data-theme="light"] .nav-links > li > a.active{color:#fff;border-color:rgba(120,170,90,.6);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 0 18px -3px rgba(36,90,40,.5),0 8px 20px -8px rgba(36,90,40,.65)}
-html[data-theme="light"] .nav .btn--primary{box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 0 18px -4px rgba(36,90,40,.45),0 12px 30px rgba(36,90,40,.34)}
-html[data-theme="light"] .nav-links > li > a.active .nav-badge{background:#063A18;color:#C7E1A6}
+html[data-theme="light"] .btn--primary{color:#fff;box-shadow:0 12px 30px rgba(12,110,124,.34)}
+html[data-theme="light"] .btn--primary:hover{box-shadow:0 18px 48px rgba(12,110,124,.48)}
+html[data-theme="light"] .nav-links > li > a.active{color:#fff;border-color:rgba(60,180,196,.6);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 0 18px -3px rgba(12,110,124,.5),0 8px 20px -8px rgba(12,110,124,.65)}
+html[data-theme="light"] .nav .btn--primary{box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 0 18px -4px rgba(12,110,124,.45),0 12px 30px rgba(12,110,124,.34)}
+html[data-theme="light"] .nav-links > li > a.active .nav-badge{background:#06282D;color:#BDE8E6}
 /* white page bg → give white cards a soft green-tinted lift so they don't vanish */
-html[data-theme="light"] .card{box-shadow:0 10px 30px -14px rgba(16,40,18,.20)}
-html[data-theme="light"] .card:hover{box-shadow:0 18px 40px -16px rgba(16,40,18,.26)}
-html[data-theme="light"] .theme-toggle{color:#4F7B3E}
-html[data-theme="light"] .theme-toggle:hover{border-color:#4F7B3E;box-shadow:0 0 0 4px rgba(79,123,62,.16),0 10px 24px rgba(16,40,18,.16)}
+html[data-theme="light"] .card{box-shadow:0 10px 30px -14px rgba(6,40,44,.20)}
+html[data-theme="light"] .card:hover{box-shadow:0 18px 40px -16px rgba(6,40,44,.26)}
+html[data-theme="light"] .theme-toggle{color:#12808F}
+html[data-theme="light"] .theme-toggle:hover{border-color:#12808F;box-shadow:0 0 0 4px rgba(18,128,143,.16),0 10px 24px rgba(6,40,44,.16)}
 /* card icons: forest→pine chip so the white glyph stays visible */
-html[data-theme="light"] .card__icon{background:linear-gradient(140deg,var(--c5),#063A18);box-shadow:0 10px 24px rgba(16,40,18,.18)}
+html[data-theme="light"] .card__icon{background:linear-gradient(140deg,var(--c5),#06282D);box-shadow:0 10px 24px rgba(6,40,44,.18)}
 /* swap every residual gold/purple glow for green so light mode reads as one palette */
-html[data-theme="light"] .cta{background:radial-gradient(600px 300px at 50% 0%,rgba(79,123,62,.18),transparent 70%),var(--card)}
-html[data-theme="light"] .split__media:not(.media-photo):not(.split__media--gif){background:radial-gradient(130% 110% at 100% 0%,rgba(79,123,62,.14),transparent 55%),var(--card)}
-html[data-theme="light"] .scroll-progress{box-shadow:0 0 12px rgba(79,123,62,.6)}
-html[data-theme="light"] .logo__mark{box-shadow:0 0 18px rgba(79,123,62,.5)}
-html[data-theme="light"] .nav-menu a:hover{background:rgba(79,123,62,.14)}
-html[data-theme="light"] .card--glow::after{background:radial-gradient(300px 200px at 50% 0%,rgba(79,123,62,.16),transparent 70%)}
+html[data-theme="light"] .cta{background:radial-gradient(600px 300px at 50% 0%,rgba(18,128,143,.18),transparent 70%),var(--card)}
+html[data-theme="light"] .split__media:not(.media-photo):not(.split__media--gif){background:radial-gradient(130% 110% at 100% 0%,rgba(18,128,143,.14),transparent 55%),var(--card)}
+html[data-theme="light"] .scroll-progress{box-shadow:0 0 12px rgba(18,128,143,.6)}
+html[data-theme="light"] .logo__mark{box-shadow:0 0 18px rgba(18,128,143,.5)}
+html[data-theme="light"] .nav-menu a:hover{background:rgba(18,128,143,.14)}
+html[data-theme="light"] .card--glow::after{background:radial-gradient(300px 200px at 50% 0%,rgba(18,128,143,.16),transparent 70%)}
 html[data-theme="light"] input,
 html[data-theme="light"] textarea,
-html[data-theme="light"] select{background:rgba(6,58,24,.05)}
+html[data-theme="light"] select{background:rgba(6,50,56,.05)}
 html[data-theme="light"] input:focus,
 html[data-theme="light"] textarea:focus,
-html[data-theme="light"] select:focus{background:rgba(6,58,24,.03)}
+html[data-theme="light"] select:focus{background:rgba(6,50,56,.03)}
 /* light-band sections: in light mode they become soft sage panels with a forest
    accent (instead of the dark-mode gold), so lemon↔sage alternate down the page */
 html[data-theme="light"] .section--light{
-  --c6:#3C6230; --ink:#063A18; --head:#052e13; --muted:#34543a; --faint:#5c7a5e;
-  --line:rgba(6,58,24,.14); --line-2:rgba(6,58,24,.22);
-  --glass:rgba(6,58,24,.04); --glass-2:rgba(6,58,24,.07);
+  --c6:#0E6B77; --ink:#06282D; --head:#052227; --muted:#35595c; --faint:#4f7377;
+  --line:rgba(6,50,56,.14); --line-2:rgba(6,50,56,.22);
+  --glass:rgba(6,50,56,.04); --glass-2:rgba(6,50,56,.07);
   --card:#ffffff;
-  --grad-text:linear-gradient(120deg,#4F7B3E,#063A18 60%,#2f5a2a);
-  --grad-line:linear-gradient(90deg,#4F7B3E,#063A18);
-  background:#C7E1A6;
+  --grad-text:linear-gradient(120deg,#12808F,#06282D 60%,#0e5a63);
+  --grad-line:linear-gradient(90deg,#12808F,#06282D);
+  background:#BDE8E6;
 }
 /* dark zones in light mode (home hero video + Services carousel) keep light
    text + bright lemon/sage accents so every word stays readable on dark */
 html[data-theme="light"] .hero,
 html[data-theme="light"] .why-section{
-  --ink:#f4f7ec; --head:#ffffff; --muted:#d6e4c4; --faint:#9bb293; --c6:#CDE6A8;
+  --ink:#eef6f5; --head:#ffffff; --muted:#cfe7e6; --faint:#8fb6b4; --c6:#7FD9D2;
   --line:rgba(255,255,255,.14); --line-2:rgba(255,255,255,.24);
   --glass:rgba(255,255,255,.06); --glass-2:rgba(255,255,255,.10);
-  --card:rgba(16,28,18,.55);
-  --grad-text:linear-gradient(120deg,#CDE6A8,#A7D98A 55%,#7FB85C);
-  --grad-line:linear-gradient(90deg,#CDE6A8,#7FB85C);
+  --card:rgba(10,28,32,.55);
+  --grad-text:linear-gradient(120deg,#BDEDE8,#7FD9D2 55%,#35B6C4);
+  --grad-line:linear-gradient(90deg,#BDEDE8,#35B6C4);
 }
 /* the carousel's left/right panels paint with c1–c4 → keep them deep green in
    light mode too, so the light slide titles never sit on a light panel */
-html[data-theme="light"] .why-section{ --c1:#0c160b; --c2:#13241a; --c3:#1c3326; --c4:#2f5a2a }
+html[data-theme="light"] .why-section{ --c1:#061418; --c2:#0c2529; --c3:#123a42; --c4:#1c7a88 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -149,7 +154,7 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
 .stat__num,.kpi__num{font-variant-numeric:tabular-nums}
 
 /* scroll-spy soft glow on the matching nav link */
-.nav-links > li > a.insection:not(.active){color:var(--c6);text-shadow:0 0 14px rgba(139,174,102,.5)}
+.nav-links > li > a.insection:not(.active){color:var(--c6);text-shadow:0 0 14px rgba(53,182,196,.5)}
 /* hero "Ask our AI Architect" — live dot inside the ghost button */
 .btn--kaira .dot-live{width:8px;height:8px;border-radius:50%;background:var(--ok);
   box-shadow:0 0 10px var(--ok);display:inline-block}
@@ -190,7 +195,7 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
 
 /* ---------- scroll progress + back to top (JS-injected) ---------- */
 .scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
-  background:var(--grad-line);box-shadow:0 0 12px rgba(139,174,102,.6)}
+  background:var(--grad-line);box-shadow:0 0 12px rgba(53,182,196,.6)}
 .to-top{position:fixed;right:22px;bottom:22px;z-index:55;width:46px;height:46px;
   border-radius:50%;border:1px solid var(--line-2);background:rgba(10,10,10,.6);
   backdrop-filter:blur(10px);color:var(--c6);font-size:20px;cursor:pointer;
@@ -206,22 +211,22 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
 /* light band — flips a section to a premium light surface by re-scoping tokens.
    Every child (cards, headings, buttons, chips, steps) adapts automatically. */
 .section--light{
-  --ink:#1B211A;
-  --head:#1B211A;
-  --muted:#4d5a42;
-  --faint:#6b7c5e;
-  --c6:#4F6A33;                 /* accent (eyebrow/links/dots) -> deep moss for contrast on parchment */
-  --line:rgba(27,33,26,.14);
-  --line-2:rgba(27,33,26,.22);
-  --glass:rgba(27,33,26,.04);
-  --glass-2:rgba(27,33,26,.07);
-  --card:#FBF8EF;
-  --shadow:0 24px 50px rgba(27,33,26,.12);
-  --shadow-sm:0 10px 24px rgba(27,33,26,.10);
-  --grad-text:linear-gradient(120deg,#4F6A33,#33402A 55%,#5E7C3C);
-  --grad-line:linear-gradient(90deg,#4F6A33,#5E7C3C);
+  --ink:#0A2A2E;
+  --head:#0A2A2E;
+  --muted:#3a5f62;
+  --faint:#5c8386;
+  --c6:#0E6B77;                 /* accent (eyebrow/links/dots) -> deep petrol for contrast on pale band */
+  --line:rgba(10,42,46,.14);
+  --line-2:rgba(10,42,46,.22);
+  --glass:rgba(10,42,46,.04);
+  --glass-2:rgba(10,42,46,.07);
+  --card:#F4FAFA;
+  --shadow:0 24px 50px rgba(10,42,46,.12);
+  --shadow-sm:0 10px 24px rgba(10,42,46,.10);
+  --grad-text:linear-gradient(120deg,#0E6B77,#06282D 55%,#12808F);
+  --grad-line:linear-gradient(90deg,#0E6B77,#12808F);
   position:relative;z-index:1;
-  background:#EDE4CC;           /* aged parchment band */
+  background:#E3F1F0;           /* pale aqua band (petrol rhythm) */
   color:var(--ink);
 }
 .center{text-align:center}
@@ -256,8 +261,8 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
 .btn.is-magnetic{transition:box-shadow var(--dur-1) var(--ease-out),background var(--dur-1) ease,
   border-color var(--dur-1) ease,scale .18s var(--ease-out)}
 .btn--sm{padding:10px 20px;font-size:.88rem}
-.btn--primary{background:var(--grad-btn);color:#0A0A0A;box-shadow:0 12px 30px rgba(139,174,102,.35)}
-.btn--primary:hover{box-shadow:0 18px 46px rgba(139,174,102,.55)}
+.btn--primary{background:var(--grad-btn);color:#0A0A0A;box-shadow:0 12px 30px rgba(53,182,196,.35)}
+.btn--primary:hover{box-shadow:0 18px 46px rgba(53,182,196,.55)}
 .btn--primary::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
   background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
   transform:skewX(-20deg);transition:left .6s}
@@ -274,7 +279,7 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
 .logo{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);
   font-weight:700;letter-spacing:1.5px;font-size:18px;color:var(--head)}
 .logo__mark{width:26px;height:26px;border-radius:8px;background:var(--grad-btn);
-  display:grid;place-items:center;font-size:14px;color:#0A0A0A;box-shadow:0 0 18px rgba(139,174,102,.5)}
+  display:grid;place-items:center;font-size:14px;color:#0A0A0A;box-shadow:0 0 18px rgba(53,182,196,.5)}
 .logo span{background:linear-gradient(90deg,var(--c6),var(--c4));
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .nav-links{display:flex;align-items:center;gap:11px;list-style:none}
@@ -285,17 +290,17 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
   transition:color var(--dur-1) ease,background var(--dur-1) ease,border-color var(--dur-1) ease,
     box-shadow var(--dur-1) ease,translate var(--dur-1) var(--ease-out)}
 .nav-links > li > a:not(.btn):hover{color:var(--head);background:rgba(255,255,255,.07);
-  border-color:var(--line-2);box-shadow:0 0 16px -5px rgba(139,174,102,.5);translate:0 -1px}
+  border-color:var(--line-2);box-shadow:0 0 16px -5px rgba(53,182,196,.5);translate:0 -1px}
 .nav-links > li > a.active{position:relative;overflow:hidden;color:#0A0A0A;
-  background:linear-gradient(135deg,var(--c6),var(--c5) 46%,var(--c4));border-color:rgba(245,233,205,.6);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),0 0 20px -3px rgba(139,174,102,.6),0 8px 22px -8px rgba(139,174,102,.75)}
-.nav-links > li > a.active:hover{background:linear-gradient(135deg,var(--c6),var(--c5) 46%,var(--c4));border-color:rgba(245,233,205,.75)}
+  background:linear-gradient(135deg,var(--c6),var(--c5) 46%,var(--c4));border-color:rgba(200,240,240,.6);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),0 0 20px -3px rgba(53,182,196,.6),0 8px 22px -8px rgba(53,182,196,.75)}
+.nav-links > li > a.active:hover{background:linear-gradient(135deg,var(--c6),var(--c5) 46%,var(--c4));border-color:rgba(200,240,240,.75)}
 .nav-links > li > a.active::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;z-index:1;
   pointer-events:none;background:linear-gradient(120deg,transparent,rgba(255,255,255,.6),transparent);
   transform:skewX(-20deg);animation:tt-sheen 5s ease-in-out infinite}
 /* Get a Quote — shiny gold ring + glow */
-.nav .btn--primary{box-shadow:inset 0 0 0 1px rgba(245,233,205,.5),0 0 18px -4px rgba(139,174,102,.5),0 10px 26px rgba(139,174,102,.38)}
-.nav .btn--primary:hover{box-shadow:inset 0 0 0 1px rgba(245,233,205,.75),0 0 26px -3px rgba(139,174,102,.66),0 16px 40px rgba(139,174,102,.5)}
+.nav .btn--primary{box-shadow:inset 0 0 0 1px rgba(200,240,240,.5),0 0 18px -4px rgba(53,182,196,.5),0 10px 26px rgba(53,182,196,.38)}
+.nav .btn--primary:hover{box-shadow:inset 0 0 0 1px rgba(200,240,240,.75),0 0 26px -3px rgba(53,182,196,.66),0 16px 40px rgba(53,182,196,.5)}
 /* Services dropdown */
 .nav-caret{width:13px;height:13px;transition:transform .25s ease}
 .nav-item--has-menu:hover .nav-caret,.nav-item--has-menu:focus-within .nav-caret{transform:rotate(180deg)}
@@ -308,7 +313,7 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
 .nav-item--has-menu:hover .nav-menu,.nav-item--has-menu:focus-within .nav-menu{opacity:1;transform:translateY(0);pointer-events:auto}
 .nav-menu a{display:block;padding:9px 13px;border-radius:9px;font-size:14px;color:var(--muted);
   white-space:nowrap;transition:background .2s ease,color .2s ease}
-.nav-menu a:hover{background:rgba(139,174,102,.12);color:var(--ink)}
+.nav-menu a:hover{background:rgba(53,182,196,.12);color:var(--ink)}
 /* rich dropdown (About): two-line items — title + subtitle */
 .nav-menu--rich{min-width:292px}
 .nav-menu--rich a{padding:11px 14px}
@@ -328,7 +333,7 @@ section[id]{scroll-margin-top:96px}
   background:radial-gradient(circle at 32% 26%,var(--glass-2),var(--glass));
   transition:background .25s ease,border-color .25s ease,color .25s ease,transform .2s ease,box-shadow .25s ease}
 .theme-toggle:hover{border-color:var(--c5);transform:translateY(-1px);
-  box-shadow:0 0 0 4px rgba(139,174,102,.12),0 10px 24px rgba(0,0,0,.32)}
+  box-shadow:0 0 0 4px rgba(53,182,196,.12),0 10px 24px rgba(0,0,0,.32)}
 .theme-toggle svg{position:relative;z-index:1;width:20px;height:20px;
   transition:transform .55s var(--ease-out)}
 .theme-toggle:hover svg{transform:rotate(45deg) scale(1.12)}
@@ -391,7 +396,7 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
 .card.tilt:hover{transform:translateY(-6px)}
 .card__icon{display:inline-grid;place-items:center;width:56px;height:56px;border-radius:15px;
   font-size:25px;margin-bottom:20px;background:linear-gradient(140deg,var(--c3),var(--c5));
-  color:#fff;box-shadow:0 10px 24px rgba(27,33,26,.4)}
+  color:#fff;box-shadow:0 10px 24px rgba(6,40,44,.4)}
 .card__icon .ico{width:27px;height:27px}
 .info-item .card__icon .ico{width:22px;height:22px}
 .card__media{position:relative;aspect-ratio:16/10;border-radius:13px;overflow:hidden;margin-bottom:20px;
@@ -413,7 +418,7 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
   transition:transform var(--dur-2) var(--ease-out-expo)}
 .card__link:hover::after,.card__link:focus-visible::after{transform:scaleX(1)}
 .card--glow::after{content:"";position:absolute;inset:0;border-radius:inherit;
-  background:radial-gradient(300px 200px at 50% 0%,rgba(139,174,102,.16),transparent 70%);
+  background:radial-gradient(300px 200px at 50% 0%,rgba(53,182,196,.16),transparent 70%);
   opacity:0;transition:opacity .3s;pointer-events:none}
 .card--glow:hover::after{opacity:1}
 
@@ -430,7 +435,7 @@ html[data-theme="light"] .theme-toggle .ico-moon{display:block}
 /* ---------- split ---------- */
 .split{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
 .split__media{min-height:320px;border-radius:var(--r-lg);border:1px solid var(--line-2);
-  background:radial-gradient(130% 110% at 100% 0%,rgba(139,174,102,.14),transparent 55%),var(--card);
+  background:radial-gradient(130% 110% at 100% 0%,rgba(53,182,196,.14),transparent 55%),var(--card);
   backdrop-filter:blur(10px);box-shadow:var(--shadow);
   display:grid;place-content:center;gap:18px;padding:30px;overflow:hidden}
 
@@ -485,7 +490,7 @@ input,textarea,select{width:100%;font:inherit;color:var(--ink);padding:14px 16px
   background:rgba(10,10,10,.4);border:1px solid var(--line);transition:border-color .25s,background .25s}
 textarea{resize:vertical;min-height:130px}
 input:focus,textarea:focus,select:focus{outline:none;border-color:var(--c5);background:rgba(10,10,10,.6);
-  box-shadow:0 0 0 3px rgba(139,174,102,.14),0 8px 28px -12px rgba(139,174,102,.35)}
+  box-shadow:0 0 0 3px rgba(53,182,196,.14),0 8px 28px -12px rgba(53,182,196,.35)}
 .field:focus-within label{color:var(--c5)}
 input,textarea,select{transition:border-color var(--dur-1) var(--ease-out),box-shadow var(--dur-1) var(--ease-out),background var(--dur-1) var(--ease-out)}
 input::placeholder,textarea::placeholder{color:var(--muted)}
@@ -498,7 +503,7 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 /* ---------- CTA band ---------- */
 .cta{position:relative;text-align:center;border-radius:var(--r-lg);padding:64px 40px;
   border:1px solid var(--line-2);overflow:hidden;
-  background:radial-gradient(600px 300px at 50% 0%,rgba(98,129,65,.3),transparent 70%),var(--card)}
+  background:radial-gradient(600px 300px at 50% 0%,rgba(28,122,136,.3),transparent 70%),var(--card)}
 
 /* ---------- footer ---------- */
 .footer{position:relative;z-index:1;border-top:1px solid var(--line);margin-top:40px;

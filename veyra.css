@@ -4,15 +4,15 @@
    Glassy, futuristic; dark surface reads in light & dark themes.
    ============================================================ */
 .vy {
-  --vy-gold: #EBD5AB;
-  --vy-violet: #8BAE66;
-  --vy-cyan: #EBD5AB;
-  --vy-blue: #628141;
-  --vy-bg: rgba(16, 20, 14, 0.86);
-  --vy-bg2: rgba(20, 26, 18, 0.88);
-  --vy-ink: #ECE3CE;
-  --vy-muted: #A7AE93;
-  --vy-faint: #8b9880;
+  --vy-gold: #8CE7DA;
+  --vy-violet: #35B6C4;
+  --vy-cyan: #8CE7DA;
+  --vy-blue: #1C7A88;
+  --vy-bg: rgba(9, 22, 25, 0.86);
+  --vy-bg2: rgba(12, 30, 34, 0.88);
+  --vy-ink: #D6E7E6;
+  --vy-muted: #93B4B6;
+  --vy-faint: #6f9295;
   --vy-line: rgba(255, 255, 255, 0.09);
   --vy-line2: rgba(255, 255, 255, 0.16);
   --vy-glass: rgba(255, 255, 255, 0.055);

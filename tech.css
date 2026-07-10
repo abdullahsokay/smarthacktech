@@ -32,18 +32,18 @@ body[data-page="tech"] { min-block-size: 460vh; overflow-x: clip; }
 }
 
 /* category colour + glow (glow fades with the JS-driven opacity) */
-.stuck-grid .cat-prod { color:#EAD9A0; font-weight:500; text-shadow:0 0 36px rgba(212,175,55,.6) }
-.stuck-grid .cat-ai   { color:#E8CF7A; text-shadow:0 0 34px rgba(234,217,160,.5) }
-.stuck-grid .cat-conn { color:#D4AF37; text-shadow:0 0 30px rgba(212,175,55,.5) }
-.stuck-grid .cat-tele { color:#C9A94A; text-shadow:0 0 30px rgba(201,169,74,.5) }
-.stuck-grid .cat-ops  { color:#EDE6D6; text-shadow:0 0 26px rgba(212,175,55,.32) }
+.stuck-grid .cat-prod { color:#8CE7DA; font-weight:500; text-shadow:0 0 36px rgba(53,182,196,.6) }   /* Cyber */
+.stuck-grid .cat-ai   { color:#4FC8D6; text-shadow:0 0 34px rgba(53,182,196,.5) }                     /* Laguna */
+.stuck-grid .cat-conn { color:#EBE07A; text-shadow:0 0 30px rgba(235,224,122,.45) }                   /* Lemon */
+.stuck-grid .cat-tele { color:#E9B44C; text-shadow:0 0 30px rgba(233,180,76,.45) }                    /* Amber */
+.stuck-grid .cat-ops  { color:#F4B79A; text-shadow:0 0 26px rgba(244,183,154,.32) }                   /* Peach */
 
 /* light theme: pale-cream words are invisible on a light bg — use greens */
-html[data-theme="light"] .stuck-grid .cat-prod { color:#3C6230; text-shadow:0 0 26px rgba(60,98,48,.30) }
-html[data-theme="light"] .stuck-grid .cat-ai   { color:#4F7B3E; text-shadow:none }
-html[data-theme="light"] .stuck-grid .cat-conn { color:#2f6e4a; text-shadow:none }
-html[data-theme="light"] .stuck-grid .cat-tele { color:#5E7C3C; text-shadow:none }
-html[data-theme="light"] .stuck-grid .cat-ops  { color:#1B211A; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-prod { color:#0E6B77; text-shadow:0 0 26px rgba(14,107,119,.30) }
+html[data-theme="light"] .stuck-grid .cat-ai   { color:#12808F; text-shadow:none }
+html[data-theme="light"] .stuck-grid .cat-conn { color:#3E8E5A; text-shadow:none }   /* Golf */
+html[data-theme="light"] .stuck-grid .cat-tele { color:#8a5a00; text-shadow:none }   /* Amber (dark for AA) */
+html[data-theme="light"] .stuck-grid .cat-ops  { color:#06282D; text-shadow:none }
 
 /* centre brand tile */
 .stuck-grid .grid-item.special.special {
