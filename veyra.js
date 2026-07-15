@@ -60,10 +60,6 @@
       "</div>" +
       '<div class="vy-main">' +
         '<div class="vy-welcome">' +
-          '<div class="vy-orb" aria-hidden="true">' +
-            '<span class="vy-orb__glow"></span>' +
-            '<span class="vy-orb__ball"><span class="vy-orb__swirl"></span><span class="vy-orb__rim"></span><span class="vy-orb__hi"></span></span>' +
-          "</div>" +
           '<div class="vy-hello">I&rsquo;m KAIRA, your AI Solutions Architect</div>' +
           '<h2 class="vy-ask">How can I help you <span>today</span>?</h2>' +
           '<div class="vy-chips"></div>' +

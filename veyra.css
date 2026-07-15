@@ -147,37 +147,6 @@
 .vy-welcome::-webkit-scrollbar-thumb { background: var(--vy-line2); border-radius: 6px; }
 .vy-panel.is-chatting .vy-welcome { display: none; }
 
-.vy-orb { position: relative; width: 112px; height: 112px; margin-bottom: 14px; flex-shrink: 0; }
-.vy-orb__glow {
-  position: absolute; inset: -36px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(47, 168, 239, 0.5), rgba(47, 168, 239, 0.2) 45%, transparent 70%);
-  filter: blur(8px); animation: vy-orbglow 5s ease-in-out infinite;
-}
-.vy-orb__ball {
-  position: absolute; inset: 0; border-radius: 50%; overflow: hidden;
-  background: radial-gradient(120% 120% at 32% 26%, #16284e 0%, #0a1330 52%, #05081a 100%);
-  box-shadow:
-    inset 0 0 38px rgba(70, 140, 255, 0.55),
-    inset -10px -14px 44px rgba(0, 0, 0, 0.7),
-    0 14px 44px rgba(40, 90, 210, 0.4);
-  animation: vy-orbfloat 6s ease-in-out infinite;
-}
-.vy-orb__swirl {
-  position: absolute; inset: -28%;
-  background: conic-gradient(from 0deg, transparent 0deg, var(--vy-blue) 65deg, var(--vy-violet) 135deg, var(--vy-cyan) 205deg, transparent 300deg);
-  filter: blur(16px); opacity: 0.85; mix-blend-mode: screen;
-  animation: vy-orbspin 8s linear infinite;
-}
-.vy-orb__hi {
-  position: absolute; top: 15%; left: 21%; width: 44%; height: 34%; border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.95), rgba(180, 210, 255, 0.25) 50%, transparent 72%);
-  filter: blur(3px);
-}
-.vy-orb__rim { position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 7px 9px 22px rgba(130, 185, 255, 0.5); }
-@keyframes vy-orbspin { to { transform: rotate(360deg); } }
-@keyframes vy-orbglow { 0%, 100% { opacity: 0.75; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
-@keyframes vy-orbfloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-
 .vy-hello { font-size: 13.5px; color: var(--vy-muted); letter-spacing: 0.3px; }
 .vy-ask {
   font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 600;
@@ -395,7 +364,7 @@
 .vy-af-row input::placeholder { color: var(--vy-faint); }
 
 @media (prefers-reduced-motion: reduce) {
-  .vy-dots i, .vy-orb__swirl, .vy-orb__glow, .vy-orb__ball, .vy-wave i, .vy-panel::before { animation: none; }
+  .vy-dots i, .vy-wave i, .vy-panel::before { animation: none; }
 }
 
 /* ---------- touch targets + mobile input ergonomics ---------- */
