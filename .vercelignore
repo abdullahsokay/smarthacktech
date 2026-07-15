@@ -1,3 +1,9 @@
 # The VEYRA Next.js app is a separate project — don't ship it with the
 # static marketing site (it has its own node_modules / build).
 veyra/
+
+# project tooling - never ship as static files
+.claude/
+.agents/
+skills-lock.json
+supabase-schema.sql
