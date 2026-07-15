@@ -21,11 +21,11 @@
 
   // Services dropdown, the service lines (mirrors service.js keys)
   var SERVICE_MENU = [
-    ["software", "Software Development"],
-    ["ai", "AI &amp; Automation"],
     ["iot", "IoT Solutions"],
-    ["security", "Security &amp; Surveillance"],
     ["smarthome", "Smart Home &amp; Automation"],
+    ["ai", "AI &amp; Automation"],
+    ["security", "Security &amp; Surveillance"],
+    ["software", "Software Development"],
     ["design", "Graphic Design"],
     ["training", "Training &amp; Education"]
   ];
@@ -87,7 +87,7 @@
         '<div class="footer__top">' +
           '<div class="footer__brand">' +
             '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" aria-hidden="true"><path class="logo__hex" d="M16 4.5l10 5.75v11.5L16 27.5 6 21.75V10.25z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg></span> Hack<span>Tech</span></a>' +
-            "<p>Pakistan's complete technology ecosystem, software, AI, IoT, security, automation and training. Made in Pakistan.</p>" +
+            "<p>Pakistan's IoT &amp; AI ecosystem, smart fleets, smart homes, security and the software that ties it together. Made in Pakistan.</p>" +
           "</div>" +
           '<div class="footer__col"><h3>What we do</h3>' +
             '<a href="solutions.html">Services</a><a href="about.html">About</a><a href="contact.html">Get a Quote</a></div>' +

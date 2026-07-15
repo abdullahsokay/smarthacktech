@@ -34,17 +34,17 @@
 
   var ITEMS = [
     // pages
-    { t: "Home", s: "Pakistan's complete technology ecosystem", href: "index.html", k: I.home },
+    { t: "Home", s: "We make things smart, connected, predictable", href: "index.html", k: I.home },
     { t: "Services", s: "All seven service lines", href: "solutions.html", k: I.grid },
     { t: "Portfolio", s: "The team & the work we've shipped", href: "portfolio.html", k: I.folder },
     { t: "About", s: "Our story, team & values", href: "about.html", k: I.users },
     { t: "Contact", s: "Get a quote, we reply fast", href: "contact.html", k: I.mail },
     // services
-    { t: "Software Development", s: "Web, mobile, SaaS, enterprise", href: "service.html?s=software", k: I.code },
-    { t: "AI & Automation", s: "Chatbots, agents, computer vision", href: "service.html?s=ai", k: I.spark },
     { t: "IoT Solutions", s: "Devices & live dashboards", href: "service.html?s=iot", k: I.chip },
-    { t: "Security & Surveillance", s: "CCTV, access control, biometrics", href: "service.html?s=security", k: I.shield },
     { t: "Smart Home & Automation", s: "One app, one voice", href: "service.html?s=smarthome", k: I.home },
+    { t: "AI & Automation", s: "Chatbots, agents, computer vision", href: "service.html?s=ai", k: I.spark },
+    { t: "Security & Surveillance", s: "CCTV, access control, biometrics", href: "service.html?s=security", k: I.shield },
+    { t: "Software Development", s: "Web, mobile, SaaS, enterprise", href: "service.html?s=software", k: I.code },
     { t: "Graphic Design", s: "Figma & Canva, brand that ships", href: "service.html?s=design", k: I.palette },
     { t: "Training & Education", s: "Hands-on cohorts & workshops", href: "service.html?s=training", k: I.grad },
     // actions

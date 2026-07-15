@@ -26,12 +26,12 @@
     search: vic('<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>')
   };
   var STARTERS = [
+    { g: VI.chip, l: "IoT Platform", m: "I want to build an IoT platform." },
+    { g: VI.home, l: "Smart Home", m: "I want smart home automation." },
+    { g: VI.spark, l: "AI Product", m: "I want to build an AI product." },
+    { g: VI.shield, l: "Security & CCTV", m: "I need a security & CCTV system." },
     { g: VI.globe, l: "Build a Website", m: "I want to build a website." },
     { g: VI.phone, l: "Mobile App", m: "I want to build a mobile app." },
-    { g: VI.spark, l: "AI Product", m: "I want to build an AI product." },
-    { g: VI.chip, l: "IoT Platform", m: "I want to build an IoT platform." },
-    { g: VI.shield, l: "Security & CCTV", m: "I need a security & CCTV system." },
-    { g: VI.home, l: "Smart Home", m: "I want smart home automation." },
     { g: VI.bars, l: "Business Software", m: "I need custom business software." },
     { g: VI.calc, l: "Estimate Project", m: "Help me estimate my project, ask me what you need to know." },
     { g: VI.doc, l: "Generate Proposal", m: "I'd like a proposal for my project." },
