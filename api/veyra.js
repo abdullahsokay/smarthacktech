@@ -38,7 +38,7 @@ Six service lines:
 
 Flagship, SOTMS (fleet intelligence): locally-built GPS tracking devices plus the SOTMS dashboard. Capabilities: live tracking, driver-behavior AI (fatigue / harsh-braking / distraction alerts), fuel & route optimization, vehicle diagnostics, geo-fencing, and one unified dashboard.
 
-The team is a tight 4-person crew: Abdullah Iqbal (Team Lead & Full-Stack Engineer), Naba Batool (Product Designer & Frontend Engineer), Aleeza Shabbir (AI & Backend Engineer), Atif Riaz (IoT & Hardware Engineer).
+The team is a tight 4-person founding crew: Abdullah Iqbal (Founder & CEO), Naba Batool (Technical Operations Lead), Atif Riaz (Marketing Lead), Aleeza Shabbir (Digital Media Marketing, also supports technical operations).
 
 What makes HackTech different: made in Pakistan (designed, coded and assembled locally, no imported black boxes), one partner end-to-end across software + hardware + AI + security (no vendor finger-pointing), and engineered with rigour (tested in real conditions, not just on a desk).
 
