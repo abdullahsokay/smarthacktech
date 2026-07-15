@@ -19,46 +19,31 @@
   font-family: "Inter", system-ui, sans-serif;
 }
 
-/* ---------- chat launcher (pure-CSS orb, no 3D) ---------- */
+/* ---------- chat launcher (simple round FAB + chat glyph) ---------- */
 .vy-launch {
   position: fixed;
-  right: 14px;
-  bottom: 14px;
+  right: 18px;
+  bottom: 18px;
   z-index: 70;
-  width: 96px;
-  height: 104px;
+  width: 56px;
+  height: 56px;
   padding: 0;
   border: 0;
-  background: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2FA8EF, #0F6FB0);
+  color: #fff;
+  display: grid;
+  place-items: center;
   cursor: pointer;
-  transition: opacity 0.3s ease, transform 0.25s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 22px -6px rgba(47, 168, 239, 0.7);
+  transition: opacity 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
-.vy-launch:hover { transform: translateY(-3px); }
-.vy-launch__glow {
-  position: absolute; left: 50%; bottom: 14px; z-index: 1;
-  width: 84px; height: 20px; transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(47, 168, 239, 0.55), transparent 70%);
-  filter: blur(3px); animation: vy-breathe 3s ease-in-out infinite;
+.vy-launch:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4), 0 0 30px -6px rgba(47, 168, 239, 0.9);
 }
-@keyframes vy-breathe {
-  0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-  50% { opacity: 1; transform: translateX(-50%) scale(0.86); }
-}
-.vy-launch__orb {
-  position: absolute; left: 50%; top: 46%; z-index: 2;
-  width: 66px; height: 66px; transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(40% 40% at 36% 32%, #fff, transparent 60%),
-    radial-gradient(80% 80% at 50% 50%, var(--vy-violet), #07202f 72%);
-  box-shadow: 0 0 26px rgba(47, 168, 239, 0.6), inset 0 0 18px rgba(198, 225, 247, 0.4);
-  animation: vy-float 4s ease-in-out infinite;
-}
-@keyframes vy-float {
-  0%, 100% { transform: translate(-50%, -50%); }
-  50% { transform: translate(-50%, -62%); }
-}
+.vy-launch:focus-visible { outline: 2px solid #A6D6F7; outline-offset: 3px; }
+.vy-launch__ico { display: block; }
 .vy-launch__tip {
   position: absolute; right: calc(100% - 6px); top: 50%; z-index: 3;
   transform: translateY(-50%) translateX(6px); white-space: nowrap;
@@ -74,7 +59,7 @@
 }
 .vy-launch:hover .vy-launch__tip { opacity: 1; transform: translateY(-50%) translateX(0); }
 .vy.is-open .vy-launch { opacity: 0; pointer-events: none; }
-.to-top { bottom: 132px; }
+.to-top { bottom: 88px; }
 
 /* ---------- panel ---------- */
 @property --vy-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
@@ -410,7 +395,7 @@
 .vy-af-row input::placeholder { color: var(--vy-faint); }
 
 @media (prefers-reduced-motion: reduce) {
-  .vy-launch__orb, .vy-launch__glow, .vy-dots i, .vy-orb__swirl, .vy-orb__glow, .vy-orb__ball, .vy-wave i, .vy-panel::before { animation: none; }
+  .vy-dots i, .vy-orb__swirl, .vy-orb__glow, .vy-orb__ball, .vy-wave i, .vy-panel::before { animation: none; }
 }
 
 /* ---------- touch targets + mobile input ergonomics ---------- */
@@ -420,7 +405,7 @@
 @media (max-width:480px){
   .vy-row input,.vy-lead__form input,.vy-lead__form select{font-size:16px}
   .vy-panel{height:min(92vh,92dvh)}
-  .vy-launch{width:96px;height:110px;right:8px;bottom:8px}
+  .vy-launch{width:52px;height:52px;right:12px;bottom:12px}
 }
 
 /* perf: the closed panel is opacity:0 but its infinite animations
