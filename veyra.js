@@ -1,7 +1,7 @@
 /* ============================================================
    KAIRA, on-site AI assistant (HackTech)
-   Energy-orb welcome screen → streaming chat. The 3D robot
-   (kaira-robot.js) mounts into #kaira-stage. Chat → /api/veyra.
+   Energy-orb welcome screen → streaming chat. Launcher is a
+   lightweight CSS orb (no 3D). Chat → /api/veyra.
    ============================================================ */
 (function () {
   "use strict";
@@ -46,7 +46,6 @@
   root.innerHTML =
     '<button class="vy-launch" type="button" aria-label="Chat with Kaira, HackTech\'s AI assistant">' +
       '<span class="vy-launch__glow" aria-hidden="true"></span>' +
-      '<span class="vy-launch__stage" id="kaira-stage" aria-hidden="true"></span>' +
       '<span class="vy-launch__orb" aria-hidden="true"></span>' +
       '<span class="vy-launch__tip">Ask <b>Kaira</b></span>' +
     "</button>" +
@@ -546,36 +545,7 @@
     if (e.key === "Escape" && root.classList.contains("is-open")) close();
   });
 
-  // mount the 3D mascot launcher, Three.js (UMD, classic) + GLTFLoader
-  // from jsdelivr (CSP-allowed), then the mascot (gltf model → procedural
-  // fallback). Perf: the whole 3D stack (~3.4MB) is DEFERRED until first
-  // interaction, or an 8s idle fallback, so it never competes with
-  // first paint. The CSS orb covers the launcher until then.
-  (function () {
-    var armed = false;
-    function mount3d() {
-      if (armed || document.getElementById("kaira-three")) return;
-      armed = true;
-      var V = "https://cdn.jsdelivr.net/npm/three@0.128.0";
-      function load(src, id, integrity) {
-        var s = document.createElement("script");
-        if (id) s.id = id;
-        s.src = src;
-        if (integrity) { s.integrity = integrity; s.crossOrigin = "anonymous"; }
-        s.async = false;
-        document.body.appendChild(s);
-      }
-      load(V + "/build/three.min.js", "kaira-three", "sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu");
-      load(V + "/examples/js/loaders/GLTFLoader.js", "kaira-gltf", "sha384-fljlqkjWlmSFjkESkQvm77heIZpoWmXEOzlCA7kOpGUH+95Zk0yGfQieWM2q136E");
-      load("kaira-robot.js", "kaira-robot");
-    }
-    // Mobile/coarse pointers never mount the 3D stack (3.4MB + heavy main
-    // thread on slow CPUs), the branded CSS orb stays as the launcher and
-    // chat works exactly the same. Desktop mounts on first interaction,
-    // which real users produce immediately; no blanket timer.
-    if (window.matchMedia("(hover:none),(pointer:coarse),(max-width:760px)").matches) return;
-    ["pointermove", "pointerdown", "scroll", "keydown"].forEach(function (ev) {
-      window.addEventListener(ev, mount3d, { once: true, passive: true });
-    });
-  })();
+  // Launcher is the pure-CSS orb — the old Three.js 3D mascot (~3.4MB
+  // three.min.js + GLTFLoader + model) was removed for performance; chat
+  // features are unchanged.
 })();
