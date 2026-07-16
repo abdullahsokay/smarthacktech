@@ -437,6 +437,15 @@ html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
 .pf-card__title{font-family:var(--font-display);font-size:1.14rem;font-weight:600;
   color:var(--head);line-height:1.25}
 .pf-card__text{font-size:.92rem;color:var(--muted);flex:1}
+/* clickable project cards — whole card is a link; visible "view" row at the foot */
+a.pf-card{color:inherit;text-decoration:none;cursor:pointer}
+.pf-card__go{display:inline-flex;align-items:center;gap:6px;margin-top:4px;
+  font-family:var(--font-display);font-size:.8rem;font-weight:600;letter-spacing:.03em;
+  color:var(--c6)}
+.pf-card__go svg{transition:transform var(--dur-1) var(--ease-out)}
+a.pf-card:hover .pf-card__go{text-decoration:underline;text-underline-offset:3px}
+a.pf-card:hover .pf-card__go svg{transform:translate(2px,-2px)}
+a.pf-card:focus-visible{outline:2px solid var(--c5);outline-offset:3px}
 .pf-card__body .chip-row{margin-top:6px}
 
 /* project showcase — big split, not a small card */
