@@ -66,7 +66,7 @@
   var headerHTML =
     '<a class="skip-link" href="#main">Skip to main content</a>' +
     '<nav class="nav" id="nav" aria-label="Primary">' +
-      '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" aria-hidden="true"><path class="logo__hex" d="M16 4.5l10 5.75v11.5L16 27.5 6 21.75V10.25z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg></span> Hack<span>Tech</span></a>' +
+      '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle class="logo__hex" cx="16" cy="16" r="10.5"/><ellipse cx="16" cy="16" rx="4.7" ry="10.5"/><ellipse cx="16" cy="16" rx="8.4" ry="10.5"/><path d="M5.5 16h21M7.5 11.2c3.5-2.3 13.5-2.3 17 0M7.5 20.8c3.5 2.3 13.5 2.3 17 0"/></svg></span> Hack<span>Tech</span></a>' +
       '<button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">' +
         "<span></span><span></span><span></span>" +
       "</button>" +
@@ -86,7 +86,7 @@
       '<div class="container">' +
         '<div class="footer__top">' +
           '<div class="footer__brand">' +
-            '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" aria-hidden="true"><path class="logo__hex" d="M16 4.5l10 5.75v11.5L16 27.5 6 21.75V10.25z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg></span> Hack<span>Tech</span></a>' +
+            '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle class="logo__hex" cx="16" cy="16" r="10.5"/><ellipse cx="16" cy="16" rx="4.7" ry="10.5"/><ellipse cx="16" cy="16" rx="8.4" ry="10.5"/><path d="M5.5 16h21M7.5 11.2c3.5-2.3 13.5-2.3 17 0M7.5 20.8c3.5 2.3 13.5 2.3 17 0"/></svg></span> Hack<span>Tech</span></a>' +
             "<p>Pakistan's IoT &amp; AI ecosystem, smart fleets, smart homes, security and the software that ties it together. Made in Pakistan.</p>" +
           "</div>" +
           '<div class="footer__col"><h3>What we do</h3>' +
