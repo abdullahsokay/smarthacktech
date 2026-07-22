@@ -406,74 +406,6 @@ html[data-theme="light"] .tcard__role{ color:#C6E1F7 }
   background:var(--c5);box-shadow:0 0 10px var(--c5)}
 html[data-theme="light"] .work-tag{background:rgba(255,255,255,.82);color:var(--c6)}
 
-/* ===== Portfolio page — Team + Skills (reference layout, gold/onyx) ===== */
-/* ===== team: photo-forward cards in a row, story text below ===== */
-.pf-team{display:flex;flex-direction:column;gap:46px}
-.pf-people{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
-  width:100%;max-width:940px;margin-inline:auto}
-@media (max-width:640px){ .pf-people{grid-template-columns:1fr;max-width:340px} }
-@property --pfa { syntax:"<angle>"; initial-value:0deg; inherits:false; }
-.pf-person{position:relative;display:flex;flex-direction:column;
-  padding:18px 18px 22px;border-radius:24px;
-  background:var(--card);border:1px solid var(--line);
-  transition:transform var(--dur-2) var(--ease-spring),border-color .35s ease,box-shadow .35s ease}
-.pf-person:hover{transform:translateY(-9px) scale(1.012);border-color:transparent;
-  box-shadow:0 34px 64px -28px rgba(0,0,0,.35),0 0 40px -10px rgba(47,168,239,.45)}
-/* rotating azure→amber keyline appears on hover */
-.pf-person::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
-  background:conic-gradient(from var(--pfa),
-    rgba(47,168,239,0) 0deg, rgba(47,168,239,.9) 80deg, rgba(166,214,247,.9) 140deg,
-    rgba(255,181,46,.85) 200deg, rgba(47,168,239,0) 300deg);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;
-  opacity:0;transition:opacity .4s ease;pointer-events:none}
-.pf-person:hover::before{opacity:1;animation:pf-spin 3.5s linear infinite}
-@keyframes pf-spin{to{--pfa:360deg}}
-/* inset rounded photo (reference-card style) */
-.pf-person__photo{position:relative;aspect-ratio:1/1;overflow:hidden;display:grid;place-items:center;
-  border-radius:16px;background:linear-gradient(150deg,#0C3E58,#0F6FB0)}
-.pf-person__photo img{width:100%;height:100%;object-fit:cover;
-  transition:transform var(--dur-3) var(--ease-out);will-change:transform}
-.pf-person:hover .pf-person__photo img{transform:scale(1.07)}
-/* light sheen sweeps the photo once on hover */
-.pf-person__photo::after{content:"";position:absolute;top:0;left:-130%;width:60%;height:100%;
-  background:linear-gradient(115deg,transparent,rgba(255,255,255,.34),transparent);
-  transform:skewX(-18deg);transition:left .75s var(--ease-out);pointer-events:none}
-.pf-person:hover .pf-person__photo::after{left:150%}
-.pf-person__init{font-family:var(--font-display);font-weight:700;font-size:3.2rem;
-  color:#fff;letter-spacing:3px;text-shadow:0 6px 24px rgba(0,0,0,.35)}
-.pf-person__name{display:block;text-align:left;padding:17px 4px 0;
-  font-family:var(--font-display);font-weight:700;font-size:1.22rem;
-  letter-spacing:-.01em;color:var(--head)}
-/* accent underline grows under the name on hover */
-.pf-person__name::after{content:"";display:block;width:26px;height:3px;margin-top:9px;
-  border-radius:999px;background:var(--grad-line);
-  transition:width .5s var(--ease-out-expo)}
-.pf-person:hover .pf-person__name::after{width:58px}
-/* founder — amber underline + faint amber wash */
-.pf-person--lead{background:linear-gradient(180deg,rgba(245,161,0,.06),transparent 55%),var(--card)}
-.pf-person--lead .pf-person__name::after{background:linear-gradient(90deg,#FFB52E,#F5A100)}
-@media (prefers-reduced-motion:reduce){
-  .pf-person:hover::before{animation:none}
-  .pf-person__photo::after{display:none}
-}
-/* story text sits centered under the cards */
-.pf-skills{text-align:center;max-width:760px;margin-inline:auto}
-.pf-skills .chip-row{justify-content:center}
-.pf-skills .eyebrow{margin-bottom:14px}
-.pf-skills .h2{margin-bottom:14px}
-.pf-skills .lead{margin-bottom:28px}
-.pf-bars{display:flex;flex-direction:column;gap:17px}
-.pf-bar__top{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:8px;
-  font-family:var(--font-display);font-weight:500;color:var(--ink)}
-.pf-bar__top span:last-child{color:var(--c6)}
-.pf-bar__track{height:9px;border-radius:999px;background:rgba(255,255,255,.07);
-  overflow:hidden;border:1px solid var(--line)}
-.pf-bar__fill{height:100%;width:0;border-radius:999px;
-  background:linear-gradient(90deg,var(--c4),var(--c5),var(--c6));
-  box-shadow:0 0 14px -2px rgba(47,168,239,.6);transition:width 1.4s cubic-bezier(.22,1,.36,1)}
-html[data-theme="light"] .pf-bar__track{background:rgba(10,10,10,.06)}
-
 /* ===== Portfolio page — project cards (reference style) ===== */
 .pf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
 .pf-card{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;
@@ -521,6 +453,27 @@ a.pf-card:focus-visible{outline:2px solid var(--c5);outline-offset:3px}
 .pf-show__info .h2{margin:12px 0 16px}
 .pf-show__info .lead{margin-bottom:20px}
 @media(max-width:860px){.pf-show{grid-template-columns:1fr;gap:26px}.pf-show--rev .pf-show__media{order:0}}
+
+/* team bios reuse .pf-show, but people need a portrait frame, not the 16/11
+   landscape one the project screenshots use */
+.pf-bio{grid-template-columns:.85fr 1fr;gap:60px}
+.pf-show__media--portrait{aspect-ratio:4/5;max-height:560px}
+.pf-bio .pf-show__info .lead{margin-bottom:24px}
+.pf-bio .chip-row{margin-top:2px}
+/* placeholder until a real photo lands — initials on the brand gradient.
+   Swap for an <img> and drop the --await class; nothing else changes. */
+.pf-show__media--await{display:grid;place-items:center;
+  background:
+    radial-gradient(120% 100% at 30% 0%,rgba(47,168,239,.22),transparent 60%),
+    linear-gradient(150deg,var(--c2),var(--c1) 70%)}
+.pf-await__init{font-family:var(--font-display);font-weight:700;
+  font-size:clamp(3.4rem,7vw,5.4rem);letter-spacing:.04em;line-height:1;
+  background:var(--grad-text);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;opacity:.85}
+@media(max-width:860px){
+  .pf-bio{grid-template-columns:1fr;gap:26px}
+  .pf-show__media--portrait{aspect-ratio:1/1;max-height:none}
+}
 
 /* portfolio sections now scroll normally — they inherit .section spacing.
    .pf-slide is left as an inert hook on the markup; no fullpage/snap rules. */
