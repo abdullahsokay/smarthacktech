@@ -460,16 +460,6 @@ a.pf-card:focus-visible{outline:2px solid var(--c5);outline-offset:3px}
 .pf-show__media--portrait{aspect-ratio:4/5;max-height:560px}
 .pf-bio .pf-show__info .lead{margin-bottom:24px}
 .pf-bio .chip-row{margin-top:2px}
-/* placeholder until a real photo lands — initials on the brand gradient.
-   Swap for an <img> and drop the --await class; nothing else changes. */
-.pf-show__media--await{display:grid;place-items:center;
-  background:
-    radial-gradient(120% 100% at 30% 0%,rgba(47,168,239,.22),transparent 60%),
-    linear-gradient(150deg,var(--c2),var(--c1) 70%)}
-.pf-await__init{font-family:var(--font-display);font-weight:700;
-  font-size:clamp(3.4rem,7vw,5.4rem);letter-spacing:.04em;line-height:1;
-  background:var(--grad-text);-webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;opacity:.85}
 @media(max-width:860px){
   .pf-bio{grid-template-columns:1fr;gap:26px}
   .pf-show__media--portrait{aspect-ratio:1/1;max-height:none}
