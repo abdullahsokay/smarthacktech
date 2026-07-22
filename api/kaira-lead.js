@@ -57,6 +57,7 @@ module.exports = async function handler(req, res) {
 
   const tier = classify(b);
 
+  let emailOk = false;
   const apiKey = process.env.RESEND_API_KEY;
   if (apiKey) {
     const to = process.env.CONTACT_TO || "contact.hacktechzone@gmail.com";
@@ -72,7 +73,7 @@ module.exports = async function handler(req, res) {
       (b.context ? `<p><b>Conversation context:</b><br>${esc(b.context).slice(0, 1500).replace(/\n/g, "<br>")}</p>` : "") +
       `<hr><p style="color:#888;font-size:12px">Captured by KAIRA, HackTech's AI Solutions Architect.</p>`;
     try {
-      await fetch("https://api.resend.com/emails", {
+      const r = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -83,13 +84,20 @@ module.exports = async function handler(req, res) {
           html,
         }),
       });
-    } catch {
-      /* non-fatal — still acknowledge */
+      emailOk = r.ok;
+      // A rejected send (bad key, quota, unverified sender) returns a non-2xx
+      // rather than throwing, so it has to be checked explicitly.
+      if (!r.ok) console.error("kaira-lead: Resend rejected the send, status " + r.status);
+    } catch (e) {
+      console.error("kaira-lead: Resend request failed —", (e && e.message) || e);
     }
   }
 
-  // store in the CRM (Supabase) — awaited so it completes before the response
-  await Promise.allSettled([
+  // store in the CRM (Supabase) — awaited so it completes before the response.
+  // The event row is written even when the lead row fails: the gap between
+  // count(leads) and count(events where type='lead') is what surfaces a
+  // persistence problem, so it is deliberately kept as a health signal.
+  const [leadWrite] = await Promise.allSettled([
     sb.insert("leads", {
       name,
       email,
@@ -102,6 +110,18 @@ module.exports = async function handler(req, res) {
     }),
     sb.insert("events", { type: "lead", label: tier }),
   ]);
+  const dbOk = leadWrite.status === "fulfilled" && leadWrite.value === true;
+  if (!dbOk) console.error("kaira-lead: Supabase lead insert failed for " + email);
+
+  // If neither the inbox nor the database captured it, the lead is gone.
+  // Say so rather than showing a success the visitor can't act on — the
+  // widget surfaces this message and re-enables the submit button.
+  if (!emailOk && !dbOk) {
+    return res.status(502).json({
+      ok: false,
+      error: "We couldn't save your details just now. Please try again, or email contact.hacktechzone@gmail.com.",
+    });
+  }
 
   return res.status(200).json({ ok: true, tier });
 };
