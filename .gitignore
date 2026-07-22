@@ -3,7 +3,7 @@
 
 # Secrets / env
 .env
-.env*.local
+.env*
 
 # Dependencies
 node_modules
@@ -14,6 +14,6 @@ Thumbs.db
 *.log
 .vscode
 
-.vercel
-
-.env*
+# Local agent/skill tooling - not part of the site
+.claude/
+.agents/

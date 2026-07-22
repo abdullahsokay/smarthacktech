@@ -4,6 +4,5 @@ veyra/
 
 # project tooling - never ship as static files
 .claude/
-.agents/
 skills-lock.json
 supabase-schema.sql

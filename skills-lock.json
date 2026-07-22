@@ -10,7 +10,7 @@
     "impeccable": {
       "source": "pbakaus/impeccable",
       "sourceType": "github",
-      "skillPath": ".agents/skills/impeccable/SKILL.md",
+      "skillPath": ".claude/skills/impeccable/SKILL.md",
       "computedHash": "e7694fb15d34d28e0ba055010516e61e85dfaf0299fafdd9e78eef08610f6d83"
     },
     "ui-ux-pro-max": {
