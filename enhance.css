@@ -428,30 +428,33 @@ html[data-theme="light"] .tcard__role{ color:#C6E1F7 }
 html[data-theme="light"] .work-tag{background:rgba(255,255,255,.82);color:var(--c6)}
 
 /* ===== Portfolio page — Team + Skills (reference layout, gold/onyx) ===== */
-.pf-team{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
-@media(max-width:860px){.pf-team{grid-template-columns:1fr;gap:36px}}
-.pf-people{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media (max-width:560px){ .pf-people{grid-template-columns:1fr} }
-.pf-person{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;
-  padding:28px 16px 22px;border-radius:18px;background:var(--card);border:1px solid var(--line);
-  transition:transform var(--dur-2) var(--ease-out),border-color .3s ease,box-shadow .3s ease}
-.pf-person:hover{transform:translateY(-5px);border-color:var(--line-2);
-  box-shadow:0 18px 40px -20px rgba(0,0,0,.25),0 0 26px -10px rgba(47,168,239,.35)}
-.pf-avatar{display:grid;place-items:center;width:72px;height:72px;border-radius:50%;
-  overflow:hidden;position:relative;
-  font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:#fff;letter-spacing:.5px;
-  background:linear-gradient(135deg,#2FA8EF,#0F6FB0);
-  box-shadow:0 8px 20px -8px rgba(15,111,176,.55),inset 0 0 0 1px rgba(255,255,255,.25)}
-/* photo-ready: drop an <img> inside .pf-avatar and it fills the circle */
-.pf-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%}
-.pf-person__name{font-family:var(--font-display);font-weight:600;font-size:1rem;color:var(--head)}
-.pf-person__role{font-family:var(--font-display);font-size:.72rem;font-weight:600;letter-spacing:.09em;
-  text-transform:uppercase;color:var(--c6)}
-/* founder card — quiet emphasis: azure keyline + amber avatar */
-.pf-person--lead{border-color:var(--line-2);
-  background:linear-gradient(180deg,rgba(47,168,239,.07),transparent 60%),var(--card)}
-.pf-person--lead .pf-avatar{background:linear-gradient(135deg,#FFB52E,#F5A100);color:#241800;
-  box-shadow:0 8px 20px -8px rgba(225,143,0,.6),inset 0 0 0 1px rgba(255,255,255,.35)}
+/* ===== team: photo-forward cards in a row, story text below ===== */
+.pf-team{display:flex;flex-direction:column;gap:46px}
+.pf-people{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  width:100%;max-width:940px;margin-inline:auto}
+@media (max-width:640px){ .pf-people{grid-template-columns:1fr;max-width:340px} }
+.pf-person{display:flex;flex-direction:column;border-radius:20px;overflow:hidden;
+  background:var(--card);border:1px solid var(--line);
+  transition:transform var(--dur-2) var(--ease-out),border-color .35s ease,box-shadow .35s ease}
+.pf-person:hover{transform:translateY(-8px);border-color:var(--line-2);
+  box-shadow:0 30px 60px -28px rgba(0,0,0,.35),0 0 34px -10px rgba(47,168,239,.4)}
+.pf-person__photo{position:relative;aspect-ratio:4/5;overflow:hidden;display:grid;place-items:center;
+  background:linear-gradient(150deg,#0C3E58,#0F6FB0)}
+.pf-person__photo img{width:100%;height:100%;object-fit:cover;
+  transition:transform var(--dur-3) var(--ease-out);will-change:transform}
+.pf-person:hover .pf-person__photo img{transform:scale(1.08)}
+.pf-person__photo::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 58%,rgba(4,20,31,.42))}
+.pf-person__init{font-family:var(--font-display);font-weight:700;font-size:3.2rem;
+  color:#fff;letter-spacing:3px;text-shadow:0 6px 24px rgba(0,0,0,.35)}
+.pf-person__name{display:block;text-align:center;padding:16px 12px 19px;
+  font-family:var(--font-display);font-weight:600;font-size:1.08rem;color:var(--head)}
+/* founder card — quiet amber emphasis */
+.pf-person--lead{border-color:var(--line-2)}
+.pf-person--lead .pf-person__name{background:linear-gradient(180deg,rgba(245,161,0,.10),transparent)}
+/* story text sits centered under the cards */
+.pf-skills{text-align:center;max-width:760px;margin-inline:auto}
+.pf-skills .chip-row{justify-content:center}
 .pf-skills .eyebrow{margin-bottom:14px}
 .pf-skills .h2{margin-bottom:14px}
 .pf-skills .lead{margin-bottom:28px}
