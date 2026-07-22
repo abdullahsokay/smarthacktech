@@ -8,17 +8,27 @@
      RESEND_API_KEY   (required)  from https://resend.com  — free tier
      CONTACT_TO       (optional)  inbox for leads   — default contact.hacktechzone@gmail.com
      CONTACT_FROM     (optional)  verified sender   — default onboarding@resend.dev
-                                  (for production, verify hacktech.pk in Resend and
-                                   set this to e.g. "HackTech <noreply@hacktech.pk>")
+                                  (for production, verify hacktechzone.com in Resend and
+                                   set this to e.g. "HackTech <noreply@hacktechzone.com>")
 
    Until RESEND_API_KEY is set, this returns 503 and the front-end
    gracefully falls back to the visitor's email client (mailto).
    ============================================================ */
 
+const rl = require("./_ratelimit");
+
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ ok: false, error: "Method not allowed" });
+  }
+
+  // Throttle before doing any work: every accepted request costs an outbound
+  // Resend email, so an unthrottled endpoint is a spam/billing amplifier.
+  // The honeypot below only catches bots that fill hidden fields — a script
+  // that simply omits `_gotcha` sails past it, so it is not a rate control.
+  if (rl.limited("contact", req, 5, 60000)) {
+    return res.status(429).json({ ok: false, error: "Too many messages — please wait a minute and try again." });
   }
 
   // Vercel auto-parses JSON bodies; stay defensive if it arrives as a string.
@@ -41,7 +51,11 @@ module.exports = async function handler(req, res) {
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return res.status(400).json({ ok: false, error: "That email address doesn't look right." });
   }
-  if (name.length > 200 || email.length > 200 || message.length > 5000) {
+  // Cap every field that reaches the outbound email, not just the required
+  // three — company/service were previously unbounded up to the platform's
+  // request-body limit.
+  if (name.length > 200 || email.length > 200 || message.length > 5000 ||
+      company.length > 200 || service.length > 200) {
     return res.status(400).json({ ok: false, error: "One of those fields is too long." });
   }
 
