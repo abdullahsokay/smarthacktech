@@ -55,7 +55,8 @@ module.exports = async function handler(req, res) {
     let stats;
     try {
       // Preferred path: aggregate in Postgres, so totals stay exact at any size.
-      // Needs supabase-migration-01.sql. Counting rows in JS instead caps the
+      // Needs supabase/migrations/20260722090000_stats_views_and_constraints.sql.
+      // Counting rows in JS instead caps the
       // lead total at the fetch limit, and the unordered events fetch returns
       // an arbitrary subset once the table exceeds it.
       const [ev] = await sb.select("kaira_event_totals?select=*");

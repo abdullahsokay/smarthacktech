@@ -5,4 +5,6 @@ veyra/
 # project tooling - never ship as static files
 .claude/
 skills-lock.json
-supabase-schema.sql
+
+# database migrations: applied by Supabase's GitHub integration, never served
+supabase/
