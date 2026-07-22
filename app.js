@@ -232,10 +232,9 @@
     });
   }
 
-  /* ---- 15. smooth momentum scrolling (desktop + motion-ok; skips the 3D experience) ---- */
+  /* ---- 15. smooth momentum scrolling (desktop + motion-ok) ---- */
   (function () {
     if (reduce || !finePointer) return;
-    if (document.body.getAttribute("data-page") === "tech") return;
     var target = window.scrollY, current = target, running = false;
     var EASE = 0.12;
     document.documentElement.style.scrollBehavior = "auto"; // JS owns smooth scrolling now

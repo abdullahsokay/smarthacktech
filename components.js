@@ -11,8 +11,7 @@
     ["home", "index.html", "Home"],
     ["solutions", "solutions.html", "Services"],
     ["portfolio", "portfolio.html", "Portfolio"],
-    ["about", "about.html", "About"],
-    ["tech", "tech.html", "Experience"]
+    ["about", "about.html", "About"]
   ];
 
   function activeAttr(key) {

@@ -16,6 +16,16 @@
       "source": "/demo.html",
       "destination": "/portfolio",
       "permanent": true
+    },
+    {
+      "source": "/tech",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tech.html",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "functions": {
