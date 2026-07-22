@@ -1,0 +1,11 @@
+# Supabase project config.
+# Identifies this repo as a Supabase project so the GitHub integration (and
+# the CLI) can find supabase/migrations. Without this file the connection
+# shows as linked but never applies anything.
+#
+# project_id is the project ref from the API URL
+# (https://<ref>.supabase.co). It is an identifier, not a credential:
+# reaching the database still requires the anon or service_role key, which
+# live only in Vercel's environment variables and are never committed.
+
+project_id = "lawgakbbrfhauyxvftef"
