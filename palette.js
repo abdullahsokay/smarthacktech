@@ -34,18 +34,18 @@
 
   var ITEMS = [
     // pages
-    { t: "Home", s: "We make things smart, connected, predictable", href: "index.html", k: I.home },
-    { t: "Services", s: "All six service lines", href: "solutions.html", k: I.grid },
-    { t: "Portfolio", s: "The team & the work we've shipped", href: "portfolio.html", k: I.folder },
-    { t: "About", s: "Our story, team & values", href: "about.html", k: I.users },
-    { t: "Contact", s: "Get a quote, we reply fast", href: "contact.html", k: I.mail },
+    { t: "Home", s: "We make things smart, connected, predictable", href: "/", k: I.home },
+    { t: "Services", s: "All six service lines", href: "/solutions", k: I.grid },
+    { t: "Portfolio", s: "The team & the work we've shipped", href: "/portfolio", k: I.folder },
+    { t: "About", s: "Our story, team & values", href: "/about", k: I.users },
+    { t: "Contact", s: "Get a quote, we reply fast", href: "/contact", k: I.mail },
     // services
-    { t: "IoT Solutions", s: "Devices & live dashboards", href: "service.html?s=iot", k: I.chip },
-    { t: "Smart Home & Automation", s: "One app, one voice", href: "service.html?s=smarthome", k: I.home },
-    { t: "AI & Automation", s: "Chatbots, agents, computer vision", href: "service.html?s=ai", k: I.spark },
-    { t: "Security & Surveillance", s: "CCTV, access control, biometrics", href: "service.html?s=security", k: I.shield },
-    { t: "Software Development", s: "Web, mobile, SaaS, enterprise", href: "service.html?s=software", k: I.code },
-    { t: "Training & Education", s: "Hands-on cohorts & workshops", href: "service.html?s=training", k: I.grad },
+    { t: "IoT Solutions", s: "Devices & live dashboards", href: "/service?s=iot", k: I.chip },
+    { t: "Smart Home & Automation", s: "One app, one voice", href: "/service?s=smarthome", k: I.home },
+    { t: "AI & Automation", s: "Chatbots, agents, computer vision", href: "/service?s=ai", k: I.spark },
+    { t: "Security & Surveillance", s: "CCTV, access control, biometrics", href: "/service?s=security", k: I.shield },
+    { t: "Software Development", s: "Web, mobile, SaaS, enterprise", href: "/service?s=software", k: I.code },
+    { t: "Training & Education", s: "Hands-on cohorts & workshops", href: "/service?s=training", k: I.grad },
     // actions
     { t: "Chat with Kaira", s: "Our AI Solutions Architect", k: I.spark, act: function () { if (window.KairaChat) window.KairaChat.open(); } },
     { t: "WhatsApp us", s: "0327 5516703, quick reply", k: I.chat, act: function () { window.open("https://wa.me/923275516703", "_blank", "noopener"); } },

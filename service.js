@@ -124,7 +124,7 @@
   function esc(s) { return String(s).replace(/[<>&]/g, function (c) { return { "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c]; }); }
   var key = (new URLSearchParams(location.search).get("s") || "").toLowerCase();
   var svc = SERVICES[key];
-  if (!svc) { location.replace("solutions.html"); return; }
+  if (!svc) { location.replace("/solutions"); return; }
 
   function set(id, html) { var el = document.getElementById(id); if (el) el.innerHTML = html; }
   function plainTitle() { return svc.title.replace(/<[^>]+>/g, ""); }
@@ -137,7 +137,7 @@
   // page is data-driven (the static head can't know which service loaded).
   (function () {
     var head = document.head, title = plainTitle() + ", HackTech";
-    var canonical = "https://hacktech.pk/service.html?s=" + encodeURIComponent(key);
+    var canonical = "https://www.hacktechzone.com/service?s=" + encodeURIComponent(key);
     function meta(attr, name, content) {
       var el = document.querySelector("meta[" + attr + '="' + name + '"]');
       if (!el) { el = document.createElement("meta"); el.setAttribute(attr, name); head.appendChild(el); }
@@ -150,7 +150,7 @@
     meta("property", "og:title", title);
     meta("property", "og:description", svc.lead);
     meta("property", "og:url", canonical);
-    meta("property", "og:image", "https://hacktech.pk/og-image.png");
+    meta("property", "og:image", "https://www.hacktechzone.com/og-image.png");
     meta("name", "twitter:card", "summary_large_image");
     meta("name", "twitter:title", title);
     meta("name", "twitter:description", svc.lead);
@@ -177,7 +177,7 @@
 
   // quote CTA carries the service context so the contact form pre-selects it
   var cp = document.getElementById("svc-cta-primary");
-  if (cp) cp.href = "contact.html?s=" + encodeURIComponent(key);
+  if (cp) cp.href = "/contact?s=" + encodeURIComponent(key);
 
   if (svc.ghost) {
     var g = document.getElementById("svc-cta-ghost");

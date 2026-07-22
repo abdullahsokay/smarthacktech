@@ -7,11 +7,13 @@
 
   var page = document.body.getAttribute("data-page") || "";
 
+  // Hrefs are extensionless: vercel.json sets cleanUrls:true, so "/about.html"
+  // 308-redirects to "/about". Linking direct avoids a redirect on every click.
   var LINKS = [
-    ["home", "index.html", "Home"],
-    ["solutions", "solutions.html", "Services"],
-    ["portfolio", "portfolio.html", "Portfolio"],
-    ["about", "about.html", "About"]
+    ["home", "/", "Home"],
+    ["solutions", "/solutions", "Services"],
+    ["portfolio", "/portfolio", "Portfolio"],
+    ["about", "/about", "About"]
   ];
 
   function activeAttr(key) {
@@ -29,12 +31,12 @@
   ];
   // About dropdown, quick links into the About page sections (title + subtitle)
   var ABOUT_MENU = [
-    ["about.html#deliver", "What We Deliver", "Our services at a glance"],
-    ["about.html#story", "Our Story", "How HackTech started"],
-    ["about.html#team", "Meet the Team", "The people behind the build"],
-    ["about.html#values", "What We Stand For", "Our values &amp; principles"],
-    ["about.html#journey", "Our Journey", "From the bench to an ecosystem"],
-    ["contact.html", "Work With Us", "Get in touch"]
+    ["/about#deliver", "What We Deliver", "Our services at a glance"],
+    ["/about#story", "Our Story", "How HackTech started"],
+    ["/about#team", "Meet the Team", "The people behind the build"],
+    ["/about#values", "What We Stand For", "Our values &amp; principles"],
+    ["/about#journey", "Our Journey", "From the bench to an ecosystem"],
+    ["/contact", "Work With Us", "Get in touch"]
   ];
   var caret = '<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
 
@@ -42,7 +44,7 @@
     var key = l[0], href = l[1], label = l[2];
     if (key === "solutions") {
       var menu = SERVICE_MENU.map(function (s) {
-        return '<li><a href="service.html?s=' + s[0] + '">' + s[1] + "</a></li>";
+        return '<li><a href="/service?s=' + s[0] + '">' + s[1] + "</a></li>";
       }).join("");
       return '<li class="nav-item nav-item--has-menu">' +
         '<a href="' + href + '" data-nav="' + key + '"' + activeAttr(key) + ">" + label + caret + "</a>" +
@@ -64,7 +66,7 @@
   var headerHTML =
     '<a class="skip-link" href="#main">Skip to main content</a>' +
     '<nav class="nav" id="nav" aria-label="Primary">' +
-      '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle class="logo__hex" cx="16" cy="16" r="10.5"/><ellipse cx="16" cy="16" rx="4.7" ry="10.5"/><ellipse cx="16" cy="16" rx="8.4" ry="10.5"/><path d="M5.5 16h21M7.5 11.2c3.5-2.3 13.5-2.3 17 0M7.5 20.8c3.5 2.3 13.5 2.3 17 0"/></svg></span> Hack<span>Tech</span></a>' +
+      '<a class="logo" href="/"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle class="logo__hex" cx="16" cy="16" r="10.5"/><ellipse cx="16" cy="16" rx="4.7" ry="10.5"/><ellipse cx="16" cy="16" rx="8.4" ry="10.5"/><path d="M5.5 16h21M7.5 11.2c3.5-2.3 13.5-2.3 17 0M7.5 20.8c3.5 2.3 13.5 2.3 17 0"/></svg></span> Hack<span>Tech</span></a>' +
       '<button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">' +
         "<span></span><span></span><span></span>" +
       "</button>" +
@@ -74,7 +76,7 @@
           '<svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>' +
           '<svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>' +
         "</button></li>" +
-        '<li><a class="btn btn--primary btn--sm" href="contact.html" data-nav="contact"' +
+        '<li><a class="btn btn--primary btn--sm" href="/contact" data-nav="contact"' +
           (page === "contact" ? ' aria-current="page"' : "") + ">Get a Quote</a></li>" +
       "</ul>" +
     "</nav>";
@@ -84,13 +86,13 @@
       '<div class="container">' +
         '<div class="footer__top">' +
           '<div class="footer__brand">' +
-            '<a class="logo" href="index.html"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle class="logo__hex" cx="16" cy="16" r="10.5"/><ellipse cx="16" cy="16" rx="4.7" ry="10.5"/><ellipse cx="16" cy="16" rx="8.4" ry="10.5"/><path d="M5.5 16h21M7.5 11.2c3.5-2.3 13.5-2.3 17 0M7.5 20.8c3.5 2.3 13.5 2.3 17 0"/></svg></span> Hack<span>Tech</span></a>' +
+            '<a class="logo" href="/"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle class="logo__hex" cx="16" cy="16" r="10.5"/><ellipse cx="16" cy="16" rx="4.7" ry="10.5"/><ellipse cx="16" cy="16" rx="8.4" ry="10.5"/><path d="M5.5 16h21M7.5 11.2c3.5-2.3 13.5-2.3 17 0M7.5 20.8c3.5 2.3 13.5 2.3 17 0"/></svg></span> Hack<span>Tech</span></a>' +
             "<p>Pakistan's IoT &amp; AI ecosystem, smart fleets, smart homes, security and the software that ties it together. Made in Pakistan.</p>" +
           "</div>" +
           '<div class="footer__col"><h3>What we do</h3>' +
-            '<a href="solutions.html">Services</a><a href="about.html">About</a><a href="contact.html">Get a Quote</a></div>' +
+            '<a href="/solutions">Services</a><a href="/about">About</a><a href="/contact">Get a Quote</a></div>' +
           '<div class="footer__col"><h3>Company</h3>' +
-            '<a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>' +
+            '<a href="/about">About</a><a href="/contact">Contact</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>' +
           '<div class="footer__col"><h3>Get in touch</h3>' +
             '<a href="mailto:contact.hacktechzone@gmail.com">contact.hacktechzone@gmail.com</a><a href="tel:+923275516703">0327 5516703</a><a href="https://www.tiktok.com/@hacktech.zone" target="_blank" rel="noopener">TikTok · hacktech zone</a></div>' +
         "</div>" +

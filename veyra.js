@@ -75,7 +75,7 @@
           "</button>" +
         "</div>" +
         '<div class="vy-foot__cta">' +
-          '<a class="vy-expert" href="contact.html">Talk to a HackTech expert →</a>' +
+          '<a class="vy-expert" href="/contact">Talk to a HackTech expert →</a>' +
           '<span class="vy-foot__note">Powered by HackTech AI</span>' +
         "</div>" +
       "</div>" +
@@ -316,7 +316,7 @@
         '<div class="vy-bp__label" style="margin-top:10px">Next Steps</div><ul class="vy-list">' + li(pr.nextSteps) + "</ul></div>" +
       '<div class="vy-bp__act"><button class="vy-bp__btn vy-bp__btn--pdf" type="button">⬇ Download PDF</button>' +
       '<button class="vy-bp__btn vy-bp__btn--copy" type="button">Copy</button>' +
-      '<a class="vy-bp__btn vy-bp__btn--ai" href="contact.html">Talk to an expert →</a></div>';
+      '<a class="vy-bp__btn vy-bp__btn--ai" href="/contact">Talk to an expert →</a></div>';
   }
 
   function renderBlueprint(bp) {
