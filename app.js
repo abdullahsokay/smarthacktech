@@ -64,31 +64,7 @@
     document.body.appendChild(tt);
   })();
 
-  /* ---- 7. count-up numbers [data-count] ---- */
-  function fmt(n, dec) { return n.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }); }
-  var countIO = new IntersectionObserver(function (es) {
-    es.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      var el = e.target; countIO.unobserve(el);
-      var target = parseFloat(el.getAttribute("data-count"));
-      var dec = parseInt(el.getAttribute("data-decimals") || "0", 10);
-      var suf = el.getAttribute("data-suffix") || "";
-      var pre = el.getAttribute("data-prefix") || "";
-      if (reduce) { el.textContent = pre + fmt(target, dec) + suf; return; }
-      // easeOutExpo over a longer beat, races through the small numbers,
-      // then settles slowly onto the final figure. Feels weighed, not counted.
-      var dur = 1800, t0 = null;
-      function step(t) {
-        if (!t0) t0 = t;
-        var p = Math.min((t - t0) / dur, 1);
-        var eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-        el.textContent = pre + fmt(target * eased, dec) + suf;
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    });
-  }, { threshold: 0.6 });
-  $$("[data-count]").forEach(function (el) { countIO.observe(el); });
+  /* ---- 7. (count-up numbers removed, no [data-count] markup remains) ---- */
 
   /* ---- 8. 3D tilt cards ---- */
   if (finePointer && !reduce) {
@@ -103,32 +79,9 @@
     });
   }
 
-  /* ---- 9. testimonials carousel ---- */
-  $$("[data-carousel]").forEach(function (c) {
-    var slides = $$(".testimonial", c);
-    if (!slides.length) return;
-    var dots = document.createElement("div"); dots.className = "carousel__dots";
-    var i = 0, timer;
-    slides.forEach(function (s, idx) {
-      var b = document.createElement("button");
-      b.setAttribute("aria-label", "Slide " + (idx + 1));
-      b.addEventListener("click", function () { go(idx); rest(); });
-      dots.appendChild(b);
-    });
-    c.appendChild(dots);
-    function go(n) {
-      slides[i].classList.remove("active"); dots.children[i].classList.remove("active");
-      i = (n + slides.length) % slides.length;
-      slides[i].classList.add("active"); dots.children[i].classList.add("active");
-    }
-    function rest() { if (reduce) return; clearInterval(timer); timer = setInterval(function () { go(i + 1); }, 5000); }
-    go(0); rest();
-  });
+  /* ---- 9. (testimonials carousel removed, no [data-carousel] markup remains) ---- */
 
-  /* ---- 10. seamless marquee (clone track) ---- */
-  $$("[data-marquee] .marquee__track").forEach(function (tr) {
-    tr.innerHTML += tr.innerHTML;
-  });
+  /* ---- 10. (marquee removed, no [data-marquee] markup remains) ---- */
 
   /* ---- 11. (ROI calculator removed) ---- */
 

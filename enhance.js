@@ -18,7 +18,7 @@
   /* ---- 2. holographic sheen: light that follows the cursor across glass ---- */
   (function () {
     if (reduce || !finePointer) return;
-    var SURFACES = ".card,.kpi,.calc,.dash,.split__media,.step,.cta,.testimonial";
+    var SURFACES = ".card,.kpi,.calc,.dash,.split__media,.step,.cta";
     $$(SURFACES).filter(function (el) {
       // photos keep their own wash/scanline treatment — the generic sheen
       // would lift the <img> above those overlays, so skip them.
@@ -99,19 +99,7 @@
     });
   })();
 
-  /* ---- 5. demo video: custom volume-only (mute/unmute) toggle ---- */
-  (function () {
-    var v = document.querySelector(".demo-video__vid");
-    var btn = document.getElementById("demoMute");
-    if (!v || !btn) return;
-    btn.addEventListener("click", function () {
-      v.muted = !v.muted;
-      if (!v.muted) { v.volume = 1; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-      btn.classList.toggle("is-on", !v.muted);
-      btn.setAttribute("aria-pressed", String(!v.muted));
-      btn.setAttribute("aria-label", v.muted ? "Unmute video" : "Mute video");
-    });
-  })();
+  /* ---- 5. (demo-video mute toggle removed with demo.html; no markup remains) ---- */
 
   /* ---- 6. team accordion: expanding flex cards + cursor-driven 3D tilt ---- */
   (function () {

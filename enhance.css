@@ -206,11 +206,6 @@ html[data-theme="light"] .cp__scrim{background:rgba(20,30,20,.35)}
   .cp__panel,.cp__scrim,.cp__item{animation:none}
 }
 
-/* hero copy: pure-CSS entrance — no JS wait, so LCP paints immediately */
-.hero-enter{animation:hero-enter var(--dur-3) var(--ease-out-expo) backwards}
-@keyframes hero-enter{from{opacity:0;transform:translateY(26px)}}
-@media (prefers-reduced-motion:reduce){.hero-enter{animation:none}}
-
 /* ---------- 4c. kinetic hero headline ---------- */
 .kinetic .kchar{display:inline-block;opacity:0;transform:translateY(.55em) rotate(3deg);
   filter:blur(6px);animation:kchar-in .75s var(--ease-out-expo) forwards;
@@ -322,7 +317,7 @@ html[data-theme="light"] .cp__scrim{background:rgba(20,30,20,.35)}
    pointer-events:none kills the browser's hover media toolbar (the ▶▶| / PiP
    overlay Edge & Chrome float over a playing video), and the pseudo-element
    rules below strip any native control chrome that would otherwise paint. */
-.hero-portal__vid, .sh-demo, .demo-video__vid{ pointer-events:none }
+.hero-portal__vid, .sh-demo{ pointer-events:none }
 video::-webkit-media-controls,
 video::-webkit-media-controls-enclosure,
 video::-webkit-media-controls-panel,
@@ -331,22 +326,6 @@ video::-webkit-media-controls-start-playback-button,
 video::-webkit-media-controls-overlay-enclosure{
   display:none !important; -webkit-appearance:none; appearance:none; opacity:0 !important;
 }
-
-/* ---------- 13. SOTMS demo video (demo.html) ---------- */
-.demo-video{ position:relative; max-width:980px; margin:0 auto; border-radius:var(--r-lg); overflow:hidden;
-  border:1px solid var(--line-2); box-shadow:var(--shadow); background:#000 }
-.demo-video__vid{ display:block; width:100%; height:auto; aspect-ratio:16/9 }
-/* custom volume-only control (mute / unmute) */
-.demo-mute{ position:absolute; right:14px; bottom:14px; z-index:3;
-  width:46px; height:46px; border-radius:50%; cursor:pointer; display:grid; place-items:center;
-  background:rgba(10,10,10,.6); border:1px solid var(--line-2); backdrop-filter:blur(8px);
-  color:var(--c6); transition:background .25s, transform .2s, box-shadow .25s }
-.demo-mute:hover{ background:rgba(10,10,10,.82); transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,.4) }
-.demo-mute svg{ width:22px; height:22px }
-.demo-mute .ico-sound{ display:none }
-.demo-mute.is-on{ color:var(--c5); border-color:var(--c5) }
-.demo-mute.is-on .ico-sound{ display:block }
-.demo-mute.is-on .ico-muted{ display:none }
 
 /* ---------- 14. team: expanding flex cards (accordion) + 3D tilt (about.html) ---------- */
 .team-accordion{ display:flex; gap:14px; height:460px; margin-top:8px; perspective:1500px }
