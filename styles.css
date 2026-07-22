@@ -89,7 +89,6 @@ html[data-theme="light"] .card__icon{background:linear-gradient(140deg,var(--c5)
 html[data-theme="light"] .cta{background:radial-gradient(600px 300px at 50% 0%,rgba(10,97,153,.18),transparent 70%),var(--card)}
 html[data-theme="light"] .split__media:not(.media-photo):not(.split__media--gif){background:radial-gradient(130% 110% at 100% 0%,rgba(10,97,153,.14),transparent 55%),var(--card)}
 html[data-theme="light"] .scroll-progress{box-shadow:0 0 12px rgba(10,97,153,.6)}
-html[data-theme="light"] .logo__mark{box-shadow:0 0 18px rgba(225,143,0,.45)}
 html[data-theme="light"] .nav-menu a:hover{background:rgba(10,97,153,.14)}
 html[data-theme="light"] .card--glow::after{background:radial-gradient(300px 200px at 50% 0%,rgba(10,97,153,.16),transparent 70%)}
 html[data-theme="light"] input,
@@ -179,14 +178,9 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
   box-shadow:0 0 8px var(--ok);animation:wa-pulse-dot 2s ease-in-out infinite}
 @keyframes wa-pulse-dot{50%{opacity:.5}}
 
-/* ---------- logo globe: outline draws itself once per page ---------- */
-.logo__hex{stroke-dasharray:67;stroke-dashoffset:67;
-  animation:hex-draw 1.1s var(--ease-out-expo) .2s forwards}
-@keyframes hex-draw{to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){
   .wa-fab{animation:none}
   .open-chip .dot-live{animation:none}
-  .logo__hex{animation:none;stroke-dashoffset:0}
 }
 
 /* ---------- backdrop (solid colour — no glow/gradient effects) ---------- */
@@ -278,12 +272,12 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
   border-bottom:1px solid transparent;transition:all .45s ease}
 .nav.scrolled{padding:12px 7vw;background:rgba(10,10,10,.55);
   backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid var(--line)}
-.logo{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);
-  font-weight:700;letter-spacing:1.5px;font-size:18px;color:var(--head)}
-.logo__mark{width:26px;height:26px;border-radius:8px;background:var(--grad-btn);
-  display:grid;place-items:center;font-size:14px;color:#0A0A0A;box-shadow:0 0 18px rgba(255,164,0,.5)}
-.logo span{background:linear-gradient(90deg,var(--c6),var(--c4));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
+/* Brand mark. The artwork is a fixed-colour badge and must render identically
+   in both themes, so nothing here may reference a theme token. */
+.logo{display:inline-flex;align-items:center;line-height:0}
+.logo__img{width:42px;height:42px;display:block;border-radius:11px}
+.footer .logo__img{width:56px;height:56px;border-radius:15px}
+.logo:focus-visible{outline:2px solid var(--c5);outline-offset:4px;border-radius:12px}
 .nav-links{display:flex;align-items:center;gap:11px;list-style:none}
 .nav-links > li{position:relative}
 .nav-links > li > a:not(.btn){display:inline-flex;align-items:center;gap:5px;font-size:13px;
@@ -627,7 +621,3 @@ a.chip{min-height:44px;display:inline-flex;align-items:center}
 .hero-fact{margin-top:34px;font-family:var(--font-display);font-size:clamp(.95rem,1.4vw,1.08rem);
   color:var(--muted);letter-spacing:.2px}
 .hero-fact.center{text-align:center}
-/* the mark is a span too — undo the gradient-clip transparency so the
-   hexagon stroke (currentColor) is visible */
-.logo .logo__mark{color:var(--c6);-webkit-text-fill-color:var(--c6);background:var(--grad-btn)}
-.logo__hex{stroke:var(--c6)}

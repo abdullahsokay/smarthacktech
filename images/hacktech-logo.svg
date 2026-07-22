@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="HackTech Zone, The Tech Ecosystem">
+  <title>HackTech Zone</title>
+  <defs>
+    <!-- backdrop: sampled from the source artwork (near-black top-left to olive) -->
+    <linearGradient id="ht-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090804"/>
+      <stop offset=".55" stop-color="#2A2109"/>
+      <stop offset="1" stop-color="#544116"/>
+    </linearGradient>
+    <!-- globe gold: sampled highlight -> mid -> deeper -->
+    <linearGradient id="ht-gold" x1=".18" y1=".1" x2=".85" y2=".95">
+      <stop offset="0" stop-color="#EFE4B4"/>
+      <stop offset=".45" stop-color="#DCC489"/>
+      <stop offset="1" stop-color="#C2A263"/>
+    </linearGradient>
+    <clipPath id="ht-sphere"><circle cx="300" cy="300" r="160"/></clipPath>
+    <path id="ht-top" d="M82,300 A218,218 0 0 1 518,300" fill="none"/>
+    <path id="ht-bot" d="M89,300 A211,211 0 0 0 511,300" fill="none"/>
+  </defs>
+
+  <rect width="600" height="600" rx="96" fill="url(#ht-bg)"/>
+
+  <!-- globe: gold disc cut by dark meridians and parallels -->
+  <circle cx="300" cy="300" r="160" fill="url(#ht-gold)"/>
+  <g clip-path="url(#ht-sphere)" fill="none" stroke="#2A2008" stroke-width="15">
+    <!-- parallels, spaced as measured on the source (0, +/-78) -->
+    <path d="M120,222 H480 M120,300 H480 M120,378 H480"/>
+    <!-- meridians: centre line plus two ellipse pairs -->
+    <path d="M300,130 V470"/>
+    <ellipse cx="300" cy="300" rx="52" ry="160"/>
+    <ellipse cx="300" cy="300" rx="135" ry="160"/>
+  </g>
+
+  <!-- curved wordmark -->
+  <g fill="#D8BE7E" font-family="Georgia,'Times New Roman',serif" font-weight="600">
+    <text font-size="40" letter-spacing="6">
+      <textPath href="#ht-top" startOffset="50%" text-anchor="middle">HACKTECH ZONE</textPath>
+    </text>
+    <text font-size="29" letter-spacing="7">
+      <textPath href="#ht-bot" startOffset="50%" text-anchor="middle">THE TECH ECOSYSTEM</textPath>
+    </text>
+  </g>
+</svg>

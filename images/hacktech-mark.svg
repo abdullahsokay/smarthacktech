@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="HackTech Zone">
+  <title>HackTech Zone</title>
+  <defs>
+    <linearGradient id="hm-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090804"/>
+      <stop offset=".55" stop-color="#2A2109"/>
+      <stop offset="1" stop-color="#544116"/>
+    </linearGradient>
+    <linearGradient id="hm-gold" x1=".18" y1=".1" x2=".85" y2=".95">
+      <stop offset="0" stop-color="#EFE4B4"/>
+      <stop offset=".45" stop-color="#DCC489"/>
+      <stop offset="1" stop-color="#C2A263"/>
+    </linearGradient>
+    <clipPath id="hm-sphere"><circle cx="300" cy="300" r="228"/></clipPath>
+  </defs>
+
+  <rect width="600" height="600" rx="96" fill="url(#hm-bg)"/>
+
+  <!-- same globe, same colours, scaled up to fill the badge for small sizes -->
+  <circle cx="300" cy="300" r="228" fill="url(#hm-gold)"/>
+  <g clip-path="url(#hm-sphere)" fill="none" stroke="#2A2008" stroke-width="21">
+    <path d="M60,189 H540 M60,300 H540 M60,411 H540"/>
+    <path d="M300,60 V540"/>
+    <ellipse cx="300" cy="300" rx="74" ry="228"/>
+    <ellipse cx="300" cy="300" rx="192" ry="228"/>
+  </g>
+</svg>

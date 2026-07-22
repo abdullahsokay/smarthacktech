@@ -66,7 +66,9 @@
   var headerHTML =
     '<a class="skip-link" href="#main">Skip to main content</a>' +
     '<nav class="nav" id="nav" aria-label="Primary">' +
-      '<a class="logo" href="/"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle class="logo__hex" cx="16" cy="16" r="10.5"/><ellipse cx="16" cy="16" rx="4.7" ry="10.5"/><ellipse cx="16" cy="16" rx="8.4" ry="10.5"/><path d="M5.5 16h21M7.5 11.2c3.5-2.3 13.5-2.3 17 0M7.5 20.8c3.5 2.3 13.5 2.3 17 0"/></svg></span> Hack<span>Tech</span></a>' +
+      // Nav uses the globe mark: the full badge's curved text is illegible at
+      // this size. Same artwork and colours, minus the micro-type.
+      '<a class="logo" href="/"><img class="logo__img" src="/images/hacktech-mark.svg" alt="HackTech Zone" width="42" height="42" decoding="async"></a>' +
       '<button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">' +
         "<span></span><span></span><span></span>" +
       "</button>" +
@@ -86,7 +88,7 @@
       '<div class="container">' +
         '<div class="footer__top">' +
           '<div class="footer__brand">' +
-            '<a class="logo" href="/"><span class="logo__mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle class="logo__hex" cx="16" cy="16" r="10.5"/><ellipse cx="16" cy="16" rx="4.7" ry="10.5"/><ellipse cx="16" cy="16" rx="8.4" ry="10.5"/><path d="M5.5 16h21M7.5 11.2c3.5-2.3 13.5-2.3 17 0M7.5 20.8c3.5 2.3 13.5 2.3 17 0"/></svg></span> Hack<span>Tech</span></a>' +
+            '<a class="logo" href="/"><img class="logo__img" src="/images/hacktech-logo.svg" alt="HackTech Zone" width="56" height="56" decoding="async" loading="lazy"></a>' +
             "<p>Pakistan's IoT &amp; AI ecosystem, smart fleets, smart homes, security and the software that ties it together. Made in Pakistan.</p>" +
           "</div>" +
           '<div class="footer__col"><h3>What we do</h3>' +
