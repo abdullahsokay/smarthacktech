@@ -97,21 +97,29 @@ module.exports = async function handler(req, res) {
   // The event row is written even when the lead row fails: the gap between
   // count(leads) and count(events where type='lead') is what surfaces a
   // persistence problem, so it is deliberately kept as a health signal.
-  const [leadWrite] = await Promise.allSettled([
-    sb.insert("leads", {
-      name,
-      email,
-      company: b.company || null,
-      industry: b.industry || null,
-      budget: b.budget || null,
-      timeline: b.timeline || null,
-      tier,
-      context: (b.context || "").slice(0, 4000),
-    }),
-    sb.insert("events", { type: "lead", label: tier }),
-  ]);
-  const dbOk = leadWrite.status === "fulfilled" && leadWrite.value === true;
-  if (!dbOk) console.error("kaira-lead: Supabase lead insert failed for " + email);
+  const row = {
+    name,
+    email,
+    company: b.company || null,
+    industry: b.industry || null,
+    budget: b.budget || null,
+    timeline: b.timeline || null,
+    tier,
+    context: (b.context || "").slice(0, 4000),
+  };
+
+  // Retry once. Observed losses were transient: a write succeeded and another
+  // failed 11 minutes later with no schema change between them, so a single
+  // retry covers the realistic failure mode. A persistent fault still falls
+  // through to the 502 below rather than being retried indefinitely.
+  let dbOk = await sb.insert("leads", row);
+  if (!dbOk) {
+    console.error("kaira-lead: Supabase lead insert failed for " + email + ", retrying");
+    await new Promise((r) => setTimeout(r, 400));
+    dbOk = await sb.insert("leads", row);
+    if (!dbOk) console.error("kaira-lead: Supabase lead insert failed again for " + email);
+  }
+  await sb.insert("events", { type: "lead", label: tier });
 
   // If neither the inbox nor the database captured it, the lead is gone.
   // Say so rather than showing a success the visitor can't act on — the
