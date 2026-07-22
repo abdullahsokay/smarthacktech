@@ -8,7 +8,9 @@
 <style>
   :root{
     --bg:#06060a; --card:rgba(255,255,255,.04); --line:rgba(255,255,255,.1); --line2:rgba(255,255,255,.16);
-    --ink:#efeef6; --muted:#a7a6bd; --faint:#6f6d86;
+    /* --faint was #6f6d86: only 3.80:1 on the card surface, failing WCAG AA for
+       the 10-12px uppercase table headers and stat labels. #8b89a4 = 5.62:1. */
+    --ink:#efeef6; --muted:#a7a6bd; --faint:#8b89a4;
     --violet:#7c5cff; --cyan:#2fe0e0; --blue:#3c8cff; --gold:#d4af37;
     --ok:#4fd0a0; --warn:#f0a93e; --bad:#ef6f8a;
   }
