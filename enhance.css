@@ -106,6 +106,55 @@ html.fx-on .split:hover .media-photo img{ transform:translateY(var(--py,0)) scal
 }
 .ws-right.ws-shot .ws-text{ color:#f4f9f8; text-shadow:0 2px 18px rgba(0,0,0,.5) }
 
+/* ---------- 4c. slide choreography: active slide's content rises in ----------
+   Swiper stamps .swiper-slide-active; everything below is CSS-only.
+   Inactive slides hold content faded+shifted, the active one staggers
+   title → caption → text → chips → link on the signature easing. */
+.why-slider.swiper-initialized .swiper-slide .ws-title,
+.why-slider.swiper-initialized .swiper-slide .ws-cap,
+.why-slider.swiper-initialized .swiper-slide .ws-text,
+.why-slider.swiper-initialized .swiper-slide .chip-row .chip,
+.why-slider.swiper-initialized .swiper-slide .ws-body .card__link{
+  opacity:0; translate:0 22px;
+  transition:opacity .65s var(--ease-out-expo), translate .65s var(--ease-out-expo);
+}
+.why-slider .swiper-slide-active .ws-title,
+.why-slider .swiper-slide-active .ws-cap,
+.why-slider .swiper-slide-active .ws-text,
+.why-slider .swiper-slide-active .chip-row .chip,
+.why-slider .swiper-slide-active .ws-body .card__link{ opacity:1; translate:0 }
+.why-slider .swiper-slide-active .ws-title{ transition-delay:.08s }
+.why-slider .swiper-slide-active .ws-cap{ transition-delay:.18s }
+.why-slider .swiper-slide-active .ws-text{ transition-delay:.22s }
+.why-slider .swiper-slide-active .chip-row .chip:nth-child(1){ transition-delay:.30s }
+.why-slider .swiper-slide-active .chip-row .chip:nth-child(2){ transition-delay:.36s }
+.why-slider .swiper-slide-active .chip-row .chip:nth-child(3){ transition-delay:.42s }
+.why-slider .swiper-slide-active .chip-row .chip:nth-child(4){ transition-delay:.48s }
+.why-slider .swiper-slide-active .chip-row .chip:nth-child(5){ transition-delay:.54s }
+.why-slider .swiper-slide-active .chip-row .chip:nth-child(6){ transition-delay:.60s }
+.why-slider .swiper-slide-active .ws-body .card__link{ transition-delay:.66s }
+/* title underline draws itself under the active slide's heading */
+.why-slider .ws-title{ position:relative; padding-bottom:10px }
+.why-slider .ws-title::after{
+  content:""; position:absolute; left:0; bottom:0; height:3px; width:0;
+  border-radius:999px; background:var(--grad-line);
+  box-shadow:0 0 14px rgba(47,168,239,.5);
+  transition:width .7s var(--ease-out-expo) .35s;
+}
+.why-slider .swiper-slide-active .ws-title::after{ width:64px }
+/* slow Ken Burns drift on the active slide's photo */
+@keyframes ws-drift{ from{ background-position:center 46% } to{ background-position:center 54% } }
+.why-slider .swiper-slide-active .ws-right.ws-shot{
+  animation:ws-drift 9s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion:reduce){
+  .why-slider .swiper-slide .ws-title, .why-slider .swiper-slide .ws-cap,
+  .why-slider .swiper-slide .ws-text, .why-slider .swiper-slide .chip-row .chip,
+  .why-slider .swiper-slide .ws-body .card__link{ opacity:1; translate:0; transition:none }
+  .why-slider .ws-title::after{ transition:none }
+  .why-slider .swiper-slide-active .ws-right.ws-shot{ animation:none }
+}
+
 /* ============================================================
    ⌘K command palette (.cp-*) — glass panel, staggered results
    ============================================================ */

@@ -331,11 +331,11 @@
   btn.className = 'swiper-pause';
   btn.setAttribute('aria-pressed', 'false');
   btn.setAttribute('aria-label', 'Pause slideshow');
-  btn.textContent = 'âšâš';
+  btn.textContent = '❚❚';
   btn.addEventListener('click', function () {
     var paused = btn.getAttribute('aria-pressed') === 'true';
-    if (paused) { sw.autoplay.start(); btn.textContent = 'âšâš'; btn.setAttribute('aria-label', 'Pause slideshow'); }
-    else { sw.autoplay.stop(); btn.textContent = 'â–¶'; btn.setAttribute('aria-label', 'Play slideshow'); }
+    if (paused) { sw.autoplay.start(); btn.textContent = '❚❚'; btn.setAttribute('aria-label', 'Pause slideshow'); }
+    else { sw.autoplay.stop(); btn.textContent = '▶'; btn.setAttribute('aria-label', 'Play slideshow'); }
     btn.setAttribute('aria-pressed', String(!paused));
   });
   host.appendChild(btn);
