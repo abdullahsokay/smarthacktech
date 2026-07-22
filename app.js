@@ -348,7 +348,7 @@
     var MAP = {
       software: "Software Development", ai: "AI & Automation", iot: "IoT Solutions",
       security: "Security & Surveillance", smarthome: "Smart Home & Automation",
-      training: "Training & Education", design: "Graphic Design", sotms: "Fleet / Vehicle IoT"
+      training: "Training & Education", sotms: "Fleet / Vehicle IoT"
     };
     var val = MAP[key.toLowerCase()];
     if (val) sel.value = val;

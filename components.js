@@ -26,7 +26,6 @@
     ["ai", "AI &amp; Automation"],
     ["security", "Security &amp; Surveillance"],
     ["software", "Software Development"],
-    ["design", "Graphic Design"],
     ["training", "Training &amp; Education"]
   ];
   // About dropdown, quick links into the About page sections (title + subtitle)
