@@ -22,7 +22,7 @@ create table if not exists leads (
 
 create table if not exists events (
   id          uuid primary key default gen_random_uuid(),
-  type        text not null,  -- message | blueprint | audit | lead
+  type        text not null,  -- open | message | blueprint | audit | lead
   label       text,           -- e.g. lead tier
   created_at  timestamptz not null default now()
 );
