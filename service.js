@@ -85,7 +85,20 @@
         ["Voice & app control", "Works with the assistants and the single app you already use."],
         ["Office automation", "Meeting rooms, access and energy, automated for work too."]
       ],
-      ctaP: "Tell us about your space, we'll design an automation plan that just works."
+      ctaP: "Tell us about your space, we'll design an automation plan that just works.",
+      demo: {
+        video: "images/smarthomevideo.mp4",
+        poster: "images/smarthome-poster.webp",
+        eyebrow: "See it in action",
+        title: 'One home, <span class="accent">perfectly in sync</span>',
+        lead: "Watch a HackTech smart home respond as a single system — lighting, entry, cameras and energy working together from one app or a spoken word, whether you're on the sofa or across the city.",
+        points: [
+          "Scenes & schedules for every room",
+          "Keyless entry and video doorbells",
+          "Live cameras with instant alerts",
+          "Energy tracked and trimmed automatically"
+        ]
+      }
     },
     training: {
       eyebrow: "Service · Training & Education",
@@ -170,6 +183,32 @@
       check + '<h3 class="card__title">' + esc(f[0]) + "</h3>" +
       '<p class="card__text">' + esc(f[1]) + "</p></article>";
   }).join(""));
+
+  // optional demo showcase (video + highlights) — only when the service defines one
+  if (svc.demo) {
+    var d = svc.demo;
+    set("svc-demo-eyebrow", esc(d.eyebrow || "See it in action"));
+    set("svc-demo-title", d.title || "");
+    set("svc-demo-lead", esc(d.lead || ""));
+    set("svc-demo-points", (d.points || []).map(function (p) {
+      return '<li><span class="ck">&check;</span>' + esc(p) + "</li>";
+    }).join(""));
+    var dv = document.getElementById("svc-demo-vid");
+    if (dv) {
+      if (d.poster) dv.poster = d.poster;
+      dv.setAttribute("data-src", d.video);
+      // enhance.js already ran, so attach the source + start playback here for
+      // wide, motion-OK screens; phones keep the poster only (no download).
+      var wide = window.matchMedia("(min-width:761px)").matches;
+      var reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+      if (wide && !reduce) {
+        dv.src = d.video; dv.autoplay = true;
+        var pr = dv.play(); if (pr && pr.catch) pr.catch(function () {});
+      }
+    }
+    var demoSec = document.getElementById("svc-demo-sec");
+    if (demoSec) demoSec.hidden = false;
+  }
 
   var ctaLabel = (svc.eyebrow.split("·").pop() || "your project").trim();
   set("svc-cta-h", "Ready for " + esc(ctaLabel) + "?");

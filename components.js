@@ -89,7 +89,8 @@
         '<div class="footer__top">' +
           '<div class="footer__brand">' +
             '<a class="logo" href="/"><img class="logo__img" src="/images/hacktech-logo.svg" alt="HackTech Zone" width="56" height="56" decoding="async" loading="lazy"></a>' +
-            "<p>Pakistan's IoT &amp; AI ecosystem, smart fleets, smart homes, security and the software that ties it together. Made in Pakistan.</p>" +
+            "<p>Engineering intelligent technology &mdash; AI, software, IoT, automation and security, built under one roof in Pakistan.</p>" +
+            '<p class="footer__disc">AI &middot; Software &middot; IoT &middot; Automation &middot; Security</p>' +
           "</div>" +
           '<div class="footer__col"><h3>What we do</h3>' +
             '<a href="/solutions">Services</a><a href="/about">About</a><a href="/contact">Get a Quote</a></div>' +
