@@ -54,6 +54,62 @@
 .proc__step h3{font-family:var(--font-display);font-size:1.06rem;color:var(--head);margin-bottom:8px}
 .proc__step p{color:var(--muted);font-size:.93rem;line-height:1.55}
 
+/* ============================================================
+   Services page: alternating splits, offering lists, vertical
+   timeline, industries grid, horizontal process flow.
+   Additive; all on existing tokens so both themes inherit.
+   ============================================================ */
+/* alternate a .split so the media sits on the left */
+.split--rev .split__media{order:-1}
+@media(max-width:900px){.split--rev .split__media{order:0}}
+
+/* service offering list (What we build / Solutions / Applications) */
+.svc-list{list-style:none;padding:0;margin:20px 0 26px;display:grid;
+  grid-template-columns:1fr 1fr;gap:10px 24px}
+.svc-list li{position:relative;padding-left:20px;color:var(--ink);font-size:.97rem}
+.svc-list li::before{content:"";position:absolute;left:0;top:.5em;width:7px;height:7px;
+  border-radius:2px;background:var(--c5);transform:rotate(45deg)}
+@media(max-width:560px){.svc-list{grid-template-columns:1fr}}
+
+/* wide 3-column checklist (smart-home features under the video) */
+.check-list--3{grid-template-columns:repeat(3,1fr);max-width:840px;margin-inline:auto}
+@media(max-width:720px){.check-list--3{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.check-list--3{grid-template-columns:1fr}}
+
+/* vertical timeline (Why choose HackTech) */
+.vtimeline{max-width:720px;margin:0 auto}
+.vstep{position:relative;display:grid;grid-template-columns:52px 1fr;gap:22px;padding-bottom:34px}
+.vstep:last-child{padding-bottom:0}
+.vstep:not(:last-child)::before{content:"";position:absolute;left:25px;top:56px;bottom:6px;
+  width:2px;background:linear-gradient(var(--c5),transparent)}
+.vstep__node{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;
+  background:var(--card);border:1px solid var(--line-2);color:var(--c5);z-index:1}
+.vstep__node svg{width:24px;height:24px}
+.vstep__body h3{font-family:var(--font-display);font-size:1.16rem;color:var(--head);margin:11px 0 6px}
+.vstep__body p{color:var(--muted);line-height:1.6}
+
+/* industries grid */
+.ind-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:14px}
+.ind{display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:14px;
+  background:var(--card);border:1px solid var(--line);font-family:var(--font-display);
+  font-weight:600;font-size:.96rem;color:var(--head);
+  transition:transform var(--dur-2) var(--ease-out),border-color .3s ease,box-shadow .3s ease}
+.ind:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--shadow-sm)}
+.ind__dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--grad-btn);
+  box-shadow:0 0 10px -1px rgba(255,164,0,.6)}
+
+/* horizontal process flow (How we work) */
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;position:relative}
+.flow::before{content:"";position:absolute;top:24px;left:9%;right:9%;height:2px;
+  background:linear-gradient(90deg,var(--c6),var(--c5),var(--c4));opacity:.45;z-index:0}
+.flow__step{text-align:center;position:relative;z-index:1}
+.flow__dot{width:50px;height:50px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;
+  font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--c5);
+  background:var(--card);border:1px solid var(--line-2)}
+.flow__step h4{font-family:var(--font-display);font-size:1rem;color:var(--head)}
+@media(max-width:760px){.flow{grid-template-columns:repeat(3,1fr);gap:26px 10px}.flow::before{display:none}}
+@media(max-width:440px){.flow{grid-template-columns:repeat(2,1fr)}}
+
 /* ---------- 2. holographic sheen on glass surfaces ---------- */
 /* enhance.js tags existing cards/panels with .fx-sheen and feeds
    --mx/--my (0-100%) as the pointer moves across each element. */
