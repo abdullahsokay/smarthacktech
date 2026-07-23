@@ -272,12 +272,18 @@ h1,h2,h3,.display,.h2{text-wrap:balance}
   border-bottom:1px solid transparent;transition:all .45s ease}
 .nav.scrolled{padding:12px 7vw;background:rgba(10,10,10,.55);
   backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid var(--line)}
-/* Brand mark. The artwork is a fixed-colour badge and must render identically
-   in both themes, so nothing here may reference a theme token. */
-.logo{display:inline-flex;align-items:center;line-height:0}
-.logo__img{width:42px;height:42px;display:block;border-radius:11px}
+/* Brand lockup. The globe artwork is a fixed-colour badge and must render
+   identically in both themes, so .logo__img carries no theme token. The
+   wordmark beside it IS text, so it uses theme tokens to stay readable on
+   both the dark and the light nav. */
+.logo{display:inline-flex;align-items:center;gap:10px;line-height:1}
+.logo__img{width:42px;height:42px;display:block;border-radius:11px;flex:none}
 .footer .logo__img{width:56px;height:56px;border-radius:15px}
+.logo__word{font-family:var(--font-display);font-weight:700;font-size:19px;
+  letter-spacing:.2px;color:var(--head);white-space:nowrap}
+.logo__word span{color:var(--c5)}
 .logo:focus-visible{outline:2px solid var(--c5);outline-offset:4px;border-radius:12px}
+@media(max-width:400px){.logo__word{font-size:17px}}
 .nav-links{display:flex;align-items:center;gap:11px;list-style:none}
 .nav-links > li{position:relative}
 .nav-links > li > a:not(.btn){display:inline-flex;align-items:center;gap:5px;font-size:13px;

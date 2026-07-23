@@ -68,7 +68,7 @@
     '<nav class="nav" id="nav" aria-label="Primary">' +
       // Nav uses the globe mark: the full badge's curved text is illegible at
       // this size. Same artwork and colours, minus the micro-type.
-      '<a class="logo" href="/"><img class="logo__img" src="/images/hacktech-mark.svg" alt="HackTech Zone" width="42" height="42" decoding="async"></a>' +
+      '<a class="logo" href="/"><img class="logo__img" src="/images/hacktech-mark.svg" alt="HackTech Zone" width="42" height="42" decoding="async"><span class="logo__word">Hack<span>Tech</span></span></a>' +
       '<button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">' +
         "<span></span><span></span><span></span>" +
       "</button>" +
