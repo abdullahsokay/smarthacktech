@@ -36,17 +36,19 @@
 <!-- /header-fallback -->
 
 <main class="main" id="main">
+
+<!-- ===== HERO ===== -->
 <section class="hero hero--video">
   <canvas id="heroCanvas"></canvas>
   <div class="container">
     <div class="hero__grid">
       <div class="hero__copy">
-        <span class="pill"><span class="dot-live"></span> IoT &middot; AI &middot; automation, engineered in Pakistan</span>
-        <h1 class="display">We make things <span class="accent">smart, connected</span> and built to be trusted</h1>
-        <p class="lead">From SOTMS fleet intelligence to smart homes, AI and the security that guards them &mdash; we design, build and support the whole stack under one roof in Pakistan.</p>
+        <span class="pill"><span class="dot-live"></span> Intelligent technology, engineered in Pakistan</span>
+        <h1 class="display">Engineering the future of <span class="accent">intelligent technology</span></h1>
+        <p class="lead">We design AI, IoT, software and smart-automation systems that help businesses operate faster, safer and smarter. From enterprise platforms to connected devices and intelligent infrastructure, HackTech delivers complete technology solutions &mdash; engineered in Pakistan.</p>
         <div class="actions">
           <a class="btn btn--primary" href="/contact">Get a Quote</a>
-          <button class="btn btn--ghost btn--kaira" type="button" onclick="window.KairaChat?window.KairaChat.open():location.href='/contact'"><span class="dot-live" aria-hidden="true"></span> Ask our AI Architect</button>
+          <a class="btn btn--ghost" href="/solutions">Explore Our Solutions</a>
         </div>
       </div>
       </div>
@@ -67,99 +69,136 @@
   </div>
 </section>
 
-<section class="section section--light">
+<!-- ===== TRUST STRIP ===== -->
+<section class="trust reveal">
+  <div class="container">
+    <p class="trust__label">Trusted technologies powering businesses through intelligent engineering</p>
+    <div class="trust__list">
+      <span>AI</span><span>Software Engineering</span><span>IoT</span><span>Smart Automation</span><span>Security</span><span>Research &amp; Innovation</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT HACKTECH ===== -->
+<section class="section section--light" id="about">
+  <div class="container">
+    <div class="section-head center reveal" style="margin-inline:auto">
+      <span class="eyebrow">About HackTech</span>
+      <h2 class="h2">One engineering partner. <span class="accent">Endless possibilities.</span></h2>
+      <p class="lead">HackTech is a technology engineering company focused on building intelligent systems that solve real business challenges. Instead of juggling separate vendors for software, AI, hardware, automation and security, you work with one experienced team that delivers complete technology ecosystems &mdash; from concept to deployment and long-term support.</p>
+      <p class="lead">Every solution is engineered with scalability, reliability and real-world performance in mind.</p>
+      <div class="chip-row chip-row--center">
+        <span class="chip">Scalable by design</span>
+        <span class="chip">Built to be reliable</span>
+        <span class="chip">Real-world performance</span>
+        <span class="chip">Concept to deployment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="section" id="services">
   <div class="container">
     <div class="section-head center reveal">
-      <p class="eyebrow">What we do</p>
-      <h2 class="h2">One roof for <span class="accent">every layer of technology</span></h2>
-      <p class="lead">Six disciplines, one accountable team. IoT, smart-home automation, AI and security at the core &mdash; with software and training to complete the stack, all engineered and supported in Pakistan.</p>
+      <span class="eyebrow">What we do</span>
+      <h2 class="h2">Technology solutions built <span class="accent">around your business</span></h2>
+      <p class="lead">Launching a startup, modernising operations or deploying connected infrastructure &mdash; HackTech provides every technology layer needed to build a smarter business.</p>
     </div>
     <div class="grid--3">
       <article class="card card--glow tilt reveal">
-        <div class="card__media"><img src="images/circuit.webp" alt="Locally-engineered IoT devices" loading="lazy"></div>
-        <h3 class="card__title">IoT Solutions</h3>
-        <p class="card__text">Locally-engineered devices and live dashboards that put your vehicles, assets and machines online in real time &mdash; led by our SOTMS fleet flagship.</p>
-        <a class="card__link" href="/service?s=iot">Explore &rarr;</a>
+        <div class="card__media"><img src="images/software.webp" alt="Software engineering at HackTech" loading="lazy"></div>
+        <h3 class="card__title">Software Engineering</h3>
+        <p class="card__text">Modern web platforms, enterprise applications, SaaS products and mobile apps designed around your business &mdash; never generic templates.</p>
+        <a class="card__link" href="/service?s=software">Explore &rarr;</a>
       </article>
       <article class="card card--glow tilt reveal" style="transition-delay:.06s">
-        <div class="card__media"><img src="images/smart-home.webp" alt="Smart home automation" loading="lazy"></div>
-        <h3 class="card__title">Smart Home &amp; Automation</h3>
-        <p class="card__text">Lighting, locks, cameras and energy &mdash; controlled from a single app or one spoken word. Comfort and security, on autopilot.</p>
-        <a class="card__link" href="/service?s=smarthome">Explore &rarr;</a>
-      </article>
-      <article class="card card--glow tilt reveal" style="transition-delay:.12s">
         <div class="card__media"><img src="images/ai.webp" alt="AI and automation solutions" loading="lazy"></div>
         <h3 class="card__title">AI &amp; Automation</h3>
-        <p class="card__text">Chatbots, agents, computer vision and workflow automation that quietly hand you back hours every week.</p>
+        <p class="card__text">AI assistants, workflow automation, computer vision and predictive systems that cut manual work and sharpen every decision.</p>
         <a class="card__link" href="/service?s=ai">Explore &rarr;</a>
       </article>
+      <article class="card card--glow tilt reveal" style="transition-delay:.12s">
+        <div class="card__media"><img src="images/circuit.webp" alt="Locally-engineered IoT devices" loading="lazy"></div>
+        <h3 class="card__title">IoT Solutions</h3>
+        <p class="card__text">Connected devices, embedded systems and cloud dashboards that give you real-time visibility over vehicles, equipment and industrial operations.</p>
+        <a class="card__link" href="/service?s=iot">Explore &rarr;</a>
+      </article>
       <article class="card card--glow tilt reveal">
-        <div class="card__media"><img src="images/security.webp" alt="CCTV and security surveillance" loading="lazy"></div>
-        <h3 class="card__title">Security &amp; Surveillance</h3>
-        <p class="card__text">CCTV, IP cameras, access control and biometrics &mdash; specified, installed and monitored end to end, so nothing slips through.</p>
-        <a class="card__link" href="/service?s=security">Explore &rarr;</a>
+        <div class="card__media"><img src="images/smart-home.webp" alt="Smart home automation" loading="lazy"></div>
+        <h3 class="card__title">Smart Home &amp; Automation</h3>
+        <p class="card__text">Lighting, security, access control and energy management woven into one seamless smart environment you control from a single app.</p>
+        <a class="card__link" href="/service?s=smarthome">Explore &rarr;</a>
       </article>
       <article class="card card--glow tilt reveal" style="transition-delay:.06s">
-        <div class="card__media"><img src="images/software.webp" alt="Software development at HackTech" loading="lazy"></div>
-        <h3 class="card__title">Software Development</h3>
-        <p class="card__text">Web, mobile, SaaS and enterprise platforms engineered around the way your business actually works &mdash; never off a template.</p>
-        <a class="card__link" href="/service?s=software">Explore &rarr;</a>
+        <div class="card__media"><img src="images/security.webp" alt="CCTV and security surveillance" loading="lazy"></div>
+        <h3 class="card__title">Security &amp; Surveillance</h3>
+        <p class="card__text">Professional CCTV, IP surveillance, biometric attendance and access control &mdash; specified, installed and monitored for complete protection.</p>
+        <a class="card__link" href="/service?s=security">Explore &rarr;</a>
       </article>
       <article class="card card--glow tilt reveal" style="transition-delay:.12s">
         <div class="card__media"><img src="images/training.webp" alt="Hands-on technology training" loading="lazy"></div>
-        <h3 class="card__title">Training &amp; Education</h3>
-        <p class="card__text">Hands-on, project-based training and workshops &mdash; taught by engineers who ship real systems every day, not slideware.</p>
+        <h3 class="card__title">Training &amp; Innovation</h3>
+        <p class="card__text">Industry-focused workshops and practical technology training, delivered by engineers who are actively building commercial products.</p>
         <a class="card__link" href="/service?s=training">Explore &rarr;</a>
       </article>
     </div>
     <div class="actions" style="justify-content:center;margin-top:36px">
-      <a class="btn btn--primary" href="/solutions">Explore services</a>
-      <a class="btn btn--ghost" href="/contact">Get a Quote</a>
+      <a class="btn btn--primary" href="/solutions">Explore All Services &rarr;</a>
     </div>
   </div>
 </section>
 
-<!-- ===== SERVICE SECTION, SMART HOME & AUTOMATION ===== -->
-<section class="section section--light section--sky" id="home-automation">
+<!-- ===== FEATURED PROJECTS (3) ===== -->
+<section class="section section--light" id="work">
   <div class="container">
-    <div class="split reveal">
-      <div class="split__media split__media--gif">
-        <video class="sh-demo js-inview-video" muted loop playsinline preload="none" data-src="images/smarthomevideo.mp4" poster="images/smarthome-poster.webp" tabindex="-1" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true">
-        </video>
-      </div>
-      <div>
-        <h2 class="h2">Your whole space, <span class="accent">one tap away</span></h2>
-        <p class="lead">Lighting, locks, doorbells, cameras and energy &mdash; all from a single app or your voice. Set scenes, schedules and alerts that simply work, whether you&rsquo;re home or running the office from across the city.</p>
-        <div class="chip-row">
-          <span class="chip">Smart Lighting</span>
-          <span class="chip">Smart Locks</span>
-          <span class="chip">Doorbells &amp; Cameras</span>
-          <span class="chip">Energy Management</span>
-          <span class="chip">Voice Control</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn--primary" href="/contact">Get a Quote</a>
-          <a class="btn btn--ghost" href="/solutions">Explore services</a>
-        </div>
-      </div>
+    <div class="section-head center reveal">
+      <span class="eyebrow">Featured projects</span>
+      <h2 class="h2">Technology that <span class="accent">delivers results</span></h2>
+      <p class="lead">Every project we build is designed to solve a real operational problem, improve efficiency and create measurable business value.</p>
+    </div>
+    <div class="grid--3">
+      <article class="card card--glow reveal work-card">
+        <div class="card__media"><img src="images/sotms-web.svg" alt="SOTMS fleet dashboard" loading="lazy"><span class="work-tag">AI Fleet Platform</span></div>
+        <h3 class="card__title">Smart Oil Transport Management System</h3>
+        <p class="card__text">An AI-powered fleet-intelligence platform with live vehicle tracking, fuel analytics, driver monitoring and operational insight in one place.</p>
+        <div class="work-result">Complete visibility, lower running cost</div>
+      </article>
+      <article class="card card--glow reveal work-card" style="transition-delay:.06s">
+        <div class="card__media"><img src="images/driver-monitor.svg" alt="Driver monitoring AI with face detection and behaviour alerts" loading="lazy"><span class="work-tag">Computer Vision</span></div>
+        <h3 class="card__title">Driver Monitoring System</h3>
+        <p class="card__text">A computer-vision system that detects driver fatigue, distraction, mobile use and unsafe behaviour in real time, with instant alerts.</p>
+        <div class="work-result">Real-time driver safety</div>
+      </article>
+      <article class="card card--glow reveal work-card" style="transition-delay:.12s">
+        <div class="card__media"><img src="images/bidpilot.svg" alt="BidPilot AI bidding dashboard" loading="lazy"><span class="work-tag">AI System</span></div>
+        <h3 class="card__title">BidPilot AI</h3>
+        <p class="card__text">An AI bidding assistant that reads tender documents, estimates competitive pricing and predicts proposal success on every bid.</p>
+        <div class="work-result">Data-backed bids, not guesswork</div>
+      </article>
+    </div>
+    <div class="actions" style="justify-content:center;margin-top:40px">
+      <a class="btn btn--ghost" href="/portfolio">Explore Complete Portfolio &rarr;</a>
     </div>
   </div>
 </section>
 
-<section class="section">
+<!-- ===== FLAGSHIP PRODUCT: SOTMS ===== -->
+<section class="section" id="sotms">
   <div class="container">
     <div class="split reveal">
       <div>
-        <h2 class="h2">Our flagship: <span class="accent">SOTMS fleet intelligence</span></h2>
-        <p class="lead">SOTMS turns thousands of live vehicle signals into one calm, glanceable command centre &mdash; real-time tracking, dashcam AI and measurable fuel &amp; route savings. Engineered in Pakistan, for Pakistani roads.</p>
-        <div class="chip-row">
-          <span class="chip">Live map &amp; trips</span>
-          <span class="chip">Driver scores</span>
-          <span class="chip">Fuel &amp; idle</span>
-          <span class="chip">Alert feed</span>
-          <span class="chip">Health status</span>
-          <span class="chip">Geo-fence zones</span>
-        </div>
+        <span class="eyebrow">Flagship product</span>
+        <h2 class="h2">Meet SOTMS &mdash; <span class="accent">Pakistan's intelligent fleet platform</span></h2>
+        <p class="lead">Built for transport companies that need complete operational visibility. SOTMS fuses IoT, artificial intelligence and cloud technology to monitor fleets in real time &mdash; cutting fuel costs, improving driver safety and optimising every route from a single intelligent dashboard.</p>
+        <ul class="check-list">
+          <li><span class="ck">&check;</span> Live GPS tracking</li>
+          <li><span class="ck">&check;</span> AI driver monitoring</li>
+          <li><span class="ck">&check;</span> Fuel analytics</li>
+          <li><span class="ck">&check;</span> Vehicle health monitoring</li>
+          <li><span class="ck">&check;</span> Route optimisation</li>
+          <li><span class="ck">&check;</span> Instant alerts</li>
+        </ul>
         <div class="actions">
           <a class="btn btn--primary" href="/service?s=sotms">Explore SOTMS &rarr;</a>
           <a class="btn btn--ghost" href="/service?s=iot">See all IoT solutions</a>
@@ -178,106 +217,81 @@
   </div>
 </section>
 
-<section class="section section--light">
+<!-- ===== WHY HACKTECH ===== -->
+<section class="section section--light" id="why">
   <div class="container">
     <div class="section-head center reveal">
-      <h2 class="h2">One partner, <span class="accent">the whole stack</span></h2>
-      <p class="lead">Most firms cover one or two of these. We cover them all &mdash; so your software, hardware, AI and security are designed to move as one system, instead of fighting each other.</p>
+      <span class="eyebrow">Why HackTech</span>
+      <h2 class="h2">Why businesses <span class="accent">choose HackTech</span></h2>
+      <p class="lead">Technology is only valuable when it solves real problems &mdash; so every HackTech solution is engineered with performance, scalability and long-term reliability as the priority.</p>
     </div>
-    <div class="grid--3">
+    <div class="grid--4">
       <article class="card card--glow tilt reveal">
+        <div class="card__icon" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20l4-16M6 8l-4 4 4 4M18 8l4 4-4 4"/></svg></div>
+        <h3 class="card__title">Engineering first</h3>
+        <p class="card__text">Built by engineers who design and ship real technology &mdash; not by a sales team.</p>
+      </article>
+      <article class="card card--glow tilt reveal" style="transition-delay:.06s">
         <div class="card__icon" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></div>
-        <h3 class="card__title">One partner, end to end</h3>
-        <p class="card__text">Software, IoT, security, automation, training and hardware from a single team. One roadmap, one point of accountability, and no finger-pointing between vendors.</p>
+        <h3 class="card__title">End-to-end expertise</h3>
+        <p class="card__text">AI, software, IoT, automation and security &mdash; delivered by one accountable engineering partner.</p>
       </article>
-      <article class="card card--glow tilt reveal" style="transition-delay:.08s">
-        <div class="card__icon" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h12l-2 4 2 4H5"/></svg></div>
-        <h3 class="card__title">Locally made &amp; supported</h3>
-        <p class="card__text">Designed, assembled and serviced in Pakistan &mdash; fair pricing, fast turnaround, and a team that actually picks up the phone when you call.</p>
-      </article>
-      <article class="card card--glow tilt reveal" style="transition-delay:.16s">
-        <div class="card__icon" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></div>
-        <h3 class="card__title">Built to last</h3>
-        <p class="card__text">We test in heat, dust and the real world. If it can&rsquo;t survive Pakistani conditions, it doesn&rsquo;t ship &mdash; only reliable systems, backed by fast local support.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="portfolio">
-  <div class="container">
-    <div class="section-head center reveal">
-      <h2 class="h2">Systems we&rsquo;ve <span class="accent">shipped</span></h2>
-      <p class="lead">From fleet platforms and AI systems to mobile apps and computer vision &mdash; here&rsquo;s a look at what the HackTech team has designed, built and put to work in the real world.</p>
-    </div>
-    <div class="grid--3">
-      <article class="card card--glow reveal work-card">
-        <div class="card__media"><img src="images/sotms-web.svg" alt="SOTMS web fleet dashboard" loading="lazy"><span class="work-tag">Web App &middot; Fleet</span></div>
-        <h3 class="card__title">SOTMS: Smart Transport Management</h3>
-        <p class="card__text">Our flagship web command centre, live GPS tracking, vehicle diagnostics, and fuel &amp; driver analytics in one dashboard.</p>
-        <div class="work-result">Full fleet visibility, lower running cost</div>
-      </article>
-      <article class="card card--glow reveal work-card" style="transition-delay:.06s">
-        <div class="card__media"><img src="images/bidpilot.svg" alt="BidPilot AI bidding dashboard" loading="lazy"><span class="work-tag">AI System</span></div>
-        <h3 class="card__title">BidPilot AI: Smart Bidding</h3>
-        <p class="card__text">An AI system that reads tenders, suggests winning bid amounts and scores win-probability on every proposal.</p>
-        <div class="work-result">Data-backed bids, not guesswork</div>
-      </article>
-      <article class="card card--glow reveal work-card" style="transition-delay:.12s">
-        <div class="card__media"><img src="images/packride.svg" alt="PackRide ride-hailing app" loading="lazy"><span class="work-tag">Mobile App</span></div>
-        <h3 class="card__title">PackRide: Ride-Hailing</h3>
-        <p class="card__text">A ride-hailing app for local riders, book in seconds, track your driver live and see upfront, fair fares.</p>
-        <div class="work-result">Booking to drop-off in one app</div>
-      </article>
-      <article class="card card--glow reveal work-card">
-        <div class="card__media"><img src="images/roadmate.svg" alt="RoadMate roadside assistance app" loading="lazy"><span class="work-tag">Mobile App</span></div>
-        <h3 class="card__title">RoadMate: Roadside Assistance</h3>
-        <p class="card__text">On-demand roadside help that connects stranded drivers with nearby mechanics in real time, with live tracking, in-app chat and cash payment.</p>
-        <div class="work-result">A nearby mechanic, live-tracked</div>
-      </article>
-      <article class="card card--glow reveal work-card" style="transition-delay:.06s">
-        <div class="card__media"><img src="images/driver-monitor.svg" alt="Driver monitoring AI dashboard with face detection and behavior alerts" loading="lazy"><span class="work-tag">Computer Vision</span></div>
-        <h3 class="card__title">Driver Monitoring Behavior System</h3>
-        <p class="card__text">AI computer vision that watches a driver in real time, flagging drowsiness, distraction, phone use and seatbelt compliance with instant alerts.</p>
-        <div class="work-result">Real-time driver safety alerts</div>
-      </article>
-    </div>
-    <div class="actions" style="justify-content:center;margin-top:42px">
-      <a class="btn btn--ghost" href="/portfolio">View full portfolio &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<section class="section section--light">
-  <div class="container">
-    <div class="section-head center reveal">
-      <h2 class="h2">What you can <span class="accent">expect from us</span></h2>
-    </div>
-    <div class="grid--3">
-      <article class="card card--glow reveal">
-        <h3 class="card__title">Direct line to the builders</h3>
-        <p class="card__text">You deal directly with the engineers building your project &mdash; not a sales layer. Fewer hand-offs, clearer decisions, faster delivery.</p>
-      </article>
-      <article class="card card--glow reveal" style="transition-delay:.06s">
+      <article class="card card--glow tilt reveal" style="transition-delay:.12s">
+        <div class="card__icon" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5l8 4.5 8-4.5"/></svg></div>
         <h3 class="card__title">Built for Pakistani conditions</h3>
-        <p class="card__text">Designed and tested for real heat, dust, power cuts and roads &mdash; so what we ship keeps working exactly where you use it.</p>
+        <p class="card__text">Designed for local infrastructure, real businesses and genuine environmental challenges.</p>
       </article>
-      <article class="card card--glow reveal" style="transition-delay:.12s">
-        <h3 class="card__title">Honest scope &amp; pricing</h3>
-        <p class="card__text">A clear proposal before a single line is written, transparent pricing, and support that answers. No surprise costs, no vendor blame games.</p>
+      <article class="card card--glow tilt reveal" style="transition-delay:.18s">
+        <div class="card__icon" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.2-8.6"/><path d="M22 4l-9 9-3-3"/></svg></div>
+        <h3 class="card__title">Long-term partnership</h3>
+        <p class="card__text">Deployment is only the beginning. We keep improving, supporting and scaling every solution we build.</p>
       </article>
     </div>
   </div>
 </section>
 
+<!-- ===== PROCESS ===== -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">How we build</span>
+      <h2 class="h2">A transparent <span class="accent">engineering process</span></h2>
+      <p class="lead">Every project stays aligned with your business goals, from the first conversation to long-term support.</p>
+    </div>
+    <div class="proc reveal">
+      <article class="proc__step">
+        <span class="proc__num">01</span>
+        <h3>Discovery &amp; consultation</h3>
+        <p>Understanding your challenges, objectives and technical requirements.</p>
+      </article>
+      <article class="proc__step">
+        <span class="proc__num">02</span>
+        <h3>Solution design</h3>
+        <p>Architecture, planning and the right technology selection for the job.</p>
+      </article>
+      <article class="proc__step">
+        <span class="proc__num">03</span>
+        <h3>Engineering &amp; development</h3>
+        <p>Software, AI, IoT and hardware built by one integrated team.</p>
+      </article>
+      <article class="proc__step">
+        <span class="proc__num">04</span>
+        <h3>Deployment &amp; support</h3>
+        <p>Testing, deployment, training and continuous improvement.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
 <section class="section">
   <div class="container">
     <div class="cta reveal">
-      <h2 class="h2">Ready to build <span class="accent">something serious</span>?</h2>
-      <p class="lead" style="margin-inline:auto">IoT, smart home, AI, security, software or training &mdash; tell us the goal and we&rsquo;ll show you exactly what HackTech can build for you. Aaiye baat karte hain.</p>
+      <h2 class="h2">Let's build technology that <span class="accent">moves your business forward</span></h2>
+      <p class="lead" style="margin-inline:auto">Whether you're building an enterprise platform, deploying intelligent devices or transforming operations with AI, HackTech is ready to engineer the solution &mdash; technology designed for the real world, not just the slide deck. Aaiye baat karte hain.</p>
       <div class="actions" style="justify-content:center">
-        <a class="btn btn--primary" href="/contact">Get a Quote</a>
-        <a class="btn btn--ghost" href="/solutions">Explore services</a>
+        <a class="btn btn--primary" href="/contact">Get a Free Consultation</a>
+        <button class="btn btn--ghost btn--kaira" type="button" onclick="window.KairaChat?window.KairaChat.open():location.href='/contact'"><span class="dot-live" aria-hidden="true"></span> Let's Talk</button>
       </div>
     </div>
   </div>

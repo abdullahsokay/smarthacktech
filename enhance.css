@@ -9,6 +9,51 @@
 
 /* custom cursor removed — the site uses the normal system cursor */
 
+/* ============================================================
+   Homepage rebuild components (trust strip, checklist, 4-up grid,
+   process). Additive; reuse the base tokens so they inherit the
+   design system and both themes automatically.
+   ============================================================ */
+/* ---- trust strip: slim band of disciplines under the hero ---- */
+.trust{border-block:1px solid var(--line);padding:24px 0}
+.trust__label{text-align:center;font-family:var(--font-display);font-size:.82rem;
+  letter-spacing:.4px;color:var(--muted);margin-bottom:14px}
+.trust__list{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  font-family:var(--font-display);font-weight:600;color:var(--head)}
+.trust__list span{position:relative;padding:4px 20px;font-size:1rem;letter-spacing:.3px}
+.trust__list span:not(:last-child)::after{content:"";position:absolute;right:-3px;top:50%;
+  width:5px;height:5px;border-radius:50%;background:var(--c5);transform:translateY(-50%)}
+@media(max-width:560px){.trust__list span{padding:3px 13px;font-size:.86rem}}
+
+/* ---- 4-up feature grid (Why HackTech): 4 / 2x2 / 1, never an orphan ---- */
+.grid--4{display:grid;gap:22px;grid-template-columns:repeat(4,1fr)}
+@media(max-width:980px){.grid--4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid--4{grid-template-columns:1fr}}
+
+/* ---- SOTMS highlights checklist ---- */
+.check-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 26px;
+  margin:24px 0 28px;padding:0}
+.check-list li{display:flex;align-items:center;gap:11px;color:var(--ink);
+  font-family:var(--font-display);font-weight:500;font-size:1rem}
+.check-list .ck{flex:none;width:24px;height:24px;border-radius:50%;background:var(--grad-btn);
+  color:#0A0A0A;display:grid;place-items:center;font-size:13px;font-weight:800;
+  box-shadow:0 4px 12px -3px rgba(255,164,0,.5)}
+@media(max-width:560px){.check-list{grid-template-columns:1fr;gap:12px}}
+
+/* ---- process timeline: numbered steps, 4 / 2x2 / 1 ---- */
+.proc{display:grid;gap:22px;grid-template-columns:repeat(4,1fr)}
+@media(max-width:980px){.proc{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.proc{grid-template-columns:1fr}}
+.proc__step{position:relative;padding:26px 22px;border-radius:var(--r);
+  background:var(--card);border:1px solid var(--line);
+  transition:transform var(--dur-2) var(--ease-out),border-color .35s ease,box-shadow .35s ease}
+.proc__step:hover{transform:translateY(-6px);border-color:var(--line-2);box-shadow:var(--shadow-sm)}
+.proc__num{display:block;margin-bottom:12px;font-family:var(--font-display);font-weight:700;
+  font-size:2.5rem;line-height:1;background:var(--grad-text);-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.proc__step h3{font-family:var(--font-display);font-size:1.06rem;color:var(--head);margin-bottom:8px}
+.proc__step p{color:var(--muted);font-size:.93rem;line-height:1.55}
+
 /* ---------- 2. holographic sheen on glass surfaces ---------- */
 /* enhance.js tags existing cards/panels with .fx-sheen and feeds
    --mx/--my (0-100%) as the pointer moves across each element. */
