@@ -451,6 +451,9 @@ video::-webkit-media-controls-overlay-enclosure{
     border-color:var(--line-2); box-shadow:var(--shadow) }
   .tcard:hover{ flex-grow:5.4 }
 }
+/* the active card is a wide 1.8:1 frame, so a portrait gets cropped top and
+   bottom. `center` cut the heads off, so each card overrides the vertical
+   focal point inline to suit how its own photo is framed. */
 .tcard__bg{ position:absolute; inset:0; background-size:cover; background-position:center;
   transform:scale(1.08); filter:brightness(.6) saturate(.82);
   transition:transform .7s ease, filter .6s ease }
