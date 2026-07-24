@@ -390,11 +390,15 @@
   /* ---------- technologies / supporting lists ---------- */
   if (svc.techGroups && svc.techGroups.length) {
     if (svc.techTitle) set("svc-tech-title", svc.techTitle);
-    set("svc-tech-groups", svc.techGroups.map(function (g, i) {
-      return '<p class="eyebrow" style="text-align:center;margin:' + (i ? "34px" : "0") + ' 0 16px">' + esc(g.label) + "</p>" +
-        '<div class="chip-row chip-row--center">' +
-        g.items.map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("") +
-        "</div>";
+    // A single list needs no label — the section heading already names it.
+    // Two lists get centred labels so they stay distinguishable.
+    var multi = svc.techGroups.length > 1;
+    set("svc-tech-groups", svc.techGroups.map(function (g) {
+      return '<div class="tech-group">' +
+        (multi ? '<span class="eyebrow center">' + esc(g.label) + "</span>" : "") +
+        '<div class="tech-grid">' +
+        g.items.map(function (t) { return '<span class="tech-item">' + esc(t) + "</span>"; }).join("") +
+        "</div></div>";
     }).join(""));
     show("svc-tech-sec");
   }
