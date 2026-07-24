@@ -73,8 +73,34 @@
 .tech-item::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;
   background:var(--grad-btn);box-shadow:0 0 9px -1px rgba(255,164,0,.6)}
 .tech-item:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--shadow-sm)}
-@media(max-width:520px){.tech-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .tech-item{padding:13px 10px;font-size:.88rem}}
+@media(max-width:520px){.tech-item{min-width:calc(50% - 6px);padding:13px 10px;font-size:.88rem}}
+
+/* ---- portfolio: category filters ---- */
+.pf-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 40px}
+.pf-filter{padding:9px 18px;border-radius:999px;cursor:pointer;
+  font-family:var(--font-display);font-weight:600;font-size:.9rem;letter-spacing:.01em;
+  color:var(--muted);background:transparent;border:1px solid var(--line);
+  transition:color .25s ease,background .25s ease,border-color .25s ease,transform .25s var(--ease-out)}
+.pf-filter:hover{color:var(--head);border-color:var(--line-2);transform:translateY(-2px)}
+.pf-filter[aria-pressed="true"]{color:#0A0A0A;background:var(--grad-btn);border-color:transparent;
+  box-shadow:0 6px 18px -6px rgba(255,164,0,.55)}
+.pf-filter:focus-visible{outline:2px solid var(--c5);outline-offset:3px}
+.pf-card[hidden]{display:none}
+
+/* ---- portfolio: per-card tech stack pills ---- */
+.pf-tech{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.pf-tech span{font-family:var(--font-display);font-size:.7rem;letter-spacing:.02em;
+  padding:4px 9px;border-radius:7px;color:var(--muted);
+  background:var(--glass);border:1px solid var(--line)}
+
+/* ---- six-step process (portfolio); reuses .proc styling, slimmer ---- */
+.proc--6{grid-template-columns:repeat(6,1fr);gap:14px}
+.proc--6 .proc__step{padding:20px 16px}
+.proc--6 .proc__num{font-size:1.9rem;margin-bottom:9px}
+.proc--6 .proc__step h3{font-size:.98rem}
+.proc--6 .proc__step p{font-size:.88rem}
+@media(max-width:1080px){.proc--6{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.proc--6{grid-template-columns:repeat(2,1fr)}}
 
 /* ---------- 2. holographic sheen on glass surfaces ---------- */
 /* enhance.js tags existing cards/panels with .fx-sheen and feeds
