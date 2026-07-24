@@ -25,7 +25,7 @@
 
 <main class="main" id="main">
 
-<!-- HERO -->
+<!-- ===== HERO ===== -->
 <section class="section">
   <div class="container">
     <a class="card__link" href="/solutions" style="margin-bottom:18px">&larr; All services</a>
@@ -37,7 +37,7 @@
         <div class="chip-row" id="svc-chips"></div>
         <div class="actions">
           <a class="btn btn--primary" href="/contact" id="svc-cta-primary">Get a Quote</a>
-          <a class="btn btn--ghost" href="/solutions" id="svc-cta-ghost">Explore services</a>
+          <a class="btn btn--ghost" href="/contact" id="svc-cta-ghost">Schedule Consultation</a>
         </div>
       </div>
       <div class="split__media media-photo">
@@ -48,18 +48,19 @@
   </div>
 </section>
 
-<!-- WHAT'S INCLUDED -->
-<section class="section section--light">
+<!-- ===== OVERVIEW (the story, before any feature cards) ===== -->
+<section class="section section--light" id="svc-overview-sec" hidden>
   <div class="container">
-    <div class="section-head center reveal">
-      <h2 class="h2" id="svc-feat-title">Everything you need, <span class="accent">end to end</span></h2>
-      <p class="lead" id="svc-feat-lead">Scoped, built and supported by one Pakistani team.</p>
+    <div class="section-head center reveal" style="margin-inline:auto">
+      <span class="eyebrow" id="svc-overview-eyebrow">Overview</span>
+      <h2 class="h2" id="svc-overview-title"></h2>
+      <p class="lead" id="svc-overview"></p>
+      <p class="lead" id="svc-overview2"></p>
     </div>
-    <div class="grid--3" id="svc-features"></div>
   </div>
 </section>
 
-<!-- DEMO (optional; service.js unhides + fills this only when the service defines a demo) -->
+<!-- ===== DEMO (video; only when the service defines one) ===== -->
 <section class="section" id="svc-demo-sec" hidden>
   <div class="container">
     <div class="split reveal">
@@ -76,14 +77,63 @@
   </div>
 </section>
 
-<!-- CTA -->
+<!-- ===== CAPABILITIES ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" id="svc-feat-eyebrow">Capabilities</span>
+      <h2 class="h2" id="svc-feat-title">Everything you need, <span class="accent">end to end</span></h2>
+      <p class="lead" id="svc-feat-lead">Scoped, built and supported by one Pakistani team.</p>
+    </div>
+    <div class="grid--3" id="svc-features"></div>
+  </div>
+</section>
+
+<!-- ===== TECHNOLOGIES / SUPPORTING LISTS ===== -->
+<section class="section section--light" id="svc-tech-sec" hidden>
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" id="svc-tech-eyebrow">Under the hood</span>
+      <h2 class="h2" id="svc-tech-title">Built with <span class="accent">proven technology</span></h2>
+    </div>
+    <div id="svc-tech-groups" class="reveal"></div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="section" id="svc-process-sec" hidden>
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">How we work</span>
+      <h2 class="h2">From first call to <span class="accent">long-term support</span></h2>
+    </div>
+    <div class="proc reveal" id="svc-process"></div>
+  </div>
+</section>
+
+<!-- ===== RELATED PROJECTS ===== -->
+<section class="section section--light" id="svc-projects-sec" hidden>
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Related work</span>
+      <h2 class="h2">Projects we&rsquo;ve <span class="accent">shipped</span></h2>
+      <p class="lead" id="svc-projects-lead">Real systems we have designed, built and put to work.</p>
+    </div>
+    <div class="grid--3" id="svc-projects"></div>
+    <div class="actions" style="justify-content:center;margin-top:38px">
+      <a class="btn btn--ghost" href="/portfolio">View full portfolio &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
 <section class="section">
   <div class="container">
     <div class="cta reveal">
       <h2 class="h2" id="svc-cta-h">Let&rsquo;s build it <span class="accent">together</span></h2>
       <p class="lead" style="margin-inline:auto" id="svc-cta-p">Tell us what you need and we&rsquo;ll put the right team on it. Aaiye baat karte hain.</p>
       <div class="actions" style="justify-content:center">
-        <a class="btn btn--primary" href="/contact">Get a Quote</a>
+        <a class="btn btn--primary" href="/contact" id="svc-cta-btn">Get a Quote</a>
         <a class="btn btn--ghost" href="/solutions">Explore services</a>
       </div>
     </div>
