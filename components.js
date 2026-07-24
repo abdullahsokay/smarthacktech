@@ -31,10 +31,10 @@
   ];
   // About dropdown, quick links into the About page sections (title + subtitle)
   var ABOUT_MENU = [
-    ["/about#deliver", "What We Deliver", "Our services at a glance"],
     ["/about#story", "Our Story", "How HackTech started"],
-    ["/about#team", "Meet the Team", "The people behind the build"],
+    ["/about#mission", "Mission &amp; Vision", "What we are building toward"],
     ["/about#values", "What We Stand For", "Our values &amp; principles"],
+    ["/about#team", "Meet the Team", "The engineers behind HackTech"],
     ["/about#journey", "Our Journey", "From the bench to an ecosystem"],
     ["/contact", "Work With Us", "Get in touch"]
   ];

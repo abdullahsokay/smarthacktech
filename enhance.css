@@ -75,6 +75,13 @@
 .tech-item:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--shadow-sm)}
 @media(max-width:520px){.tech-item{min-width:calc(50% - 6px);padding:13px 10px;font-size:.88rem}}
 
+/* ---- about: trust numbers ---- */
+.stat-num{display:block;font-family:var(--font-display);font-weight:700;
+  font-size:clamp(2.2rem,4vw,2.8rem);line-height:1;margin-bottom:10px;
+  background:var(--grad-text);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent}
+.stat-label{display:block;color:var(--muted);font-size:.95rem;line-height:1.45}
+
 /* ---- portfolio: category filters ---- */
 .pf-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 40px}
 .pf-filter{padding:9px 18px;border-radius:999px;cursor:pointer;
